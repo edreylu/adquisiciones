@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout :: head">
+        
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <header th:replace="layout :: header"></header>
+       <div class="container mt-2 col-lg-6">
+           <div class="card">
+                <div class="card-header text-center">
+                    <lable class="tituloPrincipal">Asignar Roles a Usuario: </lable>
+                </div>
+                <div class="card-body">
+                    
+                    
+                    <form method="post" action="#" th:action="@{/admin/usuarios/asignarRoles/{id}(id=${noUsuario})}" th:object="${usuarioRole}">
+                   
+                    <table class="table table-sm table-hover table-bordered table-wrapper-scroll-y my-custom-scrollbar" id="tablaDatos">
+                    <thead>
+                        <tr>
+                            <th style="width: 20%;">NO</th>
+                            <th style="width: 60%;">ROL</th>
+                            <th style="width: 20%;"> ASIGNADA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="dato, stat: ${usuarioRole.roles}">
+                            <td style="width: 20%;" th:text="${dato.noRole}"></td>
+                            <td style="width: 60%;" th:text="${#strings.replace(dato.roleName, 'ROLE_', '')}"></td>
+                            <td style="width: 20%;">
+                            <input type="checkbox" class="form-check-input" th:field="*{roles[__${stat.index}__].selected}">
+                            <input type="hidden" th:field="*{roles[__${stat.index}__].noRole}" />
+                            <input type="hidden" th:field="*{roles[__${stat.index}__].roleName}" />
+                            </td>
+                        </tr>
+                    </tbody>
+                    </table>
+                        <br/>
+                        <br/>
+                        <input type="submit" class="btn btn-success" value="Asignar">
+                        <a th:href="@{/admin/usuarios}">Regresar</a>
+                    </form>
+                       
+                </div>
+            </div>
+        </div>
+        
+    </body>
+</html>

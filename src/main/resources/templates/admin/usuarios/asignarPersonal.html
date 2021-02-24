@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout :: head">
+
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <header th:replace="layout :: header"></header>
+        <div class="container mt-2 col-lg-6">
+            <div class="card border-info">
+                <div class="panel-group">
+                    <div class="card">
+                        <div class="card-header">
+                            <center><h5 class="card-title"><label th:text="${username}"></label></h5></center>
+                        </div>
+                        <div class="card-body">
+                            <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" 
+                                th:if="${mensaje != null}"
+                                class="alert alert-dismissable">
+                               <button type="button" class="close" data-dismiss="alert">&times;</button>
+                               <center><strong><div th:text="${mensaje}"></div></strong></center>
+                           </div>
+                            <h5 class="card-title"><strong>Personal asignado:</strong> 
+                                <label style="color: #495057;" th:text="${personalAsignado == 0 ? 'No tiene Personal asignado' : personalAsignado}"></label>
+                                <button th:if="${personalAsignado != 0}" class="btn btn-info" type="button" th:onclick="listUsuarioPersonal()">
+                                    <i class="fa fa-search-plus" aria-hidden="true"></i> Ver Detalle</button>
+                            </h5>
+                            <hr/>
+                            <center><button class="btn btn-primary" type="button" th:onclick="showAsignarPersonal()">
+                                    <i class="fa fa-building-o" aria-hidden="true"></i> Asignar Personal a usuario</button></center>
+                            <input type="hidden" th:value="${personalAsignado}" id="personalAsignado" />
+                            <hr/>
+                         <a th:href="@{/admin/usuarios}">Regresar</a>
+                        </div>
+                        <input type="hidden" th:value="${noUsuario}" id="noUsuario" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="asignarPersonalModal" tabindex="-1" role="dialog" aria-hidden="true" th:fragment="modalAsignarPersonal">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h4 class="modal-title" id="myModalChangeLabel">Busqueda de Personal.</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="opcionesAsignarPersonal" class="card-body table-responsive-md">
+                            <div class="input-group">
+                                <input id="noPersonal" type="text" class="form-control" placeholder="ESCRIBE NUMERO DE PERSONAL" name="noPersonal" required>
+                                <div class="input-group-append">
+                                    <button id="personalList" class="btn btn-primary" type="button" th:onclick="searchPersonal()"> <span class="fa fa-search"></span> </button>
+                                </div>
+                            </div>
+                            <br/>
+                            <table class="table table-sm table-hover table-bordered table-wrapper-scroll-y my-custom-scrollbar" id="tablaDatosPersonal">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 2%;">NO PERSONAL</th>
+                                        <th style="width: 15%;">CORREO</th>
+                                        <th style="width: 65%;">NOMBRE COMPLETO</th>
+                                        <th style="width: 16%;">TELEFONO FIJO</th>
+                                        <th style="width: 3%;">ASIGNAR</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="datosPersonal">
+                                    <tr th:each="dato: ${personal}">
+                                        <td style="width: 2%;" th:text="${dato.noPersonal}"></td>
+                                        <td style="width: 15%;" th:text="${dato.correo}"></td>
+                                        <td style="width: 65%;" th:text="${dato.nombreCompleto}"></td>
+                                        <td style="width: 16%;" th:text="${dato.telefonoFijo}"></td>
+                                        <td style="width: 3%;">
+                                            <form method="post" action="#" th:action="@{/admin/usuarios/asignarPersonal(noPersonal=${dato.noPersonal}, noUsuario=${noUsuario})}">
+                                                <button class="btn btn-primary" style="font-size:smaller;" type="submit">
+                                                    <i class="fa fa-check" title="Asignar"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="usuarioPersonalModalHolder"></div>
+
+        <div class="modal fade" id="usuarioPersonalModal" tabindex="-1" role="dialog" aria-hidden="true" th:fragment="modalUsuarioPersonal">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h4 class="modal-title" id="myModalChangeLabel">El usuario: [[${personalAsignado}]] tiene el siguiente personal asignado.</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-sm table-hover table-bordered table-wrapper-scroll-y my-custom-scrollbar" id="tablaDatos">
+                            <thead>
+                                <tr>
+                                    <th style="width: 20%;">NO PERSONAL</th>
+                                    <th style="width: 60%;">NOMBRE</th>
+                                    <th style="width: 20%;">CORREO</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="dato : ${personal}">
+                                    <td style="width: 20%;" th:text="${dato.noPersonal}"></td>
+                                    <td style="width: 60%;" th:text="${dato.nombreCompleto}"></td>
+                                    <td style="width: 20%;" th:text="${dato.correo}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

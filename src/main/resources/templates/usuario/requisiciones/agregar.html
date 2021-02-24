@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout :: head">
+        
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <header th:replace="layout :: header"></header>
+        <div class="container mt-2 col-lg-8">
+            <div class="card">
+                <div class="card-header text-center">
+                 <lable class="tituloPrincipal">Nueva Requisición</lable>
+                </div>
+                <div class="card-body">
+                    
+                    <form class="needs-validation" novalidate method="post" action="#" th:action="@{/usuario/requisiciones/add}" th:object="${requisicion}">
+                        <div class="panel-body">
+                        <div class="row">
+                        <div class="col-md-6">
+                        <label class="tituloTexto">Objeto del gasto</label>
+                        <select name="objetoGasto" class="form-control">
+                            <option value="1">Papeleria</option>
+                            <option value="2">Herramienta</option>
+                            <option value="3">Alimentos</option>
+                          </select>
+                        </div>
+                        <div class="col-md-6">
+                        <label class="tituloTexto">Actividad en uso</label>
+                        <input type="text" name="actividadEnUso" class="form-control" required/>
+                        <div class="invalid-feedback">Actividad en uso es requerido</div>
+                        </div>
+                        </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="form-label tituloTexto" for="volanteSuficiencia">Volante de suficiencia</label>
+                                    <input type="file" class="form-control-file" id="volanteSuficiencia" required/>
+                                    <div class="invalid-feedback">Volante de suficiencia es requerido</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label tituloTexto" for="oficio">Oficio</label>
+                                    <input type="file" class="form-control-file" id="oficio" required/>
+                                    <div class="invalid-feedback">Oficio es requerido</div>
+                                </div>
+                                
+                            </div>
+                            <hr/>
+                            <br/>
+                            <div class="row">
+                            <div class="col-md-12">
+                                <!-- Editable table -->
+                                        <div class="card">
+                                          <h3 class="card-header text-center font-weight-bold">Agregar Articulos</h3>
+                                          <div class="card-body">
+                                            <div id="tableRequisicion" class="table-editable">
+                                              <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i
+                                                    class="fas fa-plus fa-2x" aria-hidden="true"></i></a></span>
+                                              <table class="table table-bordered table-responsive-md table-striped text-center">
+                                                <thead>
+                                                  <tr>
+                                                    <th class="text-center">Cantidad Solicitada</th>
+                                                    <th class="text-center">Unidad</th>
+                                                    <th class="text-center">Descripcion</th>
+                                                    <th class="text-center"></th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody>
+                                                  <tr>
+                                                    <td class="pt-3-half" contenteditable="true">
+                                                        <input type="text" name="cantidad" class="form-control" required/>
+                                                        <div class="invalid-feedback">Cantidad es requerido</div></td>
+                                                    <td class="pt-3-half" contenteditable="true">
+                                                        <select name="Unidad" class="form-control">
+                                                            <option value="1">Paquete</option>
+                                                            <option value="2">Unidad</option>
+                                                            <option value="3">kilo</option>
+                                                          </select>
+                                                    </td>
+                                                    <td class="pt-3-half" contenteditable="true">
+                                                        <input type="text" name="descripcion" class="form-control" required/>
+                                                        <div class="invalid-feedback">Descripcion es requerido</div>
+                                                    </td>
+                                                    <td>
+                                                      <span class="table-remove"><button type="button"
+                                                          class="btn btn-danger btn-rounded btn-sm my-0">Quitar</button></span>
+                                                    </td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <!-- Editable table -->
+                            </div>
+                            </div>
+                        <br/>
+                        
+                        <div class="valid-feedback">
+                         Todo bien.
+                         </div>
+                        <div class="invalid-feedback">
+                         </div>
+                        <br/>
+                        <br/>
+                        <input type="submit" class="btn btn-success" value="Agregar">
+                        <a th:href="@{/usuario/requisiciones}">Regresar</a>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        
+    </body>
+</html>

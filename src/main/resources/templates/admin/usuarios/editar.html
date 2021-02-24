@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout :: head">
+
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <header th:replace="layout :: header"></header>
+        <div class="container mt-2 col-lg-7">
+            <div class="card">
+                <div class="card-header">
+                    <center><lable class="tituloPrincipal">Editar Usuario</lable></center>   
+                </div>
+                <div class="card-body">
+                    <form class="needs-validation" novalidate method="post" action="#" th:action="@{/admin/usuarios/update/{id}(id=${usuario.noUsuario})}" th:object="${usuario}">
+                        <div class="row">
+                            <div class="col-md-6"><lable class="tituloTexto">Usuario: </lable>
+                                <input type="text" name="clave" class="form-control" th:field="${usuario.userName}" required/>
+                                <div class="invalid-feedback">Username es requerido</div>
+                            </div>
+                            <div class="col-md-6">
+                                
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12"><lable class="tituloTexto">Unidad Responsable: </lable>
+                                    <select id="unidadResponsable" name="claveUnidad" th:field="${usuario.claveUnidad}" class="form-control">
+                                        <option value="" selected disabled>Selecciona...</option>
+                                        <option th:each="unidad : ${unidadesResponsables}"
+                                           th:value="${unidad.claveUnidad}"
+                                           th:utext="${unidad.descripcion}">
+                                        </option>
+                                    </select>
+                                    <div class="invalid-feedback">Unidad Responsable es requerido</div>
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        <input type="submit" class="btn btn-success" value="Actualizar">
+                        <a th:href="@{/admin/usuarios}">Regresar</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

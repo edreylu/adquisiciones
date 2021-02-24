@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout :: head">
+
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script src="../../static/js/alerta.js"></script>
+    </head>
+    <body>
+        <header th:replace="layout :: header"></header>
+
+        <div class="container mt-4">
+            <div class="text-center">
+                    <img class="card-img-top" th:src="@{/img/not-found.jpg}" style="width: 20%; height: 20%;" alt="403">
+                    <h4 class="card-title">Servicio no encontrado!</h4>
+                    <p class="card-text">El servidor no encuentra el servicio solicitado.</p>
+                    <a th:href="@{/login}" class="btn btn-primary">Volver al menu</a>
+                
+        </div>
+        </div>
+    </body>
+</html>
