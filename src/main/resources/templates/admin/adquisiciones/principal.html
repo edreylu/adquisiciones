@@ -34,24 +34,32 @@ and open the template in the editor.
                 <table class="table table-sm table-hover table-bordered table-wrapper-scroll-y my-custom-scrollbar" id="tablaDatos">
                     <thead>
                         <tr>
-                            <th style="width:10%">Folio</th>
-                            <th style="width:10%">Cantidad</th>
-                            <th style="width:10%">Unidad</th>
-                            <th style="width:25%">Objeto del gasto</th>
-                            <th style="width:35%">Descripcion</th>
-                            <th style="width:10%"> </th>
+                            <th style="width:15%">ID REQUISICION</th>
+                            <th style="width:15%">CLAVE UNIDAD</th>
+                            <th style="width:15%">FECHA ELABORACION</th>
+                            <th style="width:5%">MES</th>
+                            <th style="width:10%">FOLIO</th>
+                            <th style="width:10%">ESTATUS</th>
+                            <th style="width:15%"> ACEPTAR </th>
+                            <th style="width:15%"> ENVIAR CORRECCIONES </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="dato: ${lista}">
+                            <td style="width:15%" th:text="${dato.idRequisicion}"></td>
+                            <td style="width:15%" th:text="${dato.claveUnidad}"></td>
+                            <td style="width:15%" th:text="${#dates.format(dato.fechaElaboracion,'dd/MM/yyyy')}"></td>
+                            <td style="width:5%" th:text="${dato.mesCalendarizacion}"></td>
                             <td style="width:10%" th:text="${dato.folio}"></td>
-                            <td style="width:10%" th:text="${dato.cantidad}"></td>
-                            <td style="width:10%" th:text="${dato.unidad}"></td>
-                            <td style="width:25%" th:text="${dato.objetoGasto}"></td>
-                            <td style="width:35%" th:text="${dato.descripcionProducto}"></td>
-                            <td style="width:10%">
-                                <a id="boton_editar" style="font-size:15px;color: #333333;" th:href="@{/admin/adquisiciones/editar/{id}(id=${dato.folio})}">
-                                    <i title="Detalle Requisicion" class="fas fa-info-circle"></i>
+                            <td style="width:10%" th:text="${dato.estatus}"></td>
+                            <td style="width:15%">
+                                <a id="boton_enviar" style="font-size:15px;color: #333333;" th:href="@{#}">
+                                    <i title="Aceptar Requisicion" class="fa fa-check-circle"></i>
+                                </a>
+                            </td>
+                            <td style="width:15%">
+                                <a id="boton_eliminar" style="font-size:15px;color: #333333;" th:href="@{#}">
+                                    <i title="Enviar Correcciones de Requisicion" class="fa fa-info-circle"></i>
                                 </a>
                             </td>
                         </tr>

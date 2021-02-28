@@ -84,7 +84,7 @@ function mensajeCerrarSesion(){
         .then(resultado => {
             if (resultado.value) {
                 // Hicieron click en "Sí"
-                window.location.replace("http://"+URLdomain+"/adquisiciones/logout");
+                window.location.replace("http://"+URLdomain+"/SIRSR/logout");
             } else {
                 // Dijeron que no
                 console.log("*NO se cerro*");

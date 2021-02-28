@@ -110,17 +110,17 @@ $(() => {
  const $EXPORT = $('#export');
 
  const newTr = `<tr>
-<td class="pt-3-half" contenteditable="true">
+<td class="pt-3-half">
  <input type="text" name="cantidad" class="form-control" required/>
  <div class="invalid-feedback">Cantidad es requerido</div></td>
-<td class="pt-3-half" contenteditable="true">
+<td class="pt-3-half">
  <select name="Unidad" class="form-control">
  <option value="1">Paquete</option>
  <option value="2">Unidad</option>
  <option value="3">kilo</option>
  </select>
 </td>
-<td class="pt-3-half" contenteditable="true">
+<td class="pt-3-half">
  <input type="text" name="descripcion" class="form-control" required/>
  <div class="invalid-feedback">Descripcion es requerido</div>
 </td>

@@ -29,7 +29,7 @@
                 <a th:href="@{/}">
                     <img th:src="@{/img/logosep.png}" id="logoSep" alt="">
                 </a>
-                    <strong>SISTEMA DE ADQUISICIONES     </strong>
+                    <strong>SIRSR     </strong>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -56,14 +56,24 @@
                         <div sec:authorize="hasRole('ROLE_USER')">
                         <li class="nav-item dropdown"> 
                             <a class="nav-link dropdown-toggle"  href="#"  id="navbarDropdownMenuLink"  data-toggle="dropdown"  aria-haspopup="true"  aria-expanded="false">  
-                                <i class='fa fa-book'> </i>  ADQUISICIONES </a>
+                                <i class='fas fa-money-check-alt'> </i>  REQUISICIONES </a>
+
+                            <div class="dropdown-menu"  aria-labelledby="navbarDropdownMenuLink">
+                                    
+                                <a class="dropdown-item" th:href="@{/usuario/requisiciones}" >
+                                    <i class='fas fa-money-check-alt'> </i>  REQUISICIONES </a>
+                            </div>
+                        </li>
+                        </div>
+                        <div sec:authorize="hasRole('ROLE_ADMIN')">
+                        <li class="nav-item dropdown"> 
+                            <a class="nav-link dropdown-toggle"  href="#"  id="navbarDropdownMenuLink"  data-toggle="dropdown"  aria-haspopup="true"  aria-expanded="false">  
+                                <i class='fas fa-shopping-cart'> </i>  ADQUISICIONES </a>
 
                             <div class="dropdown-menu"  aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" th:href="@{/admin/adquisiciones}" >
                                     <i class='fas fa-shopping-cart'> </i>  ADQUISICIONES </a>
                                     
-                                <a class="dropdown-item" th:href="@{/usuario/requisiciones}" >
-                                    <i class='fas fa-money-check-alt'> </i>  REQUISICIONES </a>
                             </div>
                         </li>
                         </div>
@@ -74,7 +84,7 @@
 
                             <div class="dropdown-menu"  aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" th:href="@{/admin/proveedores}" >
-                                    <i class='fas fa-shopping-cart'> </i>  PROVEEDORES </a>
+                                    <i class='fa fa-truck'> </i>  PROVEEDORES </a>
                                     
                             </div>
                         </li>
@@ -82,10 +92,10 @@
                     </ul>
 
                     <ul class="navbar-nav ml-auto nav-flex-icons">
-                        <input id="userNamePerfil" type="hidden" th:value="${#request.userPrincipal.name}"/>
+                        <input id="userNamePerfil" type="hidden" th:value="${#httpServletRequest.userPrincipal.name}"/>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false"> 
-                                <i class="fas fa-user" > Bienvenido, [[${#request.userPrincipal.name}]]</i></a>
+                                <i class="fas fa-user" > Bienvenido, [[${#httpServletRequest.userPrincipal.name}]]</i></a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
                                 
                                 <a class="dropdown-item"  onclick="mensajeCerrarSesion()"> 

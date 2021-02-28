@@ -12,20 +12,94 @@ and open the template in the editor.
     </head>
     <body>
         <header th:replace="layout :: header"></header>
-       <div class="container mt-2 col-lg-4">
+       <div class="container mt-2 col-lg-8">
            <div class="card">
                 <div class="card-header text-center">
                 <lable class="tituloPrincipal">Editar Requisicion</lable>
                 </div>
                 <div class="card-body">
-                    <form class="needs-validation" novalidate method="post" action="#" th:action="@{/usuario/requisiciones/update/{id}(id=${requisicion.id})}" th:object="${requisicion}">
-                        <lable class="tituloTexto">Requisicion</lable>
-                        <input type="text" name="roleName" class="form-control" th:value="${requisicion.name}" required/>
-                        <div class="invalid-feedback">Role name es requerido</div>
+                    
+                    <form class="needs-validation" novalidate method="post" action="#" enctype="multipart/form-data" 
+                          th:action="@{/usuario/requisiciones/update/{id}(id=${requisicion.idRequisicion})}" th:object="${requisicion}">
+                        <div class="panel-body">
+                        <div class="row">
+                        <div class="col-md-6">
+                        <label class="tituloTexto">Mes</label>
+                        <select name="mesCalendarizacion" class="form-control">
+                            <option value="1" selected>ENERO</option>
+                                          <option value="2">FEBRERO</option>
+                                          <option value="3">MARZO</option>
+                                          <option value="4">ABRIL</option>
+                                          <option value="5">MAYO</option>
+                                          <option value="6">JUNIO</option>
+                                          <option value="7">JULIO</option>
+                                          <option value="8">AGOSTO</option>
+                                          <option value="9">SEPTIEMBRE</option>
+                                          <option value="10">OCTUBRE</option>
+                                          <option value="11">NOVIEMBRE</option>
+                                          <option value="12">DICIEMBRE</option>
+                          </select>
+                        </div>
+                        <div class="col-md-6">
+                        <label class="tituloTexto">Justificacion Del Uso</label>
+                        <input type="text" name="justificacionDelUso" class="form-control" th:value="${requisicion.justificacionDelUso}" required/>
+                        <div class="invalid-feedback">Justificacion Del Uso es requerido</div>
+                        </div>
+                        </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-12">
+                                <label class="tituloTexto">Objeto del gasto</label>
+                                <select id="idUnidadMedida" name="idUnidadMedida" th:value="${requisicion.idUnidadMedida}" class="form-control">
+                                                            <option value="">Selecciona...</option>
+                                                            <option th:each="unidad : ${unidadMedidas}"
+                                                               th:value="${unidad.idUnidadMedida}"
+                                                               th:utext="${unidad.nombre}"/>
+                                 </select>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="form-label tituloTexto" for="volanteSuficiencia">Volante de suficiencia</label>
+                                    <input type="file" class="form-control-file" name="volanteSuficiencia" th:value="${requisicion.volanteSuficiencia}"  id="volanteSuficiencia" />
+                                    <div class="invalid-feedback">Volante de suficiencia es requerido</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label tituloTexto" for="montoSuficiencia">Monto de suficiencia</label>
+                                    <input type="number" class="form-control" name="montoSuficiencia" th:value="${requisicion.montoSuficiencia}" id="montoSuficiencia" required/>
+                                    <div class="invalid-feedback">Monto Suficiencia es requerido</div>
+                                </div>
+                                
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="form-label tituloTexto" for="oficio">Oficio</label>
+                                    <input type="file" class="form-control-file" name="oficio" th:value="${requisicion.oficio}" id="oficio" />
+                                    <div class="invalid-feedback">Oficio es requerido</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label tituloTexto" for="otro">Otro tipo de documento</label>
+                                    <input type="file" class="form-control-file" name="otro" th:value="${requisicion.otro}" id="otro" />
+                                    
+                                </div>
+                            </div>
+                            <hr/>
+                            <br/>
+                            
+                        <br/>
+                        
+                        <div class="valid-feedback">
+                         Todo bien.
+                         </div>
+                        <div class="invalid-feedback">
+                         </div>
                         <br/>
                         <br/>
                         <input type="submit" class="btn btn-success" value="Actualizar">
                         <a th:href="@{/usuario/requisiciones}">Regresar</a>
+                        </div>
                     </form>
                 </div>
             </div>
