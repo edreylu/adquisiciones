@@ -14,7 +14,6 @@ public class DetalleRequisicionMapper {
         detalleRequisicion.setCantidadSolicitada(cantidad);
         detalleRequisicion.setCaracteristicas(caracteristicas);
         detalleRequisicion.setUnidadMedida(unidadMedida);
-        detalleRequisicion.setRequisicion(requisicion);
 
         return detalleRequisicion;
     }

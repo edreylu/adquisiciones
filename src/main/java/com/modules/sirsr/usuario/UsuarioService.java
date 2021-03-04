@@ -6,8 +6,10 @@
 package com.modules.sirsr.usuario;
 
 import com.modules.sirsr.persistence.entity.Personal;
+import com.modules.sirsr.persistence.entity.UnidadResponsable;
 import com.modules.sirsr.persistence.entity.Usuario;
 import com.modules.sirsr.persistence.repository.PersonalRepository;
+import com.modules.sirsr.persistence.repository.UnidadResponsableRepository;
 import com.modules.sirsr.persistence.repository.UsuarioRepository;
 
 import java.io.UnsupportedEncodingException;
@@ -31,15 +33,17 @@ public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
     private final PersonalRepository personalRepository;
+    private final UnidadResponsableRepository unidadResponsableRepository;
     private final UsuarioMapper usuarioMapper;
     private final EmailUtils emailUtils;
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     private Mensaje msg;
 
     @Autowired
-    public UsuarioService(UsuarioRepository usuarioRepository, PersonalRepository personalRepository, UsuarioMapper usuarioMapper, EmailUtils emailUtils) {
+    public UsuarioService(UsuarioRepository usuarioRepository, PersonalRepository personalRepository, UnidadResponsableRepository unidadResponsableRepository, UsuarioMapper usuarioMapper, EmailUtils emailUtils) {
         this.usuarioRepository = usuarioRepository;
         this.personalRepository = personalRepository;
+        this.unidadResponsableRepository = unidadResponsableRepository;
         this.usuarioMapper = usuarioMapper;
         this.emailUtils = emailUtils;
     }
@@ -68,7 +72,10 @@ public class UsuarioService {
 
     public Mensaje update(UsuarioDTO usuarioDTO, int id) {
         try {
-            Usuario usuario = usuarioMapper.setToUpdate(usuarioRepository.findByNoUsuario(id), usuarioDTO);
+            UnidadResponsable unidadResponsable = unidadResponsableRepository.findById(usuarioDTO.getUnidadResponsable().getClaveUr()).get();
+            Usuario usuario = usuarioRepository.findByNoUsuario(id);
+            usuario.setUnidadResponsable(unidadResponsable);
+            usuario.setUserName(usuarioDTO.getUserName());
             usuarioRepository.save(usuario);
             msg = Mensaje.CREATE("Actualizado correctamente", 1);
         } catch (Exception e) {
@@ -153,14 +160,16 @@ public class UsuarioService {
     
     public Mensaje updateNoPersonal(int noPersonal, int noUsuario) {
         boolean existsPersonal = usuarioRepository.existsUsuarioByNoPersonalAndNoUsuarioNot(noPersonal, noUsuario);
+        System.out.println("existe: "+existsPersonal);
         if (existsPersonal) {
             msg = Mensaje.CREATE("No se pudo asignar personal por que alguien mas lo tiene asignado", 2);
         } else {
             try {
                 Usuario usuario = usuarioRepository.findByNoUsuario(noUsuario);
-                usuario.setNoPersonal(noPersonal);
+                Personal personal = personalRepository.findById(noPersonal).get();
+                usuario.setPersonal(personal);
                 usuarioRepository.save(usuario);
-                msg = Mensaje.CREATE("Inmueble asignado correctamente", 1);
+                msg = Mensaje.CREATE("Personal "+noPersonal+" asignado correctamente a usuario: "+usuario.getUserName(), 1);
             } catch (Exception e) {
                 msg = Mensaje.CREATE("No se pudo asignar por: " + e.getMessage(), 2);
             }

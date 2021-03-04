@@ -104,4 +104,7 @@ public class Capitulo{
         this.conceptoList = conceptoList;
     }
 
+    public Capitulo() {
+    }
+
 }

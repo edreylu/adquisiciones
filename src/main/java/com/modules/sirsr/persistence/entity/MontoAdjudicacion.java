@@ -23,10 +23,13 @@ import javax.persistence.Table;
 @Table(name = "MONTO_ADJUDICACION")
 public class MontoAdjudicacion{
 
+    @Column(name = "ESTATUS")
+    private Short estatus;
+
     @Id
     @Basic(optional = false)
-    @Column(name = "MONTO_ADJUDICACION")
-    private BigDecimal montoAdjudicacion;
+    @Column(name = "ID_MONTO_ADJUDICACION")
+    private Integer montoAdjudicacion;
     @Basic(optional = false)
     @Column(name = "TIPO_CONTRATACION")
     private String tipoContratacion;
@@ -35,17 +38,14 @@ public class MontoAdjudicacion{
     private BigDecimal importeSuperiorA;
     @Column(name = "IMPORTE_LIMITE")
     private BigDecimal importeLimite;
-    @Column(name = "ESTATUS")
-    private Integer estatus;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "montoAdjudicacion")
-    private List<Requisicion> requisicionList;
+    private List<Requisicion> requisiciones;
 
-
-    public BigDecimal getMontoAdjudicacion() {
+    public Integer getMontoAdjudicacion() {
         return montoAdjudicacion;
     }
 
-    public void setMontoAdjudicacion(BigDecimal montoAdjudicacion) {
+    public void setMontoAdjudicacion(Integer montoAdjudicacion) {
         this.montoAdjudicacion = montoAdjudicacion;
     }
 
@@ -73,21 +73,24 @@ public class MontoAdjudicacion{
         this.importeLimite = importeLimite;
     }
 
-    public Integer getEstatus() {
+
+    public List<Requisicion> getRequisiciones() {
+        return requisiciones;
+    }
+
+    public void setRequisiciones(List<Requisicion> requisiciones) {
+        this.requisiciones = requisiciones;
+    }
+
+    public MontoAdjudicacion() {
+    }
+
+    public Short getEstatus() {
         return estatus;
     }
 
-    public void setEstatus(Integer estatus) {
+    public void setEstatus(Short estatus) {
         this.estatus = estatus;
     }
 
-    public List<Requisicion> getRequisicionList() {
-        return requisicionList;
-    }
-
-    public void setRequisicionList(List<Requisicion> requisicionList) {
-        this.requisicionList = requisicionList;
-    }
-
-    
 }

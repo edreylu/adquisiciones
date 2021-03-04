@@ -35,9 +35,13 @@ public class DetalleCotizacion{
     private BigDecimal precioUnitario;
     @Column(name = "PRECIO_TOTAL")
     private BigDecimal precioTotal;
+    @Column(name = "CANTIDAD_COTIZADA")
+    private Integer cantidadCotizada;
+    @Column(name = "MARCA")
+    private String marca;
     @JoinColumn(name = "ID_COTIZACION", referencedColumnName = "ID_COTIZACION")
     @ManyToOne(optional = false)
-    private Cotizacion idCotizacion;
+    private Cotizacion cotizacion;
     @JoinColumn(name = "ID_DETALLE_REQUISICION", referencedColumnName = "ID_DETALLE_REQUISICION")
     @ManyToOne(optional = false)
     private DetalleRequisicion detalleRequisicion;
@@ -66,12 +70,12 @@ public class DetalleCotizacion{
         this.precioTotal = precioTotal;
     }
 
-    public Cotizacion getIdCotizacion() {
-        return idCotizacion;
+    public Cotizacion getCotizacion() {
+        return cotizacion;
     }
 
-    public void setIdCotizacion(Cotizacion idCotizacion) {
-        this.idCotizacion = idCotizacion;
+    public void setCotizacion(Cotizacion cotizacion) {
+        this.cotizacion = cotizacion;
     }
 
     public DetalleRequisicion getDetalleRequisicion() {
@@ -80,6 +84,25 @@ public class DetalleCotizacion{
 
     public void setDetalleRequisicion(DetalleRequisicion detalleRequisicion) {
         this.detalleRequisicion = detalleRequisicion;
+    }
+
+    public DetalleCotizacion() {
+    }
+
+    public Integer getCantidadCotizada() {
+        return cantidadCotizada;
+    }
+
+    public void setCantidadCotizada(Integer cantidadCotizada) {
+        this.cantidadCotizada = cantidadCotizada;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
     

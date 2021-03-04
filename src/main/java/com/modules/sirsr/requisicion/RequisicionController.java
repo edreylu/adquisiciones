@@ -5,10 +5,16 @@
  */
 package com.modules.sirsr.requisicion;
 
-import com.modules.sirsr.PartidaGasto.PartidaGastoEspecificaDTO;
-import com.modules.sirsr.PartidaGasto.PartidaGastoEspecificaService;
-import com.modules.sirsr.persistence.repository.PartidaGastoEspecificaRepository;
-import com.modules.sirsr.persistence.repository.UnidadMedidaRepository;
+import com.modules.sirsr.PartidaGasto.ObjetoDeGastoDTO;
+import com.modules.sirsr.PartidaGasto.ObjetoDeGastoService;
+import com.modules.sirsr.clavePresupuestaria.ClavePresupuestariaDTO;
+import com.modules.sirsr.clavePresupuestaria.ClavePresupuestariaService;
+import com.modules.sirsr.documento.DocumentoDTO;
+import com.modules.sirsr.documento.DocumentoService;
+import com.modules.sirsr.subTipoProducto.SubTipoProductoDTO;
+import com.modules.sirsr.subTipoProducto.SubTipoProductoService;
+import com.modules.sirsr.tipoDocumento.TipoDocumentoDTO;
+import com.modules.sirsr.tipoDocumento.TipoDocumentoService;
 import com.modules.sirsr.unidadMedida.UnidadMedidaDTO;
 import com.modules.sirsr.unidadMedida.UnidadMedidaService;
 import com.modules.sirsr.utils.Mensaje;
@@ -31,17 +37,29 @@ public class RequisicionController {
 
     private final RequisicionService requisicionService;
     private final UnidadMedidaService unidadService;
-    private final PartidaGastoEspecificaService partidaGastoEspecificaService;
+    private final ObjetoDeGastoService objetoDeGastoService;
+    private final DocumentoService documentoService;
+    private final TipoDocumentoService tipoDocumentoService;
+    private final ClavePresupuestariaService clavePresupuestariaService;
+    private final SubTipoProductoService subTipoProductoService;
     private List<RequisicionDTO> requisiciones;
-    private List<PartidaGastoEspecificaDTO> partidasEspecificas;
+    private List<ObjetoDeGastoDTO> partidasEspecificas;
     private List<UnidadMedidaDTO> unidadMedidas;
+    private List<DocumentoDTO> documentos;
+    private List<TipoDocumentoDTO> tiposDocumento;
+    private List<ClavePresupuestariaDTO> clavesPresupuestarias;
+    private List<SubTipoProductoDTO> subTipoProductos;
     private final Mensaje msg = new Mensaje();
 
     @Autowired
-    public RequisicionController(RequisicionService requisicionService,UnidadMedidaService unidadService, PartidaGastoEspecificaService partidaGastoEspecificaService) {
+    public RequisicionController(RequisicionService requisicionService, UnidadMedidaService unidadService, ObjetoDeGastoService objetoDeGastoService, DocumentoService documentoService, TipoDocumentoService tipoDocumentoService, ClavePresupuestariaService clavePresupuestariaService, SubTipoProductoService subTipoProductoService) {
         this.requisicionService = requisicionService;
         this.unidadService = unidadService;
-        this.partidaGastoEspecificaService = partidaGastoEspecificaService;
+        this.objetoDeGastoService = objetoDeGastoService;
+        this.documentoService = documentoService;
+        this.tipoDocumentoService = tipoDocumentoService;
+        this.clavePresupuestariaService = clavePresupuestariaService;
+        this.subTipoProductoService = subTipoProductoService;
     }
 
     @GetMapping("usuario/requisiciones")
@@ -53,10 +71,8 @@ public class RequisicionController {
 
     @GetMapping("usuario/requisiciones/agregar")
     public String agregar(Model model) {
-        partidasEspecificas = partidaGastoEspecificaService.findAll();
-        unidadMedidas = unidadService.findAll();
+        partidasEspecificas = objetoDeGastoService.findAll();
         model.addAttribute("partidasEspecificas", partidasEspecificas);
-        model.addAttribute("unidadMedidas", unidadMedidas);
         model.addAttribute("requisicion", new RequisicionDTO());
         return "usuario/requisiciones/agregar";
     }
@@ -87,5 +103,60 @@ public class RequisicionController {
     public String eliminar(@PathVariable("id") int id,
                            RedirectAttributes redirectAttrs) {
         return "redirect:/usuario/requisiciones";
-    }    
+    }
+
+    //DETALLES
+
+    @GetMapping("usuario/requisiciones/editarDetalles/{id}")
+    public String editarDetalles(@PathVariable("id") int id, Model model) {
+        RequisicionDTO requisicionDTO = requisicionService.findById(id);
+        String validUrl = "redirect:/usuario/requisiciones";
+        if(Objects.nonNull(requisicionDTO)){
+            unidadMedidas = unidadService.findAll();
+            clavesPresupuestarias = clavePresupuestariaService.findAll();
+            subTipoProductos = subTipoProductoService.findAll();
+            model.addAttribute("requisicion", requisicionDTO);
+            model.addAttribute("unidadMedidas", unidadMedidas);
+            model.addAttribute("clavesPresupuestarias", clavesPresupuestarias);
+            model.addAttribute("subTipoProductos", subTipoProductos);
+            validUrl = "usuario/requisiciones/editarDetalles";
+        }
+        return validUrl;
+    }
+
+    @PostMapping("usuario/requisiciones/updateDetalles/{id}")
+    public String editarDetalles(@PathVariable("id") int id, RequisicionDTO requisicionDTO, RedirectAttributes redirectAttrs){
+        msg.crearMensaje(requisicionService.saveDetalles(requisicionDTO, id), redirectAttrs);
+        return "redirect:/usuario/requisiciones";
+    }
+
+    //DOCUMENTOS
+
+    @GetMapping("usuario/requisiciones/editarDocumentos/{id}")
+    public String editarDocumentos(@PathVariable("id") int id, Model model) {
+        RequisicionDTO requisicionDTO = requisicionService.findById(id);
+        documentos = documentoService.findByIdRequisicion(id);
+        tiposDocumento = tipoDocumentoService.findAll();
+        String validUrl = "redirect:/usuario/requisiciones";
+        if(Objects.nonNull(requisicionDTO)){
+            model.addAttribute("requisicion", requisicionDTO);
+            model.addAttribute("documentos", documentos);
+            model.addAttribute("tiposDocumento", tiposDocumento);
+            validUrl = "usuario/requisiciones/editarDocumentos";
+        }
+        return validUrl;
+    }
+
+    @PostMapping("usuario/requisiciones/updateDocumentos/{id}")
+    public String editarDocumentos(@PathVariable("id") int id, DocumentoDTO documentoDTO, RedirectAttributes redirectAttrs){
+        msg.crearMensaje(requisicionService.saveDocumentos(documentoDTO, id), redirectAttrs);
+        return "redirect:/usuario/requisiciones/editarDocumentos/"+id;
+    }
+
+    @GetMapping("usuario/requisiciones/eliminarDocumento/{id}/{idReq}")
+    public String eliminarDocumento(@PathVariable("id") int id,@PathVariable("idReq") int idReq, RedirectAttributes redirectAttrs) {
+        msg.crearMensaje(documentoService.deleteById(id), redirectAttrs);
+        return "redirect:/usuario/requisiciones/editarDocumentos/"+idReq;
+    }
+
 }

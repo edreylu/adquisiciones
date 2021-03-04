@@ -2,8 +2,11 @@ package com.modules.sirsr.requisicion;
 
 import com.modules.sirsr.documento.DocumentoMapper;
 import com.modules.sirsr.persistence.entity.Requisicion;
+
 import java.io.IOException;
 import java.math.BigDecimal;
+
+import com.modules.sirsr.unidadResponsable.UnidadResponsableMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -13,6 +16,8 @@ import java.util.Objects;
 @Component
 public class RequisicionMapper {
 
+    private final UnidadResponsableMapper unidadResponsableMapper = new UnidadResponsableMapper();
+
     public RequisicionDTO toRequisicionDTO(Requisicion requisicion) {
         if (Objects.isNull(requisicion)) {
             return null;
@@ -20,20 +25,19 @@ public class RequisicionMapper {
 
         RequisicionDTO requisicionDTO = new RequisicionDTO();
         requisicionDTO.setIdRequisicion(requisicion.getIdRequisicion());
-        requisicionDTO.setClaveUnidad(requisicion.getClaveUnidad());
+        requisicionDTO.setUnidadResponsable(unidadResponsableMapper.toUnidadResponsableDTO(requisicion.getUnidadResponsable()));
         requisicionDTO.setFechaElaboracion(requisicion.getFechaElaboracion());
         requisicionDTO.setAnioCalendarizacion(requisicion.getAnioCalendarizacion());
         requisicionDTO.setMesCalendarizacion(requisicion.getMesCalendarizacion());
         requisicionDTO.setJustificacionDelUso(requisicion.getJustificacionDelUso());
         requisicionDTO.setFolio(requisicion.getFolio());
-        requisicionDTO.setMontoSuficiencia(requisicion.getMontoSuficiencia());
+        //requisicionDTO.setMontoSuficiencia(requisicion.getMontoSuficiencia());
         requisicionDTO.setFechaRecepcion(requisicion.getFechaRecepcion());
         requisicionDTO.setMontoAdjudicacion(BigDecimal.valueOf(1));
         requisicionDTO.setFechaAutorizacion(requisicion.getFechaAutorizacion());
         requisicionDTO.setEstatus(requisicion.getEstatus());
-        requisicionDTO.setClaveEspecifica(requisicion.getClaveEspecifica());
-        requisicionDTO.setDigito(requisicion.getDigito());
-
+        //requisicionDTO.setClaveEspecifica(requisicion.getClaveEspecifica());
+        //requisicionDTO.setDigito(requisicion.getDigito());
         return requisicionDTO;
     }
 
@@ -54,25 +58,24 @@ public class RequisicionMapper {
         }
         
         DocumentoMapper documentoMapper = new DocumentoMapper();
-        DetalleRequisicionMapper detalleRequisicionMapper = new DetalleRequisicionMapper();
-        
+
         Requisicion requisicion = new Requisicion();
 
         
         requisicion.setIdRequisicion(requisicionDTO.getIdRequisicion());
-        requisicion.setClaveUnidad(requisicionDTO.getClaveUnidad());
+        requisicion.setUnidadResponsable(unidadResponsableMapper.toUnidadResponsable(requisicionDTO.getUnidadResponsable()));
         requisicion.setFechaElaboracion(requisicionDTO.getFechaElaboracion());
         requisicion.setAnioCalendarizacion(requisicionDTO.getAnioCalendarizacion());
         requisicion.setMesCalendarizacion(requisicionDTO.getMesCalendarizacion());
         requisicion.setJustificacionDelUso(requisicionDTO.getJustificacionDelUso());
         requisicion.setFolio(requisicionDTO.getFolio());
-        requisicion.setMontoSuficiencia(requisicionDTO.getMontoSuficiencia());
+        //requisicion.setMontoSuficiencia(requisicionDTO.getMontoSuficiencia());
         requisicion.setFechaRecepcion(requisicionDTO.getFechaRecepcion());
-        requisicion.setMontoAdjudicacion(requisicionDTO.getMontoAdjudicacion());
-        requisicion.setFechaAutorizacion(requisicionDTO.getFechaAutorización());
+        //requisicion.setMontoAdjudicacion(requisicionDTO.getMontoAdjudicacion());
+        requisicion.setFechaAutorizacion(requisicionDTO.getFechaAutorizacion());
         requisicion.setEstatus(requisicionDTO.getEstatus());
-        requisicion.setClaveEspecifica(requisicionDTO.getClaveEspecifica());
-        requisicion.setDigito(requisicionDTO.getDigito());
+        //requisicion.setClaveEspecifica(requisicionDTO.getClaveEspecifica());
+        //requisicion.setDigito(requisicionDTO.getDigito());
 
         System.out.println(requisicion.toString());
         return requisicion;

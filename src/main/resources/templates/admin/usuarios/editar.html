@@ -31,10 +31,10 @@ and open the template in the editor.
 
                         <div class="row">
                             <div class="col-md-12"><lable class="tituloTexto">Unidad Responsable: </lable>
-                                    <select id="unidadResponsable" name="claveUnidad" th:field="${usuario.claveUnidad}" class="form-control">
+                                    <select id="unidadResponsable" name="unidadResponsable.claveUr" th:field="${usuario.unidadResponsable.claveUr}" class="form-control">
                                         <option value="" selected disabled>Selecciona...</option>
                                         <option th:each="unidad : ${unidadesResponsables}"
-                                           th:value="${unidad.claveUnidad}"
+                                           th:value="${unidad.claveUr}"
                                            th:utext="${unidad.descripcion}">
                                         </option>
                                     </select>

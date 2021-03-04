@@ -16,7 +16,7 @@ public class UnidadResponsableMapper {
         }
 
         UnidadResponsableDTO unidadResponsableDTO = new UnidadResponsableDTO();
-        unidadResponsableDTO.setClaveUnidad(unidadResponsable.getClaveUnidad());
+        unidadResponsableDTO.setClaveUr(unidadResponsable.getClaveUr());
         unidadResponsableDTO.setDescripcion(unidadResponsable.getDescripcion());
         unidadResponsableDTO.setFechaInicio(unidadResponsable.getFechaInicio());
         unidadResponsableDTO.setFechaFinal(unidadResponsable.getFechaFinal());
@@ -34,5 +34,20 @@ public class UnidadResponsableMapper {
             list.add(toUnidadResponsableDTO(unidad));
         }
         return list;
+    }
+
+    public UnidadResponsable toUnidadResponsable(UnidadResponsableDTO unidadResponsableDTO) {
+        if (Objects.isNull(unidadResponsableDTO)) {
+            return null;
+        }
+
+        UnidadResponsable unidadResponsable = new UnidadResponsable();
+        unidadResponsable.setClaveUr(unidadResponsableDTO.getClaveUr());
+        unidadResponsable.setDescripcion(unidadResponsableDTO.getDescripcion());
+        unidadResponsable.setFechaInicio(unidadResponsableDTO.getFechaInicio());
+        unidadResponsable.setFechaFinal(unidadResponsableDTO.getFechaFinal());
+        unidadResponsable.setEstatus(unidadResponsableDTO.getEstatus());
+
+        return unidadResponsable;
     }
 }

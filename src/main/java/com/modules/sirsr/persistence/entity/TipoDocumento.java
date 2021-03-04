@@ -31,9 +31,9 @@ public class TipoDocumento{
     private String descripcion;
     @Basic(optional = false)
     @Column(name = "ID_ESTATUS")
-    private short idEstatus;
+    private Integer idEstatus;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoDocumento")
-    private List<Documento> documentoList;
+    private List<Documento> documentos;
 
 
     public Integer getIdTipoDocumento() {
@@ -52,20 +52,20 @@ public class TipoDocumento{
         this.descripcion = descripcion;
     }
 
-    public short getIdEstatus() {
+    public Integer getIdEstatus() {
         return idEstatus;
     }
 
-    public void setIdEstatus(short idEstatus) {
+    public void setIdEstatus(Integer idEstatus) {
         this.idEstatus = idEstatus;
     }
 
-    public List<Documento> getDocumentoList() {
-        return documentoList;
+    public List<Documento> getDocumentos() {
+        return documentos;
     }
 
-    public void setDocumentoList(List<Documento> documentoList) {
-        this.documentoList = documentoList;
+    public void setDocumentos(List<Documento> documentos) {
+        this.documentos = documentos;
     }
 
 }

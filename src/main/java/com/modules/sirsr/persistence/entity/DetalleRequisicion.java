@@ -6,7 +6,6 @@
 package com.modules.sirsr.persistence.entity;
 
 import java.util.List;
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,24 +33,28 @@ public class DetalleRequisicion{
     private Integer idDetalleRequisicion;
     @Column(name = "CANTIDAD_SOLICITADA")
     private Integer cantidadSolicitada;
-    @Column(name = "CANTIDAD_AUTORIZADA")
-    @Basic(optional = true)
-    private Integer cantidadAutorizada;
     @Column(name = "CARACTERISTICAS")
     private String caracteristicas;
+    @Column(name = "DIGITO")
+    private String digito;
+    @Column(name = "CANTIDAD_AUTORIZADA")
+    private Integer cantidadAutorizada;
     
-    @JoinColumn(name = "ID_REQUISICION", referencedColumnName = "ID_REQUISICION")
+    @JoinColumn(name = "ID_VOLANTE", referencedColumnName = "ID_VOLANTE")
     @ManyToOne(optional = false)
-    private Requisicion requisicion;
+    private Volante volante;
     
     @JoinColumn(name = "ID_UNIDAD_MEDIDA", referencedColumnName = "ID_UNIDAD_MEDIDA")
     @ManyToOne(optional = false)
     private UnidadMedida unidadMedida;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "detalleRequisicion")
-    private List<DetalleCotizacion> detalleCotizacionList;
-
+    @JoinColumn(name = "ID_SUBTIPO_PRODUCTO", referencedColumnName = "ID_SUBTIPO_PRODUCTO")
+    @ManyToOne(optional = false)
+    private SubTipoProducto subtipoProducto;
     
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "detalleRequisicion")
+    private List<DetalleCotizacion> detalleCotizaciones;
+
     public Integer getIdDetalleRequisicion() {
         return idDetalleRequisicion;
     }
@@ -68,14 +71,6 @@ public class DetalleRequisicion{
         this.cantidadSolicitada = cantidadSolicitada;
     }
 
-    public Integer getCantidadAutorizada() {
-        return cantidadAutorizada;
-    }
-
-    public void setCantidadAutorizada(Integer cantidadAutorizada) {
-        this.cantidadAutorizada = cantidadAutorizada;
-    }
-
     public String getCaracteristicas() {
         return caracteristicas;
     }
@@ -84,12 +79,28 @@ public class DetalleRequisicion{
         this.caracteristicas = caracteristicas;
     }
 
-    public Requisicion getRequisicion() {
-        return requisicion;
+    public String getDigito() {
+        return digito;
     }
 
-    public void setRequisicion(Requisicion requisicion) {
-        this.requisicion = requisicion;
+    public void setDigito(String digito) {
+        this.digito = digito;
+    }
+
+    public Integer getCantidadAutorizada() {
+        return cantidadAutorizada;
+    }
+
+    public void setCantidadAutorizada(Integer cantidadAutorizada) {
+        this.cantidadAutorizada = cantidadAutorizada;
+    }
+
+    public Volante getVolante() {
+        return volante;
+    }
+
+    public void setVolante(Volante volante) {
+        this.volante = volante;
     }
 
     public UnidadMedida getUnidadMedida() {
@@ -100,13 +111,22 @@ public class DetalleRequisicion{
         this.unidadMedida = unidadMedida;
     }
 
-    public List<DetalleCotizacion> getDetalleCotizacionList() {
-        return detalleCotizacionList;
+    public SubTipoProducto getSubtipoProducto() {
+        return subtipoProducto;
     }
 
-    public void setDetalleCotizacionList(List<DetalleCotizacion> detalleCotizacionList) {
-        this.detalleCotizacionList = detalleCotizacionList;
+    public void setSubtipoProducto(SubTipoProducto subtipoProducto) {
+        this.subtipoProducto = subtipoProducto;
     }
 
+    public List<DetalleCotizacion> getDetalleCotizaciones() {
+        return detalleCotizaciones;
+    }
+
+    public void setDetalleCotizaciones(List<DetalleCotizacion> detalleCotizaciones) {
+        this.detalleCotizaciones = detalleCotizaciones;
+    }
+    
+    
     
 }

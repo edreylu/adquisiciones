@@ -38,6 +38,10 @@ public class PersonalService {
     public List<PersonalDTO> findByNoPersonal(int noPersonal) {
         return personalMapper.toUnidadResponsableDTOs(personalRepository.findByNoPersonal(noPersonal));
     }
+    public Personal findByCorreo(String email) {
+        Personal personal = personalRepository.findByCorreo(email);
+        return personal;
+    }
 
     public PersonalDTO findById(int id) {
         Personal personal = personalRepository.findById(id).get();

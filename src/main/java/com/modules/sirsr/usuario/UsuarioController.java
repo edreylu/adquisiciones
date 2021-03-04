@@ -114,10 +114,8 @@ public class UsuarioController {
     @GetMapping("admin/usuarios/asignarPersonal/{id}")
     public String asignarPersonal(@PathVariable("id") int id, Model model) {
         UsuarioDTO usuario = usuarioService.findById(id);
-        model.addAttribute("username", usuario.getUserName());
-        model.addAttribute("noUsuario", usuario.getNoUsuario());
+        model.addAttribute("usuario", usuario);
         model.addAttribute("personalAsignado", usuario.getPersonal().getNoPersonal());
-        model.addAttribute("claveArea", "");
         return "admin/usuarios/asignarPersonal";
     }
 
@@ -134,14 +132,6 @@ public class UsuarioController {
         model.addAttribute("noUsuario", noUsuario);
         model.addAttribute("personal", personal);
         return "admin/usuarios/asignarPersonal :: #datosPersonal";
-    }
-
-    @GetMapping("admin/usuarios/listUsuarioPersonal/{personalAsignado}")
-    public String listUsuarioPersonal(@PathVariable("personalAsignado") int personalAsignado, Model model) {
-        personal = personalService.findByNoPersonal(personalAsignado);
-        model.addAttribute("personalAsignado", personalAsignado);
-        model.addAttribute("personal", personal);
-        return "admin/usuarios/asignarPersonal :: modalUsuarioPersonal";
     }
 
     @GetMapping("usuario/editarPerfil/{userName}")

@@ -5,6 +5,7 @@
  */
 package com.modules.sirsr.persistence.entity;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -30,7 +31,7 @@ public class PartidaGastoGenerica{
     @Id
     @Basic(optional = false)
     @Column(name = "CLAVE_GENERICA")
-    private Short claveGenerica;
+    private Integer claveGenerica;
     @Basic(optional = false)
     @Column(name = "DESCRIPCION")
     private String descripcion;
@@ -49,14 +50,14 @@ public class PartidaGastoGenerica{
     @JoinColumn(name = "CLAVE_CONCEPTO", referencedColumnName = "CLAVE_CONCEPTO")
     @ManyToOne(optional = false)
     private Concepto claveConcepto;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "claveGenerica")
-    private List<PartidaGastoEspecifica> partidaGastoEspecificaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "partidaGastoGenerica")
+    private List<ObjetoDeGasto> objetosDegasto;
 
-    public Short getClaveGenerica() {
+    public Integer getClaveGenerica() {
         return claveGenerica;
     }
 
-    public void setClaveGenerica(Short claveGenerica) {
+    public void setClaveGenerica(Integer claveGenerica) {
         this.claveGenerica = claveGenerica;
     }
 
@@ -108,13 +109,11 @@ public class PartidaGastoGenerica{
         this.claveConcepto = claveConcepto;
     }
 
-    public List<PartidaGastoEspecifica> getPartidaGastoEspecificaList() {
-        return partidaGastoEspecificaList;
+    public List<ObjetoDeGasto> getObjetosDegasto() {
+        return objetosDegasto;
     }
 
-    public void setPartidaGastoEspecificaList(List<PartidaGastoEspecifica> partidaGastoEspecificaList) {
-        this.partidaGastoEspecificaList = partidaGastoEspecificaList;
+    public void setObjetosDegasto(List<ObjetoDeGasto> objetosDegasto) {
+        this.objetosDegasto = objetosDegasto;
     }
-
-    
 }

@@ -30,10 +30,10 @@ $(() => {
     $('#claveEspecifica').chosen({
         width: '200px',
         disable_search: false});
-    $('#idUnidadMedida').chosen({
+    $('#clavePresupuestaria').chosen({
         width: '100px',
         disable_search: false});
-    
+
 });
 
 

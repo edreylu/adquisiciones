@@ -34,8 +34,13 @@ public class UnidadResponsableService {
         return unidadResponsableMapper.toUnidadResponsableDTOs(unidadResponsableRepository.findAll());
     }
 
-    public UnidadResponsableDTO findById(int id) {
+    public UnidadResponsableDTO findById(String id) {
         UnidadResponsableDTO unidadResponsableDTO = unidadResponsableMapper.toUnidadResponsableDTO(unidadResponsableRepository.findById(id).get());
+        return unidadResponsableDTO;
+    }
+
+    public UnidadResponsableDTO findByClaveUr(String claveUr) {
+        UnidadResponsableDTO unidadResponsableDTO = unidadResponsableMapper.toUnidadResponsableDTO(unidadResponsableRepository.findByClaveUr(claveUr));
         return unidadResponsableDTO;
     }
 

@@ -8,10 +8,12 @@ package com.modules.sirsr.persistence.repository;
 import com.modules.sirsr.persistence.entity.Documento;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 /**
  *
  * @author Edward Reyes
  */
 public interface DocumentoRepository extends JpaRepository<Documento, Integer>{
-    
+    List<Documento> findByIdRequisicion(Integer idRequisicion);
 }

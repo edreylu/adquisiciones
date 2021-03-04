@@ -6,12 +6,15 @@
 package com.modules.sirsr.persistence.entity;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,13 +24,13 @@ import javax.persistence.TemporalType;
  * @author Edward Reyes
  */
 @Entity
-@Table(name = "PARTIDA_GASTO_ESPECIFICA")
-public class PartidaGastoEspecifica{
+@Table(name = "OBJETO_DE_GASTO")
+public class ObjetoDeGasto{
 
     @Id
     @Basic(optional = false)
-    @Column(name = "CLAVE_ESPECIFICA")
-    private Integer claveEspecifica;
+    @Column(name = "OBJETO_GASTO")
+    private String objetoGasto;
     @Basic(optional = false)
     @Column(name = "DESCRIPCION")
     private String descripcion;
@@ -42,22 +45,23 @@ public class PartidaGastoEspecifica{
     private Date fechaFinal;
     @Basic(optional = false)
     @Column(name = "ESTATUS")
-    private Integer estatus;
+    private short estatus;
     @JoinColumn(name = "CLAVE_GENERICA", referencedColumnName = "CLAVE_GENERICA")
     @ManyToOne(optional = false)
-    private PartidaGastoGenerica claveGenerica;
+    private PartidaGastoGenerica partidaGastoGenerica;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "objetoDeGasto")
+    private List<ClavePresupuestaria> clavesPresupuestarias;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "objetoDeGasto")
+    private List<SubTipoProducto> subtiposProducto;
 
-    public Integer getClaveEspecifica() {
-        return claveEspecifica;
+    public String getObjetoGasto() {
+        return objetoGasto;
     }
 
-    public void setClaveEspecifica(Integer claveEspecifica) {
-        this.claveEspecifica = claveEspecifica;
+    public void setObjetoGasto(String objetoGasto) {
+        this.objetoGasto = objetoGasto;
     }
 
-    public void setEstatus(Integer estatus) {
-        this.estatus = estatus;
-    }
     public String getDescripcion() {
         return descripcion;
     }
@@ -90,12 +94,35 @@ public class PartidaGastoEspecifica{
         this.fechaFinal = fechaFinal;
     }
 
-    public PartidaGastoGenerica getClaveGenerica() {
-        return claveGenerica;
+    public short getEstatus() {
+        return estatus;
     }
 
-    public void setClaveGenerica(PartidaGastoGenerica claveGenerica) {
-        this.claveGenerica = claveGenerica;
+    public void setEstatus(short estatus) {
+        this.estatus = estatus;
     }
 
+    public PartidaGastoGenerica getPartidaGastoGenerica() {
+        return partidaGastoGenerica;
+    }
+
+    public void setPartidaGastoGenerica(PartidaGastoGenerica partidaGastoGenerica) {
+        this.partidaGastoGenerica = partidaGastoGenerica;
+    }
+
+    public List<ClavePresupuestaria> getClavesPresupuestarias() {
+        return clavesPresupuestarias;
+    }
+
+    public void setClavesPresupuestarias(List<ClavePresupuestaria> clavesPresupuestarias) {
+        this.clavesPresupuestarias = clavesPresupuestarias;
+    }
+
+    public List<SubTipoProducto> getSubtiposProducto() {
+        return subtiposProducto;
+    }
+
+    public void setSubtiposProducto(List<SubTipoProducto> subtiposProducto) {
+        this.subtiposProducto = subtiposProducto;
+    }
 }

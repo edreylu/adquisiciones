@@ -5,9 +5,9 @@
  */
 package com.modules.sirsr.requisicion;
 
+import com.modules.sirsr.unidadResponsable.UnidadResponsableDTO;
 import java.math.BigDecimal;
 import java.util.Date;
-import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -15,27 +15,19 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public class RequisicionDTO {
     private int idRequisicion;
-    private String claveUnidad;
+    private UnidadResponsableDTO unidadResponsable;
     private Date fechaElaboracion;
     private int anioCalendarizacion;
     private int mesCalendarizacion;
     private String justificacionDelUso;
-    private int folio;
-    private BigDecimal montoSuficiencia;
+    private String folio;
     private Date fechaRecepcion;
     private BigDecimal montoAdjudicacion;
     private Date fechaAutorizacion;
     private int estatus;
-    private int claveEspecifica;
-    private int digito;
-    private MultipartFile volanteSuficiencia;
-    private MultipartFile oficio;
-    private MultipartFile otro;
     private String idUnidadMedida;
     private String cantidad;
     private String caracteristicas;
-    
-    
 
     public int getIdRequisicion() {
         return idRequisicion;
@@ -45,12 +37,12 @@ public class RequisicionDTO {
         this.idRequisicion = idRequisicion;
     }
 
-    public String getClaveUnidad() {
-        return claveUnidad;
+    public UnidadResponsableDTO getUnidadResponsable() {
+        return unidadResponsable;
     }
 
-    public void setClaveUnidad(String claveUnidad) {
-        this.claveUnidad = claveUnidad;
+    public void setUnidadResponsable(UnidadResponsableDTO unidadResponsable) {
+        this.unidadResponsable = unidadResponsable;
     }
 
     public Date getFechaElaboracion() {
@@ -85,20 +77,12 @@ public class RequisicionDTO {
         this.justificacionDelUso = justificacionDelUso;
     }
 
-    public int getFolio() {
+    public String getFolio() {
         return folio;
     }
 
-    public void setFolio(int folio) {
+    public void setFolio(String folio) {
         this.folio = folio;
-    }
-
-    public BigDecimal getMontoSuficiencia() {
-        return montoSuficiencia;
-    }
-
-    public void setMontoSuficiencia(BigDecimal montoSuficiencia) {
-        this.montoSuficiencia = montoSuficiencia;
     }
 
     public Date getFechaRecepcion() {
@@ -109,7 +93,15 @@ public class RequisicionDTO {
         this.fechaRecepcion = fechaRecepcion;
     }
 
-    public Date getFechaAutorización() {
+    public BigDecimal getMontoAdjudicacion() {
+        return montoAdjudicacion;
+    }
+
+    public void setMontoAdjudicacion(BigDecimal montoAdjudicacion) {
+        this.montoAdjudicacion = montoAdjudicacion;
+    }
+
+    public Date getFechaAutorizacion() {
         return fechaAutorizacion;
     }
 
@@ -123,54 +115,6 @@ public class RequisicionDTO {
 
     public void setEstatus(int estatus) {
         this.estatus = estatus;
-    }
-
-    public int getClaveEspecifica() {
-        return claveEspecifica;
-    }
-
-    public void setClaveEspecifica(int claveEspecifica) {
-        this.claveEspecifica = claveEspecifica;
-    }
-
-    public int getDigito() {
-        return digito;
-    }
-
-    public void setDigito(int digito) {
-        this.digito = digito;
-    }
-
-    public MultipartFile getVolanteSuficiencia() {
-        return volanteSuficiencia;
-    }
-
-    public void setVolanteSuficiencia(MultipartFile volanteSuficiencia) {
-        this.volanteSuficiencia = volanteSuficiencia;
-    }
-
-    public MultipartFile getOficio() {
-        return oficio;
-    }
-
-    public void setOficio(MultipartFile oficio) {
-        this.oficio = oficio;
-    }
-
-    public MultipartFile getOtro() {
-        return otro;
-    }
-
-    public void setOtro(MultipartFile otro) {
-        this.otro = otro;
-    }
-
-    public BigDecimal getMontoAdjudicacion() {
-        return montoAdjudicacion;
-    }
-
-    public void setMontoAdjudicacion(BigDecimal montoAdjudicacion) {
-        this.montoAdjudicacion = montoAdjudicacion;
     }
 
     public String getIdUnidadMedida() {
@@ -188,7 +132,7 @@ public class RequisicionDTO {
     public void setCantidad(String cantidad) {
         this.cantidad = cantidad;
     }
-    
+
     public String getCaracteristicas() {
         return caracteristicas;
     }
@@ -197,10 +141,5 @@ public class RequisicionDTO {
         this.caracteristicas = caracteristicas;
     }
 
-    @Override
-    public String toString() {
-        return "RequisicionDTO{" + "idRequisicion=" + idRequisicion + ", claveUnidad=" + claveUnidad + ", fechaElaboracion=" + fechaElaboracion + ", anioCalendarizacion=" + anioCalendarizacion + ", mesCalendarizacion=" + mesCalendarizacion + ", justificacionDelUso=" + justificacionDelUso + ", folio=" + folio + ", montoSuficiencia=" + montoSuficiencia + ", fechaRecepcion=" + fechaRecepcion + ", montoAdjudicacion=" + montoAdjudicacion + ", fechaAutorizacion=" + fechaAutorizacion + ", estatus=" + estatus + ", claveEspecifica=" + claveEspecifica + ", digito=" + digito + ", volanteSuficiencia=" + volanteSuficiencia + ", oficio=" + oficio + ", otro=" + otro + ", idUnidadMedida=" + idUnidadMedida + ", cantidad=" + cantidad + ", caracteristicas=" + caracteristicas + '}';
-    }
 
-    
 }

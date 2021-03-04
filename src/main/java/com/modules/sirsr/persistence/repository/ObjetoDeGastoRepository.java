@@ -5,13 +5,13 @@
  */
 package com.modules.sirsr.persistence.repository;
 
-import com.modules.sirsr.persistence.entity.PartidaGastoEspecifica;
+import com.modules.sirsr.persistence.entity.ObjetoDeGasto;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author Edward Reyes
  */
-public interface PartidaGastoEspecificaRepository extends JpaRepository<PartidaGastoEspecifica, Integer>{
+public interface ObjetoDeGastoRepository extends JpaRepository<ObjetoDeGasto, String>{
     
 }

@@ -255,20 +255,20 @@ function searchPersonal() {
     }
 }
 
-function listUsuarioPersonal(){
-    var personalAsignado = document.getElementById("personalAsignado").value;
-    console.log(personalAsignado);
-    if (personalAsignado != 0) {
+function subirDocumento() {
+    var noPersonal = document.getElementById("noPersonal").value;
+    var noUsuario = document.getElementById("noUsuario").value;
+    console.log("../../usuarios/searchPersonal/" + noPersonal + "/"+noUsuario);
+    if (noPersonal != "" && noUsuario != 0) {
         var xhr = getXhr();
-        xhr.open("GET", "../../usuarios/listUsuarioPersonal/" + personalAsignado, true);
+        xhr.open("GET", "../../usuarios/searchPersonal/" + noPersonal + "/"+noUsuario, true);
         xhr.onreadystatechange = () => {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 let data = xhr.responseText;
                 console.log(data);
-                document.getElementById("usuarioPersonalModalHolder").innerHTML = data;
-                $("#usuarioPersonalModal").modal();
+                document.getElementById("datosPersonal").innerHTML = data;
             }
         }
         xhr.send(null);
-}
+    }
 }

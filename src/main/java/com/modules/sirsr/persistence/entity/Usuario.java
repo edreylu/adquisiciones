@@ -32,12 +32,12 @@ public class Usuario {
     @Column(name = "FECHA_AUDITORIA", updatable = false, nullable = false)
     @Temporal(TemporalType.DATE)
     private Calendar fechaAuditoria;
-    
+
     @Column(name = "NO_PERSONAL", insertable = false, updatable = false)
     private Integer noPersonal;
-    
-    @Column(name = "CLAVE_UNIDAD", insertable = false, updatable = false)
-    private String claveUnidad;
+
+    @Column(name = "CLAVE_UR", insertable = false, updatable = false)
+    private String clavaUr;
 
     @Column(name = "IDESTATUS", length = 2, nullable = true)
     private Integer idEstatus;
@@ -56,7 +56,7 @@ public class Usuario {
     private Personal personal;
     
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "CLAVE_UNIDAD", nullable = false)
+    @JoinColumn(name = "CLAVE_UR", nullable = false)
     private UnidadResponsable unidadResponsable;
 
     public Integer getNoUsuario() {
@@ -97,14 +97,6 @@ public class Usuario {
 
     public void setNoPersonal(Integer noPersonal) {
         this.noPersonal = noPersonal;
-    }
-    
-    public String getClaveUnidad() {
-        return claveUnidad;
-    }
-
-    public void setClaveUnidad(String claveUnidad) {
-        this.claveUnidad = claveUnidad;
     }
 
     public Integer getIdEstatus() {
@@ -154,6 +146,12 @@ public class Usuario {
     public void setUnidadResponsable(UnidadResponsable unidadResponsable) {
         this.unidadResponsable = unidadResponsable;
     }
-    
-    
+
+    public String getClavaUr() {
+        return clavaUr;
+    }
+
+    public void setClavaUr(String clavaUr) {
+        this.clavaUr = clavaUr;
+    }
 }

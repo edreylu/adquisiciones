@@ -12,6 +12,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * @author Edward Reyes
  */
-public interface UnidadResponsableRepository extends JpaRepository<UnidadResponsable, Integer>{
-    
+public interface UnidadResponsableRepository extends JpaRepository<UnidadResponsable, String>{
+    UnidadResponsable findByClaveUr(String claveUr);
 }

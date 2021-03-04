@@ -31,7 +31,7 @@ public class UnidadMedida{
     @Column(name = "DESCRIPCION")
     private String descripcion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidadMedida")
-    private List<DetalleRequisicion> detalleRequisicionList;
+    private List<DetalleRequisicion> detalleRequisiciones;
 
     public Integer getIdUnidadMedida() {
         return idUnidadMedida;
@@ -65,12 +65,15 @@ public class UnidadMedida{
         this.descripcion = descripcion;
     }
 
-    public List<DetalleRequisicion> getDetalleRequisicionList() {
-        return detalleRequisicionList;
+    public List<DetalleRequisicion> getDetalleRequisiciones() {
+        return detalleRequisiciones;
     }
 
-    public void setDetalleRequisicionList(List<DetalleRequisicion> detalleRequisicionList) {
-        this.detalleRequisicionList = detalleRequisicionList;
+    public void setDetalleRequisiciones(List<DetalleRequisicion> detalleRequisiciones) {
+        this.detalleRequisiciones = detalleRequisiciones;
+    }
+
+    public UnidadMedida() {
     }
 
 }

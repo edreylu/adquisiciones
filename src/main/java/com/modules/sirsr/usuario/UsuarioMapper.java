@@ -2,6 +2,7 @@ package com.modules.sirsr.usuario;
 
 import com.modules.sirsr.persistence.entity.Usuario;
 import com.modules.sirsr.personal.PersonalMapper;
+import com.modules.sirsr.unidadResponsable.UnidadResponsableMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class UsuarioMapper {
 
         UsuarioDTO usuarioDTO = new UsuarioDTO();
         PersonalMapper personalMapper = new PersonalMapper();
+        UnidadResponsableMapper unidadResponsableMapper = new UnidadResponsableMapper();
 
         usuarioDTO.setNoUsuario(usuario.getNoUsuario());
         usuarioDTO.setUserName(usuario.getUserName());
@@ -28,7 +30,7 @@ public class UsuarioMapper {
         usuarioDTO.setIdEstatus(usuario.getIdEstatus());
         usuarioDTO.setEnabled(usuario.getEnabled());
         usuarioDTO.setPersonal(personalMapper.toPersonalDTO(usuario.getPersonal()));
-        usuarioDTO.setClaveUnidad(usuario.getClaveUnidad());
+        usuarioDTO.setUnidadResponsable(unidadResponsableMapper.toUnidadResponsableDTO(usuario.getUnidadResponsable()));
 
         return usuarioDTO;
     }
@@ -50,7 +52,6 @@ public class UsuarioMapper {
         if (Objects.isNull(usuarioDTO)) {
             return null;
         }
-
         Usuario usuario = new Usuario();
 
         usuario.setNoUsuario(usuarioDTO.getNoUsuario());
@@ -59,13 +60,12 @@ public class UsuarioMapper {
         usuario.setFechaAuditoria(usuarioDTO.getFechaAuditoria());
         usuario.setIdEstatus(usuarioDTO.getIdEstatus());
         usuario.setEnabled(usuarioDTO.getEnabled());
-        usuario.setClaveUnidad(usuarioDTO.getClaveUnidad());
         return usuario;
     }
 
     public Usuario setToUpdate(Usuario usuarioFound, UsuarioDTO usuarioDTO) {
+        UnidadResponsableMapper unidadResponsableMapper = new UnidadResponsableMapper();
         usuarioFound.setUserName(usuarioDTO.getUserName());
-        usuarioFound.setClaveUnidad(usuarioDTO.getClaveUnidad());
         return usuarioFound;
     }
 

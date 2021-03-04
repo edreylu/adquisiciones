@@ -47,7 +47,7 @@ and open the template in the editor.
                     <tbody>
                         <tr th:each="dato: ${lista}">
                             <td style="width:15%" th:text="${dato.idRequisicion}"></td>
-                            <td style="width:15%" th:text="${dato.claveUnidad}"></td>
+                            <td style="width:15%" th:text="${dato.unidadResponsable.claveUr}"></td>
                             <td style="width:15%" th:text="${#dates.format(dato.fechaElaboracion,'dd/MM/yyyy')}"></td>
                             <td style="width:5%" th:text="${dato.mesCalendarizacion}"></td>
                             <td style="width:10%" th:text="${dato.folio}"></td>

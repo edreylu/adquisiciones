@@ -3,22 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.modules.sirsr.documento;
+package com.modules.sirsr.tipoDocumento;
 
 /**
  *
  * @author Edward Reyes
  */
 public class TipoDocumentoDTO {
-    private Integer idTipoDocumento;
+    private int idTipoDocumento;
     private String descripcion;
-    private short idEstatus;
+    private int idEstatus;
 
-    public Integer getIdTipoDocumento() {
+    public int getIdTipoDocumento() {
         return idTipoDocumento;
     }
 
-    public void setIdTipoDocumento(Integer idTipoDocumento) {
+    public void setIdTipoDocumento(int idTipoDocumento) {
         this.idTipoDocumento = idTipoDocumento;
     }
 
@@ -30,14 +30,11 @@ public class TipoDocumentoDTO {
         this.descripcion = descripcion;
     }
 
-    public short getIdEstatus() {
+    public int getIdEstatus() {
         return idEstatus;
     }
 
-    public void setIdEstatus(short idEstatus) {
+    public void setIdEstatus(int idEstatus) {
         this.idEstatus = idEstatus;
     }
-    
-    
-    
 }

@@ -54,6 +54,7 @@ public class UsuarioRoleService {
         try {
             Usuario usuario = usuarioRepository.findByNoUsuario(id);
             usuarioRoleDTO.getRoles().forEach(roleDTO -> {
+                System.out.println(roleDTO.getNoRole());
                 UsuarioRole usuarioRole = new UsuarioRole();
                 usuarioRole.setUsuario(usuario);
                 usuarioRole.setRole(roleMapper.toRole(roleDTO));
@@ -62,6 +63,7 @@ public class UsuarioRoleService {
                 boolean exists = usuarioRoleRepository.exists(example);
                 if (roleDTO.isSelected()) {
                     if (!exists) {
+                        System.out.println(usuarioRole.getRole().getNoRole() +" - " +usuarioRole.getUsuario().getNoUsuario());
                         usuarioRoleRepository.save(usuarioRole);
                     }
                 } else {

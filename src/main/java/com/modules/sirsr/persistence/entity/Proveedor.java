@@ -38,9 +38,9 @@ public class Proveedor{
     private String razonSocial;
     @Basic(optional = false)
     @Column(name = "ESTATUS")
-    private int estatus;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProveedor")
-    private List<Cotizacion> cotizacionList;
+    private Integer estatus;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "proveedor")
+    private List<Cotizacion> cotizaciones;
 
     public Integer getIdProveedor() {
         return idProveedor;
@@ -66,20 +66,23 @@ public class Proveedor{
         this.razonSocial = razonSocial;
     }
 
-    public int getEstatus() {
+    public List<Cotizacion> getCotizaciones() {
+        return cotizaciones;
+    }
+
+    public void setCotizaciones(List<Cotizacion> cotizaciones) {
+        this.cotizaciones = cotizaciones;
+    }
+
+    public Proveedor() {
+    }
+
+    public Integer getEstatus() {
         return estatus;
     }
 
-    public void setEstatus(int estatus) {
+    public void setEstatus(Integer estatus) {
         this.estatus = estatus;
-    }
-
-    public List<Cotizacion> getCotizacionList() {
-        return cotizacionList;
-    }
-
-    public void setCotizacionList(List<Cotizacion> cotizacionList) {
-        this.cotizacionList = cotizacionList;
     }
 
 }

@@ -7,6 +7,8 @@ package com.modules.sirsr.usuario;
 
 
 import com.modules.sirsr.personal.PersonalDTO;
+import com.modules.sirsr.unidadResponsable.UnidadResponsableDTO;
+
 import java.util.Calendar;
 import java.util.Objects;
 
@@ -21,11 +23,10 @@ public class UsuarioDTO {
     private String password;
     private String encrytedPassword;
     private Calendar fechaAuditoria;
-    private Integer noPersonal;
-    private String claveUnidad;
     private Integer idEstatus;
     private Integer enabled;
     private PersonalDTO personal;
+    private UnidadResponsableDTO unidadResponsable;
 
 
     public int getNoUsuario() {
@@ -69,20 +70,12 @@ public class UsuarioDTO {
         this.fechaAuditoria = fechaAuditoria;
     }
 
-    public Integer getNoPersonal() {
-        return noPersonal;
+    public UnidadResponsableDTO getUnidadResponsable() {
+        return unidadResponsable;
     }
 
-    public void setNoPersonal(Integer noPersonal) {
-        this.noPersonal = noPersonal;
-    }
-
-    public String getClaveUnidad() {
-        return claveUnidad;
-    }
-
-    public void setClaveUnidad(String claveUnidad) {
-        this.claveUnidad = claveUnidad;
+    public void setUnidadResponsable(UnidadResponsableDTO unidadResponsable) {
+        this.unidadResponsable = unidadResponsable;
     }
 
     public Integer getIdEstatus() {

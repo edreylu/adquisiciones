@@ -47,6 +47,29 @@ console.log(id);
         });
 }
 
+function mensajeEliminarDocumento(id, idReq) {
+let modulo = document.getElementById("nombreModulo").value;
+console.log(id);
+    Swal
+        .fire({
+            title: "Eliminar",
+            text: "¿Desea Eliminar "+modulo+" ?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: "Si",
+            cancelButtonText: "No",
+        })
+        .then(resultado => {
+            if (resultado.value) {
+                // Hicieron click en "Sí"
+                window.location = "../eliminarDocumento/"+id+"/"+idReq;
+            } else {
+                // Dijeron que no
+                console.log("*NO se cerro*");
+            }
+        });
+}
+
 function mensajeReiniciar(id) {
 console.log(id);
     Swal

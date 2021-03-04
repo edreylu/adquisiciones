@@ -9,6 +9,9 @@ import com.modules.sirsr.requisicion.RequisicionDTO;
 import java.sql.Blob;
 import java.util.Date;
 
+import com.modules.sirsr.tipoDocumento.TipoDocumentoDTO;
+import org.springframework.web.multipart.MultipartFile;
+
 /**
  *
  * @author Edward Reyes
@@ -17,8 +20,9 @@ public class DocumentoDTO {
     private Integer idDocumento;
     private Blob documento;
     private Date fechaActualizacion;
-    private RequisicionDTO requisicionDTO;
-    private TipoDocumentoDTO tipoDocumentoDTO;
+    private RequisicionDTO requisicion;
+    private TipoDocumentoDTO tipoDocumento;
+    private MultipartFile file;
 
     public Integer getIdDocumento() {
         return idDocumento;
@@ -44,22 +48,29 @@ public class DocumentoDTO {
         this.fechaActualizacion = fechaActualizacion;
     }
 
-    public RequisicionDTO getRequisicionDTO() {
-        return requisicionDTO;
+    public RequisicionDTO getRequisicion() {
+        return requisicion;
     }
 
-    public void setRequisicionDTO(RequisicionDTO requisicionDTO) {
-        this.requisicionDTO = requisicionDTO;
+    public void setRequisicion(RequisicionDTO requisicion) {
+        this.requisicion = requisicion;
     }
 
-    public TipoDocumentoDTO getTipoDocumentoDTO() {
-        return tipoDocumentoDTO;
+    public TipoDocumentoDTO getTipoDocumento() {
+        return tipoDocumento;
     }
 
-    public void setTipoDocumentoDTO(TipoDocumentoDTO tipoDocumentoDTO) {
-        this.tipoDocumentoDTO = tipoDocumentoDTO;
+    public void setTipoDocumento(TipoDocumentoDTO tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
     }
-    
+
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
     
     
 }

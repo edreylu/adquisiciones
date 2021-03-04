@@ -19,8 +19,7 @@ and open the template in the editor.
                 </div>
                 <div class="card-body">
                     
-                    <form class="needs-validation" novalidate method="post" action="#" th:action="@{/usuario/requisiciones/add}" 
-                          enctype="multipart/form-data" th:object="${requisicion}">
+                    <form class="needs-validation" novalidate method="post" action="#" th:action="@{/usuario/requisiciones/add}" th:object="${requisicion}">
                         <div class="panel-body">
                         <div class="row">
                         <div class="col-md-6">
@@ -41,100 +40,21 @@ and open the template in the editor.
                           </select>
                         </div>
                         <div class="col-md-6">
-                        <label class="tituloTexto">Justificacion Del Uso</label>
-                        <input type="text" name="justificacionDelUso" class="form-control" required/>
-                        <div class="invalid-feedback">Justificacion Del Uso es requerido</div>
+                            <label class="form-label tituloTexto" for="montoSuficiencia">Monto de suficiencia</label>
+                            <input type="number" class="form-control" name="montoSuficiencia" id="montoSuficiencia" required/>
+                            <div class="invalid-feedback">Monto Suficiencia es requerido</div>
                         </div>
                         </div>
                             <br/>
                             <div class="row">
                                 <div class="col-md-12">
-                                <label class="tituloTexto">Objeto del gasto</label>
-                                <select id="claveEspecifica" name="claveEspecifica" class="form-control">
-                                        <option value="">Selecciona...</option>
-                                        <option th:each="partida : ${partidasEspecificas}"
-                                           th:value="${partida.claveEspecifica}"
-                                           th:utext="${partida.descripcion}"/>
-                                </select>
-                                </div>
-                            </div>
-                            <br/>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label class="form-label tituloTexto" for="volanteSuficiencia">Volante de suficiencia</label>
-                                    <input type="file" class="form-control-file" name="volanteSuficiencia"  id="volanteSuficiencia" required />
-                                    <div class="invalid-feedback">Volante de suficiencia es requerido</div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label tituloTexto" for="montoSuficiencia">Monto de suficiencia</label>
-                                    <input type="number" class="form-control" name="montoSuficiencia" id="montoSuficiencia" required/>
-                                    <div class="invalid-feedback">Monto Suficiencia es requerido</div>
-                                </div>
-                                
-                            </div>
-                            <br/>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label class="form-label tituloTexto" for="oficio">Oficio</label>
-                                    <input type="file" class="form-control-file" name="oficio" id="oficio" required/>
-                                    <div class="invalid-feedback">Oficio es requerido</div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label tituloTexto" for="otro">Otro tipo de documento</label>
-                                    <input type="file" class="form-control-file" name="otro" id="otro" />
-                                    
+                                    <label class="tituloTexto">Justificacion Del Uso</label>
+                                    <textarea class="form-control" name="justificacionDelUso" aria-label="Justificacion de uso"></textarea>
+                                    <div class="invalid-feedback">Justificacion Del Uso es requerido</div>
                                 </div>
                             </div>
                             <hr/>
                             <br/>
-                            <div class="row">
-                            <div class="col-md-12">
-                                <!-- Editable table -->
-                                        <div class="card">
-                                          <h3 class="card-header text-center font-weight-bold">Agregar Articulos</h3>
-                                          <div class="card-body">
-                                            <div id="tableRequisicion" class="table-editable">
-                                              <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i
-                                                    class="fas fa-plus fa-2x" aria-hidden="true"></i></a></span>
-                                              <table class="table table-bordered table-responsive-md table-striped text-center">
-                                                <thead>
-                                                  <tr>
-                                                    <th class="text-center">Cantidad Solicitada</th>
-                                                    <th class="text-center">Unidad</th>
-                                                    <th class="text-center">Caracteristicas</th>
-                                                    <th class="text-center"></th>
-                                                  </tr>
-                                                </thead>
-                                                <tbody>
-                                                  <tr>
-                                                    <td class="pt-3-half">
-                                                        <input type="number" name="cantidad" class="form-control" required/>
-                                                        <div class="invalid-feedback">Cantidad es requerido</div></td>
-                                                    <td class="pt-3-half" >
-                                                        <select id="idUnidadMedida" name="idUnidadMedida" class="form-control">
-                                                            <option value="">Selecciona...</option>
-                                                            <option th:each="unidad : ${unidadMedidas}"
-                                                               th:value="${unidad.idUnidadMedida}"
-                                                               th:utext="${unidad.nombre}"/>
-                                                    </select>
-                                                    </td>
-                                                    <td class="pt-3-half">
-                                                        <input type="text" name="caracteristicas" class="form-control" required/>
-                                                        <div class="invalid-feedback">Caracteristicas es requerido</div>
-                                                    </td>
-                                                    <td>
-                                                      <span class="table-remove"><button type="button"
-                                                          class="btn btn-danger btn-rounded btn-sm my-0">Quitar</button></span>
-                                                    </td>
-                                                  </tr>
-                                                </tbody>
-                                              </table>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <!-- Editable table -->
-                            </div>
-                            </div>
                         <br/>
                         
                         <div class="valid-feedback">

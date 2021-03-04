@@ -115,5 +115,8 @@ public class Concepto{
     public void setPartidaGastoGenericaList(List<PartidaGastoGenerica> partidaGastoGenericaList) {
         this.partidaGastoGenericaList = partidaGastoGenericaList;
     }
+
+    public Concepto() {
+    }
     
 }

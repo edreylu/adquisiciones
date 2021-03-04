@@ -56,7 +56,6 @@ public class MainController {
     
     @GetMapping("/menu")
     public String menu(Model model, Principal principal) {
-        System.out.println(WebUtils.getUserName());
         UsuarioDTO usuario = usuarioService.findByUserName(WebUtils.getUserName());
         model.addAttribute("usuario", usuario);
         return "menu";

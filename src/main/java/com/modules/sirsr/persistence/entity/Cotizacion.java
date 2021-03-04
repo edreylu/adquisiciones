@@ -30,6 +30,10 @@ import javax.persistence.TemporalType;
 @Table(name = "COTIZACION")
 public class Cotizacion{
 
+    @Basic(optional = false)
+    @Column(name = "ID_REQUISICION")
+    private int idRequisicion;
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cotizacion_generator")
     @SequenceGenerator(name = "cotizacion_generator", sequenceName = "ADQUISICIONES.SEQ_COTIZACION", allocationSize = 1)
@@ -44,12 +48,20 @@ public class Cotizacion{
     private Short estatus;
     @JoinColumn(name = "ID_PROVEEDOR", referencedColumnName = "ID_PROVEEDOR")
     @ManyToOne(optional = false)
-    private Proveedor idProveedor;
-    @JoinColumn(name = "ID_REQUISICION", referencedColumnName = "ID_REQUISICION")
+    private Proveedor proveedor;
+    @JoinColumn(name = "ID_REQUISICION", referencedColumnName = "ID_REQUISICION", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Requisicion requisicion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCotizacion")
-    private List<DetalleCotizacion> detalleCotizacionList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cotizacion")
+    private List<DetalleCotizacion> detalleCotizaciones;
+
+    public int getIdRequisicion() {
+        return idRequisicion;
+    }
+
+    public void setIdRequisicion(int idRequisicion) {
+        this.idRequisicion = idRequisicion;
+    }
 
     public Integer getIdCotizacion() {
         return idCotizacion;
@@ -75,12 +87,12 @@ public class Cotizacion{
         this.estatus = estatus;
     }
 
-    public Proveedor getIdProveedor() {
-        return idProveedor;
+    public Proveedor getProveedor() {
+        return proveedor;
     }
 
-    public void setIdProveedor(Proveedor idProveedor) {
-        this.idProveedor = idProveedor;
+    public void setProveedor(Proveedor proveedor) {
+        this.proveedor = proveedor;
     }
 
     public Requisicion getRequisicion() {
@@ -91,12 +103,12 @@ public class Cotizacion{
         this.requisicion = requisicion;
     }
 
-    public List<DetalleCotizacion> getDetalleCotizacionList() {
-        return detalleCotizacionList;
+    public List<DetalleCotizacion> getDetalleCotizaciones() {
+        return detalleCotizaciones;
     }
 
-    public void setDetalleCotizacionList(List<DetalleCotizacion> detalleCotizacionList) {
-        this.detalleCotizacionList = detalleCotizacionList;
+    public void setDetalleCotizaciones(List<DetalleCotizacion> detalleCotizaciones) {
+        this.detalleCotizaciones = detalleCotizaciones;
     }
 
     

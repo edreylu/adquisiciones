@@ -5,14 +5,7 @@
  */
 package com.modules.sirsr.persistence.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 
 /**
  *
@@ -24,7 +17,8 @@ import javax.persistence.UniqueConstraint;
 public class UsuarioRole {
  
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="usuariorole_generator")
+    @SequenceGenerator(name = "usuariorole_generator", sequenceName = "ADQUISICIONES.SEQ_USUARIOROLE", allocationSize = 1)
     @Column(name = "ID", nullable = false)
     private Integer id;
  

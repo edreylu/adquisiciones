@@ -14,18 +14,18 @@ import java.util.Date;
 
 public class UnidadResponsableDTO {
     
-    private String claveUnidad;
+    private String claveUr;
     private String descripcion;
     private Date fechaInicio;
     private Date fechaFinal;
-    private short estatus;
+    private int estatus;
 
-    public String getClaveUnidad() {
-        return claveUnidad;
+    public String getClaveUr() {
+        return claveUr;
     }
 
-    public void setClaveUnidad(String claveUnidad) {
-        this.claveUnidad = claveUnidad;
+    public void setClaveUr(String claveUr) {
+        this.claveUr = claveUr;
     }
 
     public String getDescripcion() {
@@ -52,11 +52,11 @@ public class UnidadResponsableDTO {
         this.fechaFinal = fechaFinal;
     }
 
-    public short getEstatus() {
+    public int getEstatus() {
         return estatus;
     }
 
-    public void setEstatus(short estatus) {
+    public void setEstatus(int estatus) {
         this.estatus = estatus;
     }
 

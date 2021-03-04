@@ -41,6 +41,8 @@ public class Documento{
     @Column(name = "FECHA_ACTUALIZACION")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaActualizacion;
+    @Column(name = "ID_REQUISICION", insertable = false, updatable = false)
+    private Integer idRequisicion;
     @JoinColumn(name = "ID_REQUISICION", referencedColumnName = "ID_REQUISICION")
     @ManyToOne(optional = false)
     private Requisicion requisicion;
@@ -89,6 +91,11 @@ public class Documento{
         this.tipoDocumento = tipoDocumento;
     }
 
-    
-    
+    public Integer getIdRequisicion() {
+        return idRequisicion;
+    }
+
+    public void setIdRequisicion(Integer idRequisicion) {
+        this.idRequisicion = idRequisicion;
+    }
 }

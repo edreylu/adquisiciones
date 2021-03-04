@@ -3,8 +3,8 @@ import com.modules.sirsr.persistence.entity.PartidaGastoGenerica;
 
 import java.util.Date;
 
-public class PartidaGastoEspecificaDTO {
-    private int claveEspecifica;
+public class ObjetoDeGastoDTO {
+    private String objetoGasto;
     private String descripcion;
     private String definicion;
     private Date fechaInicio;
@@ -12,12 +12,12 @@ public class PartidaGastoEspecificaDTO {
     private int estatus;
     private PartidaGastoGenerica claveGenerica;
 
-    public int getClaveEspecifica() {
-        return claveEspecifica;
+    public String getObjetoGasto() {
+        return objetoGasto;
     }
 
-    public void setClaveEspecifica(int claveEspecifica) {
-        this.claveEspecifica = claveEspecifica;
+    public void setObjetoGasto(String objetoGasto) {
+        this.objetoGasto = objetoGasto;
     }
 
     public String getDescripcion() {
