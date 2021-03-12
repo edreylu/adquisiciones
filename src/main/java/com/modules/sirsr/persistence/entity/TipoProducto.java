@@ -11,6 +11,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -29,9 +31,12 @@ public class TipoProducto{
     @Basic(optional = false)
     @Column(name = "DESCRIPCION")
     private String descripcion;
-    @Basic(optional = false)
-    @Column(name = "ESTATUS")
-    private Integer estatus;
+    @JoinColumn(name = "OBJETO_GASTO", referencedColumnName = "OBJETO_GASTO")
+    @ManyToOne(optional = false)
+    private ObjetoDeGasto objetoGasto;
+    @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
+    @ManyToOne(optional = false)
+    private Estatus estatus;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoProducto")
     private List<SubTipoProducto> subTipoProductos;
 
@@ -51,11 +56,19 @@ public class TipoProducto{
         this.descripcion = descripcion;
     }
 
-    public Integer getEstatus() {
+    public ObjetoDeGasto getObjetoGasto() {
+        return objetoGasto;
+    }
+
+    public void setObjetoGasto(ObjetoDeGasto objetoGasto) {
+        this.objetoGasto = objetoGasto;
+    }
+
+    public Estatus getEstatus() {
         return estatus;
     }
 
-    public void setEstatus(Integer estatus) {
+    public void setEstatus(Estatus estatus) {
         this.estatus = estatus;
     }
 
@@ -67,11 +80,5 @@ public class TipoProducto{
         this.subTipoProductos = subTipoProductos;
     }
 
-    public List<SubTipoProducto> getSubtipoProductos() {
-        return subTipoProductos;
-    }
-
-    public void setSubtipoProductos(List<SubTipoProducto> subTipoProductos) {
-        this.subTipoProductos = subTipoProductos;
-    }
+    
 }

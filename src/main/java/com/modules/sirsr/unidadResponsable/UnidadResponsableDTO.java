@@ -5,6 +5,7 @@
  */
 package com.modules.sirsr.unidadResponsable;
 
+import com.modules.sirsr.estatus.EstatusDTO;
 import java.util.Date;
 
 /**
@@ -18,7 +19,7 @@ public class UnidadResponsableDTO {
     private String descripcion;
     private Date fechaInicio;
     private Date fechaFinal;
-    private int estatus;
+    private EstatusDTO estatus;
 
     public String getClaveUr() {
         return claveUr;
@@ -52,14 +53,12 @@ public class UnidadResponsableDTO {
         this.fechaFinal = fechaFinal;
     }
 
-    public int getEstatus() {
+    public EstatusDTO getEstatus() {
         return estatus;
     }
 
-    public void setEstatus(int estatus) {
+    public void setEstatus(EstatusDTO estatus) {
         this.estatus = estatus;
     }
-
-    
 
 }

@@ -5,7 +5,6 @@
  */
 package com.modules.sirsr.persistence.entity;
 
-import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -14,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -34,18 +31,17 @@ public class SubTipoProducto {
     @Basic(optional = false)
     @Column(name = "DESCRIPCION")
     private String descripcion;
-    @Basic(optional = false)
-    @Column(name = "ESTATUS")
-    private Integer estatus;
     @JoinColumn(name = "OBJETO_GASTO", referencedColumnName = "OBJETO_GASTO")
     @ManyToOne(optional = false)
     private ObjetoDeGasto objetoDeGasto;
     @JoinColumn(name = "ID_TIPO_PRODUCTO", referencedColumnName = "ID_TIPO_PRODUCTO")
     @ManyToOne(optional = false)
     private TipoProducto tipoProducto;
-
+    @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
+    @ManyToOne(optional = false)
+    private Estatus estatus;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "subtipoProducto")
-    private List<DetalleRequisicion> detalleRequisiciones;
+    private List<Producto> productos;
 
     public Integer getIdSubtipoProducto() {
         return idSubtipoProducto;
@@ -61,14 +57,6 @@ public class SubTipoProducto {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public Integer getEstatus() {
-        return estatus;
-    }
-
-    public void setEstatus(Integer estatus) {
-        this.estatus = estatus;
     }
 
     public ObjetoDeGasto getObjetoDeGasto() {
@@ -87,11 +75,21 @@ public class SubTipoProducto {
         this.tipoProducto = tipoProducto;
     }
 
-    public List<DetalleRequisicion> getDetalleRequisiciones() {
-        return detalleRequisiciones;
+    public Estatus getEstatus() {
+        return estatus;
     }
 
-    public void setDetalleRequisiciones(List<DetalleRequisicion> detalleRequisiciones) {
-        this.detalleRequisiciones = detalleRequisiciones;
+    public void setEstatus(Estatus estatus) {
+        this.estatus = estatus;
     }
+
+    public List<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
+    }
+
+    
 }

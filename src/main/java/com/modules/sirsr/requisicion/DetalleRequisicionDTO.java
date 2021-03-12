@@ -5,9 +5,10 @@
  */
 package com.modules.sirsr.requisicion;
 
-import com.modules.sirsr.subTipoProducto.SubTipoProductoDTO;
-import com.modules.sirsr.unidadMedida.UnidadMedidaDTO;
-import com.modules.sirsr.volante.VolanteDTO;
+import com.modules.sirsr.marca.MarcaDTO;
+import com.modules.sirsr.producto.ProductoDTO;
+import java.math.BigDecimal;
+
 
 /**
  *
@@ -16,12 +17,11 @@ import com.modules.sirsr.volante.VolanteDTO;
 public class DetalleRequisicionDTO {
     private Integer idDetalleRequisicion;
     private Integer cantidadSolicitada;
-    private String caracteristicas;
-    private String digito;
+    private BigDecimal precioUnitario;
     private Integer cantidadAutorizada;
-    private VolanteDTO volante;
-    private UnidadMedidaDTO unidadMedida;
-    private SubTipoProductoDTO subtipoProducto;
+    private RequisicionDTO requisicion;
+    private MarcaDTO marca;
+    private ProductoDTO producto;
 
     public Integer getIdDetalleRequisicion() {
         return idDetalleRequisicion;
@@ -39,20 +39,12 @@ public class DetalleRequisicionDTO {
         this.cantidadSolicitada = cantidadSolicitada;
     }
 
-    public String getCaracteristicas() {
-        return caracteristicas;
+    public BigDecimal getPrecioUnitario() {
+        return precioUnitario;
     }
 
-    public void setCaracteristicas(String caracteristicas) {
-        this.caracteristicas = caracteristicas;
-    }
-
-    public String getDigito() {
-        return digito;
-    }
-
-    public void setDigito(String digito) {
-        this.digito = digito;
+    public void setPrecioUnitario(BigDecimal precioUnitario) {
+        this.precioUnitario = precioUnitario;
     }
 
     public Integer getCantidadAutorizada() {
@@ -63,26 +55,29 @@ public class DetalleRequisicionDTO {
         this.cantidadAutorizada = cantidadAutorizada;
     }
 
-    public VolanteDTO getVolante() {
-        return volante;
+    public RequisicionDTO getRequisicion() {
+        return requisicion;
     }
 
-    public void setVolante(VolanteDTO volante) {
-        this.volante = volante;
-    }
-    public UnidadMedidaDTO getUnidadMedida() {
-        return unidadMedida;
+    public void setRequisicion(RequisicionDTO requisicion) {
+        this.requisicion = requisicion;
     }
 
-    public void setUnidadMedida(UnidadMedidaDTO unidadMedida) {
-        this.unidadMedida = unidadMedida;
+    public MarcaDTO getMarca() {
+        return marca;
     }
 
-    public SubTipoProductoDTO getSubtipoProducto() {
-        return subtipoProducto;
+    public void setMarca(MarcaDTO marca) {
+        this.marca = marca;
     }
 
-    public void setSubtipoProducto(SubTipoProductoDTO subtipoProducto) {
-        this.subtipoProducto = subtipoProducto;
+    public ProductoDTO getProducto() {
+        return producto;
     }
+
+    public void setProducto(ProductoDTO producto) {
+        this.producto = producto;
+    }
+
+    
 }

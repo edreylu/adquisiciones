@@ -6,7 +6,7 @@
 package com.modules.sirsr.persistence.entity;
 
 import javax.persistence.*;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,7 +17,7 @@ import java.util.List;
 @Entity
 @Table(name = "USUARIOS", uniqueConstraints = { @UniqueConstraint(name = "USUARIOS_UK", columnNames = "USERNAME") })
 public class Usuario {
- 
+
     @Id
     @GeneratedValue
     @Column(name = "NO_USUARIO", nullable = false)
@@ -28,36 +28,42 @@ public class Usuario {
  
     @Column(name = "ENCRYPTED_PASSWORD", length = 300, nullable = false)
     private String encrytedPassword;
-
-    @Column(name = "FECHA_AUDITORIA", updatable = false, nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Calendar fechaAuditoria;
-
-    @Column(name = "NO_PERSONAL", insertable = false, updatable = false)
-    private Integer noPersonal;
-
+    
+    @Basic(optional = false)
+    @Column(name = "FECHA_AUDITORIA")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaAuditoria;
+    
     @Column(name = "CLAVE_UR", insertable = false, updatable = false)
     private String clavaUr;
 
-    @Column(name = "IDESTATUS", length = 2, nullable = true)
-    private Integer idEstatus;
-
-    @Column(name = "ENABLED", length = 1, nullable = false)
+    @Column(name = "NO_PERSONAL", insertable = false, updatable = false)
+    private Integer noPersonal;
+    
+    @Basic(optional = false)
+    @Column(name = "ENABLED")
     private Integer enabled;
 
     @Column(name = "RESET_PASSWORD_TOKEN", length = 30, nullable = true)
     private String resetPasswordToken;
+
+    @Column(name = "ID_ESTATUS", length = 2, insertable = false, updatable = false)
+    private Integer idEstatus;
 
     @OneToMany(mappedBy = "usuario")
     private List<UsuarioRole> usuariosRoles;
     
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "NO_PERSONAL", nullable = false)
-    private Personal personal;
+    private DatosPersonales datosPersonales;
     
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "CLAVE_UR", nullable = false)
     private UnidadResponsable unidadResponsable;
+    
+    @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
+    @ManyToOne(optional = false)
+    private Estatus estatus;
 
     public Integer getNoUsuario() {
         return noUsuario;
@@ -83,14 +89,6 @@ public class Usuario {
         this.encrytedPassword = encrytedPassword;
     }
 
-    public Calendar getFechaAuditoria() {
-        return fechaAuditoria;
-    }
-
-    public void setFechaAuditoria(Calendar fechaAuditoria) {
-        this.fechaAuditoria = fechaAuditoria;
-    }
-
     public Integer getNoPersonal() {
         return noPersonal;
     }
@@ -99,12 +97,20 @@ public class Usuario {
         this.noPersonal = noPersonal;
     }
 
-    public Integer getIdEstatus() {
-        return idEstatus;
+    public String getClavaUr() {
+        return clavaUr;
     }
 
-    public void setIdEstatus(Integer idEstatus) {
-        this.idEstatus = idEstatus;
+    public void setClavaUr(String clavaUr) {
+        this.clavaUr = clavaUr;
+    }
+
+    public Date getFechaAuditoria() {
+        return fechaAuditoria;
+    }
+
+    public void setFechaAuditoria(Date fechaAuditoria) {
+        this.fechaAuditoria = fechaAuditoria;
     }
 
     public Integer getEnabled() {
@@ -113,6 +119,14 @@ public class Usuario {
 
     public void setEnabled(Integer enabled) {
         this.enabled = enabled;
+    }
+
+    public Integer getIdEstatus() {
+        return idEstatus;
+    }
+
+    public void setIdEstatus(Integer idEstatus) {
+        this.idEstatus = idEstatus;
     }
 
     public String getResetPasswordToken() {
@@ -131,12 +145,12 @@ public class Usuario {
         this.usuariosRoles = usuariosRoles;
     }
 
-    public Personal getPersonal() {
-        return personal;
+    public DatosPersonales getDatosPersonales() {
+        return datosPersonales;
     }
 
-    public void setPersonal(Personal personal) {
-        this.personal = personal;
+    public void setDatosPersonales(DatosPersonales datosPersonales) {
+        this.datosPersonales = datosPersonales;
     }
 
     public UnidadResponsable getUnidadResponsable() {
@@ -147,11 +161,13 @@ public class Usuario {
         this.unidadResponsable = unidadResponsable;
     }
 
-    public String getClavaUr() {
-        return clavaUr;
+    public Estatus getEstatus() {
+        return estatus;
     }
 
-    public void setClavaUr(String clavaUr) {
-        this.clavaUr = clavaUr;
+    public void setEstatus(Estatus estatus) {
+        this.estatus = estatus;
     }
+
+    
 }

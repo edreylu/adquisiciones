@@ -5,7 +5,6 @@
  */
 package com.modules.sirsr.persistence.entity;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -44,12 +43,12 @@ public class PartidaGastoGenerica{
     @Column(name = "FECHA_FINAL")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaFinal;
-    @Basic(optional = false)
-    @Column(name = "ESTATUS")
-    private short estatus;
+    @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
+    @ManyToOne(optional = false)
+    private Estatus estatus;
     @JoinColumn(name = "CLAVE_CONCEPTO", referencedColumnName = "CLAVE_CONCEPTO")
     @ManyToOne(optional = false)
-    private Concepto claveConcepto;
+    private Concepto concepto;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "partidaGastoGenerica")
     private List<ObjetoDeGasto> objetosDegasto;
 
@@ -93,20 +92,20 @@ public class PartidaGastoGenerica{
         this.fechaFinal = fechaFinal;
     }
 
-    public short getEstatus() {
+    public Estatus getEstatus() {
         return estatus;
     }
 
-    public void setEstatus(short estatus) {
+    public void setEstatus(Estatus estatus) {
         this.estatus = estatus;
     }
 
-    public Concepto getClaveConcepto() {
-        return claveConcepto;
+    public Concepto getConcepto() {
+        return concepto;
     }
 
-    public void setClaveConcepto(Concepto claveConcepto) {
-        this.claveConcepto = claveConcepto;
+    public void setConcepto(Concepto concepto) {
+        this.concepto = concepto;
     }
 
     public List<ObjetoDeGasto> getObjetosDegasto() {
@@ -116,4 +115,6 @@ public class PartidaGastoGenerica{
     public void setObjetosDegasto(List<ObjetoDeGasto> objetosDegasto) {
         this.objetosDegasto = objetosDegasto;
     }
+
+    
 }

@@ -11,6 +11,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -30,11 +32,19 @@ public class TipoDocumento{
     @Column(name = "DESCRIPCION")
     private String descripcion;
     @Basic(optional = false)
-    @Column(name = "ID_ESTATUS")
-    private Integer idEstatus;
+    @Column(name = "OBLIGATORIO")
+    private String obligatorio;
+    @Basic(optional = false)
+    @Column(name = "UNICO")
+    private String unico;
+    
+    @Basic(optional = false)
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoDocumento")
     private List<Documento> documentos;
-
+    
+    @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
+    @ManyToOne(optional = false)
+    private Estatus estatus;
 
     public Integer getIdTipoDocumento() {
         return idTipoDocumento;
@@ -52,12 +62,20 @@ public class TipoDocumento{
         this.descripcion = descripcion;
     }
 
-    public Integer getIdEstatus() {
-        return idEstatus;
+    public String getObligatorio() {
+        return obligatorio;
     }
 
-    public void setIdEstatus(Integer idEstatus) {
-        this.idEstatus = idEstatus;
+    public void setObligatorio(String obligatorio) {
+        this.obligatorio = obligatorio;
+    }
+
+    public String getUnico() {
+        return unico;
+    }
+
+    public void setUnico(String unico) {
+        this.unico = unico;
     }
 
     public List<Documento> getDocumentos() {
@@ -67,5 +85,15 @@ public class TipoDocumento{
     public void setDocumentos(List<Documento> documentos) {
         this.documentos = documentos;
     }
+
+    public Estatus getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(Estatus estatus) {
+        this.estatus = estatus;
+    }
+
+    
 
 }

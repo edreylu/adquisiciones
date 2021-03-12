@@ -20,7 +20,7 @@ public class UnidadResponsableMapper {
         unidadResponsableDTO.setDescripcion(unidadResponsable.getDescripcion());
         unidadResponsableDTO.setFechaInicio(unidadResponsable.getFechaInicio());
         unidadResponsableDTO.setFechaFinal(unidadResponsable.getFechaFinal());
-        unidadResponsableDTO.setEstatus(unidadResponsable.getEstatus());
+        //unidadResponsableDTO.setEstatus(unidadResponsable.getEstatus());
 
         return unidadResponsableDTO;
     }
@@ -46,7 +46,7 @@ public class UnidadResponsableMapper {
         unidadResponsable.setDescripcion(unidadResponsableDTO.getDescripcion());
         unidadResponsable.setFechaInicio(unidadResponsableDTO.getFechaInicio());
         unidadResponsable.setFechaFinal(unidadResponsableDTO.getFechaFinal());
-        unidadResponsable.setEstatus(unidadResponsableDTO.getEstatus());
+        //unidadResponsable.setEstatus(unidadResponsableDTO.getEstatus());
 
         return unidadResponsable;
     }

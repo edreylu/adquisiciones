@@ -5,8 +5,8 @@
  */
 package com.modules.sirsr.personal;
 
-import com.modules.sirsr.persistence.entity.Personal;
-import com.modules.sirsr.persistence.repository.PersonalRepository;
+import com.modules.sirsr.persistence.entity.DatosPersonales;
+import com.modules.sirsr.persistence.repository.DatosPersonalesRepository;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,31 +21,31 @@ import org.springframework.stereotype.Service;
 @Service
 public class PersonalService {
 
-    private final PersonalRepository personalRepository;
-    private final PersonalMapper personalMapper;
+    private final DatosPersonalesRepository datosPersonalesRepository;
+    private final DatosPersonalesMapper datosPersonalesMapper;
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     @Autowired
-    public PersonalService(PersonalRepository personalRepository, PersonalMapper personalMapper) {
-        this.personalRepository = personalRepository;
-        this.personalMapper = personalMapper;
+    public PersonalService(DatosPersonalesRepository datosPersonalesRepository, DatosPersonalesMapper datosPersonalesMapper) {
+        this.datosPersonalesRepository = datosPersonalesRepository;
+        this.datosPersonalesMapper = datosPersonalesMapper;
     }
 
-    public List<PersonalDTO> findAll() {
-        return personalMapper.toUnidadResponsableDTOs(personalRepository.findAll());
+    public List<DatosPersonalesDTO> findAll() {
+        return datosPersonalesMapper.toUnidadResponsableDTOs(datosPersonalesRepository.findAll());
     }
     
-    public List<PersonalDTO> findByNoPersonal(int noPersonal) {
-        return personalMapper.toUnidadResponsableDTOs(personalRepository.findByNoPersonal(noPersonal));
+    public List<DatosPersonalesDTO> findByNoPersonal(int noPersonal) {
+        return datosPersonalesMapper.toUnidadResponsableDTOs(datosPersonalesRepository.findByNoPersonal(noPersonal));
     }
-    public Personal findByCorreo(String email) {
-        Personal personal = personalRepository.findByCorreo(email);
+    public DatosPersonales findByCorreo(String email) {
+        DatosPersonales personal = datosPersonalesRepository.findByCorreo(email);
         return personal;
     }
 
-    public PersonalDTO findById(int id) {
-        Personal personal = personalRepository.findById(id).get();
-        return personalMapper.toPersonalDTO(personal);
+    public DatosPersonalesDTO findById(int id) {
+        DatosPersonales personal = datosPersonalesRepository.findById(id).get();
+        return datosPersonalesMapper.toPersonalDTO(personal);
     }
 
 }

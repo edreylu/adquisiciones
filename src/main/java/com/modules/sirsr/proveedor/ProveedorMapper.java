@@ -19,7 +19,7 @@ public class ProveedorMapper {
         proveedorDTO.setIdProveedor(proveedor.getIdProveedor());
         proveedorDTO.setRfc(proveedor.getRfc());
         proveedorDTO.setRazonSocial(proveedor.getRazonSocial());
-        proveedorDTO.setEstatus(proveedor.getEstatus());
+        //proveedorDTO.setEstatus(proveedor.getEstatus());
 
         return proveedorDTO;
     }
@@ -44,7 +44,7 @@ public class ProveedorMapper {
         proveedor.setIdProveedor(proveedorDTO.getIdProveedor());
         proveedor.setRfc(proveedorDTO.getRfc());
         proveedor.setRazonSocial(proveedorDTO.getRazonSocial());
-        proveedor.setEstatus(1);
+        //proveedor.setEstatus(1);
 
         return proveedor;
     }

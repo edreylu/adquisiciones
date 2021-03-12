@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 
 import com.modules.sirsr.unidadResponsable.UnidadResponsableMapper;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -16,28 +17,15 @@ import java.util.Objects;
 @Component
 public class RequisicionMapper {
 
+    ModelMapper modelMapper = new ModelMapper();
     private final UnidadResponsableMapper unidadResponsableMapper = new UnidadResponsableMapper();
 
     public RequisicionDTO toRequisicionDTO(Requisicion requisicion) {
         if (Objects.isNull(requisicion)) {
             return null;
         }
+        RequisicionDTO requisicionDTO = modelMapper.map(requisicion, RequisicionDTO.class);
 
-        RequisicionDTO requisicionDTO = new RequisicionDTO();
-        requisicionDTO.setIdRequisicion(requisicion.getIdRequisicion());
-        requisicionDTO.setUnidadResponsable(unidadResponsableMapper.toUnidadResponsableDTO(requisicion.getUnidadResponsable()));
-        requisicionDTO.setFechaElaboracion(requisicion.getFechaElaboracion());
-        requisicionDTO.setAnioCalendarizacion(requisicion.getAnioCalendarizacion());
-        requisicionDTO.setMesCalendarizacion(requisicion.getMesCalendarizacion());
-        requisicionDTO.setJustificacionDelUso(requisicion.getJustificacionDelUso());
-        requisicionDTO.setFolio(requisicion.getFolio());
-        //requisicionDTO.setMontoSuficiencia(requisicion.getMontoSuficiencia());
-        requisicionDTO.setFechaRecepcion(requisicion.getFechaRecepcion());
-        requisicionDTO.setMontoAdjudicacion(BigDecimal.valueOf(1));
-        requisicionDTO.setFechaAutorizacion(requisicion.getFechaAutorizacion());
-        requisicionDTO.setEstatus(requisicion.getEstatus());
-        //requisicionDTO.setClaveEspecifica(requisicion.getClaveEspecifica());
-        //requisicionDTO.setDigito(requisicion.getDigito());
         return requisicionDTO;
     }
 
@@ -59,25 +47,7 @@ public class RequisicionMapper {
         
         DocumentoMapper documentoMapper = new DocumentoMapper();
 
-        Requisicion requisicion = new Requisicion();
-
-        
-        requisicion.setIdRequisicion(requisicionDTO.getIdRequisicion());
-        requisicion.setUnidadResponsable(unidadResponsableMapper.toUnidadResponsable(requisicionDTO.getUnidadResponsable()));
-        requisicion.setFechaElaboracion(requisicionDTO.getFechaElaboracion());
-        requisicion.setAnioCalendarizacion(requisicionDTO.getAnioCalendarizacion());
-        requisicion.setMesCalendarizacion(requisicionDTO.getMesCalendarizacion());
-        requisicion.setJustificacionDelUso(requisicionDTO.getJustificacionDelUso());
-        requisicion.setFolio(requisicionDTO.getFolio());
-        //requisicion.setMontoSuficiencia(requisicionDTO.getMontoSuficiencia());
-        requisicion.setFechaRecepcion(requisicionDTO.getFechaRecepcion());
-        //requisicion.setMontoAdjudicacion(requisicionDTO.getMontoAdjudicacion());
-        requisicion.setFechaAutorizacion(requisicionDTO.getFechaAutorizacion());
-        requisicion.setEstatus(requisicionDTO.getEstatus());
-        //requisicion.setClaveEspecifica(requisicionDTO.getClaveEspecifica());
-        //requisicion.setDigito(requisicionDTO.getDigito());
-
-        System.out.println(requisicion.toString());
+        Requisicion requisicion = modelMapper.map(requisicionDTO, Requisicion.class);
         return requisicion;
     }
 

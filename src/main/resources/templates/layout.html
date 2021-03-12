@@ -42,7 +42,7 @@
                         </div>
                         <div sec:authorize="hasRole('ROLE_ADMIN')">
                         <li class="nav-item dropdown"> 
-                            <a class="nav-link dropdown-toggle"  href="#"  id="navbarDropdownMenuLink"  data-toggle="dropdown"  aria-haspopup="true"  aria-expanded="false">  
+                            <a class="nav-link dropdown-toggle"  href="#" data-toggle="dropdown"  aria-haspopup="true"  aria-expanded="false">
                                 <i class='fas fa-cogs'> </i>  ADMINISTRACION </a>
 
                             <div class="dropdown-menu"  aria-labelledby="navbarDropdownMenuLink">
@@ -55,19 +55,19 @@
                         </div>
                         <div sec:authorize="hasRole('ROLE_USER')">
                         <li class="nav-item dropdown"> 
-                            <a class="nav-link dropdown-toggle"  href="#"  id="navbarDropdownMenuLink"  data-toggle="dropdown"  aria-haspopup="true"  aria-expanded="false">  
-                                <i class='fas fa-money-check-alt'> </i>  REQUISICIONES </a>
+                            <a class="nav-link dropdown-toggle"  href="#" data-toggle="dropdown"  aria-haspopup="true"  aria-expanded="false">
+                                <i class='fas fa-money-check-alt'> </i>  SOLICITUDES </a>
 
                             <div class="dropdown-menu"  aria-labelledby="navbarDropdownMenuLink">
                                     
-                                <a class="dropdown-item" th:href="@{/usuario/requisiciones}" >
-                                    <i class='fas fa-money-check-alt'> </i>  REQUISICIONES </a>
+                                <a class="dropdown-item" th:href="@{/usuario/solicitudes}" >
+                                    <i class='fas fa-money-check-alt'> </i>  SOLICITUDES </a>
                             </div>
                         </li>
                         </div>
                         <div sec:authorize="hasRole('ROLE_ADMIN')">
                         <li class="nav-item dropdown"> 
-                            <a class="nav-link dropdown-toggle"  href="#"  id="navbarDropdownMenuLink"  data-toggle="dropdown"  aria-haspopup="true"  aria-expanded="false">  
+                            <a class="nav-link dropdown-toggle"  href="#"  data-toggle="dropdown"  aria-haspopup="true"  aria-expanded="false">
                                 <i class='fas fa-shopping-cart'> </i>  ADQUISICIONES </a>
 
                             <div class="dropdown-menu"  aria-labelledby="navbarDropdownMenuLink">
@@ -79,7 +79,7 @@
                         </div>
                         <div sec:authorize="hasRole('ROLE_ADMIN')">
                         <li class="nav-item dropdown"> 
-                            <a class="nav-link dropdown-toggle"  href="#"  id="navbarDropdownMenuLink"  data-toggle="dropdown"  aria-haspopup="true"  aria-expanded="false">  
+                            <a class="nav-link dropdown-toggle"  href="#" data-toggle="dropdown"  aria-haspopup="true"  aria-expanded="false">
                                 <i class='fa fa-book'> </i>  CATALOGOS </a>
 
                             <div class="dropdown-menu"  aria-labelledby="navbarDropdownMenuLink">

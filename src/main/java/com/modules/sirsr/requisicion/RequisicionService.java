@@ -73,10 +73,6 @@ public class RequisicionService {
         return requisicionMapper.toRequisicionDTOs(requisicionRepository.findAll());
     }
 
-    public List<RequisicionDTO> findByClaveUnidad() {
-        usuarioDTO = usuarioService.findByUserName(WebUtils.getUserName());
-        return requisicionMapper.toRequisicionDTOs(requisicionRepository.findByClaveUnidad(usuarioDTO.getUnidadResponsable().getClaveUr()));
-    }
 
     public RequisicionDTO findById(int id) {
         Optional<Requisicion> requisicionOptional = requisicionRepository.findById(id);
@@ -136,7 +132,7 @@ public class RequisicionService {
 
             Documento file = new Documento();
             file.setDocumento(documentoDTO.getFile().getBytes());
-            file.setRequisicion(requisicion);
+            //file.setRequisicion(requisicion);
             file.setTipoDocumento(tipoDocumento);
 
             documentoRepository.save(file);

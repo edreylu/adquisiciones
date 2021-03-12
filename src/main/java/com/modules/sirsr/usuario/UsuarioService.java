@@ -5,10 +5,10 @@
  */
 package com.modules.sirsr.usuario;
 
-import com.modules.sirsr.persistence.entity.Personal;
+import com.modules.sirsr.persistence.entity.DatosPersonales;
 import com.modules.sirsr.persistence.entity.UnidadResponsable;
 import com.modules.sirsr.persistence.entity.Usuario;
-import com.modules.sirsr.persistence.repository.PersonalRepository;
+import com.modules.sirsr.persistence.repository.DatosPersonalesRepository;
 import com.modules.sirsr.persistence.repository.UnidadResponsableRepository;
 import com.modules.sirsr.persistence.repository.UsuarioRepository;
 
@@ -17,6 +17,8 @@ import java.util.*;
 
 import com.modules.sirsr.utils.EmailUtils;
 import com.modules.sirsr.utils.Mensaje;
+import java.time.Instant;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -32,7 +34,7 @@ import javax.mail.MessagingException;
 public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
-    private final PersonalRepository personalRepository;
+    private final DatosPersonalesRepository datosPersonalesRepository;
     private final UnidadResponsableRepository unidadResponsableRepository;
     private final UsuarioMapper usuarioMapper;
     private final EmailUtils emailUtils;
@@ -40,9 +42,9 @@ public class UsuarioService {
     private Mensaje msg;
 
     @Autowired
-    public UsuarioService(UsuarioRepository usuarioRepository, PersonalRepository personalRepository, UnidadResponsableRepository unidadResponsableRepository, UsuarioMapper usuarioMapper, EmailUtils emailUtils) {
+    public UsuarioService(UsuarioRepository usuarioRepository, DatosPersonalesRepository datosPersonalesRepository, UnidadResponsableRepository unidadResponsableRepository, UsuarioMapper usuarioMapper, EmailUtils emailUtils) {
         this.usuarioRepository = usuarioRepository;
-        this.personalRepository = personalRepository;
+        this.datosPersonalesRepository = datosPersonalesRepository;
         this.unidadResponsableRepository = unidadResponsableRepository;
         this.usuarioMapper = usuarioMapper;
         this.emailUtils = emailUtils;
@@ -59,7 +61,7 @@ public class UsuarioService {
     public Mensaje save(UsuarioDTO usuarioDTO) {
         try {
             usuarioDTO.setEncrytedPassword(encoder.encode(usuarioDTO.getPassword()));
-            usuarioDTO.setFechaAuditoria(Calendar.getInstance());
+            usuarioDTO.setFechaAuditoria(Date.from(Instant.now()));
             usuarioDTO.setIdEstatus(1);
             usuarioDTO.setEnabled(1);
             usuarioRepository.save(usuarioMapper.toUsuario(usuarioDTO));
@@ -100,7 +102,7 @@ public class UsuarioService {
     }
 
     public Mensaje updateResetPasswordToken(String token, String email, String resetPasswordLink) {
-        Personal personal = personalRepository.findByCorreo(email);
+        DatosPersonales personal = datosPersonalesRepository.findByCorreo(email);
         
         if (Objects.nonNull(personal)) {
             Usuario usuario = usuarioRepository.findByNoPersonal(personal.getNoPersonal());
@@ -166,8 +168,8 @@ public class UsuarioService {
         } else {
             try {
                 Usuario usuario = usuarioRepository.findByNoUsuario(noUsuario);
-                Personal personal = personalRepository.findById(noPersonal).get();
-                usuario.setPersonal(personal);
+                DatosPersonales personal = datosPersonalesRepository.findById(noPersonal).get();
+                usuario.setDatosPersonales(personal);
                 usuarioRepository.save(usuario);
                 msg = Mensaje.CREATE("Personal "+noPersonal+" asignado correctamente a usuario: "+usuario.getUserName(), 1);
             } catch (Exception e) {

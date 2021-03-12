@@ -8,10 +8,11 @@ package com.modules.sirsr.persistence.entity;
 import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -23,9 +24,6 @@ import javax.persistence.Table;
 @Table(name = "MONTO_ADJUDICACION")
 public class MontoAdjudicacion{
 
-    @Column(name = "ESTATUS")
-    private Short estatus;
-
     @Id
     @Basic(optional = false)
     @Column(name = "ID_MONTO_ADJUDICACION")
@@ -33,13 +31,15 @@ public class MontoAdjudicacion{
     @Basic(optional = false)
     @Column(name = "TIPO_CONTRATACION")
     private String tipoContratacion;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "IMPORTE_SUPERIOR_A")
     private BigDecimal importeSuperiorA;
     @Column(name = "IMPORTE_LIMITE")
     private BigDecimal importeLimite;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "montoAdjudicacion")
-    private List<Requisicion> requisiciones;
+    @OneToMany(mappedBy = "montoAdjudicacion")
+    private List<Consolidacion> consolidaciones;
+    @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
+    @ManyToOne(optional = false)
+    private Estatus estatus;
 
     public Integer getMontoAdjudicacion() {
         return montoAdjudicacion;
@@ -73,24 +73,21 @@ public class MontoAdjudicacion{
         this.importeLimite = importeLimite;
     }
 
-
-    public List<Requisicion> getRequisiciones() {
-        return requisiciones;
+    public List<Consolidacion> getConsolidaciones() {
+        return consolidaciones;
     }
 
-    public void setRequisiciones(List<Requisicion> requisiciones) {
-        this.requisiciones = requisiciones;
+    public void setConsolidaciones(List<Consolidacion> consolidaciones) {
+        this.consolidaciones = consolidaciones;
     }
 
-    public MontoAdjudicacion() {
-    }
-
-    public Short getEstatus() {
+    public Estatus getEstatus() {
         return estatus;
     }
 
-    public void setEstatus(Short estatus) {
+    public void setEstatus(Estatus estatus) {
         this.estatus = estatus;
     }
 
+    
 }

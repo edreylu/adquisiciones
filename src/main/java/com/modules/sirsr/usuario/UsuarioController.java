@@ -5,7 +5,7 @@
  */
 package com.modules.sirsr.usuario;
 
-import com.modules.sirsr.personal.PersonalDTO;
+import com.modules.sirsr.personal.DatosPersonalesDTO;
 import com.modules.sirsr.personal.PersonalService;
 import com.modules.sirsr.unidadResponsable.UnidadResponsableDTO;
 import com.modules.sirsr.unidadResponsable.UnidadResponsableService;
@@ -37,7 +37,7 @@ public class UsuarioController {
     private final UnidadResponsableService unidadResponsableService;
     private final PersonalService personalService;
     private List<UsuarioDTO> usuarios;
-    private List<PersonalDTO> personal;
+    private List<DatosPersonalesDTO> personal;
     private UsuarioRoleDTO usuarioRole;
     private final Mensaje msg = new Mensaje();
 

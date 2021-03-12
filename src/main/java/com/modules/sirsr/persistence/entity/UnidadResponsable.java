@@ -5,7 +5,6 @@
  */
 package com.modules.sirsr.persistence.entity;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -13,8 +12,11 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -41,13 +43,22 @@ public class UnidadResponsable {
     @Column(name = "FECHA_FINAL")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaFinal;
-    @Basic(optional = false)
-    @Column(name = "ESTATUS")
-    private Integer estatus;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidadResponsable")
-    private List<Requisicion> requisiciones;
+    @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
+    @ManyToOne(optional = false)
+    private Estatus estatus;
+    
+    @JoinTable(name = "PRODUCTO_UNIDADRESP",
+            joinColumns = @JoinColumn(name = "PRODUNIDRESP_UNIDADRESP_FK", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "PRODUNIRESP_PRODUCTO_FK", nullable = false))
+    @ManyToMany
+    private List<Producto> productos;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidadResponsable")
     private List<ClavePresupuestaria> clavesPresupuestarias;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidadResponsable")
+    private List<Usuario> usuarios;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidadResponsable")
+    private List<Solicitud> solicitudes;
 
     public String getClaveUr() {
         return claveUr;
@@ -81,13 +92,20 @@ public class UnidadResponsable {
         this.fechaFinal = fechaFinal;
     }
 
-
-    public List<Requisicion> getRequisiciones() {
-        return requisiciones;
+    public Estatus getEstatus() {
+        return estatus;
     }
 
-    public void setRequisiciones(List<Requisicion> requisiciones) {
-        this.requisiciones = requisiciones;
+    public void setEstatus(Estatus estatus) {
+        this.estatus = estatus;
+    }
+
+    public List<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
     }
 
     public List<ClavePresupuestaria> getClavesPresupuestarias() {
@@ -98,12 +116,20 @@ public class UnidadResponsable {
         this.clavesPresupuestarias = clavesPresupuestarias;
     }
 
-    public Integer getEstatus() {
-        return estatus;
+    public List<Usuario> getUsuarios() {
+        return usuarios;
     }
 
-    public void setEstatus(Integer estatus) {
-        this.estatus = estatus;
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    public List<Solicitud> getSolicitudes() {
+        return solicitudes;
+    }
+
+    public void setSolicitudes(List<Solicitud> solicitudes) {
+        this.solicitudes = solicitudes;
     }
 
     

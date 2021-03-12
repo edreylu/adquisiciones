@@ -5,7 +5,8 @@
  */
 package com.modules.sirsr.persistence.entity;
 
-import java.util.List;
+import java.math.BigDecimal;
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -31,29 +32,25 @@ public class DetalleRequisicion{
     @SequenceGenerator(name = "detallerequisicion_generator", sequenceName = "ADQUISICIONES.SEQ_DETALLE_REQUISICION", allocationSize = 1)
     @Column(name = "ID_DETALLE_REQUISICION")
     private Integer idDetalleRequisicion;
+    @Basic(optional = false)
     @Column(name = "CANTIDAD_SOLICITADA")
     private Integer cantidadSolicitada;
-    @Column(name = "CARACTERISTICAS")
-    private String caracteristicas;
-    @Column(name = "DIGITO")
-    private String digito;
+    @Column(name = "PRECIO_UNITARIO")
+    private BigDecimal precioUnitario;
     @Column(name = "CANTIDAD_AUTORIZADA")
     private Integer cantidadAutorizada;
     
-    @JoinColumn(name = "ID_VOLANTE", referencedColumnName = "ID_VOLANTE")
+    @JoinColumn(name = "ID_REQUISICION", referencedColumnName = "ID_REQUISICION")
     @ManyToOne(optional = false)
-    private Volante volante;
-    
-    @JoinColumn(name = "ID_UNIDAD_MEDIDA", referencedColumnName = "ID_UNIDAD_MEDIDA")
+    private Requisicion requisicion;
+    @JoinColumn(name = "ID_MARCA", referencedColumnName = "ID_MARCA")
+    @ManyToOne
+    private Marca marca;
+    @JoinColumn(name = "ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO")
     @ManyToOne(optional = false)
-    private UnidadMedida unidadMedida;
-    
-    @JoinColumn(name = "ID_SUBTIPO_PRODUCTO", referencedColumnName = "ID_SUBTIPO_PRODUCTO")
-    @ManyToOne(optional = false)
-    private SubTipoProducto subtipoProducto;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "detalleRequisicion")
-    private List<DetalleCotizacion> detalleCotizaciones;
+    private Producto producto;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "detalleRequisicion")
+    private DetalleCotizaRequis detalleCotizaRequis;
 
     public Integer getIdDetalleRequisicion() {
         return idDetalleRequisicion;
@@ -71,20 +68,12 @@ public class DetalleRequisicion{
         this.cantidadSolicitada = cantidadSolicitada;
     }
 
-    public String getCaracteristicas() {
-        return caracteristicas;
+    public BigDecimal getPrecioUnitario() {
+        return precioUnitario;
     }
 
-    public void setCaracteristicas(String caracteristicas) {
-        this.caracteristicas = caracteristicas;
-    }
-
-    public String getDigito() {
-        return digito;
-    }
-
-    public void setDigito(String digito) {
-        this.digito = digito;
+    public void setPrecioUnitario(BigDecimal precioUnitario) {
+        this.precioUnitario = precioUnitario;
     }
 
     public Integer getCantidadAutorizada() {
@@ -95,36 +84,36 @@ public class DetalleRequisicion{
         this.cantidadAutorizada = cantidadAutorizada;
     }
 
-    public Volante getVolante() {
-        return volante;
+    public Requisicion getRequisicion() {
+        return requisicion;
     }
 
-    public void setVolante(Volante volante) {
-        this.volante = volante;
+    public void setRequisicion(Requisicion requisicion) {
+        this.requisicion = requisicion;
     }
 
-    public UnidadMedida getUnidadMedida() {
-        return unidadMedida;
+    public Marca getMarca() {
+        return marca;
     }
 
-    public void setUnidadMedida(UnidadMedida unidadMedida) {
-        this.unidadMedida = unidadMedida;
+    public void setMarca(Marca marca) {
+        this.marca = marca;
     }
 
-    public SubTipoProducto getSubtipoProducto() {
-        return subtipoProducto;
+    public Producto getProducto() {
+        return producto;
     }
 
-    public void setSubtipoProducto(SubTipoProducto subtipoProducto) {
-        this.subtipoProducto = subtipoProducto;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
-    public List<DetalleCotizacion> getDetalleCotizaciones() {
-        return detalleCotizaciones;
+    public DetalleCotizaRequis getDetalleCotizaRequis() {
+        return detalleCotizaRequis;
     }
 
-    public void setDetalleCotizaciones(List<DetalleCotizacion> detalleCotizaciones) {
-        this.detalleCotizaciones = detalleCotizaciones;
+    public void setDetalleCotizaRequis(DetalleCotizaRequis detalleCotizaRequis) {
+        this.detalleCotizaRequis = detalleCotizaRequis;
     }
     
     

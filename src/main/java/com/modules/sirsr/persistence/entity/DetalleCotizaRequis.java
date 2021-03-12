@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -22,36 +23,35 @@ import javax.persistence.Table;
  * @author Edward Reyes
  */
 @Entity
-@Table(name = "DETALLE_COTIZACION")
-public class DetalleCotizacion{
+@Table(name = "DETALLE_COTIZA_REQUIS")
+public class DetalleCotizaRequis {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "detallecotizacion_generator")
     @SequenceGenerator(name = "detallecotizacion_generator", sequenceName = "ADQUISICIONES.SEQ_DETALLE_COTIZACION", allocationSize = 1)
     @Basic(optional = false)
-    @Column(name = "ID_DETALLE_COTIZACION")
-    private Integer idDetalleCotizacion;
+    @Column(name = "ID_DETALLE_COTIZA_REQUIS")
+    private Integer idDetalleCotizaRequis;
     @Column(name = "PRECIO_UNITARIO")
     private BigDecimal precioUnitario;
-    @Column(name = "PRECIO_TOTAL")
-    private BigDecimal precioTotal;
     @Column(name = "CANTIDAD_COTIZADA")
     private Integer cantidadCotizada;
-    @Column(name = "MARCA")
-    private String marca;
-    @JoinColumn(name = "ID_COTIZACION", referencedColumnName = "ID_COTIZACION")
+    @JoinColumn(name = "ID_COTIZA_REQUISICION", referencedColumnName = "ID_COTIZA_REQUISICION")
     @ManyToOne(optional = false)
-    private Cotizacion cotizacion;
+    private CotizaRequisicion cotizaRequisicion;
     @JoinColumn(name = "ID_DETALLE_REQUISICION", referencedColumnName = "ID_DETALLE_REQUISICION")
-    @ManyToOne(optional = false)
+    @OneToOne(optional = false)
     private DetalleRequisicion detalleRequisicion;
+    @JoinColumn(name = "ID_MARCA", referencedColumnName = "ID_MARCA")
+    @ManyToOne
+    private Marca marca;
 
-    public Integer getIdDetalleCotizacion() {
-        return idDetalleCotizacion;
+    public Integer getIdDetalleCotizaRequis() {
+        return idDetalleCotizaRequis;
     }
 
-    public void setIdDetalleCotizacion(Integer idDetalleCotizacion) {
-        this.idDetalleCotizacion = idDetalleCotizacion;
+    public void setIdDetalleCotizaRequis(Integer idDetalleCotizaRequis) {
+        this.idDetalleCotizaRequis = idDetalleCotizaRequis;
     }
 
     public BigDecimal getPrecioUnitario() {
@@ -62,20 +62,20 @@ public class DetalleCotizacion{
         this.precioUnitario = precioUnitario;
     }
 
-    public BigDecimal getPrecioTotal() {
-        return precioTotal;
+    public Integer getCantidadCotizada() {
+        return cantidadCotizada;
     }
 
-    public void setPrecioTotal(BigDecimal precioTotal) {
-        this.precioTotal = precioTotal;
+    public void setCantidadCotizada(Integer cantidadCotizada) {
+        this.cantidadCotizada = cantidadCotizada;
     }
 
-    public Cotizacion getCotizacion() {
-        return cotizacion;
+    public CotizaRequisicion getCotizaRequisicion() {
+        return cotizaRequisicion;
     }
 
-    public void setCotizacion(Cotizacion cotizacion) {
-        this.cotizacion = cotizacion;
+    public void setCotizaRequisicion(CotizaRequisicion cotizaRequisicion) {
+        this.cotizaRequisicion = cotizaRequisicion;
     }
 
     public DetalleRequisicion getDetalleRequisicion() {
@@ -86,22 +86,11 @@ public class DetalleCotizacion{
         this.detalleRequisicion = detalleRequisicion;
     }
 
-    public DetalleCotizacion() {
-    }
-
-    public Integer getCantidadCotizada() {
-        return cantidadCotizada;
-    }
-
-    public void setCantidadCotizada(Integer cantidadCotizada) {
-        this.cantidadCotizada = cantidadCotizada;
-    }
-
-    public String getMarca() {
+    public Marca getMarca() {
         return marca;
     }
 
-    public void setMarca(String marca) {
+    public void setMarca(Marca marca) {
         this.marca = marca;
     }
 

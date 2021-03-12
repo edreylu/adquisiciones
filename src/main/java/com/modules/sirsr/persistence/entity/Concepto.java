@@ -30,7 +30,7 @@ public class Concepto{
     @Id
     @Basic(optional = false)
     @Column(name = "CLAVE_CONCEPTO")
-    private Short claveConcepto;
+    private Integer claveConcepto;
     @Basic(optional = false)
     @Column(name = "DESCRIPCION")
     private String descripcion;
@@ -43,20 +43,20 @@ public class Concepto{
     @Column(name = "FECHA_FINAL")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaFinal;
-    @Basic(optional = false)
-    @Column(name = "ESTATUS")
-    private short estatus;
     @JoinColumn(name = "CLAVE_CAPITULO", referencedColumnName = "CLAVE_CAPITULO")
     @ManyToOne(optional = false)
-    private Capitulo claveCapitulo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "claveConcepto")
-    private List<PartidaGastoGenerica> partidaGastoGenericaList;
+    private Capitulo capitulo;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "concepto")
+    private List<PartidaGastoGenerica> partidasGastoGenerica;
+    @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
+    @ManyToOne(optional = false)
+    private Estatus estatus;
 
-    public Short getClaveConcepto() {
+    public Integer getClaveConcepto() {
         return claveConcepto;
     }
 
-    public void setClaveConcepto(Short claveConcepto) {
+    public void setClaveConcepto(Integer claveConcepto) {
         this.claveConcepto = claveConcepto;
     }
 
@@ -92,31 +92,29 @@ public class Concepto{
         this.fechaFinal = fechaFinal;
     }
 
-    public short getEstatus() {
+    public Capitulo getCapitulo() {
+        return capitulo;
+    }
+
+    public void setCapitulo(Capitulo capitulo) {
+        this.capitulo = capitulo;
+    }
+
+    public List<PartidaGastoGenerica> getPartidasGastoGenerica() {
+        return partidasGastoGenerica;
+    }
+
+    public void setPartidasGastoGenerica(List<PartidaGastoGenerica> partidasGastoGenerica) {
+        this.partidasGastoGenerica = partidasGastoGenerica;
+    }
+
+    public Estatus getEstatus() {
         return estatus;
     }
 
-    public void setEstatus(short estatus) {
+    public void setEstatus(Estatus estatus) {
         this.estatus = estatus;
     }
 
-    public Capitulo getClaveCapitulo() {
-        return claveCapitulo;
-    }
-
-    public void setClaveCapitulo(Capitulo claveCapitulo) {
-        this.claveCapitulo = claveCapitulo;
-    }
-
-    public List<PartidaGastoGenerica> getPartidaGastoGenericaList() {
-        return partidaGastoGenericaList;
-    }
-
-    public void setPartidaGastoGenericaList(List<PartidaGastoGenerica> partidaGastoGenericaList) {
-        this.partidaGastoGenericaList = partidaGastoGenericaList;
-    }
-
-    public Concepto() {
-    }
     
 }

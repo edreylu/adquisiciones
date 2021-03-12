@@ -5,10 +5,13 @@
  */
 package com.modules.sirsr.persistence.entity;
 
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -16,8 +19,8 @@ import javax.persistence.Table;
  * @author Edward Reyes
  */
 @Entity
-@Table(name = "PERSONAL")
-public class Personal{
+@Table(name = "DATOS_PERSONALES")
+public class DatosPersonales {
 
     @Id
     @Basic(optional = false)
@@ -38,7 +41,8 @@ public class Personal{
     private String telefonoFijo;
     @Column(name = "TELEFONO_MOVIL")
     private String telefonoMovil;
-    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "datosPersonales")
+    private List<Usuario> usuarios;
 
     public Integer getNoPersonal() {
         return noPersonal;
@@ -95,6 +99,15 @@ public class Personal{
     public void setTelefonoMovil(String telefonoMovil) {
         this.telefonoMovil = telefonoMovil;
     }
+
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+
     
     
 }

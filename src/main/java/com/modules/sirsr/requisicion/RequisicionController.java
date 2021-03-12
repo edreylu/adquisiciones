@@ -64,7 +64,7 @@ public class RequisicionController {
 
     @GetMapping("usuario/requisiciones")
     public String listar(Model model) {
-        requisiciones = requisicionService.findByClaveUnidad();
+        //requisiciones = requisicionService.findByClaveUnidad();
         model.addAttribute("lista", requisiciones);
         return "usuario/requisiciones/principal";
     }
@@ -128,35 +128,6 @@ public class RequisicionController {
     public String editarDetalles(@PathVariable("id") int id, RequisicionDTO requisicionDTO, RedirectAttributes redirectAttrs){
         msg.crearMensaje(requisicionService.saveDetalles(requisicionDTO, id), redirectAttrs);
         return "redirect:/usuario/requisiciones";
-    }
-
-    //DOCUMENTOS
-
-    @GetMapping("usuario/requisiciones/editarDocumentos/{id}")
-    public String editarDocumentos(@PathVariable("id") int id, Model model) {
-        RequisicionDTO requisicionDTO = requisicionService.findById(id);
-        documentos = documentoService.findByIdRequisicion(id);
-        tiposDocumento = tipoDocumentoService.findAll();
-        String validUrl = "redirect:/usuario/requisiciones";
-        if(Objects.nonNull(requisicionDTO)){
-            model.addAttribute("requisicion", requisicionDTO);
-            model.addAttribute("documentos", documentos);
-            model.addAttribute("tiposDocumento", tiposDocumento);
-            validUrl = "usuario/requisiciones/editarDocumentos";
-        }
-        return validUrl;
-    }
-
-    @PostMapping("usuario/requisiciones/updateDocumentos/{id}")
-    public String editarDocumentos(@PathVariable("id") int id, DocumentoDTO documentoDTO, RedirectAttributes redirectAttrs){
-        msg.crearMensaje(requisicionService.saveDocumentos(documentoDTO, id), redirectAttrs);
-        return "redirect:/usuario/requisiciones/editarDocumentos/"+id;
-    }
-
-    @GetMapping("usuario/requisiciones/eliminarDocumento/{id}/{idReq}")
-    public String eliminarDocumento(@PathVariable("id") int id,@PathVariable("idReq") int idReq, RedirectAttributes redirectAttrs) {
-        msg.crearMensaje(documentoService.deleteById(id), redirectAttrs);
-        return "redirect:/usuario/requisiciones/editarDocumentos/"+idReq;
     }
 
 }

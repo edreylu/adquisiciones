@@ -5,13 +5,13 @@
  */
 package com.modules.sirsr.persistence.entity;
 
-import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -20,11 +20,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "FORMA_PAGO")
-@NamedQueries({
-    @NamedQuery(name = "FormaPago.findAll", query = "SELECT f FROM FormaPago f")})
-public class FormaPago implements Serializable {
+public class FormaPago {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "ID_FORMA_PAGO")
@@ -32,18 +29,10 @@ public class FormaPago implements Serializable {
     @Basic(optional = false)
     @Column(name = "DESCRIPCION")
     private String descripcion;
-
-    public FormaPago() {
-    }
-
-    public FormaPago(Short idFormaPago) {
-        this.idFormaPago = idFormaPago;
-    }
-
-    public FormaPago(Short idFormaPago, String descripcion) {
-        this.idFormaPago = idFormaPago;
-        this.descripcion = descripcion;
-    }
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "formaPago")
+    private List<InvitacionACotizarRequis> invitacionesACotizarRequis;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "formaPago")
+    private List<InvitacionACotizarConsolida> invitacionesACotizarConsolida;
 
     public Short getIdFormaPago() {
         return idFormaPago;
@@ -61,29 +50,21 @@ public class FormaPago implements Serializable {
         this.descripcion = descripcion;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idFormaPago != null ? idFormaPago.hashCode() : 0);
-        return hash;
+    public List<InvitacionACotizarRequis> getInvitacionesACotizarRequis() {
+        return invitacionesACotizarRequis;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof FormaPago)) {
-            return false;
-        }
-        FormaPago other = (FormaPago) object;
-        if ((this.idFormaPago == null && other.idFormaPago != null) || (this.idFormaPago != null && !this.idFormaPago.equals(other.idFormaPago))) {
-            return false;
-        }
-        return true;
+    public void setInvitacionesACotizarRequis(List<InvitacionACotizarRequis> invitacionesACotizarRequis) {
+        this.invitacionesACotizarRequis = invitacionesACotizarRequis;
     }
 
-    @Override
-    public String toString() {
-        return "com.modules.sirsr.persistence.entity.FormaPago[ idFormaPago=" + idFormaPago + " ]";
+    public List<InvitacionACotizarConsolida> getInvitacionesACotizarConsolida() {
+        return invitacionesACotizarConsolida;
     }
+
+    public void setInvitacionesACotizarConsolida(List<InvitacionACotizarConsolida> invitacionesACotizarConsolida) {
+        this.invitacionesACotizarConsolida = invitacionesACotizarConsolida;
+    }
+
     
 }

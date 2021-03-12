@@ -10,6 +10,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -21,6 +23,9 @@ import javax.persistence.Table;
 @Table(name = "UNIDAD_MEDIDA")
 public class UnidadMedida{
 
+    
+    
+
     @Id
     @Column(name = "ID_UNIDAD_MEDIDA")
     private Integer idUnidadMedida;
@@ -30,8 +35,11 @@ public class UnidadMedida{
     private String nombre;
     @Column(name = "DESCRIPCION")
     private String descripcion;
+    @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
+    @ManyToOne(optional = false)
+    private Estatus estatus;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidadMedida")
-    private List<DetalleRequisicion> detalleRequisiciones;
+    private List<Producto> productos;
 
     public Integer getIdUnidadMedida() {
         return idUnidadMedida;
@@ -65,15 +73,21 @@ public class UnidadMedida{
         this.descripcion = descripcion;
     }
 
-    public List<DetalleRequisicion> getDetalleRequisiciones() {
-        return detalleRequisiciones;
+    public Estatus getEstatus() {
+        return estatus;
     }
 
-    public void setDetalleRequisiciones(List<DetalleRequisicion> detalleRequisiciones) {
-        this.detalleRequisiciones = detalleRequisiciones;
+    public void setEstatus(Estatus estatus) {
+        this.estatus = estatus;
     }
 
-    public UnidadMedida() {
+    public List<Producto> getProductos() {
+        return productos;
     }
 
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
+    }
+
+    
 }

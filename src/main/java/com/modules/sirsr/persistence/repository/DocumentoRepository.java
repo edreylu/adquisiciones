@@ -15,5 +15,5 @@ import java.util.List;
  * @author Edward Reyes
  */
 public interface DocumentoRepository extends JpaRepository<Documento, Integer>{
-    List<Documento> findByIdRequisicion(Integer idRequisicion);
+    List<Documento> findByIdSolicitud(Integer idSolicitud);
 }

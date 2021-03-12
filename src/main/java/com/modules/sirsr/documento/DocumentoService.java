@@ -48,8 +48,8 @@ public class DocumentoService {
         return documentoDTO;
     }
 
-    public List<DocumentoDTO> findByIdRequisicion(int idRequisicion) {
-        List<DocumentoDTO> documentoDTOs = documentoMapper.toDocumentoDTOs(documentoRepository.findByIdRequisicion(idRequisicion));
+    public List<DocumentoDTO> findByIdRequisicion(int idSolicitud) {
+        List<DocumentoDTO> documentoDTOs = documentoMapper.toDocumentoDTOs(documentoRepository.findByIdSolicitud(idSolicitud));
         return documentoDTOs;
     }
 
@@ -60,7 +60,7 @@ public class DocumentoService {
             Requisicion requisicion = requisicionRepository.findById(documentoDTO.getRequisicion().getIdRequisicion()).get();
             documento.setDocumento(multipartFile.getBytes());
             documento.setTipoDocumento(tipoDocumento);
-            documento.setRequisicion(requisicion);
+            //documento.setSolicitud(requisicion);
             documentoRepository.save(documento);
 
             msg = Mensaje.CREATE("Agregado correctamente", 1);

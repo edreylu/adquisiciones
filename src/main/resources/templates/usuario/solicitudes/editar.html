@@ -12,19 +12,20 @@ and open the template in the editor.
     </head>
     <body>
         <header th:replace="layout :: header"></header>
-        <div class="container mt-2 col-lg-8">
-            <div class="card">
+       <div class="container mt-2 col-lg-8">
+           <div class="card">
                 <div class="card-header text-center">
-                 <lable class="tituloPrincipal">Nueva Requisición</lable>
+                <lable class="tituloPrincipal">Editar Solicitud</lable>
                 </div>
                 <div class="card-body">
                     
-                    <form class="needs-validation" novalidate method="post" action="#" th:action="@{/usuario/requisiciones/add}" th:object="${requisicion}">
+                    <form class="needs-validation" novalidate method="post" action="#"
+                          th:action="@{/usuario/solicitudes/update/{id}(id=${solicitud.idSolicitud})}" th:object="${solicitud}">
                         <div class="panel-body">
                         <div class="row">
                         <div class="col-md-6">
                         <label class="tituloTexto">Mes</label>
-                        <select name="mesCalendarizacion" class="form-control">
+                        <select name="mesCalendarizacion" th:value="${solicitud.mesCalendarizacion}" class="form-control">
                             <option value="1" selected>ENERO</option>
                                           <option value="2">FEBRERO</option>
                                           <option value="3">MARZO</option>
@@ -40,8 +41,11 @@ and open the template in the editor.
                           </select>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label tituloTexto" for="montoSuficiencia">Monto de suficiencia</label>
-                            <input type="number" class="form-control" name="montoSuficiencia" id="montoSuficiencia" required/>
+                            <label class="form-label tituloTexto" for="idPrioridad">Pioridad</label>
+                            <select name="prioridad.idPrioridad" th:value="${solicitud.prioridad.idPrioridad}" id="idPrioridad" class="form-control">
+                                <option value="1" selected>ORDINARIA</option>
+                                <option value="2">URGENTE</option>
+                            </select>
                             <div class="invalid-feedback">Monto Suficiencia es requerido</div>
                         </div>
                         </div>
@@ -49,12 +53,12 @@ and open the template in the editor.
                             <div class="row">
                                 <div class="col-md-12">
                                     <label class="tituloTexto">Justificacion Del Uso</label>
-                                    <textarea class="form-control" name="justificacionDelUso" aria-label="Justificacion de uso"></textarea>
-                                    <div class="invalid-feedback">Justificacion Del Uso es requerido</div>
+                                    <textarea name="actividadOUso" class="form-control" aria-label="Actividad o uso" th:value="${solicitud.actividadOUso}" required>
+                                    </textarea>
+                                    <div class="invalid-feedback">Actividad o Uso es requerido</div>
                                 </div>
                             </div>
-                            <hr/>
-                            <br/>
+                            
                         <br/>
                         
                         <div class="valid-feedback">
@@ -64,13 +68,13 @@ and open the template in the editor.
                          </div>
                         <br/>
                         <br/>
-                        <input type="submit" class="btn btn-success" value="Agregar">
-                        <a th:href="@{/usuario/requisiciones}">Regresar</a>
+                        <input type="submit" class="btn btn-success" value="Actualizar">
+                        <a th:href="@{/usuario/solicitudes}">Regresar</a>
                         </div>
                     </form>
-                    </div>
                 </div>
             </div>
+        </div>
         
     </body>
 </html>

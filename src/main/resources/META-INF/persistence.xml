@@ -12,6 +12,23 @@
     <class>com.modules.sirsr.persistence.entity.TipoRevision</class>
     <class>com.modules.sirsr.persistence.entity.ObjetoDeGasto</class>
     <class>com.modules.sirsr.persistence.entity.FolioRequisicion</class>
+    <class>com.modules.sirsr.persistence.entity.Consolidacion</class>
+    <class>com.modules.sirsr.persistence.entity.DetalleConsolidacion</class>
+    <class>com.modules.sirsr.persistence.entity.Solicitud</class>
+    <class>com.modules.sirsr.persistence.entity.CotizaConsolidacion</class>
+    <class>com.modules.sirsr.persistence.entity.TipoPersonaFiscal</class>
+    <class>com.modules.sirsr.persistence.entity.DatosPersonales</class>
+    <class>com.modules.sirsr.persistence.entity.Marca</class>
+    <class>com.modules.sirsr.persistence.entity.SeguimientoSolicitud</class>
+    <class>com.modules.sirsr.persistence.entity.DetalleCotizaConsolida</class>
+    <class>com.modules.sirsr.persistence.entity.InvitacionACotizarConsolida</class>
+    <class>com.modules.sirsr.persistence.entity.CotizaRequisicion</class>
+    <class>com.modules.sirsr.persistence.entity.Prioridad</class>
+    <class>com.modules.sirsr.persistence.entity.InvitacionACotizarRequis</class>
+    <class>com.modules.sirsr.persistence.entity.Producto</class>
+    <class>com.modules.sirsr.persistence.entity.Estatus</class>
+    <class>com.modules.sirsr.persistence.entity.DetalleCotizaRequis</class>
+    <class>com.modules.sirsr.persistence.entity.Requisicion</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>

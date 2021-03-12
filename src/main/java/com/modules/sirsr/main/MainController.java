@@ -23,6 +23,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
+import static com.modules.sirsr.utils.WebUtils.getSiteURL;
+
 /**
  *
  * @author Edward Reyes
@@ -75,7 +77,7 @@ public class MainController {
     public String reiniciarPassword(HttpServletRequest request, Model model, RedirectAttributes redirectAttrs) {
         String email = request.getParameter("email");
         String token = RandomString.make(30);
-        String resetPasswordLink = WebUtils.getSiteURL(request) + "/cambiar_password?token=" + token;
+        String resetPasswordLink = getSiteURL.apply(request) + "/cambiar_password?token=" + token;
         msg.crearMensaje(usuarioService.updateResetPasswordToken(token, email, resetPasswordLink), redirectAttrs);
         return "redirect:/login";
     }

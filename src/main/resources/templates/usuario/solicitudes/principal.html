@@ -15,13 +15,13 @@ and open the template in the editor.
         <header th:replace="layout :: header"></header>
         
         <div class="container mt-4" th:switch="${lista}">
-       <div class="text-center"><lable class="tituloPrincipal">REQUISICIONES</lable></div>
-       <h2 th:case="null">No hay Requisiciones</h2>
+       <div class="text-center"><lable class="tituloPrincipal">SOLICITUDES</lable></div>
+       <h2 th:case="null">No hay Solicitudes</h2>
         <div th:case="*">
         <div class="card border-info">
             
             <div class="card-header text-white">
-                <a id="boton_agregar" style="font-size:15px;color: #333333;" title="Agregar Requisicion" th:href="@{/usuario/requisiciones/agregar}" class="fas fa-plus-circle"></a>
+                <a id="boton_agregar" style="font-size:15px;color: #333333;" title="Agregar Requisicion" th:href="@{/usuario/solicitudes/agregar}" class="fas fa-plus-circle"></a>
             </div>
             <div class="card-body table-responsive-md">
                 <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" 
@@ -34,14 +34,12 @@ and open the template in the editor.
                 <table class="table table-sm table-hover table-bordered table-wrapper-scroll-y my-custom-scrollbar" id="tablaDatos">
                     <thead>
                         <tr>
-                            <th style="width:10%">ID REQUISICION</th>
-                            <th style="width:10%">CLAVE UR</th>
-                            <th style="width:10%">FECHA ELABORACION</th>
-                            <th style="width:10%">MES</th>
-                            <th style="width:10%">FOLIO</th>
+                            <th style="width:10%">ID SOLICITUD</th>
+                            <th style="width:10%">FECHA CREACION</th>
+                            <th style="width:10%">PRIORIDAD</th>
+                            <th style="width:30%">DESCRIPCION</th>
                             <th style="width:10%">ESTATUS</th>
                             <th style="width:10%"> DOCUMENTOS </th>
-                            <th style="width:10%"> DETALLES </th>
                             <th style="width:10%"> EMITIR </th>
                             <th style="width:5%"> EDITAR </th>
                             <th style="width:5%"> ELIMINAR </th>
@@ -49,35 +47,29 @@ and open the template in the editor.
                     </thead>
                     <tbody>
                         <tr th:each="dato: ${lista}">
-                            <td style="width:10%" th:text="${dato.idRequisicion}"></td>
-                            <td style="width:10%" th:text="${dato.unidadResponsable.claveUr}"></td>
-                            <td style="width:10%" th:text="${#dates.format(dato.fechaElaboracion,'dd/MM/yyyy')}"></td>
-                            <td style="width:10%" th:text="${dato.mesCalendarizacion}"></td>
-                            <td style="width:10%" th:text="${dato.folio}"></td>
-                            <td style="width:10%" th:text="${dato.estatus}"></td>
+                            <td style="width:10%" th:text="${dato.idSolicitud}"></td>
+                            <td style="width:10%" th:text="${#dates.format(dato.fechaCreacion,'dd/MM/yyyy')}"></td>
+                            <td style="width:10%" th:text="${dato.prioridad.descripcion}"></td>
+                            <td style="width:30%" th:text="${dato.actividadOUso}"></td>
+                            <td style="width:10%" th:text="${dato.estatus.descripcion}"></td>
                             <td style="width:10%">
-                                <a id="boton_documentos" style="font-size:15px;color: #333333;" th:href="@{/usuario/requisiciones/editarDocumentos/{id}(id=${dato.idRequisicion})}">
+                                <a id="boton_documentos" style="font-size:15px;color: #333333;" th:href="@{/usuario/solicitudes/editarDocumentos/{id}(id=${dato.idSolicitud})}">
                                     <i title="Agregar Documentos" class="fa fa-file"></i>
                                 </a>
                             </td>
                             <td style="width:10%">
-                                <a id="boton_detalles" style="font-size:15px;color: #333333;" th:href="@{/usuario/requisiciones/editarDetalles/{id}(id=${dato.idRequisicion})}">
-                                    <i title="Agregar Detalles a Requisicion" class="fa fa-list-ol"></i>
-                                </a>
-                            </td>
-                            <td style="width:10%">
                                 <a id="boton_enviar" style="font-size:15px;color: #333333;" th:href="@{#}">
-                                    <i title="Emitir Requisicion" class="fa fa-paper-plane"></i>
+                                    <i title="Emitir Solicitud" class="fa fa-paper-plane"></i>
                                 </a>
                             </td>
                             <td style="width:5%">
-                                <a id="boton_editar" style="font-size:15px;color: #333333;" th:href="@{/usuario/requisiciones/editar/{id}(id=${dato.idRequisicion})}">
-                                    <i title="Editar Requisicion" class="fas fa-edit"></i>
+                                <a id="boton_editar" style="font-size:15px;color: #333333;" th:href="@{/usuario/solicitudes/editar/{id}(id=${dato.idSolicitud})}">
+                                    <i title="Editar Solicitud" class="fas fa-edit"></i>
                                 </a>
                             </td>
                             <td style="width:5%">
                                 <a id="boton_eliminar" style="font-size:15px;color: #333333;" th:href="@{#}">
-                                    <i title="Eliminar Requisicion" class="fas fa-trash-alt"></i>
+                                    <i title="Eliminar Solicitud" class="fas fa-trash-alt"></i>
                                 </a>
                             </td>
                         </tr>

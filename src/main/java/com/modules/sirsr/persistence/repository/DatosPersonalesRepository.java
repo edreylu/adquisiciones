@@ -5,17 +5,18 @@
  */
 package com.modules.sirsr.persistence.repository;
 
-import com.modules.sirsr.persistence.entity.Personal;
 import java.util.List;
+
+import com.modules.sirsr.persistence.entity.DatosPersonales;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author Edward Reyes
  */
-public interface PersonalRepository extends JpaRepository<Personal, Integer>{
-    
-    Personal findByCorreo(String email);
-    List<Personal> findByNoPersonal(Integer noPersonal);
+public interface DatosPersonalesRepository extends JpaRepository<DatosPersonales, Integer>{
+
+    DatosPersonales findByCorreo(String email);
+    List<DatosPersonales> findByNoPersonal(Integer noPersonal);
     
 }

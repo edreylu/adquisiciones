@@ -5,13 +5,10 @@
  */
 package com.modules.sirsr.persistence.entity;
 
-import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -20,70 +17,31 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "FOLIO_REQUISICION")
-@NamedQueries({
-    @NamedQuery(name = "FolioRequisicion.findAll", query = "SELECT f FROM FolioRequisicion f")})
-public class FolioRequisicion implements Serializable {
+public class FolioRequisicion {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "ANIO")
-    private Short anio;
+    private Integer anio;
     @Basic(optional = false)
     @Column(name = "CONSECUTIVO")
-    private short consecutivo;
+    private Integer consecutivo;
 
-    public FolioRequisicion() {
-    }
-
-    public FolioRequisicion(Short anio) {
-        this.anio = anio;
-    }
-
-    public FolioRequisicion(Short anio, short consecutivo) {
-        this.anio = anio;
-        this.consecutivo = consecutivo;
-    }
-
-    public Short getAnio() {
+    public Integer getAnio() {
         return anio;
     }
 
-    public void setAnio(Short anio) {
+    public void setAnio(Integer anio) {
         this.anio = anio;
     }
 
-    public short getConsecutivo() {
+    public Integer getConsecutivo() {
         return consecutivo;
     }
 
-    public void setConsecutivo(short consecutivo) {
+    public void setConsecutivo(Integer consecutivo) {
         this.consecutivo = consecutivo;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (anio != null ? anio.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof FolioRequisicion)) {
-            return false;
-        }
-        FolioRequisicion other = (FolioRequisicion) object;
-        if ((this.anio == null && other.anio != null) || (this.anio != null && !this.anio.equals(other.anio))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "com.modules.sirsr.persistence.entity.FolioRequisicion[ anio=" + anio + " ]";
-    }
     
 }

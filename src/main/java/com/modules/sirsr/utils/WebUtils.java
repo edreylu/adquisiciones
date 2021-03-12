@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.function.Function;
+
 /**
  *
  * @author Edward Reyes
@@ -24,10 +26,10 @@ public class WebUtils {
         }
         return userDetails.getUsername();
     }
-    
-    public static String getSiteURL(HttpServletRequest request) {
+
+    public static Function<HttpServletRequest, String> getSiteURL = request -> {
         String siteURL = request.getRequestURL().toString();
         return siteURL.replace(request.getServletPath(), "");
-    }
+    };
 
 }

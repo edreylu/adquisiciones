@@ -6,10 +6,8 @@
 package com.modules.sirsr.persistence.entity;
 
 import java.util.Date;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,21 +34,19 @@ public class Documento{
     private Integer idDocumento;
     @Lob
     @Column(name = "DOCUMENTO")
-    @Basic(optional = false, fetch = FetchType.LAZY)
     private byte[] documento;
     @Column(name = "FECHA_ACTUALIZACION")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaActualizacion;
-    @Column(name = "ID_REQUISICION", insertable = false, updatable = false)
-    private Integer idRequisicion;
-    @JoinColumn(name = "ID_REQUISICION", referencedColumnName = "ID_REQUISICION")
+    @Column(name = "ID_SOLICITUD", insertable = false, updatable = false)
+    private Integer idSolicitud;
+    @JoinColumn(name = "ID_SOLICITUD", referencedColumnName = "ID_SOLICITUD")
     @ManyToOne(optional = false)
-    private Requisicion requisicion;
+    private Solicitud solicitud;
     @JoinColumn(name = "ID_TIPO_DOCUMENTO", referencedColumnName = "ID_TIPO_DOCUMENTO")
     @ManyToOne(optional = false)
     private TipoDocumento tipoDocumento;
 
-    
     public Integer getIdDocumento() {
         return idDocumento;
     }
@@ -75,12 +71,12 @@ public class Documento{
         this.fechaActualizacion = fechaActualizacion;
     }
 
-    public Requisicion getRequisicion() {
-        return requisicion;
+    public Solicitud getSolicitud() {
+        return solicitud;
     }
 
-    public void setRequisicion(Requisicion requisicion) {
-        this.requisicion = requisicion;
+    public void setSolicitud(Solicitud solicitud) {
+        this.solicitud = solicitud;
     }
 
     public TipoDocumento getTipoDocumento() {
@@ -91,11 +87,11 @@ public class Documento{
         this.tipoDocumento = tipoDocumento;
     }
 
-    public Integer getIdRequisicion() {
-        return idRequisicion;
+    public Integer getIdSolicitud() {
+        return idSolicitud;
     }
 
-    public void setIdRequisicion(Integer idRequisicion) {
-        this.idRequisicion = idRequisicion;
+    public void setIdSolicitud(Integer idSolicitud) {
+        this.idSolicitud = idSolicitud;
     }
 }

@@ -5,11 +5,13 @@
  */
 package com.modules.sirsr.personal;
 
+import java.util.function.Function;
+
 /**
  *
  * @author Edward Reyes
  */
-public class PersonalDTO {
+public class DatosPersonalesDTO {
     
     private int noPersonal;
     private String apellidoPaterno;
@@ -83,7 +85,6 @@ public class PersonalDTO {
     public void setNombreCompleto(String nombreCompleto) {
         this.nombreCompleto = nombreCompleto;
     }
-    
-    
+
     
 }

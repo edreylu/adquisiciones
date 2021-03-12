@@ -14,5 +14,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author Edward Reyes
  */
 public interface RequisicionRepository extends JpaRepository<Requisicion, Integer>{
-    List<Requisicion> findByClaveUnidad(String claveUnidad);
+
 }

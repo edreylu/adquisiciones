@@ -43,16 +43,20 @@ public class ObjetoDeGasto{
     @Column(name = "FECHA_FINAL")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaFinal;
-    @Basic(optional = false)
-    @Column(name = "ESTATUS")
-    private short estatus;
     @JoinColumn(name = "CLAVE_GENERICA", referencedColumnName = "CLAVE_GENERICA")
     @ManyToOne(optional = false)
     private PartidaGastoGenerica partidaGastoGenerica;
+    @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
+    @ManyToOne(optional = false)
+    private Estatus estatus;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "objetoDeGasto")
     private List<ClavePresupuestaria> clavesPresupuestarias;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "objetoDeGasto")
     private List<SubTipoProducto> subtiposProducto;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "objetoGasto")
+    private List<Consolidacion> consolidaciones;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "objetoGasto")
+    private List<TipoProducto> tiposProducto;
 
     public String getObjetoGasto() {
         return objetoGasto;
@@ -94,20 +98,20 @@ public class ObjetoDeGasto{
         this.fechaFinal = fechaFinal;
     }
 
-    public short getEstatus() {
-        return estatus;
-    }
-
-    public void setEstatus(short estatus) {
-        this.estatus = estatus;
-    }
-
     public PartidaGastoGenerica getPartidaGastoGenerica() {
         return partidaGastoGenerica;
     }
 
     public void setPartidaGastoGenerica(PartidaGastoGenerica partidaGastoGenerica) {
         this.partidaGastoGenerica = partidaGastoGenerica;
+    }
+
+    public Estatus getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(Estatus estatus) {
+        this.estatus = estatus;
     }
 
     public List<ClavePresupuestaria> getClavesPresupuestarias() {
@@ -125,4 +129,22 @@ public class ObjetoDeGasto{
     public void setSubtiposProducto(List<SubTipoProducto> subtiposProducto) {
         this.subtiposProducto = subtiposProducto;
     }
+
+    public List<Consolidacion> getConsolidaciones() {
+        return consolidaciones;
+    }
+
+    public void setConsolidaciones(List<Consolidacion> consolidaciones) {
+        this.consolidaciones = consolidaciones;
+    }
+
+    public List<TipoProducto> getTiposProducto() {
+        return tiposProducto;
+    }
+
+    public void setTiposProducto(List<TipoProducto> tiposProducto) {
+        this.tiposProducto = tiposProducto;
+    }
+
+    
 }

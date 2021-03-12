@@ -12,6 +12,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -25,10 +27,12 @@ import javax.persistence.TemporalType;
 @Table(name = "CAPITULO")
 public class Capitulo{
 
+    
+
     @Id
     @Basic(optional = false)
     @Column(name = "CLAVE_CAPITULO")
-    private Short claveCapitulo;
+    private Integer claveCapitulo;
     @Basic(optional = false)
     @Column(name = "DESCRIPCION")
     private String descripcion;
@@ -42,17 +46,17 @@ public class Capitulo{
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaFinal;
     @Basic(optional = false)
-    @Column(name = "ESTATUS")
-    private short estatus;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "claveCapitulo")
-    private List<Concepto> conceptoList;
+    @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
+    @ManyToOne(optional = false)
+    private Estatus estatus;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "capitulo")
+    private List<Concepto> conceptos;
 
-
-    public Short getClaveCapitulo() {
+    public Integer getClaveCapitulo() {
         return claveCapitulo;
     }
 
-    public void setClaveCapitulo(Short claveCapitulo) {
+    public void setClaveCapitulo(Integer claveCapitulo) {
         this.claveCapitulo = claveCapitulo;
     }
 
@@ -88,23 +92,21 @@ public class Capitulo{
         this.fechaFinal = fechaFinal;
     }
 
-    public short getEstatus() {
+    public Estatus getEstatus() {
         return estatus;
     }
 
-    public void setEstatus(short estatus) {
+    public void setEstatus(Estatus estatus) {
         this.estatus = estatus;
     }
 
-    public List<Concepto> getConceptoList() {
-        return conceptoList;
+    public List<Concepto> getConceptos() {
+        return conceptos;
     }
 
-    public void setConceptoList(List<Concepto> conceptoList) {
-        this.conceptoList = conceptoList;
+    public void setConceptos(List<Concepto> conceptos) {
+        this.conceptos = conceptos;
     }
 
-    public Capitulo() {
-    }
 
 }

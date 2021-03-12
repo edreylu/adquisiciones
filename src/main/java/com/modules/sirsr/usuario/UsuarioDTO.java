@@ -6,10 +6,10 @@
 package com.modules.sirsr.usuario;
 
 
-import com.modules.sirsr.personal.PersonalDTO;
+import com.modules.sirsr.personal.DatosPersonalesDTO;
 import com.modules.sirsr.unidadResponsable.UnidadResponsableDTO;
 
-import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -22,10 +22,10 @@ public class UsuarioDTO {
     private String userName;
     private String password;
     private String encrytedPassword;
-    private Calendar fechaAuditoria;
+    private Date fechaAuditoria;
     private Integer idEstatus;
     private Integer enabled;
-    private PersonalDTO personal;
+    private DatosPersonalesDTO personal;
     private UnidadResponsableDTO unidadResponsable;
 
 
@@ -61,12 +61,11 @@ public class UsuarioDTO {
         this.encrytedPassword = encrytedPassword;
     }
 
-   
-    public Calendar getFechaAuditoria() {
+    public Date getFechaAuditoria() {
         return fechaAuditoria;
     }
 
-    public void setFechaAuditoria(Calendar fechaAuditoria) {
+    public void setFechaAuditoria(Date fechaAuditoria) {
         this.fechaAuditoria = fechaAuditoria;
     }
 
@@ -94,11 +93,11 @@ public class UsuarioDTO {
         this.enabled = enabled;
     }
 
-    public PersonalDTO getPersonal() {
+    public DatosPersonalesDTO getPersonal() {
         return personal;
     }
 
-    public void setPersonal(PersonalDTO personal) {
+    public void setPersonal(DatosPersonalesDTO personal) {
         this.personal = personal;
     }
 

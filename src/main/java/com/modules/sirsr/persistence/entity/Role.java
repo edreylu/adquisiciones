@@ -51,4 +51,7 @@ public class Role {
     public void setUsuariosRoles(List<UsuarioRole> usuariosRoles) {
         this.usuariosRoles = usuariosRoles;
     }
+
+    public Role() {
+    }
 }

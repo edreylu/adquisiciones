@@ -1,7 +1,7 @@
 package com.modules.sirsr.usuario;
 
 import com.modules.sirsr.persistence.entity.Usuario;
-import com.modules.sirsr.personal.PersonalMapper;
+import com.modules.sirsr.personal.DatosPersonalesMapper;
 import com.modules.sirsr.unidadResponsable.UnidadResponsableMapper;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +20,7 @@ public class UsuarioMapper {
         }
 
         UsuarioDTO usuarioDTO = new UsuarioDTO();
-        PersonalMapper personalMapper = new PersonalMapper();
+        DatosPersonalesMapper datosPersonalesMapper = new DatosPersonalesMapper();
         UnidadResponsableMapper unidadResponsableMapper = new UnidadResponsableMapper();
 
         usuarioDTO.setNoUsuario(usuario.getNoUsuario());
@@ -29,7 +29,7 @@ public class UsuarioMapper {
         usuarioDTO.setFechaAuditoria(usuario.getFechaAuditoria());
         usuarioDTO.setIdEstatus(usuario.getIdEstatus());
         usuarioDTO.setEnabled(usuario.getEnabled());
-        usuarioDTO.setPersonal(personalMapper.toPersonalDTO(usuario.getPersonal()));
+        usuarioDTO.setPersonal(datosPersonalesMapper.toPersonalDTO(usuario.getDatosPersonales()));
         usuarioDTO.setUnidadResponsable(unidadResponsableMapper.toUnidadResponsableDTO(usuario.getUnidadResponsable()));
 
         return usuarioDTO;
