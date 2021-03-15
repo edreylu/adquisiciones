@@ -102,103 +102,14 @@ $(() => {
         info: true,
         ordering: true
     });
-    
-    // contiene la tabla para editar
-    
- const $tableID = $('#tableRequisicion');
- const $BTN = $('#export-btn');
- const $EXPORT = $('#export');
-
- const newTr = `<tr>
-<td class="pt-3-half">
- <input type="text" name="cantidad" class="form-control" required/>
- <div class="invalid-feedback">Cantidad es requerido</div></td>
-<td class="pt-3-half">
- <select name="Unidad" class="form-control">
- <option value="1">Paquete</option>
- <option value="2">Unidad</option>
- <option value="3">kilo</option>
- </select>
-</td>
-<td class="pt-3-half">
- <input type="text" name="descripcion" class="form-control" required/>
- <div class="invalid-feedback">Descripcion es requerido</div>
-</td>
-<td>
-<span class="table-remove">
-<button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Quitar</button>
-</span>
-</td>
-</tr>`;
-
- $('.table-add').on('click', 'i', () => {
-
-   const $clone = $tableID.find('tbody tr').last().clone(true).removeClass('hide table-line');
-
-   if ($tableID.find('tbody tr').length === 0) {
-
-     $('tbody').append(newTr);
-   }
-
-   $tableID.find('table').append($clone);
- });
-
- $tableID.on('click', '.table-remove', function () {
-
-   $(this).parents('tr').detach();
- });
-
- $tableID.on('click', '.table-up', function () {
-
-   const $row = $(this).parents('tr');
-
-   if ($row.index() === 0) {
-     return;
-   }
-
-   $row.prev().before($row.get(0));
- });
-
- $tableID.on('click', '.table-down', function () {
-
-   const $row = $(this).parents('tr');
-   $row.next().after($row.get(0));
- });
-
- // A few jQuery helpers for exporting only
- jQuery.fn.pop = [].pop;
- jQuery.fn.shift = [].shift;
-
- $BTN.on('click', () => {
-
-   const $rows = $tableID.find('tr:not(:hidden)');
-   const headers = [];
-   const data = [];
-
-   // Get the headers (add special header logic here)
-   $($rows.shift()).find('th:not(:empty)').each(function () {
-
-     headers.push($(this).text().toLowerCase());
-   });
-
-   // Turn all existing rows into a loopable array
-   $rows.each(function () {
-     const $td = $(this).find('td');
-     const h = {};
-
-     // Use the headers from earlier to name our hash keys
-     headers.forEach((header, i) => {
-
-       h[header] = $td.eq(i).text();
-     });
-
-     data.push(h);
-   });
-
-   // Output the result
-   $EXPORT.text(JSON.stringify(data));
- });
-    
+    $('#tablaRequisiciones').DataTable({
+            scrollY: "230px",
+            scrollCollapse: false,
+            paging: false,
+            searching: false,
+            info: true,
+            ordering: false
+        });
 });
 
 function checkPasswordMatch(fieldConfirmPassword) {

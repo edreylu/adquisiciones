@@ -21,7 +21,7 @@ and open the template in the editor.
         <div class="card border-info">
             
             <div class="card-header text-white">
-                <a id="boton_agregar" style="font-size:15px;color: #333333;" title="Agregar Requisicion" th:href="@{/usuario/solicitudes/agregar}" class="fas fa-plus-circle"></a>
+                <a id="boton_agregar" style="font-size:15px;color: #333333;" title="Agregar Solicitud" th:href="@{/usuario/solicitudes/agregar}" class="fas fa-plus-circle"></a>
             </div>
             <div class="card-body table-responsive-md">
                 <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" 
@@ -37,10 +37,11 @@ and open the template in the editor.
                             <th style="width:10%">ID SOLICITUD</th>
                             <th style="width:10%">FECHA CREACION</th>
                             <th style="width:10%">PRIORIDAD</th>
-                            <th style="width:30%">DESCRIPCION</th>
+                            <th style="width:25%">DESCRIPCION</th>
                             <th style="width:10%">ESTATUS</th>
+                            <th style="width:10%"> REQUISICIONES </th>
                             <th style="width:10%"> DOCUMENTOS </th>
-                            <th style="width:10%"> EMITIR </th>
+                            <th style="width:5%"> EMITIR </th>
                             <th style="width:5%"> EDITAR </th>
                             <th style="width:5%"> ELIMINAR </th>
                         </tr>
@@ -50,14 +51,19 @@ and open the template in the editor.
                             <td style="width:10%" th:text="${dato.idSolicitud}"></td>
                             <td style="width:10%" th:text="${#dates.format(dato.fechaCreacion,'dd/MM/yyyy')}"></td>
                             <td style="width:10%" th:text="${dato.prioridad.descripcion}"></td>
-                            <td style="width:30%" th:text="${dato.actividadOUso}"></td>
+                            <td style="width:25%" th:text="${dato.actividadOUso}"></td>
                             <td style="width:10%" th:text="${dato.estatus.descripcion}"></td>
+                            <td style="width:10%">
+                                <a id="boton_requisiciones" style="font-size:15px;color: #333333;" th:href="@{/usuario/solicitudes/requisiciones/{id}(id=${dato.idSolicitud})}">
+                                    <i title="Agregar Requisiciones" class="fa fa-shopping-bag"></i>
+                                </a>
+                            </td>
                             <td style="width:10%">
                                 <a id="boton_documentos" style="font-size:15px;color: #333333;" th:href="@{/usuario/solicitudes/editarDocumentos/{id}(id=${dato.idSolicitud})}">
                                     <i title="Agregar Documentos" class="fa fa-file"></i>
                                 </a>
                             </td>
-                            <td style="width:10%">
+                            <td style="width:5%">
                                 <a id="boton_enviar" style="font-size:15px;color: #333333;" th:href="@{#}">
                                     <i title="Emitir Solicitud" class="fa fa-paper-plane"></i>
                                 </a>

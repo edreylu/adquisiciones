@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout :: head">
+        
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script src="../../static/js/alerta.js"></script>
+    </head>
+    <body>
+        <header th:replace="layout :: header"></header>
+        
+        <div class="container mt-4" th:switch="${lista}">
+            <br/>
+       <h2 th:case="null">No hay Requisiciones</h2>
+        <div th:case="*">
+        <div class="card border-info">
+            
+            <div class="card-header text-white">
+                <a id="boton_agregar" style="font-size:15px;color: #333333;" title="Agregar Requisicion" th:href="@{/usuario/solicitudes/requisiciones/agregar/{id}(id=${solicitud})}" class="fas fa-plus-circle"></a>
+            </div>
+            <div class="card-body table-responsive-md">
+                <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" 
+                     th:if="${mensaje != null}"
+                     class="alert alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <center><strong><div th:text="${mensaje}"></div></strong></center>
+                </div>
+
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="form-label tituloTexto">REQUISICIONES PARA SOLICITUD NUMERO: </label><label class="form-label tituloTexto" th:text="${id}"></label>
+                            <br/>
+                            <br/>
+                            <hr/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-sm table-hover table-bordered table-wrapper-scroll-y my-custom-scrollbar" id="tablaRequisiciones">
+                                <thead>
+                                <tr>
+                                    <th style="width:10%">ID REQUISICION</th>
+                                    <th style="width:50%">CLAVE PRESUPUESTAL</th>
+                                    <th style="width:10%">MONTO SUFICIENCIA</th>
+                                    <th style="width:10%">ESTATUS</th>
+                                    <th style="width:10%"> DETALLE REQUISICION </th>
+                                    <th style="width:5%"> EDITAR </th>
+                                    <th style="width:5%"> ELIMINAR </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="dato: ${lista}">
+                                    <td style="width:10%" th:text="${dato.idRequisicion}"></td>
+                                    <td style="width:50%" th:text="${dato.clavePresupuestaria.idClavePresup}"></td>
+                                    <td style="width:10%" th:text="${dato.montoSuficiencia}"></td>
+                                    <td style="width:10%" th:text="${dato.estatus.descripcion}"></td>
+                                    <td style="width:10%">
+                                        <a id="boton_requisiciones" style="font-size:15px;color: #333333;" th:href="@{/usuario/solicitudes/requisiciones/editarDetalles/{id}(id=${dato.idSolicitud})}">
+                                            <i title="Agregar Detalle Requisiciones" class="fa fa-shopping-bag"></i>
+                                        </a>
+                                    </td>
+                                    <td style="width:5%">
+                                        <a id="boton_editar" style="font-size:15px;color: #333333;" th:href="@{/usuario/solicitudes/requisiciones/editar/{id}(id=${dato.idRequisicion})}">
+                                            <i title="Editar Solicitud" class="fas fa-edit"></i>
+                                        </a>
+                                    </td>
+                                    <td style="width:5%">
+                                        <a id="boton_eliminar" style="font-size:15px;color: #333333;" th:href="@{#}">
+                                            <i title="Eliminar Solicitud" class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+                </div>
+                    <hr/>
+                    <br/>
+                <a th:href="@{/usuario/solicitudes}">Regresar</a>
+                
+            </div>
+        </div>
+        </div>
+        </div>
+        
+    </body>
+</html>

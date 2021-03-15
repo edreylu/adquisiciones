@@ -25,8 +25,8 @@ and open the template in the editor.
                         <div class="row">
                         <div class="col-md-6">
                         <label class="tituloTexto">Mes</label>
-                        <select name="mesCalendarizacion" th:value="${solicitud.mesCalendarizacion}" class="form-control">
-                            <option value="1" selected>ENERO</option>
+                        <select name="mesCalendarizacion" th:field="${solicitud.mesCalendarizacion}" class="form-control">
+                            <option value="1" >ENERO</option>
                                           <option value="2">FEBRERO</option>
                                           <option value="3">MARZO</option>
                                           <option value="4">ABRIL</option>
@@ -41,19 +41,19 @@ and open the template in the editor.
                           </select>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label tituloTexto" for="idPrioridad">Pioridad</label>
-                            <select name="prioridad.idPrioridad" th:value="${solicitud.prioridad.idPrioridad}" id="idPrioridad" class="form-control">
-                                <option value="1" selected>ORDINARIA</option>
+                            <label class="form-label tituloTexto" for="prioridad">Pioridad</label>
+                            <select name="prioridad.idPrioridad" th:value="${solicitud.prioridad.idPrioridad}" id="prioridad" class="form-control">
+                                <option value="1" >ORDINARIA</option>
                                 <option value="2">URGENTE</option>
                             </select>
-                            <div class="invalid-feedback">Monto Suficiencia es requerido</div>
+                            <div class="invalid-feedback">Prioridad es requerido</div>
                         </div>
                         </div>
                             <br/>
                             <div class="row">
                                 <div class="col-md-12">
                                     <label class="tituloTexto">Justificacion Del Uso</label>
-                                    <textarea name="actividadOUso" class="form-control" aria-label="Actividad o uso" th:value="${solicitud.actividadOUso}" required>
+                                    <textarea name="actividadOUso" class="form-control" th:field="${solicitud.actividadOUso}" required>
                                     </textarea>
                                     <div class="invalid-feedback">Actividad o Uso es requerido</div>
                                 </div>
