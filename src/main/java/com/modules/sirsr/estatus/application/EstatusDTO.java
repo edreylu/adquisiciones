@@ -57,14 +57,4 @@ public class EstatusDTO {
         this.colorhex = colorhex;
     }
 
-    @Override
-    public String toString() {
-        return "EstatusDTO{" +
-                "idEstatus=" + idEstatus +
-                ", clave='" + clave + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", colorhex='" + colorhex + '\'' +
-                ", explicacion='" + explicacion + '\'' +
-                '}';
-    }
 }

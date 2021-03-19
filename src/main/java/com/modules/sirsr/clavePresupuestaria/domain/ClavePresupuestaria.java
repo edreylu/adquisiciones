@@ -40,7 +40,7 @@ public class ClavePresupuestaria{
     @Column(name = "INSTITUCION")
     private String institucion;
     @Column(name = "UNIDAD_RESPONSABLE")
-    private String unidadResponsable;
+    private String unidadResp;
     @Column(name = "FINALIDAD")
     private String finalidad;
     @Column(name = "FUNCION")
@@ -71,12 +71,14 @@ public class ClavePresupuestaria{
     private String municipio;
     @Column(name = "PPI")
     private String ppi;
+    @Column(name = "CLAVE_UR", updatable = false, insertable = false)
+    private String claveUr;
     @JoinColumn(name = "OBJETO_GASTO", referencedColumnName = "OBJETO_GASTO")
     @ManyToOne(optional = false)
     private ObjetoDeGasto objetoDeGasto;
     @JoinColumn(name = "CLAVE_UR", referencedColumnName = "CLAVE_UR")
     @ManyToOne(optional = false)
-    private UnidadResponsable claveUr;
+    private UnidadResponsable unidadResponsable;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "clavePresupuestaria")
     private List<Requisicion> requisiciones;
     @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
@@ -115,12 +117,12 @@ public class ClavePresupuestaria{
         this.institucion = institucion;
     }
 
-    public String getUnidadResponsable() {
-        return unidadResponsable;
+    public String getUnidadResp() {
+        return unidadResp;
     }
 
-    public void setUnidadResponsable(String unidadResponsable) {
-        this.unidadResponsable = unidadResponsable;
+    public void setUnidadResp(String unidadResp) {
+        this.unidadResp = unidadResp;
     }
 
     public String getFinalidad() {
@@ -243,6 +245,14 @@ public class ClavePresupuestaria{
         this.ppi = ppi;
     }
 
+    public String getClaveUr() {
+        return claveUr;
+    }
+
+    public void setClaveUr(String claveUr) {
+        this.claveUr = claveUr;
+    }
+
     public ObjetoDeGasto getObjetoDeGasto() {
         return objetoDeGasto;
     }
@@ -251,12 +261,12 @@ public class ClavePresupuestaria{
         this.objetoDeGasto = objetoDeGasto;
     }
 
-    public UnidadResponsable getClaveUr() {
-        return claveUr;
+    public UnidadResponsable getUnidadResponsable() {
+        return unidadResponsable;
     }
 
-    public void setClaveUr(UnidadResponsable claveUr) {
-        this.claveUr = claveUr;
+    public void setUnidadResponsable(UnidadResponsable unidadResponsable) {
+        this.unidadResponsable = unidadResponsable;
     }
 
     public List<Requisicion> getRequisiciones() {
@@ -274,7 +284,4 @@ public class ClavePresupuestaria{
     public void setEstatus(Estatus estatus) {
         this.estatus = estatus;
     }
-
-    
-    
 }

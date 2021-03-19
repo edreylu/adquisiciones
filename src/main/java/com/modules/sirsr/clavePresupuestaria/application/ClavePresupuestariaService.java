@@ -8,11 +8,15 @@ package com.modules.sirsr.clavePresupuestaria.application;
 import com.modules.sirsr.clavePresupuestaria.domain.ClavePresupuestaria;
 import com.modules.sirsr.clavePresupuestaria.domain.ClavePresupuestariaRepository;
 import com.modules.sirsr.config.Mensaje;
+import com.modules.sirsr.config.WebUtils;
+import com.modules.sirsr.usuario.application.UsuarioDTO;
+import com.modules.sirsr.usuario.application.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -23,16 +27,23 @@ public class ClavePresupuestariaService {
 
     private final ClavePresupuestariaRepository clavePresupuestariaRepository;
     private final ClavePresupuestariaMapper clavePresupuestariaMapper;
+    private final UsuarioService usuarioService;
     private Mensaje msg;
 
     @Autowired
-    public ClavePresupuestariaService(ClavePresupuestariaRepository clavePresupuestariaRepository, ClavePresupuestariaMapper clavePresupuestariaMapper) {
+    public ClavePresupuestariaService(ClavePresupuestariaRepository clavePresupuestariaRepository, ClavePresupuestariaMapper clavePresupuestariaMapper, UsuarioService usuarioService) {
         this.clavePresupuestariaRepository = clavePresupuestariaRepository;
         this.clavePresupuestariaMapper = clavePresupuestariaMapper;
+        this.usuarioService = usuarioService;
     }
 
     public List<ClavePresupuestariaDTO> findAll() {
         return clavePresupuestariaMapper.toClavePresupuestariaDTOs(clavePresupuestariaRepository.findAll());
+    }
+
+    public List<ClavePresupuestariaDTO> findByClaveUr() {
+        UsuarioDTO usuarioDTO = usuarioService.findByUserName(WebUtils.getUserName());
+        return clavePresupuestariaMapper.toClavePresupuestariaDTOs(clavePresupuestariaRepository.findByUnidadResp(usuarioDTO.getUnidadResponsable().getClaveUr()));
     }
 
     public ClavePresupuestariaDTO findById(int id) {

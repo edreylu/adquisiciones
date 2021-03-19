@@ -5,7 +5,7 @@
  */
 package com.modules.sirsr.marca.domain;
 
-import com.modules.sirsr.detalleRequisicion.domain.DetalleRequisicion;
+import com.modules.sirsr.requisicion.domain.DetalleRequisicion;
 import com.modules.sirsr.estatus.domain.Estatus;
 import com.modules.sirsr.detalleCotizaConsolida.domain.DetalleCotizaConsolida;
 import com.modules.sirsr.detalleCotizaRequis.domain.DetalleCotizaRequis;

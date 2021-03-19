@@ -5,16 +5,33 @@
  */
 package com.modules.sirsr.solicitud.application;
 
+import com.modules.sirsr.documento.application.DocumentoDTO;
+import com.modules.sirsr.documento.domain.Documento;
 import com.modules.sirsr.estatus.application.EstatusDTO;
+import com.modules.sirsr.estatus.domain.Estatus;
 import com.modules.sirsr.prioridad.application.PrioridadDTO;
+import com.modules.sirsr.prioridad.domain.Prioridad;
+import com.modules.sirsr.requisicion.application.RequisicionDTO;
+import com.modules.sirsr.requisicion.domain.Requisicion;
+import com.modules.sirsr.revision.application.RevisionDTO;
+import com.modules.sirsr.revision.domain.Revision;
+import com.modules.sirsr.seguimientoSolicitud.domain.SeguimientoSolicitud;
 import com.modules.sirsr.unidadResponsable.application.UnidadResponsableDTO;
+import com.modules.sirsr.unidadResponsable.domain.UnidadResponsable;
+
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
  * @author Edward Reyes
  */
-public class SolicitudDTO {
+public class SolicitudDTO{
     private int idSolicitud;
     private Date fechaCreacion;
     private int anioCalendarizacion;
@@ -29,6 +46,9 @@ public class SolicitudDTO {
     private EstatusDTO estatus;
     private PrioridadDTO prioridad;
     private UnidadResponsableDTO unidadResponsable;
+    private List<DocumentoDTO> documentos;
+    private List<RevisionDTO> revisiones;
+    private List<RequisicionDTO> requisiciones;
 
     public int getIdSolicitud() {
         return idSolicitud;
@@ -94,6 +114,14 @@ public class SolicitudDTO {
         this.folio = folio;
     }
 
+    public String getClaveUr() {
+        return claveUr;
+    }
+
+    public void setClaveUr(String claveUr) {
+        this.claveUr = claveUr;
+    }
+
     public Date getFechaRecepcion() {
         return fechaRecepcion;
     }
@@ -126,14 +154,6 @@ public class SolicitudDTO {
         this.prioridad = prioridad;
     }
 
-    public String getClaveUr() {
-        return claveUr;
-    }
-
-    public void setClaveUr(String claveUr) {
-        this.claveUr = claveUr;
-    }
-
     public UnidadResponsableDTO getUnidadResponsable() {
         return unidadResponsable;
     }
@@ -142,23 +162,27 @@ public class SolicitudDTO {
         this.unidadResponsable = unidadResponsable;
     }
 
-    @Override
-    public String toString() {
-        return "SolicitudDTO{" +
-                "idSolicitud=" + idSolicitud +
-                ", fechaCreacion=" + fechaCreacion +
-                ", anioCalendarizacion=" + anioCalendarizacion +
-                ", mesCalendarizacion=" + mesCalendarizacion +
-                ", actividadOUso='" + actividadOUso + '\'' +
-                ", fechaEmision=" + fechaEmision +
-                ", firmaDirector='" + firmaDirector + '\'' +
-                ", folio='" + folio + '\'' +
-                ", claveUr='" + claveUr + '\'' +
-                ", fechaRecepcion=" + fechaRecepcion +
-                ", fechaAutorizacion=" + fechaAutorizacion +
-                ", estatus=" + estatus +
-                ", prioridad=" + prioridad +
-                ", unidadResponsable=" + unidadResponsable +
-                '}';
+    public List<DocumentoDTO> getDocumentos() {
+        return documentos;
+    }
+
+    public void setDocumentos(List<DocumentoDTO> documentos) {
+        this.documentos = documentos;
+    }
+
+    public List<RevisionDTO> getRevisiones() {
+        return revisiones;
+    }
+
+    public void setRevisiones(List<RevisionDTO> revisiones) {
+        this.revisiones = revisiones;
+    }
+
+    public List<RequisicionDTO> getRequisiciones() {
+        return requisiciones;
+    }
+
+    public void setRequisiciones(List<RequisicionDTO> requisiciones) {
+        this.requisiciones = requisiciones;
     }
 }

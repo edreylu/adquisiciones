@@ -1,5 +1,9 @@
 package com.modules.sirsr.solicitud.application;
 
+import com.modules.sirsr.documento.application.DocumentoMapper;
+import com.modules.sirsr.estatus.application.EstatusMapper;
+import com.modules.sirsr.prioridad.application.PrioridadMapper;
+import com.modules.sirsr.requisicion.application.RequisicionMapper;
 import com.modules.sirsr.solicitud.domain.Solicitud;
 import com.modules.sirsr.requisicion.domain.Requisicion;
 
@@ -8,6 +12,7 @@ import java.io.IOException;
 import com.modules.sirsr.requisicion.application.RequisicionDTO;
 import com.modules.sirsr.unidadResponsable.application.UnidadResponsableMapper;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -18,14 +23,32 @@ import java.util.Objects;
 public class SolicitudMapper {
 
     ModelMapper modelMapper = new ModelMapper();
-    private final UnidadResponsableMapper unidadResponsableMapper = new UnidadResponsableMapper();
+
 
     public SolicitudDTO toSolicitudDTO(Solicitud solicitud) {
         if (Objects.isNull(solicitud)) {
             return null;
         }
 
-        SolicitudDTO solicitudDTO = modelMapper.map(solicitud, SolicitudDTO.class);
+        EstatusMapper estatusMapper = new EstatusMapper();
+        PrioridadMapper prioridadMapper = new PrioridadMapper();
+        UnidadResponsableMapper unidadResponsableMapper = new UnidadResponsableMapper();
+
+        SolicitudDTO solicitudDTO = new SolicitudDTO();
+        solicitudDTO.setIdSolicitud(solicitud.getIdSolicitud());
+        solicitudDTO.setFechaCreacion(solicitud.getFechaCreacion());
+        solicitudDTO.setAnioCalendarizacion(solicitud.getAnioCalendarizacion());
+        solicitudDTO.setMesCalendarizacion(solicitud.getMesCalendarizacion());
+        solicitudDTO.setActividadOUso(solicitud.getActividadOUso());
+        solicitudDTO.setFechaEmision(solicitud.getFechaEmision());
+        solicitudDTO.setFirmaDirector(solicitud.getFirmaDirector());
+        solicitudDTO.setFolio(solicitud.getFolio());
+        solicitudDTO.setClaveUr(solicitud.getClaveUr());
+        solicitudDTO.setFechaAutorizacion(solicitud.getFechaAutorizacion());
+        solicitudDTO.setEstatus(estatusMapper.toEstatusDTO(solicitud.getEstatus()));
+        solicitudDTO.setPrioridad(prioridadMapper.toPrioridadDTO(solicitud.getPrioridad()));
+        solicitudDTO.setUnidadResponsable(unidadResponsableMapper.toUnidadResponsableDTO(solicitud.getUnidadResponsable()));
+
         return solicitudDTO;
     }
 

@@ -5,10 +5,11 @@
  */
 package com.modules.sirsr.producto.domain;
 
-import com.modules.sirsr.detalleRequisicion.domain.DetalleRequisicion;
+import com.modules.sirsr.requisicion.domain.DetalleRequisicion;
 import com.modules.sirsr.estatus.domain.Estatus;
 import com.modules.sirsr.detalleConsolidacion.domain.DetalleConsolidacion;
 import com.modules.sirsr.subTipoProducto.domain.SubTipoProducto;
+import com.modules.sirsr.tipoProducto.domain.TipoProducto;
 import com.modules.sirsr.unidadMedida.domain.UnidadMedida;
 import com.modules.sirsr.unidadResponsable.domain.UnidadResponsable;
 
@@ -51,13 +52,14 @@ public class Producto {
     @Basic(optional = false)
     @Column(name = "PERMISO_UR")
     private Integer permisoUr;
-    
+    @Column(name = "ID_TIPO_PRODUCTO", insertable = false, updatable = false)
+    private Integer idTipoProducto;
     @JoinColumn(name = "ID_UNIDAD_MEDIDA", referencedColumnName = "ID_UNIDAD_MEDIDA")
     @ManyToOne(optional = false)
     private UnidadMedida unidadMedida;
-    @JoinColumn(name = "ID_SUBTIPO_PRODUCTO", referencedColumnName = "ID_SUBTIPO_PRODUCTO")
+    @JoinColumn(name = "ID_TIPO_PRODUCTO", referencedColumnName = "ID_TIPO_PRODUCTO")
     @ManyToOne(optional = false)
-    private SubTipoProducto subtipoProducto;
+    private TipoProducto tipoProducto;
     @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
     @ManyToOne(optional = false)
     private Estatus estatus;
@@ -116,12 +118,12 @@ public class Producto {
         this.unidadMedida = unidadMedida;
     }
 
-    public SubTipoProducto getSubtipoProducto() {
-        return subtipoProducto;
+    public TipoProducto getTipoProducto() {
+        return tipoProducto;
     }
 
-    public void setSubtipoProducto(SubTipoProducto subtipoProducto) {
-        this.subtipoProducto = subtipoProducto;
+    public void setTipoProducto(TipoProducto tipoProducto) {
+        this.tipoProducto = tipoProducto;
     }
 
     public Estatus getEstatus() {
@@ -156,6 +158,11 @@ public class Producto {
         this.detallesRequisicion = detallesRequisicion;
     }
 
-    
-    
+    public Integer getIdTipoProducto() {
+        return idTipoProducto;
+    }
+
+    public void setIdTipoProducto(Integer idTipoProducto) {
+        this.idTipoProducto = idTipoProducto;
+    }
 }

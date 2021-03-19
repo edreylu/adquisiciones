@@ -1,4 +1,5 @@
 package com.modules.sirsr.objetoGasto.application;
+import com.modules.sirsr.estatus.application.EstatusDTO;
 import com.modules.sirsr.partidaGastoGenerica.domain.PartidaGastoGenerica;
 
 import java.util.Date;
@@ -9,7 +10,7 @@ public class ObjetoDeGastoDTO {
     private String definicion;
     private Date fechaInicio;
     private Date fechaFinal;
-    private int estatus;
+    private EstatusDTO estatus;
     private PartidaGastoGenerica claveGenerica;
 
     public String getObjetoGasto() {
@@ -52,11 +53,11 @@ public class ObjetoDeGastoDTO {
         this.fechaFinal = fechaFinal;
     }
 
-    public int getEstatus() {
+    public EstatusDTO getEstatus() {
         return estatus;
     }
 
-    public void setEstatus(int estatus) {
+    public void setEstatus(EstatusDTO estatus) {
         this.estatus = estatus;
     }
 

@@ -5,6 +5,7 @@
  */
 package com.modules.sirsr.solicitud.domain;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -14,6 +15,6 @@ import java.util.List;
  * @author Edward Reyes
  */
 public interface SolicitudRepository extends JpaRepository<Solicitud, Integer>{
-
-    List<Solicitud> findByClaveUr(String claveUr);
+    List<Solicitud> findByClaveUr(String claveUr, Sort sort);
+    List<Solicitud> findByIdEstatusGreaterThanEqual(Integer idEstatus);
 }

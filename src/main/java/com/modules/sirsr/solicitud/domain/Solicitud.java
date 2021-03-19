@@ -15,17 +15,7 @@ import com.modules.sirsr.requisicion.domain.Requisicion;
 
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 /**
  *
@@ -36,6 +26,8 @@ import javax.persistence.TemporalType;
 public class Solicitud {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "solicitud_generator")
+    @SequenceGenerator(name = "solicitud_generator", sequenceName = "ADQUISICIONES.SEQ_SOLICITUD", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID_SOLICITUD")
     private Integer idSolicitud;
@@ -66,6 +58,8 @@ public class Solicitud {
     private Date fechaAutorizacion;
     @Column(name = "CLAVE_UR", updatable = false, insertable = false)
     private String claveUr;
+    @Column(name = "ID_ESTATUS", updatable = false, insertable = false)
+    private Integer idEstatus;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "solicitud")
     private List<Documento> documentos;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "solicitud")
@@ -226,5 +220,13 @@ public class Solicitud {
 
     public void setUnidadResponsable(UnidadResponsable unidadResponsable) {
         this.unidadResponsable = unidadResponsable;
+    }
+
+    public Integer getIdEstatus() {
+        return idEstatus;
+    }
+
+    public void setIdEstatus(Integer idEstatus) {
+        this.idEstatus = idEstatus;
     }
 }

@@ -57,11 +57,11 @@ and open the template in the editor.
                                 <tbody>
                                 <tr th:each="dato: ${lista}">
                                     <td style="width:10%" th:text="${dato.idRequisicion}"></td>
-                                    <td style="width:50%" th:text="${dato.clavePresupuestaria.idClavePresup}"></td>
+                                    <td style="width:50%" th:text="${dato.clavePresupuestaria.claveCompleta}"></td>
                                     <td style="width:10%" th:text="${dato.montoSuficiencia}"></td>
                                     <td style="width:10%" th:text="${dato.estatus.descripcion}"></td>
                                     <td style="width:10%">
-                                        <a id="boton_requisiciones" style="font-size:15px;color: #333333;" th:href="@{/usuario/solicitudes/requisiciones/editarDetalles/{id}(id=${dato.idSolicitud})}">
+                                        <a id="boton_requisiciones" style="font-size:15px;color: #333333;" th:href="@{/usuario/solicitudes/requisiciones/detalles/{id}(id=${dato.idRequisicion})}">
                                             <i title="Agregar Detalle Requisiciones" class="fa fa-shopping-bag"></i>
                                         </a>
                                     </td>

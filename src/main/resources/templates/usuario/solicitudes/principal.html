@@ -31,17 +31,16 @@ and open the template in the editor.
                     <center><strong><div th:text="${mensaje}"></div></strong></center>
                 </div>
                 
-                <table class="table table-sm table-hover table-bordered table-wrapper-scroll-y my-custom-scrollbar" id="tablaDatos">
+                <table class="table table-sm table-hover table-bordered table-wrapper-scroll-y my-custom-scrollbar" id="tablaSolicitudes">
                     <thead>
                         <tr>
                             <th style="width:10%">ID SOLICITUD</th>
                             <th style="width:10%">FECHA CREACION</th>
-                            <th style="width:10%">PRIORIDAD</th>
-                            <th style="width:25%">DESCRIPCION</th>
-                            <th style="width:10%">ESTATUS</th>
+                            <th style="width:20%">PRIORIDAD</th>
+                            <th style="width:20%">ESTATUS</th>
                             <th style="width:10%"> REQUISICIONES </th>
                             <th style="width:10%"> DOCUMENTOS </th>
-                            <th style="width:5%"> EMITIR </th>
+                            <th style="width:10%"> DETALLES </th>
                             <th style="width:5%"> EDITAR </th>
                             <th style="width:5%"> ELIMINAR </th>
                         </tr>
@@ -50,31 +49,31 @@ and open the template in the editor.
                         <tr th:each="dato: ${lista}">
                             <td style="width:10%" th:text="${dato.idSolicitud}"></td>
                             <td style="width:10%" th:text="${#dates.format(dato.fechaCreacion,'dd/MM/yyyy')}"></td>
-                            <td style="width:10%" th:text="${dato.prioridad.descripcion}"></td>
-                            <td style="width:25%" th:text="${dato.actividadOUso}"></td>
-                            <td style="width:10%" th:text="${dato.estatus.descripcion}"></td>
+                            <td style="width:20%" th:text="${dato.prioridad.descripcion}"></td>
+                            <td style="width:20%" th:style="${'background: dato.estatus.colorhex;'}"
+                                th:text="${dato.estatus.descripcion}"></td>
                             <td style="width:10%">
-                                <a id="boton_requisiciones" style="font-size:15px;color: #333333;" th:href="@{/usuario/solicitudes/requisiciones/{id}(id=${dato.idSolicitud})}">
+                                <a id="boton_requisiciones" th:if="${dato.estatus.idEstatus==10 || dato.estatus.idEstatus==13}" style="font-size:15px;color: #333333;" th:href="@{/usuario/solicitudes/requisiciones/{id}(id=${dato.idSolicitud})}">
                                     <i title="Agregar Requisiciones" class="fa fa-shopping-bag"></i>
                                 </a>
                             </td>
                             <td style="width:10%">
-                                <a id="boton_documentos" style="font-size:15px;color: #333333;" th:href="@{/usuario/solicitudes/editarDocumentos/{id}(id=${dato.idSolicitud})}">
+                                <a id="boton_documentos" th:if="${dato.estatus.idEstatus==10 || dato.estatus.idEstatus==13}" style="font-size:15px;color: #333333;" th:href="@{/usuario/solicitudes/documentos/{id}(id=${dato.idSolicitud})}">
                                     <i title="Agregar Documentos" class="fa fa-file"></i>
                                 </a>
                             </td>
-                            <td style="width:5%">
-                                <a id="boton_enviar" style="font-size:15px;color: #333333;" th:href="@{#}">
-                                    <i title="Emitir Solicitud" class="fa fa-paper-plane"></i>
+                            <td style="width:10%">
+                                <a id="boton_detalle" style="font-size:15px;color: #333333;" th:href="@{/usuario/solicitudes/detallesSolicitud/{id}(id=${dato.idSolicitud})}">
+                                    <i title="Detalle" class="fa fa-search"></i>
                                 </a>
                             </td>
                             <td style="width:5%">
-                                <a id="boton_editar" style="font-size:15px;color: #333333;" th:href="@{/usuario/solicitudes/editar/{id}(id=${dato.idSolicitud})}">
+                                <a id="boton_editar" th:if="${dato.estatus.idEstatus==10 || dato.estatus.idEstatus==13}" style="font-size:15px;color: #333333;" th:href="@{/usuario/solicitudes/editar/{id}(id=${dato.idSolicitud})}">
                                     <i title="Editar Solicitud" class="fas fa-edit"></i>
                                 </a>
                             </td>
                             <td style="width:5%">
-                                <a id="boton_eliminar" style="font-size:15px;color: #333333;" th:href="@{#}">
+                                <a id="boton_eliminar" th:if="${dato.estatus.idEstatus==10}" style="font-size:15px;color: #333333;" th:href="@{#}">
                                     <i title="Eliminar Solicitud" class="fas fa-trash-alt"></i>
                                 </a>
                             </td>

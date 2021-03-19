@@ -7,6 +7,7 @@ package com.modules.sirsr.usuario.application;
 
 
 import com.modules.sirsr.datosPersonales.application.DatosPersonalesDTO;
+import com.modules.sirsr.estatus.application.EstatusDTO;
 import com.modules.sirsr.unidadResponsable.application.UnidadResponsableDTO;
 
 import java.util.Date;
@@ -23,7 +24,7 @@ public class UsuarioDTO {
     private String password;
     private String encrytedPassword;
     private Date fechaAuditoria;
-    private Integer idEstatus;
+    private EstatusDTO estatus;
     private Integer enabled;
     private DatosPersonalesDTO personal;
     private UnidadResponsableDTO unidadResponsable;
@@ -77,12 +78,12 @@ public class UsuarioDTO {
         this.unidadResponsable = unidadResponsable;
     }
 
-    public Integer getIdEstatus() {
-        return idEstatus;
+    public EstatusDTO getEstatus() {
+        return estatus;
     }
 
-    public void setIdEstatus(Integer idEstatus) {
-        this.idEstatus = idEstatus;
+    public void setEstatus(EstatusDTO estatus) {
+        this.estatus = estatus;
     }
 
     public Integer getEnabled() {

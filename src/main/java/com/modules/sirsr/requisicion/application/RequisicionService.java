@@ -8,7 +8,6 @@ package com.modules.sirsr.requisicion.application;
 import com.modules.sirsr.clavePresupuestaria.application.ClavePresupuestariaDTO;
 import com.modules.sirsr.clavePresupuestaria.application.ClavePresupuestariaMapper;
 import com.modules.sirsr.clavePresupuestaria.domain.ClavePresupuestariaRepository;
-import com.modules.sirsr.detalleRequisicion.application.DetalleRequisicionMapper;
 import com.modules.sirsr.estatus.application.EstatusDTO;
 import com.modules.sirsr.estatus.application.EstatusMapper;
 import com.modules.sirsr.estatus.domain.EstatusRepository;

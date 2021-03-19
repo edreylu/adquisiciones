@@ -36,47 +36,47 @@ public class ProveedorController {
     }
 
 
-    @GetMapping("admin/proveedores")
+    @GetMapping("admonadq/proveedores")
     public String listar(Model model) {
         proveedores = proveedorService.findAll();
         model.addAttribute("lista", proveedores);
-        return "admin/proveedores/principal";
+        return "admonadq/proveedores/principal";
     }
 
-    @GetMapping("admin/proveedores/agregar")
+    @GetMapping("admonadq/proveedores/agregar")
     public String agregar(Model model) {
         model.addAttribute("proveedor", new ProveedorDTO());
-        return "admin/proveedores/agregar";
+        return "admonadq/proveedores/agregar";
     }
 
-    @PostMapping("admin/proveedores/add")
+    @PostMapping("admonadq/proveedores/add")
     public String agregar(ProveedorDTO proveedorDTO, RedirectAttributes redirectAttrs) {
-        msg.crearMensaje(proveedorService.save(proveedorDTO), redirectAttrs);
-        return "redirect:/admin/proveedores";
+    	msg.crearMensaje(proveedorService.save(proveedorDTO), redirectAttrs);
+        return "redirect:/admonadq/proveedores";
     }
 
-    @GetMapping("admin/proveedores/editar/{id}")
+    @GetMapping("admonadq/proveedores/editar/{id}")
     public String editar(@PathVariable("id") int id, Model model) {
         ProveedorDTO proveedorDTO = proveedorService.findById(id);
-        String validUrl = "redirect:/admin/proveedores";
+        String validUrl = "redirect:/admonadq/proveedores";
         if(Objects.nonNull(proveedorDTO)){
             model.addAttribute("proveedor", proveedorDTO);
-            validUrl = "admin/proveedores/editar";
+            validUrl = "admonadq/proveedores/editar";
         }
         return validUrl;
     }
 
-    @PostMapping("admin/proveedores/update/{id}")
+    @PostMapping("admonadq/proveedores/update/{id}")
     public String editar(@PathVariable("id") int id, ProveedorDTO proveedorDTO, RedirectAttributes redirectAttrs) {
         msg.crearMensaje(proveedorService.update(proveedorDTO, id), redirectAttrs);
-        return "redirect:/admin/proveedores";
+        return "redirect:/admonadq/proveedores";
     }
 
-    @GetMapping("admin/proveedores/eliminar/{id}")
-    public String eliminar(@PathVariable("id") int id,
+    @GetMapping("admonadq/proveedores/eliminar/{id}/{idEstatus}")
+    public String eliminar(@PathVariable("id") int id, @PathVariable("idEstatus") int idEstatus,
                            RedirectAttributes redirectAttrs) {
-        msg.crearMensaje(proveedorService.deleteById(id), redirectAttrs);
-        return "redirect:/admin/proveedores";
+        msg.crearMensaje(proveedorService.borraPorId(id, idEstatus), redirectAttrs);
+        return "redirect:/admonadq/proveedores";
     }
     
 }

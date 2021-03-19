@@ -2,6 +2,7 @@ package com.modules.sirsr.estatus.application;
 
 import com.modules.sirsr.estatus.domain.Estatus;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -14,7 +15,7 @@ public class EstatusMapper {
 
     ModelMapper modelMapper = new ModelMapper();
 
-    public Estatus toEstatus(EstatusDTO estatusDTO) throws IOException {
+    public Estatus toEstatus(EstatusDTO estatusDTO){
         
             if (Objects.isNull(estatusDTO)) {
                 return null;
@@ -26,19 +27,18 @@ public class EstatusMapper {
         
     }
 
-    public EstatusDTO toEstatusDTO(Estatus estatus) throws IOException {
+    public EstatusDTO toEstatusDTO(Estatus estatus) {
 
         if (Objects.isNull(estatus)) {
             return null;
         }
-
         EstatusDTO estatusDTO = modelMapper.map(estatus, EstatusDTO.class);
 
         return estatusDTO;
 
     }
 
-    public List<EstatusDTO> toEstatusDTOs(List<Estatus> estatus) throws IOException {
+    public List<EstatusDTO> toEstatusDTOs(List<Estatus> estatus) {
         if (Objects.isNull(estatus)) {
             return null;
         }

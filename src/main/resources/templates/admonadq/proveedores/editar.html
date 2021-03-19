@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+	<header th:replace="layout :: header"></header>
+	<div class="container mt-2 col-lg-4">
+		<div class="card">
+			<div class="card-header text-center">
+				<lable class="tituloPrincipal">Editar Proveedor</lable>
+			</div>
+			<div class="card-body">
+				<form class="needs-validation" novalidate method="post" action="#"
+					th:action="@{/admonadq/proveedores/update/{id}(id=${proveedor.idProveedor})}"
+					th:object="${proveedor}">
+					<label class="tituloTexto">TIPO DE PERSONA</label> 
+					<select name="idTipoPersonaFiscal" th:value="${proveedor.tipoPersonaFiscalDTO.idTipoPersonaFiscal}" th:field="*{tipoPersonaFiscalDTO.idTipoPersonaFiscal}" class="form-control">
+						<option th:value="1" th:text="FISICA"></option>
+						<option th:value="2" th:text="MORAL"></option>
+					</select>
+					<div class="invalid-feedback">TIPO DE PERSONA ES REQUERIDO</div>
+					<label class="tituloTexto">RFC</label> <input type="text"
+						name="rfc" class="form-control" th:value="${proveedor.rfc}"
+						required />
+					<div class="invalid-feedback">RFC es requerido</div>
+					<label class="tituloTexto">RAZON SOCIAL</label> <input type="text"
+						name="razonSocial" class="form-control"
+						th:value="${proveedor.razonSocial}" required />
+					<div class="invalid-feedback">Razon Social es requerido</div>
+					<label class="tituloTexto">NOMBRE COMERCIAL</label> <input
+						type="text" name="nombreComercial" th:value="${proveedor.nombreComercial}" class="form-control" />
+					<div class="invalid-feedback">NOMBRE COMERCIAL es requerido</div>
+
+					<label class="tituloTexto">PROPIETARIO</label> <input type="text"
+						name="propietario" th:value="${proveedor.propietario}" class="form-control" />
+					<div class="invalid-feedback">PROPIETARIO es requerido</div>
+
+					<label class="tituloTexto">REPRESENTANTE</label> <input type="text"
+						name="representante" th:value="${proveedor.representante}" class="form-control" />
+					<div class="invalid-feedback">REPRESENTANTE es requerido</div>
+
+					<label class="tituloTexto">TELÉFONO 1</label> <input type="text"
+						name="telefono1" th:value="${proveedor.telefono1}" class="form-control" />
+					<div class="invalid-feedback">TELÉFONO 1 es requerido</div>
+
+					<label class="tituloTexto">TELÉFONO 2</label> <input type="text"
+						name="telefono2" th:value="${proveedor.telefono2}" class="form-control" />
+					<div class="invalid-feedback">TELEFONO 2 es requerido</div>
+
+					<label class="tituloTexto">CORREO ELECTRÓNICO</label> <input
+						type="text" name="correoElectronico" th:value="${proveedor.correoElectronico}" class="form-control" />
+					<div class="invalid-feedback">CORREO ELECTRÓNICO es requerido</div>
+
+					<label class="tituloTexto">DOMICILIO</label> <input type="text"
+						name="domicilio" th:value="${proveedor.domicilio}" class="form-control" />
+					<div class="invalid-feedback">DOMICILIO es requerido</div>
+
+					<label class="tituloTexto">CÓDIGO POSTAL</label> <input type="text"
+						name="codigoPostal" th:value="${proveedor.codigoPostal}" class="form-control" />
+					<div class="invalid-feedback">CÓDIGO POSTAL es requerido</div>
+					<br /> <br /> <input type="submit" class="btn btn-success"
+						value="Actualizar"> <a th:href="@{/admonadq/proveedores}">Regresar</a>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -6,7 +6,7 @@
 package com.modules.sirsr.detalleCotizaRequis.domain;
 
 import com.modules.sirsr.cotizaRequisicion.domain.CotizaRequisicion;
-import com.modules.sirsr.detalleRequisicion.domain.DetalleRequisicion;
+import com.modules.sirsr.requisicion.domain.DetalleRequisicion;
 import com.modules.sirsr.marca.domain.Marca;
 
 import java.math.BigDecimal;

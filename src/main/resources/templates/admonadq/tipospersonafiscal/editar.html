@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout :: head">
+        
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <header th:replace="layout :: header"></header>
+       <div class="container mt-2 col-lg-4">
+           <div class="card">
+                <div class="card-header text-center">
+                <lable class="tituloPrincipal">Editar Tipo de persona fiscal</lable>
+                </div>
+                <div class="card-body">
+                    <form class="needs-validation" novalidate method="post" action="#" th:action="@{/admonadq/tipospersonafiscal/update/{id}(id=${tipopersonafiscal.idTipoPersonaFiscal})}" th:object="${tipopersonafiscal}">
+                        <label class="tituloTexto">DESCRIPCIÓN</label>
+                        <input type="text" name="descripcion" class="form-control" th:value="${tipopersonafiscal.descripcion}" required/>
+                        <br/>
+                        <br/>
+                        <input type="submit" class="btn btn-success" value="Actualizar">
+                        <a th:href="@{/admonadq/tipospersonafiscal}">Regresar</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout :: head">
+
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <header th:replace="layout :: header"></header>
+       <div class="container mt-2 col-lg-8">
+           <div class="card">
+                <div class="card-header text-center">
+                <lable class="tituloPrincipal">Asignar Detalles a Requisicion</lable>
+                </div>
+                <div class="card-body">
+                    <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+                         th:if="${mensaje != null}"
+                         class="alert alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <center><strong><div th:text="${mensaje}"></div></strong></center>
+                    </div>
+
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="form-label tituloTexto">DETALLES PARA REQUISICION: [[${requisicion.clavePresupuestaria.claveCompleta}]]</label>
+                                </div>
+                            </div>
+                            <hr/>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-12">
+                                        <center>
+                                        <button id="subirDetalle" class="btn btn-primary" type="button" data-toggle="modal" data-target="#subirDetalleModal"> <i class="fa fa-file" aria-hidden="true"></i> Agregar Producto</button>
+                                        </center>
+                                    </div>
+                            </div>
+                            <br/>
+                            <hr/>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-sm table-hover table-bordered table-wrapper-scroll-y my-custom-scrollbar" id="tablaDatos">
+                                        <thead>
+                                        <tr>
+                                            <th style="width:20%">NO</th>
+                                            <th style="width:20%">CANTIDAD SOLICITADA</th>
+                                            <th style="width:40%">PRECIO DE REFERENCIA</th>
+                                            <th style="width:20%"> </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="dato: ${lista}">
+                                            <td style="width:20%" th:text="${dato.idDetalleRequisicion}"></td>
+                                            <td style="width:20%" th:text="${dato.cantidadSolicitada}"></td>
+                                            <td style="width:40%" th:text="${dato.producto.precioDeReferencia}"></td>
+                                            <td style="width:20%">
+                                                <a id="boton_eliminar" href="#" style="font-size:15px;color: #333333;" th:onclick="'mensajeEliminarDetalle(\''+ ${dato.idDetalleRequisicion} +'\',\''+ ${requisicion.idRequisicion} +'\')'">
+                                                    <i title="Eliminar Detalle" class="fas fa-trash-alt"></i>
+                                                </a>
+                                                <input type="hidden" value="detalles" id="nombreModulo">
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <a th:href="@{/usuario/solicitudes/requisiciones/{id}(id=${requisicion.solicitud.idSolicitud})}">Regresar</a>
+                </div>
+            </div>
+        </div>
+           <br/>
+           <br/>
+
+        <div class="modal fade" id="subirDetalleModal" tabindex="-1" role="dialog" aria-hidden="true" th:fragment="modalSubirDetalle">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h4 class="modal-title">Subir Producto.</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="opcionesAsignarDetalle" class="card-body table-responsive-md">
+                            <form class="needs-validation" novalidate method="post" action="#"
+                                  th:action="@{/usuario/solicitudes/requisiciones/detalles/add/{id}(id=${requisicion.idRequisicion})}" th:object="${detalle}">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label class="tituloTexto">Producto</label>
+                                            <select id="productos" name="producto.idProducto" class="form-control" required>
+                                                <option value="">Selecciona...</option>
+                                                <option th:each="producto : ${productos}"
+                                                        th:value="${producto.idProducto}"
+                                                        th:utext="${producto.caracteristicas}"/>
+                                            </select>
+                                            <div class="invalid-feedback">Producto es requerido</div>
+                                        </div>
+                                        </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label class="form-label tituloTexto" for="cantidadSolicitada">Cantidad Solicitada:</label>
+                                            <input type="number" class="form-control" name="cantidadSolicitada" id="cantidadSolicitada" required />
+                                            <div class="invalid-feedback">Cantidad solicitada es requerido</div>
+                                            <div class="invalid-feedback">Marca es requerida</div>
+                                        </div>
+                                    </div>
+                            <br/>
+                                    <input type="submit" class="btn btn-success" value="Guardar">
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+       </div>
+    </body>
+</html>

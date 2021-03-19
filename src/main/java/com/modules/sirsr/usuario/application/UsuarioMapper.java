@@ -1,5 +1,6 @@
 package com.modules.sirsr.usuario.application;
 
+import com.modules.sirsr.estatus.application.EstatusMapper;
 import com.modules.sirsr.usuario.domain.Usuario;
 import com.modules.sirsr.datosPersonales.application.DatosPersonalesMapper;
 import com.modules.sirsr.unidadResponsable.application.UnidadResponsableMapper;
@@ -12,9 +13,9 @@ import java.util.Objects;
 @Component
 public class UsuarioMapper {
     
-    
+    EstatusMapper estatusMapper = new EstatusMapper();
 
-    public UsuarioDTO toUsuarioDTO(Usuario usuario) {
+    public UsuarioDTO toUsuarioDTO(Usuario usuario){
         if (Objects.isNull(usuario)) {
             return null;
         }
@@ -27,7 +28,7 @@ public class UsuarioMapper {
         usuarioDTO.setUserName(usuario.getUserName());
         usuarioDTO.setEncrytedPassword(usuario.getEncrytedPassword());
         usuarioDTO.setFechaAuditoria(usuario.getFechaAuditoria());
-        usuarioDTO.setIdEstatus(usuario.getIdEstatus());
+        usuarioDTO.setEstatus(estatusMapper.toEstatusDTO(usuario.getEstatus()));
         usuarioDTO.setEnabled(usuario.getEnabled());
         usuarioDTO.setPersonal(datosPersonalesMapper.toPersonalDTO(usuario.getDatosPersonales()));
         usuarioDTO.setUnidadResponsable(unidadResponsableMapper.toUnidadResponsableDTO(usuario.getUnidadResponsable()));
@@ -58,7 +59,7 @@ public class UsuarioMapper {
         usuario.setUserName(usuarioDTO.getUserName());
         usuario.setEncrytedPassword(usuarioDTO.getEncrytedPassword());
         usuario.setFechaAuditoria(usuarioDTO.getFechaAuditoria());
-        usuario.setIdEstatus(usuarioDTO.getIdEstatus());
+        usuario.setEstatus(estatusMapper.toEstatus(usuarioDTO.getEstatus()));
         usuario.setEnabled(usuarioDTO.getEnabled());
         return usuario;
     }

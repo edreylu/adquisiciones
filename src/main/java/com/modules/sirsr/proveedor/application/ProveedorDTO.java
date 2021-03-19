@@ -5,6 +5,10 @@
  */
 package com.modules.sirsr.proveedor.application;
 
+import com.modules.sirsr.estatus.application.EstatusDTO;
+import com.modules.sirsr.tipoPersonaFiscal.application.TipoPersonaFiscalDTO;
+import com.modules.sirsr.tipoPersonaFiscal.domain.TipoPersonaFiscal;
+
 /**
  *
  * @author Edward Reyes
@@ -12,10 +16,27 @@ package com.modules.sirsr.proveedor.application;
 
 public class ProveedorDTO {
     
-    private int idProveedor;
+	
+	
+    public ProveedorDTO() {
+		tipoPersonaFiscalDTO = new TipoPersonaFiscalDTO();
+		estatusDTO = new  EstatusDTO();
+	}
+
+	private int idProveedor;
     private String rfc;
     private String razonSocial;
-    private int estatus;
+    private String nombreComercial;
+    private String propietario;
+    private String representante;
+    private Integer telefono1;
+    private Integer telefono2;
+    private String correoElectronico;
+    private String domicilio;
+    private Integer codigoPostal;
+    private TipoPersonaFiscalDTO tipoPersonaFiscalDTO;
+    private EstatusDTO estatusDTO;
+   
 
     public int getIdProveedor() {
         return idProveedor;
@@ -40,15 +61,88 @@ public class ProveedorDTO {
     public void setRazonSocial(String razonSocial) {
         this.razonSocial = razonSocial;
     }
+    
+    public String getNombreComercial() {
+		return nombreComercial;
+	}
 
-    public int getEstatus() {
-        return estatus;
-    }
+	public void setNombreComercial(String nombreComercial) {
+		this.nombreComercial = nombreComercial;
+	}
 
-    public void setEstatus(int estatus) {
-        this.estatus = estatus;
-    }
+	public String getPropietario() {
+		return propietario;
+	}
 
+	public void setPropietario(String propietario) {
+		this.propietario = propietario;
+	}
+
+	public String getRepresentante() {
+		return representante;
+	}
+
+	public void setRepresentante(String representante) {
+		this.representante = representante;
+	}
+
+	public Integer getTelefono1() {
+		return telefono1;
+	}
+
+	public void setTelefono1(Integer telefono1) {
+		this.telefono1 = telefono1;
+	}
+
+	public Integer getTelefono2() {
+		return telefono2;
+	}
+
+	public void setTelefono2(Integer telefono2) {
+		this.telefono2 = telefono2;
+	}
+
+	public String getCorreoElectronico() {
+		return correoElectronico;
+	}
+
+	public void setCorreoElectronico(String correoElectronico) {
+		this.correoElectronico = correoElectronico;
+	}
+
+	public String getDomicilio() {
+		return domicilio;
+	}
+
+	public void setDomicilio(String domicilio) {
+		this.domicilio = domicilio;
+	}
+
+	public Integer getCodigoPostal() {
+		return codigoPostal;
+	}
+
+	public void setCodigoPostal(Integer codigoPostal) {
+		this.codigoPostal = codigoPostal;
+	}
+
+	public TipoPersonaFiscalDTO getTipoPersonaFiscalDTO() {
+		return tipoPersonaFiscalDTO;
+	}
+
+	public void setTipoPersonaFiscalDTO(TipoPersonaFiscalDTO tipoPersonaFiscalDTO) {
+		this.tipoPersonaFiscalDTO = tipoPersonaFiscalDTO;
+	}
+
+	public EstatusDTO getEstatusDTO() {
+		return estatusDTO;
+	}
+
+	public void setEstatusDTO(EstatusDTO estatusDTO) {
+		this.estatusDTO = estatusDTO;
+	}
+
+    
     
 
 }

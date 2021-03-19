@@ -34,9 +34,10 @@ import javax.persistence.Table;
 @Table(name = "PROVEEDOR")
 public class Proveedor{
 
+		
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "proveedor_generator")
-    @SequenceGenerator(name = "proveedor_generator", sequenceName = "ADQUISICIONES.SEQ_PROVEEDOR", allocationSize = 1)
+    @SequenceGenerator(name = "proveedor_generator", sequenceName = "SEQ_PROVEEDOR", allocationSize = 1)
     @Column(name = "ID_PROVEEDOR", nullable = false)
     private Integer idProveedor;
     @Basic(optional = false)
@@ -64,9 +65,12 @@ public class Proveedor{
     @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
     @ManyToOne(optional = false)
     private Estatus estatus;
+    
     @JoinColumn(name = "ID_TIPO_PERSONA_FISCAL", referencedColumnName = "ID_TIPO_PERSONA_FISCAL")
     @ManyToOne(optional = false)
     private TipoPersonaFiscal tipoPersonaFiscal;
+    
+    /*
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "proveedor")
     private List<CotizaRequisicion> cotizaRequisiciones;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "proveedor")
@@ -75,7 +79,8 @@ public class Proveedor{
     private List<CotizaConsolidacion> cotizaConsolidaciones;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "proveedor")
     private List<InvitacionACotizarConsolida> invitacionesACotizarConsolida;
-
+*/
+    
     public Integer getIdProveedor() {
         return idProveedor;
     }
@@ -180,6 +185,17 @@ public class Proveedor{
         this.tipoPersonaFiscal = tipoPersonaFiscal;
     }
 
+	@Override
+	public String toString() {
+		return "Proveedor [idProveedor=" + idProveedor + ", rfc=" + rfc + ", razonSocial=" + razonSocial
+				+ ", nombreComercial=" + nombreComercial + ", propietario=" + propietario + ", representante="
+				+ representante + ", telefono1=" + telefono1 + ", telefono2=" + telefono2 + ", correoElectronico="
+				+ correoElectronico + ", domicilio=" + domicilio + ", codigoPostal=" + codigoPostal + ", estatus="
+				+ estatus + ", tipoPersonaFiscal=" + tipoPersonaFiscal + "]";
+	}
+    
+    /*
+
     public List<CotizaRequisicion> getCotizaRequisiciones() {
         return cotizaRequisiciones;
     }
@@ -211,6 +227,8 @@ public class Proveedor{
     public void setInvitacionesACotizarConsolida(List<InvitacionACotizarConsolida> invitacionesACotizarConsolida) {
         this.invitacionesACotizarConsolida = invitacionesACotizarConsolida;
     }
-
+*/
+    
+    
     
 }

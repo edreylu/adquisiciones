@@ -6,6 +6,8 @@
 package com.modules.sirsr.usuario.application;
 
 import com.modules.sirsr.datosPersonales.domain.DatosPersonales;
+import com.modules.sirsr.estatus.application.EstatusDTO;
+import com.modules.sirsr.estatus.application.EstatusService;
 import com.modules.sirsr.unidadResponsable.domain.UnidadResponsable;
 import com.modules.sirsr.usuario.domain.Usuario;
 import com.modules.sirsr.datosPersonales.domain.DatosPersonalesRepository;
@@ -36,16 +38,18 @@ public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
     private final DatosPersonalesRepository datosPersonalesRepository;
     private final UnidadResponsableRepository unidadResponsableRepository;
+    private final EstatusService estatusService;
     private final UsuarioMapper usuarioMapper;
     private final EmailUtils emailUtils;
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     private Mensaje msg;
 
     @Autowired
-    public UsuarioService(UsuarioRepository usuarioRepository, DatosPersonalesRepository datosPersonalesRepository, UnidadResponsableRepository unidadResponsableRepository, UsuarioMapper usuarioMapper, EmailUtils emailUtils) {
+    public UsuarioService(UsuarioRepository usuarioRepository, DatosPersonalesRepository datosPersonalesRepository, UnidadResponsableRepository unidadResponsableRepository, EstatusService estatusService, UsuarioMapper usuarioMapper, EmailUtils emailUtils) {
         this.usuarioRepository = usuarioRepository;
         this.datosPersonalesRepository = datosPersonalesRepository;
         this.unidadResponsableRepository = unidadResponsableRepository;
+        this.estatusService = estatusService;
         this.usuarioMapper = usuarioMapper;
         this.emailUtils = emailUtils;
     }
@@ -60,9 +64,10 @@ public class UsuarioService {
 
     public Mensaje save(UsuarioDTO usuarioDTO) {
         try {
+            EstatusDTO estatusDTO = estatusService.findById(1);
             usuarioDTO.setEncrytedPassword(encoder.encode(usuarioDTO.getPassword()));
             usuarioDTO.setFechaAuditoria(Date.from(Instant.now()));
-            usuarioDTO.setIdEstatus(1);
+            usuarioDTO.setEstatus(estatusDTO);
             usuarioDTO.setEnabled(1);
             usuarioRepository.save(usuarioMapper.toUsuario(usuarioDTO));
             msg = Mensaje.CREATE("Agregado correctamente", 1);

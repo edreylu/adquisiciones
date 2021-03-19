@@ -3,7 +3,7 @@
     <head th:fragment="head">
         <meta charset="UTF-8"/>
         <title th:text="-SIRSR-"></title>
-        <link rel="icon" type="image/png" th:href="@{/img/logosep.png}" />
+        <link rel="icon" type="image/png" style="width: 30%" th:href="@{/img/logosep.png}" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -65,25 +65,37 @@
                             </div>
                         </li>
                         </div>
-                        <div sec:authorize="hasRole('ROLE_ADMIN')">
+                        <div sec:authorize="hasRole('ROLE_DIRECTORUR')">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle"  href="#" data-toggle="dropdown"  aria-haspopup="true"  aria-expanded="false">
+                                    <i class='fas fa-money-check-alt'> </i>  EMITIR SOLICITUDES </a>
+
+                                <div class="dropdown-menu"  aria-labelledby="navbarDropdownMenuLink">
+
+                                    <a class="dropdown-item" th:href="@{/directorur/solicitudes}" >
+                                        <i class='fas fa-money-check-alt'> </i>  EMITIR SOLICITUDES </a>
+                                </div>
+                            </li>
+                        </div>
+                        <div sec:authorize="hasRole('ROLE_ADMONADQ')">
                         <li class="nav-item dropdown"> 
                             <a class="nav-link dropdown-toggle"  href="#"  data-toggle="dropdown"  aria-haspopup="true"  aria-expanded="false">
-                                <i class='fas fa-shopping-cart'> </i>  ADQUISICIONES </a>
+                                <i class='fas fa-shopping-cart'> </i>  SOLICITUDES </a>
 
                             <div class="dropdown-menu"  aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" th:href="@{/admin/adquisiciones}" >
-                                    <i class='fas fa-shopping-cart'> </i>  ADQUISICIONES </a>
+                                <a class="dropdown-item" th:href="@{/admonadq/solicitudes}" >
+                                    <i class='fas fa-shopping-cart'> </i>  SOLICITUDES </a>
                                     
                             </div>
                         </li>
                         </div>
-                        <div sec:authorize="hasRole('ROLE_ADMIN')">
+                        <div sec:authorize="hasRole('ROLE_ADMONADQ')">
                         <li class="nav-item dropdown"> 
                             <a class="nav-link dropdown-toggle"  href="#" data-toggle="dropdown"  aria-haspopup="true"  aria-expanded="false">
                                 <i class='fa fa-book'> </i>  CATALOGOS </a>
 
                             <div class="dropdown-menu"  aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" th:href="@{/admin/proveedores}" >
+                                <a class="dropdown-item" th:href="@{/admonadq/proveedores}" >
                                     <i class='fa fa-truck'> </i>  PROVEEDORES </a>
                                     
                             </div>

@@ -1,12 +1,15 @@
 package com.modules.sirsr.documento.application;
 
 import com.modules.sirsr.documento.domain.Documento;
+import com.modules.sirsr.solicitud.application.SolicitudMapper;
 import com.modules.sirsr.solicitud.domain.Solicitud;
+import com.modules.sirsr.tipoDocumento.application.TipoDocumentoMapper;
 import com.modules.sirsr.tipoDocumento.domain.TipoDocumento;
 import java.io.IOException;
 import java.time.Instant;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -21,8 +24,17 @@ public class DocumentoMapper {
 
     ModelMapper modelMapper = new ModelMapper();
 
+
+
     public DocumentoDTO toDocumentoDTO(Documento documento){
-        DocumentoDTO documentoDTO = modelMapper.map(documento, DocumentoDTO.class);
+        SolicitudMapper solicitudMapper = new SolicitudMapper();
+        TipoDocumentoMapper tipoDocumentoMapper = new TipoDocumentoMapper();
+        DocumentoDTO documentoDTO = new DocumentoDTO();
+        documentoDTO.setIdDocumento(documento.getIdDocumento());
+        documentoDTO.setDocumento(documento.getDocumento());
+        documentoDTO.setSolicitud(solicitudMapper.toSolicitudDTO(documento.getSolicitud()));
+        documentoDTO.setTipoDocumento(tipoDocumentoMapper.toTipoDocumentoDTO(documento.getTipoDocumento()));
+        documentoDTO.setFechaActualizacion(documento.getFechaActualizacion());
         return documentoDTO;
     }
 

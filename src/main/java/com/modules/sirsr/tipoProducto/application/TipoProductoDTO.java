@@ -1,10 +1,12 @@
 package com.modules.sirsr.tipoProducto.application;
 
 
+import com.modules.sirsr.estatus.application.EstatusDTO;
+
 public class TipoProductoDTO {
     private int idTipoProducto;
     private String descripcion;
-    private int estatus;
+    private EstatusDTO estatus;
 
     public int getIdTipoProducto() {
         return idTipoProducto;
@@ -22,11 +24,11 @@ public class TipoProductoDTO {
         this.descripcion = descripcion;
     }
 
-    public int getEstatus() {
+    public EstatusDTO getEstatus() {
         return estatus;
     }
 
-    public void setEstatus(int estatus) {
+    public void setEstatus(EstatusDTO estatus) {
         this.estatus = estatus;
     }
 }

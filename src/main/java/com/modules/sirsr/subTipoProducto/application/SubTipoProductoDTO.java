@@ -5,6 +5,7 @@
  */
 package com.modules.sirsr.subTipoProducto.application;
 
+import com.modules.sirsr.estatus.application.EstatusDTO;
 import com.modules.sirsr.objetoGasto.application.ObjetoDeGastoDTO;
 import com.modules.sirsr.tipoProducto.application.TipoProductoDTO;
 
@@ -15,7 +16,7 @@ import com.modules.sirsr.tipoProducto.application.TipoProductoDTO;
 public class SubTipoProductoDTO {
     private int idSubtipoProducto;
     private String descripcion;
-    private int estatus;
+    private EstatusDTO estatus;
     private ObjetoDeGastoDTO objetoDeGasto;
     private TipoProductoDTO tipoProducto;
 
@@ -35,11 +36,11 @@ public class SubTipoProductoDTO {
         this.descripcion = descripcion;
     }
 
-    public int getEstatus() {
+    public EstatusDTO getEstatus() {
         return estatus;
     }
 
-    public void setEstatus(int estatus) {
+    public void setEstatus(EstatusDTO estatus) {
         this.estatus = estatus;
     }
 

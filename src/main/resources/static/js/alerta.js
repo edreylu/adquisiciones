@@ -1,4 +1,4 @@
-
+'use strict'
 function mensajeActivarInactivar(id,idestatus) {
 let modulo = document.getElementById("nombreModulo").value;
 console.log(idestatus);
@@ -62,7 +62,30 @@ console.log(id);
         .then(resultado => {
             if (resultado.value) {
                 // Hicieron click en "Sí"
-                window.location = "../eliminarDocumento/"+id+"/"+idReq;
+                window.location = "../"+modulo+"/eliminar/"+id+"/"+idReq;
+            } else {
+                // Dijeron que no
+                console.log("*NO se cerro*");
+            }
+        });
+}
+
+function mensajeEliminarDetalle(id, idReq) {
+let modulo = document.getElementById("nombreModulo").value;
+console.log(id);
+    Swal
+        .fire({
+            title: "Eliminar",
+            text: "¿Desea Eliminar "+modulo+" ?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: "Si",
+            cancelButtonText: "No",
+        })
+        .then(resultado => {
+            if (resultado.value) {
+                // Hicieron click en "Sí"
+                window.location = "../"+modulo+"/eliminar/"+id+"/"+idReq;
             } else {
                 // Dijeron que no
                 console.log("*NO se cerro*");

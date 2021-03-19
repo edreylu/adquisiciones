@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout :: head">
+        
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <header th:replace="layout :: header"></header>
+        <div class="container mt-2 col-lg-4">
+            <div class="card">
+                <div class="card-header text-center">
+                 <lable class="tituloPrincipal">Agregar Correccion</lable>
+                </div>
+                <div class="card-body">
+                    
+                    <form class="needs-validation" novalidate method="post" action="#" th:action="@{/admonadq/solicitudes/correccion/add/{id}(id=${solicitud.idSolicitud})}" th:object="${revision}">
+
+                        <label class="tituloTexto">Observacion</label>
+                        <input type="text" name="observacion" class="form-control" required/>
+                        <div class="invalid-feedback">Observacion es requerido</div>
+                        <br/>
+                        
+                        <div class="valid-feedback">
+                         Todo bien.
+                         </div>
+                        <div class="invalid-feedback">
+                         </div>
+                        <br/>
+                        <br/>
+                        <input type="submit" class="btn btn-success" value="Enviar">
+                        <a th:href="@{/admonadq/solicitudes}">Regresar</a>
+                        
+                    </form>
+                    </div>
+                </div>
+            </div>
+        
+    </body>
+</html>

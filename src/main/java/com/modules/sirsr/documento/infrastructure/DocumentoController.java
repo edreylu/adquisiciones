@@ -43,34 +43,34 @@ public class DocumentoController {
     }
 
 
-    @GetMapping("usuario/solicitudes/editarDocumentos/{id}")
+    @GetMapping("usuario/solicitudes/documentos/{id}")
     public String editarDocumentos(@PathVariable("id") int id, Model model) {
         SolicitudDTO solicitudDTO = solicitudService.findById(id);
-        documentos = documentoService.findByIdRequisicion(id);
+        documentos = documentoService.findByIdSolicitud(id);
         tiposDocumento = tipoDocumentoService.findAll();
         String validUrl = "redirect:/usuario/requisiciones";
         if(Objects.nonNull(solicitudDTO)){
             model.addAttribute("solicitud", solicitudDTO);
             model.addAttribute("documentos", documentos);
             model.addAttribute("tiposDocumento", tiposDocumento);
-            validUrl = "usuario/solicitudes/editarDocumentos";
+            validUrl = "usuario/solicitudes/documentos/principal";
         }
         return validUrl;
     }
 
-    @PostMapping("usuario/solicitudes/updateDocumentos/{id}")
+    @PostMapping("usuario/solicitudes/documentos/update/{id}")
     public String editarDocumentos(@PathVariable("id") int id, DocumentoDTO documentoDTO, RedirectAttributes redirectAttrs){
 
         System.out.println(id);
         System.out.println(documentoDTO.getTipoDocumento().getIdTipoDocumento());
         msg.crearMensaje(documentoService.save(documentoDTO, id), redirectAttrs);
-        return "redirect:/usuario/solicitudes/editarDocumentos/"+id;
+        return "redirect:/usuario/solicitudes/documentos/"+id;
     }
 
-    @GetMapping("usuario/solicitudes/eliminarDocumento/{id}/{idReq}")
+    @GetMapping("usuario/solicitudes/documentos/eliminar/{id}/{idReq}")
     public String eliminarDocumento(@PathVariable("id") int id,@PathVariable("idReq") int idReq, RedirectAttributes redirectAttrs) {
         msg.crearMensaje(documentoService.deleteById(id), redirectAttrs);
-        return "redirect:/usuario/solicitudes/editarDocumentos/"+idReq;
+        return "redirect:/usuario/solicitudes/documentos/"+idReq;
     }
 
 }

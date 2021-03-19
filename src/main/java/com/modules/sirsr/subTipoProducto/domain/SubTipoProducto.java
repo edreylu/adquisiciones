@@ -36,17 +36,12 @@ public class SubTipoProducto {
     @Basic(optional = false)
     @Column(name = "DESCRIPCION")
     private String descripcion;
-    @JoinColumn(name = "OBJETO_GASTO", referencedColumnName = "OBJETO_GASTO")
-    @ManyToOne(optional = false)
-    private ObjetoDeGasto objetoDeGasto;
     @JoinColumn(name = "ID_TIPO_PRODUCTO", referencedColumnName = "ID_TIPO_PRODUCTO")
     @ManyToOne(optional = false)
     private TipoProducto tipoProducto;
     @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
     @ManyToOne(optional = false)
     private Estatus estatus;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "subtipoProducto")
-    private List<Producto> productos;
 
     public Integer getIdSubtipoProducto() {
         return idSubtipoProducto;
@@ -64,14 +59,6 @@ public class SubTipoProducto {
         this.descripcion = descripcion;
     }
 
-    public ObjetoDeGasto getObjetoDeGasto() {
-        return objetoDeGasto;
-    }
-
-    public void setObjetoDeGasto(ObjetoDeGasto objetoDeGasto) {
-        this.objetoDeGasto = objetoDeGasto;
-    }
-
     public TipoProducto getTipoProducto() {
         return tipoProducto;
     }
@@ -86,14 +73,6 @@ public class SubTipoProducto {
 
     public void setEstatus(Estatus estatus) {
         this.estatus = estatus;
-    }
-
-    public List<Producto> getProductos() {
-        return productos;
-    }
-
-    public void setProductos(List<Producto> productos) {
-        this.productos = productos;
     }
 
     

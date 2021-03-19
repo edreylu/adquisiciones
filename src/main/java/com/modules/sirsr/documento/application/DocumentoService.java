@@ -52,9 +52,20 @@ public class DocumentoService {
         return documentoDTO;
     }
 
-    public List<DocumentoDTO> findByIdRequisicion(int idSolicitud) {
+    public List<DocumentoDTO> findByIdSolicitud(int idSolicitud) {
         List<DocumentoDTO> documentoDTOs = documentoMapper.toDocumentoDTOs(documentoRepository.findByIdSolicitud(idSolicitud));
         return documentoDTOs;
+    }
+
+    public boolean areDocumentsComplete(int idSolicitud){
+        List<DocumentoDTO> documentoDTOs = documentoMapper.toDocumentoDTOs(documentoRepository.findByIdSolicitud(idSolicitud));
+        boolean isValid = documentoDTOs.stream()
+                .anyMatch(documentoDTO ->
+                        documentoDTO.getTipoDocumento().getIdTipoDocumento() == 1);
+        boolean isValid2 = documentoDTOs.stream()
+                .anyMatch(documentoDTO ->
+                        documentoDTO.getTipoDocumento().getIdTipoDocumento() == 2);
+        return isValid && isValid2;
     }
 
     public Mensaje save(DocumentoDTO documentoDTO, int id) {

@@ -5,12 +5,38 @@
  */
 package com.modules.sirsr.marca.application;
 
+import com.modules.sirsr.estatus.application.EstatusDTO;
+
 /**
  *
  * @author Edward Reyes
  */
 public class MarcaDTO {
-    
+    private int idMarca;
+    private String descripcion;
+    private EstatusDTO estatus;
 
+    public int getIdMarca() {
+        return idMarca;
+    }
 
+    public void setIdMarca(int idMarca) {
+        this.idMarca = idMarca;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public EstatusDTO getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(EstatusDTO estatus) {
+        this.estatus = estatus;
+    }
 }

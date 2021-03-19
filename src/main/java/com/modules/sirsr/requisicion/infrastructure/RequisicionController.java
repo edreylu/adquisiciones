@@ -79,7 +79,7 @@ public class RequisicionController {
         SolicitudDTO solicitudDTO = solicitudService.findById(id);
         requisicionDTO.setSolicitud(solicitudDTO);
         partidasEspecificas = objetoDeGastoService.findAll();
-        clavesPresupuestarias = clavePresupuestariaService.findAll();
+        clavesPresupuestarias = clavePresupuestariaService.findByClaveUr();
         model.addAttribute("partidasEspecificas", partidasEspecificas);
         model.addAttribute("requisicion", requisicionDTO);
         model.addAttribute("clavesPresupuestarias", clavesPresupuestarias);
@@ -89,13 +89,13 @@ public class RequisicionController {
     @PostMapping("usuario/solicitudes/requisiciones/add/{id}")
     public String agregar(RequisicionDTO requisicionDTO,@PathVariable("id") int id, RedirectAttributes redirectAttrs){
         msg.crearMensaje(requisicionService.save(requisicionDTO, id), redirectAttrs);
-        return "redirect:/usuario/solicitudes/requisiciones";
+        return "redirect:/usuario/solicitudes/requisiciones/"+id;
     }
 
     @GetMapping("usuario/solicitudes/requisiciones/editar/{id}")
     public String editar(@PathVariable("id") int id, Model model) {
         requisicionDTO = requisicionService.findById(id);
-        clavesPresupuestarias = clavePresupuestariaService.findAll();
+        clavesPresupuestarias = clavePresupuestariaService.findByClaveUr();
         String validUrl = "redirect:/usuario/solicitudes/requisiciones";
         if(Objects.nonNull(requisicionDTO)){
             model.addAttribute("requisicion", requisicionDTO);

@@ -7,6 +7,7 @@ package com.modules.sirsr.tipoProducto.domain;
 
 import com.modules.sirsr.estatus.domain.Estatus;
 import com.modules.sirsr.objetoGasto.domain.ObjetoDeGasto;
+import com.modules.sirsr.producto.domain.Producto;
 import com.modules.sirsr.subTipoProducto.domain.SubTipoProducto;
 
 import java.util.List;
@@ -35,6 +36,8 @@ public class TipoProducto{
     @Basic(optional = false)
     @Column(name = "DESCRIPCION")
     private String descripcion;
+    @Column(name = "OBJETO_GASTO", insertable = false, updatable = false)
+    private String objetoGastoStr;
     @JoinColumn(name = "OBJETO_GASTO", referencedColumnName = "OBJETO_GASTO")
     @ManyToOne(optional = false)
     private ObjetoDeGasto objetoGasto;
@@ -43,6 +46,8 @@ public class TipoProducto{
     private Estatus estatus;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoProducto")
     private List<SubTipoProducto> subTipoProductos;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoProducto")
+    private List<Producto> productos;
 
     public Integer getIdTipoProducto() {
         return idTipoProducto;
@@ -84,5 +89,19 @@ public class TipoProducto{
         this.subTipoProductos = subTipoProductos;
     }
 
-    
+    public List<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
+    }
+
+    public String getObjetoGastoStr() {
+        return objetoGastoStr;
+    }
+
+    public void setObjetoGastoStr(String objetoGastoStr) {
+        this.objetoGastoStr = objetoGastoStr;
+    }
 }

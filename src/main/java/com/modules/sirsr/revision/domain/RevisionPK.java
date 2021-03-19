@@ -25,15 +25,15 @@ public class RevisionPK implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaRevision;
     @Basic(optional = false)
-    @Column(name = "ID_REQUISICION")
-    private int idRequisicion;
+    @Column(name = "ID_SOLICITUD")
+    private int idSolicitud;
 
     public RevisionPK() {
     }
 
-    public RevisionPK(Date fechaRevision, int idRequisicion) {
+    public RevisionPK(Date fechaRevision, int idSolicitud) {
         this.fechaRevision = fechaRevision;
-        this.idRequisicion = idRequisicion;
+        this.idSolicitud = idSolicitud;
     }
 
     public Date getFechaRevision() {
@@ -45,18 +45,18 @@ public class RevisionPK implements Serializable {
     }
 
     public int getIdRequisicion() {
-        return idRequisicion;
+        return idSolicitud;
     }
 
     public void setIdRequisicion(int idRequisicion) {
-        this.idRequisicion = idRequisicion;
+        this.idSolicitud = idRequisicion;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
         hash += (fechaRevision != null ? fechaRevision.hashCode() : 0);
-        hash += (int) idRequisicion;
+        hash += (int) idSolicitud;
         return hash;
     }
 
@@ -70,7 +70,7 @@ public class RevisionPK implements Serializable {
         if ((this.fechaRevision == null && other.fechaRevision != null) || (this.fechaRevision != null && !this.fechaRevision.equals(other.fechaRevision))) {
             return false;
         }
-        if (this.idRequisicion != other.idRequisicion) {
+        if (this.idSolicitud != other.idSolicitud) {
             return false;
         }
         return true;
@@ -78,7 +78,7 @@ public class RevisionPK implements Serializable {
 
     @Override
     public String toString() {
-        return "com.modules.sirsr.revision.domain.RevisionPK[ fechaRevision=" + fechaRevision + ", idRequisicion=" + idRequisicion + " ]";
+        return "com.modules.sirsr.revision.domain.RevisionPK[ fechaRevision=" + fechaRevision + ", idRequisicion=" + idSolicitud + " ]";
     }
     
 }

@@ -5,7 +5,6 @@
  */
 package com.modules.sirsr.revision.domain;
 
-import com.modules.sirsr.tipoRevision.domain.TipoRevision;
 import com.modules.sirsr.solicitud.domain.Solicitud;
 
 import javax.persistence.Basic;
@@ -29,9 +28,8 @@ public class Revision {
     @Basic(optional = false)
     @Column(name = "OBSERVACION")
     private String observacion;
-    @JoinColumn(name = "ID_TIPO_REVISION", referencedColumnName = "ID_TIPO_REVISION")
-    @ManyToOne(optional = false)
-    private TipoRevision tipoRevision;
+    @Column(name = "ID_SOLICITUD", insertable = false, updatable = false)
+    private Integer idSolicitud;
     @JoinColumn(name = "ID_SOLICITUD", referencedColumnName = "ID_SOLICITUD", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Solicitud solicitud;
@@ -52,14 +50,6 @@ public class Revision {
         this.observacion = observacion;
     }
 
-    public TipoRevision getTipoRevision() {
-        return tipoRevision;
-    }
-
-    public void setTipoRevision(TipoRevision tipoRevision) {
-        this.tipoRevision = tipoRevision;
-    }
-
     public Solicitud getSolicitud() {
         return solicitud;
     }
@@ -68,5 +58,11 @@ public class Revision {
         this.solicitud = solicitud;
     }
 
-    
+    public Integer getIdSolicitud() {
+        return idSolicitud;
+    }
+
+    public void setIdSolicitud(Integer idSolicitud) {
+        this.idSolicitud = idSolicitud;
+    }
 }

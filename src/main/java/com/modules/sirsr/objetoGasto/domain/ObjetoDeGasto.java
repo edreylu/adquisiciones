@@ -58,8 +58,6 @@ public class ObjetoDeGasto{
     private Estatus estatus;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "objetoDeGasto")
     private List<ClavePresupuestaria> clavesPresupuestarias;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "objetoDeGasto")
-    private List<SubTipoProducto> subtiposProducto;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "objetoGasto")
     private List<Consolidacion> consolidaciones;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "objetoGasto")
@@ -127,14 +125,6 @@ public class ObjetoDeGasto{
 
     public void setClavesPresupuestarias(List<ClavePresupuestaria> clavesPresupuestarias) {
         this.clavesPresupuestarias = clavesPresupuestarias;
-    }
-
-    public List<SubTipoProducto> getSubtiposProducto() {
-        return subtiposProducto;
-    }
-
-    public void setSubtiposProducto(List<SubTipoProducto> subtiposProducto) {
-        this.subtiposProducto = subtiposProducto;
     }
 
     public List<Consolidacion> getConsolidaciones() {

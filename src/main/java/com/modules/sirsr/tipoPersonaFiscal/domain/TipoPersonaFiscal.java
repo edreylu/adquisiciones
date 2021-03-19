@@ -12,6 +12,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -25,13 +27,20 @@ import javax.persistence.Table;
 public class TipoPersonaFiscal {
 
     @Id
+    @GeneratedValue
     @Basic(optional = false)
     @Column(name = "ID_TIPO_PERSONA_FISCAL")
     private Integer idTipoPersonaFiscal;
+    
     @Basic(optional = false)
     @Column(name = "DESCRIPCION")
     private String descripcion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoPersonaFiscal")
+    
+    @Basic(optional = false)
+    @Column(name = "ID_ESTATUS")
+    private Integer idEstatus;
+    
+    @OneToMany(mappedBy = "tipoPersonaFiscal")
     private List<Proveedor> proveedores;
 
     public Integer getIdTipoPersonaFiscal() {
@@ -49,8 +58,16 @@ public class TipoPersonaFiscal {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+    
+    public Integer getIdEstatus() {
+		return idEstatus;
+	}
 
-    public List<Proveedor> getProveedores() {
+	public void setIdEstatus(Integer idEstatus) {
+		this.idEstatus = idEstatus;
+	}
+
+	public List<Proveedor> getProveedores() {
         return proveedores;
     }
 

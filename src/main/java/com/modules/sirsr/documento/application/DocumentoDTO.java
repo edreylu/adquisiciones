@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public class DocumentoDTO {
     private Integer idDocumento;
-    private Blob documento;
+    private byte[] documento;
     private Date fechaActualizacion;
     private SolicitudDTO solicitud;
     private TipoDocumentoDTO tipoDocumento;
@@ -32,11 +32,11 @@ public class DocumentoDTO {
         this.idDocumento = idDocumento;
     }
 
-    public Blob getDocumento() {
+    public byte[] getDocumento() {
         return documento;
     }
 
-    public void setDocumento(Blob documento) {
+    public void setDocumento(byte[] documento) {
         this.documento = documento;
     }
 
