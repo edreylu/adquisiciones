@@ -41,6 +41,10 @@ public class Documento{
     @Column(name = "FECHA_ACTUALIZACION")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaActualizacion;
+    @Column(name = "MIMETYPE")
+    private String mimeType;
+    @Column(name = "EXTENSION")
+    private String extension;
     @Column(name = "ID_SOLICITUD", insertable = false, updatable = false)
     private Integer idSolicitud;
     @JoinColumn(name = "ID_SOLICITUD", referencedColumnName = "ID_SOLICITUD")
@@ -96,5 +100,21 @@ public class Documento{
 
     public void setIdSolicitud(Integer idSolicitud) {
         this.idSolicitud = idSolicitud;
+    }
+
+    public String getMimeType() {
+        return mimeType;
+    }
+
+    public void setMimeType(String mimeType) {
+        this.mimeType = mimeType;
+    }
+
+    public String getExtension() {
+        return extension;
+    }
+
+    public void setExtension(String extension) {
+        this.extension = extension;
     }
 }

@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface TipoProductoRepository extends JpaRepository<TipoProducto, Integer> {
     List<TipoProducto> findByObjetoGastoStrIn(List<String> objetos);
+    List<TipoProducto> findByObjetoGastoStr(String objeto);
 }

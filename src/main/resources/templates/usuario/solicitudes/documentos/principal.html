@@ -33,7 +33,7 @@ and open the template in the editor.
                                     <br/>
                                     <label class="form-label" style="font-size: large;">-Un Volante de Sucifiencia *</label>
                                     <br/>
-                                    <label class="form-label" style="font-size: large;">-Un Oficio *</label>
+                                    <label class="form-label" style="font-size: large;">-Un Oficio de Solicitud de Requisicion *</label>
                                     <br/>
                                     <label class="form-label" style="font-size: large;">-Varios otros Documentos Adicionales</label>
                                 </div>
@@ -42,9 +42,10 @@ and open the template in the editor.
                             <br/>
                             <div class="row">
                                 <div class="col-md-12">
-                                        <center>
-                                        <button id="subirDocumentos" class="btn btn-primary" type="button" data-toggle="modal" data-target="#subirDocumentoModal"> <i class="fa fa-file" aria-hidden="true"></i> Agregar Documento</button>
-                                        </center>
+                                        <div align="center">
+                                        <button id="subirDocumentos" th:onclick="'documento(\''+ ${solicitud.idSolicitud} +'\')'" class="btn btn-primary" type="button"> <i class="fa fa-file" aria-hidden="true"></i> Agregar Documento</button>
+                                            <a th:href="@{/usuario/solicitudes}" class="btn btn-light active" role="button" aria-pressed="true">Regresar</a>
+                                        </div>
                                     </div>
                             </div>
                             <br/>
@@ -76,12 +77,13 @@ and open the template in the editor.
                                     </table>
                                 </div>
                             </div>
-                            <a th:href="@{/usuario/solicitudes}">Regresar</a>
                 </div>
             </div>
         </div>
            <br/>
            <br/>
+
+           <div id="documentoModalHolder"></div>
 
         <div class="modal fade" id="subirDocumentoModal" tabindex="-1" role="dialog" aria-hidden="true" th:fragment="modalSubirDocumento">
             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">

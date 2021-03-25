@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+	<header th:replace="layout :: header"></header>
+	<div class="container mt-2 col-lg-4">
+		<div class="card">
+			<div class="card-header text-center">
+				<lable class="tituloPrincipal">Agregar día permitido</lable>
+			</div>
+			<div class="card-body">
+
+				<form class="needs-validation" novalidate method="post" action="#"
+					th:action="@{/admonadq/diaspermitidos/add}"
+					th:object="${diaPermitido}">
+					<div class="row">
+						<div class="col-md-12">
+							<label class="tituloTexto">Día:</label>
+							<div class="form-group">
+								<div class="input-group date" data-provide="datepicker">
+									<input type="text" class="form-control" name="diaPermitido" required/>
+									<div class="input-group-prepend close-button">
+										<span class="input-group-text fa fa-calendar"></span>
+									</div>
+
+									<div class="invalid-feedback">Dia Permitido es requerido</div>
+						    	</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="invalid-feedback">Día es requerido</div>
+					<div class="valid-feedback">Todo bien.</div>
+					<div class="invalid-feedback"></div>
+					<br /> <br /> <input type="submit" class="btn btn-success"
+						value="Agregar"> <a th:href="@{/admonadq/diaspermitidos}">Regresar</a>
+
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

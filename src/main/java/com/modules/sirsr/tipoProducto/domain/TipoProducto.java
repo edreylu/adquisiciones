@@ -44,10 +44,6 @@ public class TipoProducto{
     @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
     @ManyToOne(optional = false)
     private Estatus estatus;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoProducto")
-    private List<SubTipoProducto> subTipoProductos;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoProducto")
-    private List<Producto> productos;
 
     public Integer getIdTipoProducto() {
         return idTipoProducto;
@@ -79,22 +75,6 @@ public class TipoProducto{
 
     public void setEstatus(Estatus estatus) {
         this.estatus = estatus;
-    }
-
-    public List<SubTipoProducto> getSubTipoProductos() {
-        return subTipoProductos;
-    }
-
-    public void setSubTipoProductos(List<SubTipoProducto> subTipoProductos) {
-        this.subTipoProductos = subTipoProductos;
-    }
-
-    public List<Producto> getProductos() {
-        return productos;
-    }
-
-    public void setProductos(List<Producto> productos) {
-        this.productos = productos;
     }
 
     public String getObjetoGastoStr() {

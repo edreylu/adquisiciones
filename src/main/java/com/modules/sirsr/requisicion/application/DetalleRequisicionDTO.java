@@ -89,4 +89,18 @@ public class DetalleRequisicionDTO {
     public void setProducto(ProductoDTO producto) {
         this.producto = producto;
     }
+
+    @Override
+    public String toString() {
+        return "DetalleRequisicionDTO{" +
+                "idDetalleRequisicion=" + idDetalleRequisicion +
+                ", idRequisicion=" + idRequisicion +
+                ", cantidadSolicitada=" + cantidadSolicitada +
+                ", precioUnitario=" + precioUnitario +
+                ", cantidadAutorizada=" + cantidadAutorizada +
+                ", requisicion=" + requisicion +
+                ", marca=" + marca +
+                ", producto=" + producto +
+                '}';
+    }
 }

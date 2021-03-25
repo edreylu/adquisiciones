@@ -20,13 +20,22 @@ and open the template in the editor.
                 <div class="card-body">
 
                     <form class="needs-validation" novalidate method="post" action="#"
-                          th:action="@{/usuario/solicitudes/requisiciones/update/{id}/{idRequisicion}(id=${requisicion.solicitud.idSolicitud},idRequisicion=${requisicion.idRequisicion})}"
-                          th:object="${requisicion}">
+                          th:action="@{/usuario/solicitudes/requisiciones/update}" th:object="${requisicion}">
                         <div class="panel-body">
+                            <input hidden name="idRequisicion" th:field="${requisicion.idRequisicion}" />
+                            <input hidden name="idSolicitud" th:field="${requisicion.idSolicitud}" />
+                            <div class="row" id="idObjetoGasto">
+                                <div class="col-md-12">
+                                    <label class="tituloTexto">Objeto de Gasto: </label>
+                                    <h6 th:text="${objetoGasto}"></h6>
+                                </div>
+                                </br>
+                            </div>
+                            <br/>
                             <div class="row">
                                 <div class="col-md-12">
                                     <label class="tituloTexto">Clave Presupuestaria</label>
-                                    <select id="clavePresupuestaria" name="clavePresupuestaria.idClavePresup" th:field="${requisicion.clavePresupuestaria.idClavePresup}" required class="form-control">
+                                    <select id="clavePresupuestaria" th:onchange="updateObjetoGasto()"  name="clavePresupuestaria.idClavePresup" th:field="${requisicion.clavePresupuestaria.idClavePresup}" required class="form-control">
                                         <option value="">Selecciona...</option>
                                         <option th:each="clave : ${clavesPresupuestarias}"
                                                 th:value="${clave.idClavePresup}"
@@ -39,7 +48,7 @@ and open the template in the editor.
                             <div class="row">
                                 <div class="col-md-12">
                                     <label class="tituloTexto">Monto suficiencia</label>
-                                    <input type="number" class="form-control" name="montoSuficiencia" th:value="${requisicion.montoSuficiencia}" required></input>
+                                    <input type="number" step="0.01" class="form-control" name="montoSuficiencia" th:value="${requisicion.montoSuficiencia}" required></input>
                                     <div class="invalid-feedback">Monto Suficiencia es requerido</div>
                                 </div>
                             </div>

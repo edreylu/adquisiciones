@@ -14,7 +14,7 @@ console.log(idestatus);
         .then(resultado => {
             if (resultado.value) {
                 // Hicieron click en "Sí"
-          enabled=idestatus==0?1:0;
+          let enabled=idestatus==0?1:0;
           window.location = modulo+"/eliminar/"+id+"/"+enabled;
                 
             } else {
@@ -23,6 +23,29 @@ console.log(idestatus);
             }
         });
 }
+
+function mensajeAltaAnio(anio) {
+	let modulo = document.getElementById("nombreModulo").value;
+	console.log(anio);
+	    Swal
+	        .fire({
+	            title: "Alta de nuevo año",
+	            text: "¿Desea dar de alta el nuevo año? Se desactivará el año anterior",
+	            icon: 'warning',
+	            showCancelButton: true,
+	            confirmButtonText: "Si",
+	            cancelButtonText: "No",
+	        })
+	        .then(resultado => {
+	            if (resultado.value) {
+	                // Hicieron click en "Sí"
+	                window.location = modulo+"/add/"+anio;
+	            } else {
+	                // Dijeron que no
+	                console.log("*NO se cerro*");
+	            }
+	        });
+	}
 
 function mensajeEliminar(id) {
 let modulo = document.getElementById("nombreModulo").value;
@@ -40,6 +63,29 @@ console.log(id);
             if (resultado.value) {
                 // Hicieron click en "Sí"
                 window.location = modulo+"/eliminar/"+id;
+            } else {
+                // Dijeron que no
+                console.log("*NO se cerro*");
+            }
+        });
+}
+
+function mensajeEliminarRequisicion(id, idSolicitud) {
+let modulo = document.getElementById("nombreModulo").value;
+console.log(id);
+    Swal
+        .fire({
+            title: "Eliminar",
+            text: "¿Desea Eliminar "+modulo+" ?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: "Si",
+            cancelButtonText: "No",
+        })
+        .then(resultado => {
+            if (resultado.value) {
+                // Hicieron click en "Sí"
+                window.location = "../"+modulo+"/eliminar/"+id+"/"+idSolicitud;
             } else {
                 // Dijeron que no
                 console.log("*NO se cerro*");
@@ -86,6 +132,30 @@ console.log(id);
             if (resultado.value) {
                 // Hicieron click en "Sí"
                 window.location = "../"+modulo+"/eliminar/"+id+"/"+idReq;
+            } else {
+                // Dijeron que no
+                console.log("*NO se cerro*");
+            }
+        });
+}
+
+function mensajeCancelar(id) {
+let modulo = document.getElementById("nombreModulo").value;
+console.log(id);
+    Swal
+        .fire({
+            title: "Cancelar "+modulo,
+            text: "¿Desea Cancelar "+modulo+"?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: "Si",
+            cancelButtonText: "No",
+        })
+        .then(resultado => {
+            if (resultado.value) {
+                // Hicieron click en "Sí"
+          window.location = modulo+"/eliminar/"+id;
+
             } else {
                 // Dijeron que no
                 console.log("*NO se cerro*");

@@ -6,9 +6,9 @@
 package com.modules.sirsr.config;
 
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import java.util.function.Function;
 
 /**

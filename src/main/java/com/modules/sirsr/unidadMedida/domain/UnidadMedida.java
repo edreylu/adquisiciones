@@ -26,9 +26,6 @@ import javax.persistence.Table;
 @Table(name = "UNIDAD_MEDIDA")
 public class UnidadMedida{
 
-    
-    
-
     @Id
     @Column(name = "ID_UNIDAD_MEDIDA")
     private Integer idUnidadMedida;
@@ -41,8 +38,6 @@ public class UnidadMedida{
     @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
     @ManyToOne(optional = false)
     private Estatus estatus;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidadMedida")
-    private List<Producto> productos;
 
     public Integer getIdUnidadMedida() {
         return idUnidadMedida;
@@ -82,14 +77,6 @@ public class UnidadMedida{
 
     public void setEstatus(Estatus estatus) {
         this.estatus = estatus;
-    }
-
-    public List<Producto> getProductos() {
-        return productos;
-    }
-
-    public void setProductos(List<Producto> productos) {
-        this.productos = productos;
     }
 
     

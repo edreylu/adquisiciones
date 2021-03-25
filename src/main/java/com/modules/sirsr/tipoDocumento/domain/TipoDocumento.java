@@ -41,10 +41,6 @@ public class TipoDocumento{
     @Column(name = "UNICO")
     private String unico;
     
-    @Basic(optional = false)
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoDocumento")
-    private List<Documento> documentos;
-    
     @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
     @ManyToOne(optional = false)
     private Estatus estatus;
@@ -79,14 +75,6 @@ public class TipoDocumento{
 
     public void setUnico(String unico) {
         this.unico = unico;
-    }
-
-    public List<Documento> getDocumentos() {
-        return documentos;
-    }
-
-    public void setDocumentos(List<Documento> documentos) {
-        this.documentos = documentos;
     }
 
     public Estatus getEstatus() {

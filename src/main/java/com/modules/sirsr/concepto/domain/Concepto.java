@@ -50,8 +50,6 @@ public class Concepto{
     @JoinColumn(name = "CLAVE_CAPITULO", referencedColumnName = "CLAVE_CAPITULO")
     @ManyToOne(optional = false)
     private Capitulo capitulo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "concepto")
-    private List<PartidaGastoGenerica> partidasGastoGenerica;
     @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
     @ManyToOne(optional = false)
     private Estatus estatus;
@@ -102,14 +100,6 @@ public class Concepto{
 
     public void setCapitulo(Capitulo capitulo) {
         this.capitulo = capitulo;
-    }
-
-    public List<PartidaGastoGenerica> getPartidasGastoGenerica() {
-        return partidasGastoGenerica;
-    }
-
-    public void setPartidasGastoGenerica(List<PartidaGastoGenerica> partidasGastoGenerica) {
-        this.partidasGastoGenerica = partidasGastoGenerica;
     }
 
     public Estatus getEstatus() {

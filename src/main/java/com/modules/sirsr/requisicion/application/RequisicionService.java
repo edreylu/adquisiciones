@@ -105,11 +105,12 @@ public class RequisicionService {
         return msg;
     }
 
-    public Mensaje update(RequisicionDTO requisicionDTO, int id) {
+    public Mensaje update(RequisicionDTO requisicionDTO) {
         try {
-            Optional<Requisicion> requisicionFound = requisicionRepository.findById(id);
-            Requisicion requisicion = requisicionMapper.setToUpdate(requisicionFound.get(), requisicionDTO);
-            requisicionRepository.save(requisicion);
+            Requisicion requisicion = requisicionRepository.findById(requisicionDTO.getIdRequisicion()).get();
+            clavePresupuestariaDTO = clavePresupuestariaMapper.toClavePresupuestariaDTO(clavePresupuestariaRepository.findById(requisicionDTO.getClavePresupuestaria().getIdClavePresup()).get());
+            requisicionDTO.setClavePresupuestaria(clavePresupuestariaDTO);
+            requisicionRepository.save(requisicionMapper.setToUpdate(requisicion, requisicionDTO));
             msg = Mensaje.CREATE("Actualizado correctamente", 1);
         }catch (Exception e){
             msg = Mensaje.CREATE("No se pudo Actualizar por: "+e.getMessage(), 2);
@@ -122,7 +123,7 @@ public class RequisicionService {
             requisicionRepository.deleteById(id);
             msg = Mensaje.CREATE("Eliminado correctamente", 1);
         }catch (Exception e){
-            msg = Mensaje.CREATE("No se pudo Eliminar por que hay usuarios asociados a rol.", 2);
+            msg = Mensaje.CREATE("No se pudo Eliminar.", 2);
         }
         return msg;
 

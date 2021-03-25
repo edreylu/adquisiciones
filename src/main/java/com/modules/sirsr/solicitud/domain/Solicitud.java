@@ -7,11 +7,8 @@ package com.modules.sirsr.solicitud.domain;
 
 import com.modules.sirsr.documento.domain.Documento;
 import com.modules.sirsr.estatus.domain.Estatus;
-import com.modules.sirsr.revision.domain.Revision;
-import com.modules.sirsr.seguimientoSolicitud.domain.SeguimientoSolicitud;
 import com.modules.sirsr.unidadResponsable.domain.UnidadResponsable;
 import com.modules.sirsr.prioridad.domain.Prioridad;
-import com.modules.sirsr.requisicion.domain.Requisicion;
 
 import java.util.Date;
 import java.util.List;
@@ -60,14 +57,6 @@ public class Solicitud {
     private String claveUr;
     @Column(name = "ID_ESTATUS", updatable = false, insertable = false)
     private Integer idEstatus;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "solicitud")
-    private List<Documento> documentos;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "solicitud")
-    private List<Revision> revisiones;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "solicitud")
-    private List<Requisicion> requisiciones;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "solicitud")
-    private List<SeguimientoSolicitud> seguimientosSolicitud;
     @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
     @ManyToOne(optional = false)
     private Estatus estatus;
@@ -77,6 +66,8 @@ public class Solicitud {
     @JoinColumn(name = "CLAVE_UR", referencedColumnName = "CLAVE_UR")
     @ManyToOne(optional = false)
     private UnidadResponsable unidadResponsable;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "solicitud")
+    private List<Documento> documentos;
 
     public Integer getIdSolicitud() {
         return idSolicitud;
@@ -166,38 +157,6 @@ public class Solicitud {
         this.claveUr = claveUr;
     }
 
-    public List<Documento> getDocumentos() {
-        return documentos;
-    }
-
-    public void setDocumentos(List<Documento> documentos) {
-        this.documentos = documentos;
-    }
-
-    public List<Revision> getRevisiones() {
-        return revisiones;
-    }
-
-    public void setRevisiones(List<Revision> revisiones) {
-        this.revisiones = revisiones;
-    }
-
-    public List<Requisicion> getRequisiciones() {
-        return requisiciones;
-    }
-
-    public void setRequisiciones(List<Requisicion> requisiciones) {
-        this.requisiciones = requisiciones;
-    }
-
-    public List<SeguimientoSolicitud> getSeguimientosSolicitud() {
-        return seguimientosSolicitud;
-    }
-
-    public void setSeguimientosSolicitud(List<SeguimientoSolicitud> seguimientosSolicitud) {
-        this.seguimientosSolicitud = seguimientosSolicitud;
-    }
-
     public Estatus getEstatus() {
         return estatus;
     }
@@ -220,6 +179,14 @@ public class Solicitud {
 
     public void setUnidadResponsable(UnidadResponsable unidadResponsable) {
         this.unidadResponsable = unidadResponsable;
+    }
+
+    public List<Documento> getDocumentos() {
+        return documentos;
+    }
+
+    public void setDocumentos(List<Documento> documentos) {
+        this.documentos = documentos;
     }
 
     public Integer getIdEstatus() {

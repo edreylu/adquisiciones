@@ -30,8 +30,6 @@ public class UnidadMedidaService {
         this.unidadMedidaMapper = unidadMedidaMapper;
     }
 
-
-
     public List<UnidadMedidaDTO> findAll() {
         return unidadMedidaMapper.toUnidadMedidaDTOs(unidadMedidaRepository.findAll());
     }

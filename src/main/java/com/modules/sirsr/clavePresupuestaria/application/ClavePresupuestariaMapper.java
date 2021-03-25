@@ -1,7 +1,8 @@
 package com.modules.sirsr.clavePresupuestaria.application;
 
 import com.modules.sirsr.clavePresupuestaria.domain.ClavePresupuestaria;
-import org.modelmapper.ModelMapper;
+import com.modules.sirsr.objetoGasto.application.ObjetoDeGastoMapper;
+import com.modules.sirsr.unidadResponsable.application.UnidadResponsableMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -11,14 +12,58 @@ import java.util.function.Function;
 
 @Component
 public class ClavePresupuestariaMapper {
-    private final ModelMapper modelMapper = new ModelMapper();
+
+    private final UnidadResponsableMapper unidadResponsableMapper = new UnidadResponsableMapper();
+    private final ObjetoDeGastoMapper objetoDeGastoMapper = new ObjetoDeGastoMapper();
 
     public ClavePresupuestaria toClavePresupuestaria(ClavePresupuestariaDTO clavePresupuestariaDTO){
-        ClavePresupuestaria clavePresupuestaria = modelMapper.map(clavePresupuestariaDTO, ClavePresupuestaria.class);
+        ClavePresupuestaria clavePresupuestaria = new ClavePresupuestaria();
+        clavePresupuestaria.setIdClavePresup(clavePresupuestariaDTO.getIdClavePresup());
+        clavePresupuestaria.setAnio(clavePresupuestariaDTO.getAnio());
+        clavePresupuestaria.setRamo(clavePresupuestariaDTO.getRamo());
+        clavePresupuestaria.setInstitucion(clavePresupuestariaDTO.getInstitucion());
+        clavePresupuestaria.setUnidadResponsable(unidadResponsableMapper.toUnidadResponsable(clavePresupuestariaDTO.getUnidadResponsable()));
+        clavePresupuestaria.setFinalidad(clavePresupuestariaDTO.getFinalidad());
+        clavePresupuestaria.setFuncion(clavePresupuestariaDTO.getFuncion());
+        clavePresupuestaria.setSubfuncion(clavePresupuestariaDTO.getSubfuncion());
+        clavePresupuestaria.setProgramaPresupuestario(clavePresupuestariaDTO.getProgramaPresupuestario());
+        clavePresupuestaria.setSubprogramaPresupuestario(clavePresupuestariaDTO.getSubprogramaPresupuestario());
+        clavePresupuestaria.setActividadInstitucional(clavePresupuestariaDTO.getActividadInstitucional());
+        clavePresupuestaria.setIdentificadorGasto(clavePresupuestariaDTO.getIdentificadorGasto());
+        clavePresupuestaria.setFuenteFinanciamiento(clavePresupuestariaDTO.getFuenteFinanciamiento());
+        clavePresupuestaria.setOrigen(clavePresupuestariaDTO.getOrigen());
+        clavePresupuestaria.setProcedencia(clavePresupuestariaDTO.getProcedencia());
+        clavePresupuestaria.setActividadEspecifica(clavePresupuestariaDTO.getActividadEspecifica());
+        clavePresupuestaria.setObjetoDeGasto(objetoDeGastoMapper.toObjetoDeGasto(clavePresupuestariaDTO.getObjetoDeGasto()));
+        clavePresupuestaria.setTipoGasto(clavePresupuestariaDTO.getTipoGasto());
+        clavePresupuestaria.setRegion(clavePresupuestariaDTO.getRegion());
+        clavePresupuestaria.setMunicipio(clavePresupuestariaDTO.getMunicipio());
+        clavePresupuestaria.setPpi(clavePresupuestariaDTO.getPpi());
         return clavePresupuestaria;
     }
     public ClavePresupuestariaDTO toClavePresupuestariaDTO(ClavePresupuestaria clavePresupuestaria){
-        ClavePresupuestariaDTO clavePresupuestariaDTO = modelMapper.map(clavePresupuestaria, ClavePresupuestariaDTO.class);
+        ClavePresupuestariaDTO clavePresupuestariaDTO = new ClavePresupuestariaDTO();
+        clavePresupuestariaDTO.setIdClavePresup(clavePresupuestaria.getIdClavePresup());
+        clavePresupuestariaDTO.setAnio(clavePresupuestaria.getAnio());
+        clavePresupuestariaDTO.setRamo(clavePresupuestaria.getRamo());
+        clavePresupuestariaDTO.setInstitucion(clavePresupuestaria.getInstitucion());
+        clavePresupuestariaDTO.setUnidadResponsable(unidadResponsableMapper.toUnidadResponsableDTO(clavePresupuestaria.getUnidadResponsable()));
+        clavePresupuestariaDTO.setFinalidad(clavePresupuestaria.getFinalidad());
+        clavePresupuestariaDTO.setFuncion(clavePresupuestaria.getFuncion());
+        clavePresupuestariaDTO.setSubfuncion(clavePresupuestaria.getSubfuncion());
+        clavePresupuestariaDTO.setProgramaPresupuestario(clavePresupuestaria.getProgramaPresupuestario());
+        clavePresupuestariaDTO.setSubprogramaPresupuestario(clavePresupuestaria.getSubprogramaPresupuestario());
+        clavePresupuestariaDTO.setActividadInstitucional(clavePresupuestaria.getActividadInstitucional());
+        clavePresupuestariaDTO.setIdentificadorGasto(clavePresupuestaria.getIdentificadorGasto());
+        clavePresupuestariaDTO.setFuenteFinanciamiento(clavePresupuestaria.getFuenteFinanciamiento());
+        clavePresupuestariaDTO.setOrigen(clavePresupuestaria.getOrigen());
+        clavePresupuestariaDTO.setProcedencia(clavePresupuestaria.getProcedencia());
+        clavePresupuestariaDTO.setActividadEspecifica(clavePresupuestaria.getActividadEspecifica());
+        clavePresupuestariaDTO.setObjetoDeGasto(objetoDeGastoMapper.toObjetoDeGastoDTO(clavePresupuestaria.getObjetoDeGasto()));
+        clavePresupuestariaDTO.setTipoGasto(clavePresupuestaria.getTipoGasto());
+        clavePresupuestariaDTO.setRegion(clavePresupuestaria.getRegion());
+        clavePresupuestariaDTO.setMunicipio(clavePresupuestaria.getMunicipio());
+        clavePresupuestariaDTO.setPpi(clavePresupuestaria.getPpi());
         clavePresupuestariaDTO.setClaveCompleta(getClaveCompleta.apply(clavePresupuestariaDTO));
         return clavePresupuestariaDTO;
     }
@@ -50,7 +95,7 @@ public class ClavePresupuestariaMapper {
                 clave.getOrigen(),
                 clave.getProcedencia(),
                 clave.getActividadEspecifica(),
-                clave.getObjetoGasto().getObjetoGasto(),
+                clave.getObjetoDeGasto().getObjetoGasto(),
                 clave.getTipoGasto(),
                 clave.getRegion(),
                 clave.getMunicipio(),

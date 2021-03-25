@@ -52,8 +52,6 @@ public class Capitulo{
     @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
     @ManyToOne(optional = false)
     private Estatus estatus;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "capitulo")
-    private List<Concepto> conceptos;
 
     public Integer getClaveCapitulo() {
         return claveCapitulo;
@@ -101,14 +99,6 @@ public class Capitulo{
 
     public void setEstatus(Estatus estatus) {
         this.estatus = estatus;
-    }
-
-    public List<Concepto> getConceptos() {
-        return conceptos;
-    }
-
-    public void setConceptos(List<Concepto> conceptos) {
-        this.conceptos = conceptos;
     }
 
 

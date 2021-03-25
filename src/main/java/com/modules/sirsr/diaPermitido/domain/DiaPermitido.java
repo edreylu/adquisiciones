@@ -10,9 +10,13 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.modules.sirsr.estatus.domain.Estatus;
 
 /**
  *
@@ -27,9 +31,9 @@ public class DiaPermitido {
     @Column(name = "DIA_PERMITIDO")
     @Temporal(TemporalType.TIMESTAMP)
     private Date diaPermitido;
-    @Basic(optional = false)
-    @Column(name = "ESTATUS")
-    private short estatus;
+    @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
+    @ManyToOne(optional = false)
+    private Estatus estatus;
 
     public Date getDiaPermitido() {
         return diaPermitido;
@@ -39,13 +43,14 @@ public class DiaPermitido {
         this.diaPermitido = diaPermitido;
     }
 
-    public short getEstatus() {
-        return estatus;
-    }
+	public Estatus getEstatus() {
+		return estatus;
+	}
 
-    public void setEstatus(short estatus) {
-        this.estatus = estatus;
-    }
-
+	public void setEstatus(Estatus estatus) {
+		this.estatus = estatus;
+	}
     
+    
+
 }

@@ -5,6 +5,8 @@
  */
 package com.modules.sirsr.tipoDocumento.application;
 
+import com.modules.sirsr.estatus.application.EstatusDTO;
+
 /**
  *
  * @author Edward Reyes
@@ -12,7 +14,7 @@ package com.modules.sirsr.tipoDocumento.application;
 public class TipoDocumentoDTO {
     private int idTipoDocumento;
     private String descripcion;
-    private int idEstatus;
+    private EstatusDTO estatus;
 
     public int getIdTipoDocumento() {
         return idTipoDocumento;
@@ -30,11 +32,11 @@ public class TipoDocumentoDTO {
         this.descripcion = descripcion;
     }
 
-    public int getIdEstatus() {
-        return idEstatus;
+    public EstatusDTO getEstatus() {
+        return estatus;
     }
 
-    public void setIdEstatus(int idEstatus) {
-        this.idEstatus = idEstatus;
+    public void setEstatus(EstatusDTO estatus) {
+        this.estatus = estatus;
     }
 }

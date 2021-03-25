@@ -22,6 +22,8 @@ public class DocumentoDTO {
     private Date fechaActualizacion;
     private SolicitudDTO solicitud;
     private TipoDocumentoDTO tipoDocumento;
+    private String mimeType;
+    private String extension;
     private MultipartFile file;
 
     public Integer getIdDocumento() {
@@ -71,6 +73,20 @@ public class DocumentoDTO {
     public void setFile(MultipartFile file) {
         this.file = file;
     }
-    
-    
+
+    public String getMimeType() {
+        return mimeType;
+    }
+
+    public void setMimeType(String mimeType) {
+        this.mimeType = mimeType;
+    }
+
+    public String getExtension() {
+        return extension;
+    }
+
+    public void setExtension(String extension) {
+        this.extension = extension;
+    }
 }

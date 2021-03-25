@@ -16,18 +16,7 @@ import com.modules.sirsr.unidadResponsable.domain.UnidadResponsable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 /**
  *
@@ -38,6 +27,8 @@ import javax.persistence.TemporalType;
 public class Producto {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "producto_generator")
+    @SequenceGenerator(name = "producto_generator", sequenceName = "ADQUISICIONES.SEQ_PRODUCTO", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID_PRODUCTO")
     private Integer idProducto;
@@ -45,7 +36,7 @@ public class Producto {
     @Column(name = "CARACTERISTICAS")
     private String caracteristicas;
     @Column(name = "PRECIO_DE_REFERENCIA")
-    private BigDecimal precioDeReferencia;
+    private Double precioDeReferencia;
     @Column(name = "FECHA_ACTUALIZACION")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaActualizacion;
@@ -54,6 +45,8 @@ public class Producto {
     private Integer permisoUr;
     @Column(name = "ID_TIPO_PRODUCTO", insertable = false, updatable = false)
     private Integer idTipoProducto;
+    @Column(name = "ID_ESTATUS", updatable = false, insertable = false)
+    private Integer idEstatus;
     @JoinColumn(name = "ID_UNIDAD_MEDIDA", referencedColumnName = "ID_UNIDAD_MEDIDA")
     @ManyToOne(optional = false)
     private UnidadMedida unidadMedida;
@@ -63,12 +56,6 @@ public class Producto {
     @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
     @ManyToOne(optional = false)
     private Estatus estatus;
-    @ManyToMany(mappedBy = "productos")
-    private List<UnidadResponsable> unidadesResponsables;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "producto")
-    private List<DetalleConsolidacion> detallesConsolidacion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "producto")
-    private List<DetalleRequisicion> detallesRequisicion;
 
     public Integer getIdProducto() {
         return idProducto;
@@ -86,11 +73,11 @@ public class Producto {
         this.caracteristicas = caracteristicas;
     }
 
-    public BigDecimal getPrecioDeReferencia() {
+    public Double getPrecioDeReferencia() {
         return precioDeReferencia;
     }
 
-    public void setPrecioDeReferencia(BigDecimal precioDeReferencia) {
+    public void setPrecioDeReferencia(Double precioDeReferencia) {
         this.precioDeReferencia = precioDeReferencia;
     }
 
@@ -134,35 +121,19 @@ public class Producto {
         this.estatus = estatus;
     }
 
-    public List<UnidadResponsable> getUnidadesResponsables() {
-        return unidadesResponsables;
-    }
-
-    public void setUnidadesResponsables(List<UnidadResponsable> unidadesResponsables) {
-        this.unidadesResponsables = unidadesResponsables;
-    }
-
-    public List<DetalleConsolidacion> getDetallesConsolidacion() {
-        return detallesConsolidacion;
-    }
-
-    public void setDetallesConsolidacion(List<DetalleConsolidacion> detallesConsolidacion) {
-        this.detallesConsolidacion = detallesConsolidacion;
-    }
-
-    public List<DetalleRequisicion> getDetallesRequisicion() {
-        return detallesRequisicion;
-    }
-
-    public void setDetallesRequisicion(List<DetalleRequisicion> detallesRequisicion) {
-        this.detallesRequisicion = detallesRequisicion;
-    }
-
     public Integer getIdTipoProducto() {
         return idTipoProducto;
     }
 
     public void setIdTipoProducto(Integer idTipoProducto) {
         this.idTipoProducto = idTipoProducto;
+    }
+
+    public Integer getIdEstatus() {
+        return idEstatus;
+    }
+
+    public void setIdEstatus(Integer idEstatus) {
+        this.idEstatus = idEstatus;
     }
 }

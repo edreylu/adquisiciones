@@ -212,36 +212,71 @@ background: rgba(240, 238, 238, 0.97);
     margin: .1 rem auto;
 }
 
+.pt-3-half {
+padding-top: 1.4rem;
+}
+
+
 #logoSep{
-width: 140px;
-height: 45px;
+width: 100px;
 }
 
 #titleApp {
   font-size: large;
 }
 
-@media (max-width: 1280px) {
-  #titleApp {
-  font-size: 14px;
-   }
-  #logoSep{
-  width: 140px;
-  height: 45px;
+@media (max-width: 575.98px) {
+#titleApp{
+font-size: 5px;
   }
+
+  #logoSep{
+    width: 70px;
+    }
+
 }
 
-@media (max-width: 800px) {
-  #titleApp{
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.98px) {
+#titleApp{
+font-size: 10px;
+  }
+
+  #logoSep{
+    width: 70px;
+    }
+}
+
+
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+#titleApp{
   font-size: 12px;
   }
 
   #logoSep{
     width: 80px;
-    height :45px;
     }
 }
 
-.pt-3-half {
-padding-top: 1.4rem;
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) {
+ #titleApp {
+    font-size: 13px;
+     }
+    #logoSep{
+    width: 90px;
+    }
 }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+ #titleApp {
+   font-size: 14px;
+    }
+   #logoSep{
+   width: 100px;
+   }
+ }

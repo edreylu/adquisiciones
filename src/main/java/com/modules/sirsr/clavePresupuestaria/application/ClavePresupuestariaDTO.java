@@ -24,7 +24,7 @@ public class ClavePresupuestariaDTO {
     private String municipio;
     private String ppi;
     private String claveCompleta;
-    private ObjetoDeGastoDTO objetoGasto;
+    private ObjetoDeGastoDTO objetoDeGasto;
     private UnidadResponsableDTO unidadResponsable;
 
     public Integer getIdClavePresup() {
@@ -183,12 +183,12 @@ public class ClavePresupuestariaDTO {
         this.ppi = ppi;
     }
 
-    public ObjetoDeGastoDTO getObjetoGasto() {
-        return objetoGasto;
+    public ObjetoDeGastoDTO getObjetoDeGasto() {
+        return objetoDeGasto;
     }
 
-    public void setObjetoGasto(ObjetoDeGastoDTO objetoGasto) {
-        this.objetoGasto = objetoGasto;
+    public void setObjetoDeGasto(ObjetoDeGastoDTO objetoDeGasto) {
+        this.objetoDeGasto = objetoDeGasto;
     }
 
     public String getClaveCompleta() {

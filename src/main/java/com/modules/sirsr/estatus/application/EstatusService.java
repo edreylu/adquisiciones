@@ -33,14 +33,19 @@ public class EstatusService {
     }
     
 
-    public List<EstatusDTO> findAll() throws IOException {
+    public List<EstatusDTO> findAll(){
         return estatusMapper.toEstatusDTOs(estatusRepository.findAll());
     }
 
-    public EstatusDTO findById(int id) throws IOException {
+    public EstatusDTO findById(int id){
         Optional<Estatus> estatusOptional = estatusRepository.findById(id);
         EstatusDTO estatusDTO = estatusMapper.toEstatusDTO(estatusOptional.get());
         return estatusDTO;
+    }
+
+    public Estatus estatusFindById(int id){
+        Optional<Estatus> estatusOptional = estatusRepository.findById(id);
+        return estatusOptional.get();
     }
 
     public Mensaje save(EstatusDTO estatusDTO, int id) {

@@ -14,14 +14,12 @@ and open the template in the editor.
     <body>
         <header th:replace="layout :: header"></header>
         
-        <div class="container mt-4" th:switch="${lista}">
-            <br/>
-       <h2 th:case="null">No hay Requisiciones</h2>
-        <div th:case="*">
+        <div class="container mt-4">
+
         <div class="card border-info">
             
-            <div class="card-header text-white">
-                <a id="boton_agregar" style="font-size:15px;color: #333333;" title="Agregar Requisicion" th:href="@{/usuario/solicitudes/requisiciones/agregar/{id}(id=${solicitud})}" class="fas fa-plus-circle"></a>
+            <div class="card-header text-center">
+                <lable class="tituloPrincipal">Asignar Requisiciones a Solicitud</lable>
             </div>
             <div class="card-body table-responsive-md">
                 <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" 
@@ -34,12 +32,27 @@ and open the template in the editor.
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <label class="form-label tituloTexto">REQUISICIONES PARA SOLICITUD NUMERO: </label><label class="form-label tituloTexto" th:text="${id}"></label>
-                            <br/>
-                            <br/>
-                            <hr/>
+                            <label class="form-label tituloTexto">SOLICITUD NUMERO: [[${id}]] </label>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="form-label tituloTexto">UNIDAD RESPONSABLE: </label>
+                            <label style="font-size: small; text-align: center;">[[${unidadResponsable}]]</label>
+                        </div>
+                    </div>
+                    <hr/>
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div align="center">
+                                <a th:href="@{/usuario/solicitudes/requisiciones/agregar/{id}(id=${solicitud})}" class="btn btn-primary" role="button" aria-pressed="true">Agregar Requisicion</a>
+                                <a th:href="@{/usuario/solicitudes}" class="btn btn-light active" role="button" aria-pressed="true">Regresar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <hr/>
                     <div class="row">
                         <div class="col-md-12">
                             <table class="table table-sm table-hover table-bordered table-wrapper-scroll-y my-custom-scrollbar" id="tablaRequisiciones">
@@ -59,7 +72,7 @@ and open the template in the editor.
                                     <td style="width:10%" th:text="${dato.idRequisicion}"></td>
                                     <td style="width:50%" th:text="${dato.clavePresupuestaria.claveCompleta}"></td>
                                     <td style="width:10%" th:text="${dato.montoSuficiencia}"></td>
-                                    <td style="width:10%" th:text="${dato.estatus.descripcion}"></td>
+                                    <td style="width:10%" th:attr="style='background:'+${dato.estatus.colorhex}" th:text="${dato.estatus.descripcion}"></td>
                                     <td style="width:10%">
                                         <a id="boton_requisiciones" style="font-size:15px;color: #333333;" th:href="@{/usuario/solicitudes/requisiciones/detalles/{id}(id=${dato.idRequisicion})}">
                                             <i title="Agregar Detalle Requisiciones" class="fa fa-shopping-bag"></i>
@@ -71,9 +84,10 @@ and open the template in the editor.
                                         </a>
                                     </td>
                                     <td style="width:5%">
-                                        <a id="boton_eliminar" style="font-size:15px;color: #333333;" th:href="@{#}">
+                                        <a id="boton_eliminar" th:onclick="'mensajeEliminarRequisicion(\''+ ${dato.idRequisicion} +'\',\''+ ${dato.idSolicitud} +'\')'" style="font-size:15px;color: #333333;" href="#">
                                             <i title="Eliminar Solicitud" class="fas fa-trash-alt"></i>
                                         </a>
+                                        <input type="hidden" value="requisiciones" id="nombreModulo">
                                     </td>
                                 </tr>
                                 </tbody>
@@ -83,10 +97,8 @@ and open the template in the editor.
                 </div>
                     <hr/>
                     <br/>
-                <a th:href="@{/usuario/solicitudes}">Regresar</a>
                 
             </div>
-        </div>
         </div>
         </div>
         

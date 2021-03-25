@@ -11,16 +11,8 @@ import com.modules.sirsr.montoAdjudicacion.domain.MontoAdjudicacion;
 import com.modules.sirsr.solicitud.domain.Solicitud;
 
 import java.math.BigDecimal;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import java.util.List;
+import javax.persistence.*;
 
 /**
  *
@@ -39,7 +31,7 @@ public class Requisicion{
     @Column(name = "ID_SOLICITUD", insertable = false, updatable = false)
     private Integer idSolicitud;
     @Column(name = "MONTO_SUFICIENCIA")
-    private BigDecimal montoSuficiencia;
+    private Double montoSuficiencia;
     @JoinColumn(name = "ID_CLAVE_PRESUP", referencedColumnName = "ID_CLAVE_PRESUP")
     @ManyToOne(optional = false)
     private ClavePresupuestaria clavePresupuestaria;
@@ -52,6 +44,8 @@ public class Requisicion{
     @JoinColumn(name = "ID_SOLICITUD", referencedColumnName = "ID_SOLICITUD")
     @ManyToOne(optional = false)
     private Solicitud solicitud;
+    @OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL,mappedBy="requisicion")
+    private List<DetalleRequisicion> detallesRequisicion;
 
     public Integer getIdRequisicion() {
         return idRequisicion;
@@ -61,11 +55,11 @@ public class Requisicion{
         this.idRequisicion = idRequisicion;
     }
 
-    public BigDecimal getMontoSuficiencia() {
+    public Double getMontoSuficiencia() {
         return montoSuficiencia;
     }
 
-    public void setMontoSuficiencia(BigDecimal montoSuficiencia) {
+    public void setMontoSuficiencia(Double montoSuficiencia) {
         this.montoSuficiencia = montoSuficiencia;
     }
 
@@ -109,17 +103,11 @@ public class Requisicion{
         this.idSolicitud = idSolicitud;
     }
 
-    @Override
-    public String toString() {
-        return "Requisicion{" +
-                "idRequisicion=" + idRequisicion +
-                ", idSolicitud=" + idSolicitud +
-                ", montoSuficiencia=" + montoSuficiencia +
-                ", clavePresupuestaria=" + clavePresupuestaria +
-                ", estatus=" + estatus +
-                ", montoAdjudicacion=" + montoAdjudicacion +
-                ", solicitud=" + solicitud +
-                ", estatus clave=" + estatus.getClave()+
-                '}';
+    public List<DetalleRequisicion> getDetallesRequisicion() {
+        return detallesRequisicion;
+    }
+
+    public void setDetallesRequisicion(List<DetalleRequisicion> detallesRequisicion) {
+        this.detallesRequisicion = detallesRequisicion;
     }
 }

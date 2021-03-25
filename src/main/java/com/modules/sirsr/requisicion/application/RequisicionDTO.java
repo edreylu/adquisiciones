@@ -19,7 +19,7 @@ import java.math.BigDecimal;
 public class RequisicionDTO {
     private int idRequisicion;
     private int idSolicitud;
-    private BigDecimal montoSuficiencia;
+    private Double montoSuficiencia;
     private ClavePresupuestariaDTO clavePresupuestaria;
     private EstatusDTO estatus;
     private MontoAdjudicacionDTO montoAdjudicacion;
@@ -33,11 +33,11 @@ public class RequisicionDTO {
         this.idRequisicion = idRequisicion;
     }
 
-    public BigDecimal getMontoSuficiencia() {
+    public Double getMontoSuficiencia() {
         return montoSuficiencia;
     }
 
-    public void setMontoSuficiencia(BigDecimal montoSuficiencia) {
+    public void setMontoSuficiencia(Double montoSuficiencia) {
         this.montoSuficiencia = montoSuficiencia;
     }
 

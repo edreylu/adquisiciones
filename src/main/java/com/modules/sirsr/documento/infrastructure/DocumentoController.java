@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.modules.sirsr.documento.infrastructure;
+import com.modules.sirsr.clavePresupuestaria.application.ClavePresupuestariaDTO;
 import com.modules.sirsr.documento.application.DocumentoDTO;
 import com.modules.sirsr.documento.application.DocumentoService;
 import com.modules.sirsr.solicitud.application.SolicitudDTO;
@@ -11,6 +12,7 @@ import com.modules.sirsr.solicitud.application.SolicitudService;
 import com.modules.sirsr.tipoDocumento.application.TipoDocumentoDTO;
 import com.modules.sirsr.tipoDocumento.application.TipoDocumentoService;
 import com.modules.sirsr.config.Mensaje;
+
 import java.util.List;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,7 @@ public class DocumentoController {
     private final SolicitudService solicitudService;
     private final DocumentoService documentoService;
     private final TipoDocumentoService tipoDocumentoService;
+    private SolicitudDTO solicitudDTO;
     private List<DocumentoDTO> documentos;
     private List<TipoDocumentoDTO> tiposDocumento;
     private final Mensaje msg = new Mensaje();
@@ -45,14 +48,12 @@ public class DocumentoController {
 
     @GetMapping("usuario/solicitudes/documentos/{id}")
     public String editarDocumentos(@PathVariable("id") int id, Model model) {
-        SolicitudDTO solicitudDTO = solicitudService.findById(id);
+        solicitudDTO = solicitudService.findById(id);
         documentos = documentoService.findByIdSolicitud(id);
-        tiposDocumento = tipoDocumentoService.findAll();
         String validUrl = "redirect:/usuario/requisiciones";
         if(Objects.nonNull(solicitudDTO)){
             model.addAttribute("solicitud", solicitudDTO);
             model.addAttribute("documentos", documentos);
-            model.addAttribute("tiposDocumento", tiposDocumento);
             validUrl = "usuario/solicitudes/documentos/principal";
         }
         return validUrl;
@@ -71,6 +72,17 @@ public class DocumentoController {
     public String eliminarDocumento(@PathVariable("id") int id,@PathVariable("idReq") int idReq, RedirectAttributes redirectAttrs) {
         msg.crearMensaje(documentoService.deleteById(id), redirectAttrs);
         return "redirect:/usuario/solicitudes/documentos/"+idReq;
+    }
+
+    @GetMapping("usuario/solicitudes/documentos/addDocumento/{id}")
+    public String documento(@PathVariable("id") int id, Model model) {
+        solicitudDTO = solicitudService.findById(id);
+        List<Integer> tiposDocumentosNot = documentoService.getTiposDocumentosNot.apply(id);
+        tiposDocumento = tipoDocumentoService.findAllByTiposDocumentoNot(tiposDocumentosNot);
+        model.addAttribute("tiposDocumento", tiposDocumento);
+        model.addAttribute("solicitud", solicitudDTO);
+        model.addAttribute("documento", new DocumentoDTO());
+        return "usuario/solicitudes/documentos/principal :: modalSubirDocumento";
     }
 
 }

@@ -85,3 +85,49 @@ function searchPersonal() {
          }
          xhr.send(null);
 }
+
+function updateObjetoGasto() {
+let id = document.getElementById("clavePresupuestaria").value;
+console.log("../../requisiciones/updateObjetoGasto/" + id );
+         var xhr = getXhr();
+         xhr.open("GET", "../../requisiciones/updateObjetoGasto/" + id , true);
+         xhr.onreadystatechange = () => {
+             if (xhr.readyState === 4 && xhr.status === 200) {
+                 let data = xhr.responseText;
+                 console.log(data);
+                 $("#idObjetoGasto").replaceWith(data);
+             }
+         }
+         xhr.send(null);
+}
+
+
+function updateProducto() {
+let id = document.getElementById("productos").value;
+console.log("../../detalles/updateProducto/" + id );
+         var xhr = getXhr();
+         xhr.open("GET", "../../detalles/updateProducto/" + id , true);
+         xhr.onreadystatechange = () => {
+             if (xhr.readyState === 4 && xhr.status === 200) {
+                 let data = xhr.responseText;
+                 console.log(data);
+                 $("#idProducto").replaceWith(data);
+             }
+         }
+         xhr.send(null);
+}
+
+function documento(id) {
+console.log("../documentos/addDocumento/" + id );
+         var xhr = getXhr();
+         xhr.open("GET", "../documentos/addDocumento/" + id , true);
+         xhr.onreadystatechange = () => {
+             if (xhr.readyState === 4 && xhr.status === 200) {
+                 let data = xhr.responseText;
+                 console.log(data);
+                 document.getElementById("documentoModalHolder").innerHTML = data;
+                 $("#subirDocumentoModal").modal();
+             }
+         }
+         xhr.send(null);
+}

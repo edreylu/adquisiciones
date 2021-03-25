@@ -42,9 +42,9 @@ and open the template in the editor.
                         </div>
                         <div class="col-md-6">
                             <label class="form-label tituloTexto" for="prioridad">Pioridad</label>
-                            <select name="prioridad.idPrioridad" th:value="${solicitud.prioridad.idPrioridad}" id="prioridad" class="form-control">
+                            <select name="prioridad.idPrioridad" th:field="${solicitud.prioridad.idPrioridad}" id="prioridad" class="form-control">
                                 <option value="1" >ORDINARIA</option>
-                                <option value="2">URGENTE</option>
+                                <option value="2">EXTRAORDINARIA</option>
                             </select>
                             <div class="invalid-feedback">Prioridad es requerido</div>
                         </div>

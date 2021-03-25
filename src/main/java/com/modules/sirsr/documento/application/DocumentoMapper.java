@@ -2,14 +2,11 @@ package com.modules.sirsr.documento.application;
 
 import com.modules.sirsr.documento.domain.Documento;
 import com.modules.sirsr.solicitud.application.SolicitudMapper;
-import com.modules.sirsr.solicitud.domain.Solicitud;
 import com.modules.sirsr.tipoDocumento.application.TipoDocumentoMapper;
-import com.modules.sirsr.tipoDocumento.domain.TipoDocumento;
 import java.io.IOException;
 import java.time.Instant;
 
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -17,39 +14,45 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-import org.springframework.web.multipart.MultipartFile;
 
 @Component
 public class DocumentoMapper {
 
-    ModelMapper modelMapper = new ModelMapper();
-
-
+    private final SolicitudMapper solicitudMapper = new SolicitudMapper();
+    private final TipoDocumentoMapper tipoDocumentoMapper = new TipoDocumentoMapper();
 
     public DocumentoDTO toDocumentoDTO(Documento documento){
-        SolicitudMapper solicitudMapper = new SolicitudMapper();
-        TipoDocumentoMapper tipoDocumentoMapper = new TipoDocumentoMapper();
+
         DocumentoDTO documentoDTO = new DocumentoDTO();
         documentoDTO.setIdDocumento(documento.getIdDocumento());
         documentoDTO.setDocumento(documento.getDocumento());
         documentoDTO.setSolicitud(solicitudMapper.toSolicitudDTO(documento.getSolicitud()));
         documentoDTO.setTipoDocumento(tipoDocumentoMapper.toTipoDocumentoDTO(documento.getTipoDocumento()));
         documentoDTO.setFechaActualizacion(documento.getFechaActualizacion());
+        documentoDTO.setMimeType(documento.getMimeType());
+        documentoDTO.setExtension(documento.getExtension());
         return documentoDTO;
     }
 
-    public Documento toDocumento(MultipartFile multipartFile, Solicitud solicitud, TipoDocumento tipoDocumento) throws IOException {
+    public Documento toDocumento(DocumentoDTO documentoDTO){
         
-            if (Objects.isNull(multipartFile)) {
+            if (Objects.isNull(documentoDTO)) {
                 return null;
             }
             
             Documento documento = new Documento();
-            documento.setDocumento(multipartFile.getBytes());
+            documento.setIdDocumento(documentoDTO.getIdDocumento());
+        try {
+            documento.setDocumento(documentoDTO.getFile().getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
             documento.setFechaActualizacion(Date.from(Instant.now()));
-            documento.setSolicitud(solicitud);
-            documento.setTipoDocumento(tipoDocumento);
-            
+            documento.setSolicitud(solicitudMapper.toSolicitud(documentoDTO.getSolicitud()));
+            documento.setTipoDocumento(tipoDocumentoMapper.toTipoDocumento(documentoDTO.getTipoDocumento()));
+            documento.setMimeType(documentoDTO.getFile().getContentType());
+            documento.setExtension(FilenameUtils.getExtension(documentoDTO.getFile().getOriginalFilename()));
+        System.out.println(documento.toString());
             return documento;
         
     }
@@ -61,6 +64,17 @@ public class DocumentoMapper {
         List<DocumentoDTO> list = new ArrayList<>(documentos.size());
         for (Documento documento : documentos) {
             list.add(toDocumentoDTO(documento));
+        }
+        return list;
+    }
+
+    public List<Documento> toDocumentos(List<DocumentoDTO> documentoDTOs){
+        if (Objects.isNull(documentoDTOs)) {
+            return null;
+        }
+        List<Documento> list = new ArrayList<>(documentoDTOs.size());
+        for (DocumentoDTO documento : documentoDTOs) {
+            list.add(toDocumento(documento));
         }
         return list;
     }

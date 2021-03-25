@@ -11,6 +11,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script src="https://kit.fontawesome.com/cff6dddb5f.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css" integrity="sha512-Fppbdpv9QhevzDE+UHmdxL4HoW8HantO+rC8oQB2hCofV+dWV2hePnP5SgiWR1Y1vbJeYONZfzQc5iII6sID2Q==" crossorigin="anonymous" />
         <link rel="stylesheet" th:href="@{/css/dataTables.bootstrap4.min.css}">
         <link rel="stylesheet" th:href="@{/css/estilos.css}">
         <link rel="stylesheet" th:href="@{/css/component-chosen.css}">
@@ -21,7 +24,6 @@
         <script th:src="@{/js/alerta.js}"></script>
         <script th:src="@{/js/procesos.js}"></script>
 
-
     </head>
     <body>
         <header th:fragment="header">
@@ -30,10 +32,10 @@
                     <img th:src="@{/img/logosep.png}" id="logoSep" alt="">
                 </a>
                     <strong>SIRSR     </strong>
+                <a class="navbar-brand" sec:authorize="isAuthenticated()" ></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand" sec:authorize="isAuthenticated()" ></a>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent" sec:authorize="isAuthenticated()">
                     <ul class="navbar-nav">
                         <div sec:authorize="isAuthenticated()">
@@ -97,10 +99,29 @@
                             <div class="dropdown-menu"  aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" th:href="@{/admonadq/proveedores}" >
                                     <i class='fa fa-truck'> </i>  PROVEEDORES </a>
-                                    
+
+                                <a class="dropdown-item" th:href="@{/admonadq/productos}" >
+                                    <i class='fa fa-product-hunt'> </i>  PRODUCTOS </a>
                             </div>
                         </li>
                         </div>
+
+                        <div sec:authorize="hasRole('ROLE_ADMONADQ')">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle"  href="#" data-toggle="dropdown"  aria-haspopup="true"  aria-expanded="false">
+                                    <i class='fa fa-book'> </i>  CONFIGURACIÓN </a>
+
+                                <div class="dropdown-menu"  aria-labelledby="navbarDropdownMenuLink">
+
+                                    <a class="dropdown-item" th:href="@{/admonadq/foliosrequisiciones}" >
+                                        <i class="fas fa-sort-numeric-down"></i> FOLIOS REQUISICIONES</a>
+                                    <a class="dropdown-item" th:href="@{/admonadq/diaspermitidos}" >
+                                        <i class="far fa-calendar-alt"></i> DÍAS PERMITIDOS</a>
+                                </div>
+
+                            </li>
+                                </div>
+
                     </ul>
 
                     <ul class="navbar-nav ml-auto nav-flex-icons">
@@ -154,7 +175,7 @@
                                 <div class="invalid-feedback">Proporciona un Correo valido</div>
                             </div>
                         </div>
-                            
+
                         <div class="row">
                             <div class="col-md-6"><b class="tituloTexto">Telefono: </b>
                                 <input type="text" name="telefono" class="form-control" th:field="${usuario.telefono}" required/>
@@ -164,7 +185,7 @@
                                 <input type="text" name="telefono2" class="form-control" th:field="${usuario.telefono2}" required/>
                             </div>
                         </div>
-                            
+
                         <br/>
                         <br/>
                         <input type="submit" class="btn btn-success" value="Actualizar">
@@ -173,9 +194,10 @@
                 </div>
             </div>
         </div>
-            
+
         </div>
         <footer th:fragment="footer">
+
         </footer>
     </body>
 </html>

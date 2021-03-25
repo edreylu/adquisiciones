@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout :: head">
+        
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <header th:replace="layout :: header"></header>
+       <div class="container mt-2 col-lg-8">
+           <div class="card">
+                <div class="card-header text-center">
+                <lable class="tituloPrincipal">Editar Producto</lable>
+                </div>
+                <div class="card-body">
+
+                    <form class="needs-validation" novalidate method="post" action="#"
+                          th:action="@{/usuario/solicitudes/requisiciones/detalles/update/{id}/{idRequisicion}(id=${detalle.idDetalleRequisicion}, idRequisicion=${detalle.idRequisicion})}"
+                          th:object="${detalle}">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="tituloTexto">Producto</label>
+                                    <select id="productos" th:onchange="updateProducto()" name="producto.idProducto" class="form-control" th:field="${detalle.producto.idProducto}" required>
+                                        <option value="">Selecciona...</option>
+                                        <option th:each="producto : ${productos}"
+                                                th:value="${producto.idProducto}"
+                                                th:utext="${producto.caracteristicas}"/>
+                                    </select>
+                                    <div class="invalid-feedback">Producto es requerido</div>
+                                </div>
+                            </div>
+                            </br>
+                            <div class="row" id="idProducto">
+                                <div class="col-md-6">
+                                    <label class="tituloTexto">Precio de referencia: </label>
+                                    <h6 th:if="${producto!=null}" th:text="${producto.precioDeReferencia}"></h6>
+                                    <input th:if="${producto!=null}" hidden th:value="${producto.precioDeReferencia}" name="producto.precioDeReferencia">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="tituloTexto">Unidad de Medida: </label>
+                                    <h6 th:if="${producto!=null}" th:text="${producto.unidadMedida.nombre}"></h6>
+                                    <input th:if="${producto!=null}" hidden th:value="${producto.unidadMedida.nombre}" name="producto.unidadMedida.nombre">
+                                </div>
+                                </br>
+                            </div>
+                            </br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="form-label tituloTexto" for="cantidadSolicitada">Cantidad Solicitada:</label>
+                                    <input type="number" class="form-control" name="cantidadSolicitada" id="cantidadSolicitada" th:field="${detalle.cantidadSolicitada}" required />
+                                    <div class="invalid-feedback">Cantidad solicitada es requerido</div>
+                                </div>
+                            </div>
+                            <hr/>
+                            <br/>
+                            <br/>
+                            <div class="valid-feedback">
+                                Todo bien.
+                            </div>
+                            <div class="invalid-feedback">
+                            </div>
+                            <br/>
+                            <br/>
+                            <input type="submit" class="btn btn-success" value="Actualizar">
+                            <a th:href="@{/usuario/solicitudes/requisiciones/detalles/{id}(id=${detalle.idRequisicion})}">Regresar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+</html>

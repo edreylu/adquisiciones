@@ -9,6 +9,8 @@ import com.modules.sirsr.detalleCotizaRequis.domain.DetalleCotizaRequis;
 import com.modules.sirsr.marca.domain.Marca;
 import com.modules.sirsr.producto.domain.Producto;
 import com.modules.sirsr.requisicion.domain.Requisicion;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.math.BigDecimal;
 import javax.persistence.Basic;
@@ -48,7 +50,8 @@ public class DetalleRequisicion{
     private Integer cantidadAutorizada;
     
     @JoinColumn(name = "ID_REQUISICION", referencedColumnName = "ID_REQUISICION")
-    @ManyToOne(optional = false)
+    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Requisicion requisicion;
     @JoinColumn(name = "ID_MARCA", referencedColumnName = "ID_MARCA")
     @ManyToOne

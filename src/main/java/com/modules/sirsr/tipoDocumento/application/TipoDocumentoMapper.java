@@ -1,5 +1,6 @@
 package com.modules.sirsr.tipoDocumento.application;
 
+import com.modules.sirsr.estatus.application.EstatusMapper;
 import com.modules.sirsr.tipoDocumento.domain.TipoDocumento;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -10,11 +11,22 @@ import java.util.Objects;
 @Component
 public class TipoDocumentoMapper {
 
-    ModelMapper modelMapper = new ModelMapper();
+    private final EstatusMapper estatusMapper = new EstatusMapper();
 
     public TipoDocumentoDTO toTipoDocumentoDTO(TipoDocumento tipoDocumento){
-        TipoDocumentoDTO tipoDocumentoDTO = modelMapper.map(tipoDocumento, TipoDocumentoDTO.class);
+        TipoDocumentoDTO tipoDocumentoDTO = new TipoDocumentoDTO();
+        tipoDocumentoDTO.setIdTipoDocumento(tipoDocumento.getIdTipoDocumento());
+        tipoDocumentoDTO.setDescripcion(tipoDocumento.getDescripcion());
+        tipoDocumentoDTO.setEstatus(estatusMapper.toEstatusDTO(tipoDocumento.getEstatus()));
         return tipoDocumentoDTO;
+    }
+
+    public TipoDocumento toTipoDocumento(TipoDocumentoDTO tipoDocumentoDTO){
+        TipoDocumento tipoDocumento = new TipoDocumento();
+        tipoDocumento.setIdTipoDocumento(tipoDocumentoDTO.getIdTipoDocumento());
+        tipoDocumento.setDescripcion(tipoDocumentoDTO.getDescripcion());
+        tipoDocumento.setEstatus(estatusMapper.toEstatus(tipoDocumentoDTO.getEstatus()));
+        return tipoDocumento;
     }
 
     public List<TipoDocumentoDTO> toTipoDocumentoDTOs(List<TipoDocumento> tipoDocumentos){

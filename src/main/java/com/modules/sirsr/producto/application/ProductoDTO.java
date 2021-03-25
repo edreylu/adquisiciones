@@ -6,10 +6,8 @@
 package com.modules.sirsr.producto.application;
 
 import com.modules.sirsr.estatus.application.EstatusDTO;
-import com.modules.sirsr.subTipoProducto.application.SubTipoProductoDTO;
 import com.modules.sirsr.tipoProducto.application.TipoProductoDTO;
 import com.modules.sirsr.unidadMedida.application.UnidadMedidaDTO;
-import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -17,20 +15,20 @@ import java.util.Date;
  * @author Edward Reyes
  */
 public class ProductoDTO {
-    private int idProducto;
+    private Integer idProducto;
     private String caracteristicas;
-    private BigDecimal precioDeReferencia;
+    private Double precioDeReferencia;
     private Date fechaActualizacion;
     private int permisoUr;
     private UnidadMedidaDTO unidadMedida;
     private TipoProductoDTO tipoProducto;
     private EstatusDTO estatus;
 
-    public int getIdProducto() {
+    public Integer getIdProducto() {
         return idProducto;
     }
 
-    public void setIdProducto(int idProducto) {
+    public void setIdProducto(Integer idProducto) {
         this.idProducto = idProducto;
     }
 
@@ -42,11 +40,11 @@ public class ProductoDTO {
         this.caracteristicas = caracteristicas;
     }
 
-    public BigDecimal getPrecioDeReferencia() {
+    public Double getPrecioDeReferencia() {
         return precioDeReferencia;
     }
 
-    public void setPrecioDeReferencia(BigDecimal precioDeReferencia) {
+    public void setPrecioDeReferencia(Double precioDeReferencia) {
         this.precioDeReferencia = precioDeReferencia;
     }
 
@@ -88,5 +86,19 @@ public class ProductoDTO {
 
     public void setEstatus(EstatusDTO estatus) {
         this.estatus = estatus;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductoDTO{" +
+                "idProducto=" + idProducto +
+                ", caracteristicas='" + caracteristicas + '\'' +
+                ", precioDeReferencia=" + precioDeReferencia +
+                ", fechaActualizacion=" + fechaActualizacion +
+                ", permisoUr=" + permisoUr +
+                ", unidadMedida=" + unidadMedida +
+                ", tipoProducto=" + tipoProducto +
+                ", estatus=" + estatus +
+                '}';
     }
 }

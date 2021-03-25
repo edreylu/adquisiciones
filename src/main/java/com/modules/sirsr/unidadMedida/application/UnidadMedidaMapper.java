@@ -1,7 +1,7 @@
 package com.modules.sirsr.unidadMedida.application;
 
+import com.modules.sirsr.estatus.application.EstatusMapper;
 import com.modules.sirsr.unidadMedida.domain.UnidadMedida;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -10,14 +10,24 @@ import java.util.Objects;
 
 @Component
 public class UnidadMedidaMapper {
-    private final ModelMapper modelMapper = new ModelMapper();
 
+    private final EstatusMapper estatusMapper = new EstatusMapper();
     public UnidadMedida toUnidadMedida(UnidadMedidaDTO unidadMedidaDTO){
-        UnidadMedida unidadMedida = modelMapper.map(unidadMedidaDTO, UnidadMedida.class);
+        UnidadMedida unidadMedida = new UnidadMedida();
+        unidadMedida.setIdUnidadMedida(unidadMedidaDTO.getIdUnidadMedida());
+        unidadMedida.setClaveUnidad(unidadMedidaDTO.getClaveUnidad());
+        unidadMedida.setDescripcion(unidadMedidaDTO.getDescripcion());
+        unidadMedida.setNombre(unidadMedidaDTO.getNombre());
+        unidadMedida.setEstatus(estatusMapper.toEstatus(unidadMedidaDTO.getEstatus()));
         return unidadMedida;
     }
     public UnidadMedidaDTO toUnidadMedidaDTO(UnidadMedida unidadMedida){
-        UnidadMedidaDTO unidadMedidaDTO = modelMapper.map(unidadMedida, UnidadMedidaDTO.class);
+        UnidadMedidaDTO unidadMedidaDTO = new UnidadMedidaDTO();
+        unidadMedidaDTO.setIdUnidadMedida(unidadMedida.getIdUnidadMedida());
+        unidadMedidaDTO.setClaveUnidad(unidadMedida.getClaveUnidad());
+        unidadMedidaDTO.setDescripcion(unidadMedida.getDescripcion());
+        unidadMedidaDTO.setNombre(unidadMedida.getNombre());
+        unidadMedidaDTO.setEstatus(estatusMapper.toEstatusDTO(unidadMedida.getEstatus()));
         return unidadMedidaDTO;
     }
     public List<UnidadMedidaDTO> toUnidadMedidaDTOs(List<UnidadMedida> unidadMedidas){

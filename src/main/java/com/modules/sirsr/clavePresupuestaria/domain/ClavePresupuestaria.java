@@ -73,14 +73,14 @@ public class ClavePresupuestaria{
     private String ppi;
     @Column(name = "CLAVE_UR", updatable = false, insertable = false)
     private String claveUr;
+    @Column(name = "ID_ESTATUS", updatable = false, insertable = false)
+    private Integer idEstatus;
     @JoinColumn(name = "OBJETO_GASTO", referencedColumnName = "OBJETO_GASTO")
     @ManyToOne(optional = false)
     private ObjetoDeGasto objetoDeGasto;
     @JoinColumn(name = "CLAVE_UR", referencedColumnName = "CLAVE_UR")
     @ManyToOne(optional = false)
     private UnidadResponsable unidadResponsable;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "clavePresupuestaria")
-    private List<Requisicion> requisiciones;
     @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
     @ManyToOne(optional = false)
     private Estatus estatus;
@@ -269,19 +269,19 @@ public class ClavePresupuestaria{
         this.unidadResponsable = unidadResponsable;
     }
 
-    public List<Requisicion> getRequisiciones() {
-        return requisiciones;
-    }
-
-    public void setRequisiciones(List<Requisicion> requisiciones) {
-        this.requisiciones = requisiciones;
-    }
-
     public Estatus getEstatus() {
         return estatus;
     }
 
     public void setEstatus(Estatus estatus) {
         this.estatus = estatus;
+    }
+
+    public Integer getIdEstatus() {
+        return idEstatus;
+    }
+
+    public void setIdEstatus(Integer idEstatus) {
+        this.idEstatus = idEstatus;
     }
 }

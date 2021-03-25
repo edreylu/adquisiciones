@@ -17,6 +17,24 @@
     }, false);
 })();
 
+$(() => {
+  $('[data-toggle="tooltip"]').tooltip();
+
+  $('.date').datepicker({
+  			autoclose : true
+  		});
+
+  		$('.close-button').unbind();
+
+  		$('.close-button').click(function() {
+  			if ($('.datepicker').is(":visible")) {
+  				$('.date').datepicker('hide');
+  			} else {
+  				$('.date').datepicker('show');
+  			}
+  		});
+})
+
 //$(document).ready
 $(() => {
     $('.chosen-select').chosen({
@@ -45,6 +63,14 @@ $('#tablaDatos').DataTable({
                 info: true,
                 ordering: true
             });
+            $('#tablaDetallesRequisicion').DataTable({
+                            scrollY: "230px",
+                            scrollCollapse: false,
+                            paging: true,
+                            searching: true,
+                            info: true,
+                            ordering: true
+                        });
             $('#tablaSolicitudes').DataTable({
                             scrollY: "230px",
                             scrollCollapse: false,
@@ -88,6 +114,17 @@ $('#tablaDocumentos').DataTable({
                                      info: false,
                                      ordering: false
             });
+
+            $('#tablaAnioRequisicion').DataTable({
+                scrollY: "230px",
+                scrollCollapse: false,
+                paging: true,
+                searching: true,
+                info: true,
+                ordering: true,
+                order: [[ 0, "desc" ]]
+            });
+
 });
 
 

@@ -53,8 +53,6 @@ public class PartidaGastoGenerica{
     @JoinColumn(name = "CLAVE_CONCEPTO", referencedColumnName = "CLAVE_CONCEPTO")
     @ManyToOne(optional = false)
     private Concepto concepto;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "partidaGastoGenerica")
-    private List<ObjetoDeGasto> objetosDegasto;
 
     public Integer getClaveGenerica() {
         return claveGenerica;
@@ -110,14 +108,6 @@ public class PartidaGastoGenerica{
 
     public void setConcepto(Concepto concepto) {
         this.concepto = concepto;
-    }
-
-    public List<ObjetoDeGasto> getObjetosDegasto() {
-        return objetosDegasto;
-    }
-
-    public void setObjetosDegasto(List<ObjetoDeGasto> objetosDegasto) {
-        this.objetosDegasto = objetosDegasto;
     }
 
     

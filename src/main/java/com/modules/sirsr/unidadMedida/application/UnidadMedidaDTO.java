@@ -1,18 +1,19 @@
 package com.modules.sirsr.unidadMedida.application;
 
-import javax.persistence.Column;
+import com.modules.sirsr.estatus.application.EstatusDTO;
 
 public class UnidadMedidaDTO {
-    private int idUnidadMedida;
+    private Integer idUnidadMedida;
     private String claveUnidad;
     private String nombre;
     private String descripcion;
+    private EstatusDTO estatus;
 
-    public int getIdUnidadMedida() {
+    public Integer getIdUnidadMedida() {
         return idUnidadMedida;
     }
 
-    public void setIdUnidadMedida(int idUnidadMedida) {
+    public void setIdUnidadMedida(Integer idUnidadMedida) {
         this.idUnidadMedida = idUnidadMedida;
     }
 
@@ -38,5 +39,13 @@ public class UnidadMedidaDTO {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public EstatusDTO getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(EstatusDTO estatus) {
+        this.estatus = estatus;
     }
 }

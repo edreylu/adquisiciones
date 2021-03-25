@@ -12,10 +12,11 @@ and open the template in the editor.
     </head>
     <body>
         <header th:replace="layout :: header"></header>
-       <div class="container mt-2 col-lg-8">
-           <div class="card">
+       <div class="container mt-4">
+           <div class="card border-info">
+
                 <div class="card-header text-center">
-                <lable class="tituloPrincipal">Asignar Detalles a Requisicion</lable>
+                <lable class="tituloPrincipal">Asignar Productos a Requisicion</lable>
                 </div>
                 <div class="card-body">
                     <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
@@ -28,16 +29,28 @@ and open the template in the editor.
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label class="form-label tituloTexto">DETALLES PARA REQUISICION: [[${requisicion.clavePresupuestaria.claveCompleta}]]</label>
+                                    <label class="form-label tituloTexto">PRODUCTOS PARA REQUISICION: </label>
+                                    <label style="font-size: small; text-align: center;">[[${requisicion.clavePresupuestaria.claveCompleta}]]</label>
+                                    <br/>
+                                    <label class="form-label tituloTexto">UNIDAD RESPONSABLE: </label>
+                                    <label style="font-size: small; text-align: center;">[[${unidadResponsable}]]</label>
+                                    <br/>
+                                    <label class="form-label tituloTexto">MONTO SUFICIENCIA: </label>
+                                    <label style="font-size: small; text-align: center;">$[[${requisicion.montoSuficiencia}]]</label>
+                                    <br/>
+                                    <label class="form-label tituloTexto">MONTO DE REFERENCIA TOTAL: </label>
+                                    <label style="font-size: small; text-align: center;">$[[${montoActual}]]</label>
                                 </div>
                             </div>
                             <hr/>
                             <br/>
                             <div class="row">
                                 <div class="col-md-12">
-                                        <center>
-                                        <button id="subirDetalle" class="btn btn-primary" type="button" data-toggle="modal" data-target="#subirDetalleModal"> <i class="fa fa-file" aria-hidden="true"></i> Agregar Producto</button>
-                                        </center>
+                                        <div align="center">
+                                        <a id="subirDetalle" th:href="@{/usuario/solicitudes/requisiciones/detalles/agregar/{id}(id=${requisicion.idRequisicion})}" class="btn btn-primary" role="button" aria-pressed="true"> <i class="fa fa-file" aria-hidden="true"></i> Agregar Producto</a>
+                                            <a th:href="@{/usuario/solicitudes/requisiciones/detalles/sugerir/{id}(id=${requisicion.idRequisicion})}" class="btn btn-warning" role="button" aria-pressed="true">Sugerir Producto</a>
+                                            <a th:href="@{/usuario/solicitudes/requisiciones/{id}(id=${requisicion.solicitud.idSolicitud})}" class="btn btn-light active" role="button" aria-pressed="true">Regresar</a>
+                                        </div>
                                     </div>
                             </div>
                             <br/>
@@ -47,18 +60,26 @@ and open the template in the editor.
                                     <table class="table table-sm table-hover table-bordered table-wrapper-scroll-y my-custom-scrollbar" id="tablaDatos">
                                         <thead>
                                         <tr>
-                                            <th style="width:20%">NO</th>
-                                            <th style="width:20%">CANTIDAD SOLICITADA</th>
-                                            <th style="width:40%">PRECIO DE REFERENCIA</th>
-                                            <th style="width:20%"> </th>
+                                            <th style="width:10%">NO</th>
+                                            <th style="width:10%">CANTIDAD SOLICITADA</th>
+                                            <th style="width:50%">CARACTERISTICAS</th>
+                                            <th style="width:10%">PRECIO DE REFERENCIA</th>
+                                            <th style="width:10%"> </th>
+                                            <th style="width:10%"> </th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr th:each="dato: ${lista}">
-                                            <td style="width:20%" th:text="${dato.idDetalleRequisicion}"></td>
-                                            <td style="width:20%" th:text="${dato.cantidadSolicitada}"></td>
-                                            <td style="width:40%" th:text="${dato.producto.precioDeReferencia}"></td>
-                                            <td style="width:20%">
+                                            <td style="width:10%" th:text="${dato.idDetalleRequisicion}"></td>
+                                            <td style="width:10%" th:text="${dato.cantidadSolicitada}"></td>
+                                            <td style="width:50%" th:text="${dato.producto.caracteristicas}"></td>
+                                            <td style="width:10%" th:text="${dato.producto.precioDeReferencia}"></td>
+                                            <td style="width:10%">
+                                                <a id="boton_editar" href="#" style="font-size:15px;color: #333333;" th:href="@{/usuario/solicitudes/requisiciones/detalles/editar/{id}(id=${dato.idDetalleRequisicion})}">
+                                                    <i title="Editar Solicitud" class="fas fa-edit"></i>
+                                                </a>
+                                            </td>
+                                            <td style="width:10%">
                                                 <a id="boton_eliminar" href="#" style="font-size:15px;color: #333333;" th:onclick="'mensajeEliminarDetalle(\''+ ${dato.idDetalleRequisicion} +'\',\''+ ${requisicion.idRequisicion} +'\')'">
                                                     <i title="Eliminar Detalle" class="fas fa-trash-alt"></i>
                                                 </a>
@@ -69,7 +90,6 @@ and open the template in the editor.
                                     </table>
                                 </div>
                             </div>
-                            <a th:href="@{/usuario/solicitudes/requisiciones/{id}(id=${requisicion.solicitud.idSolicitud})}">Regresar</a>
                 </div>
             </div>
         </div>

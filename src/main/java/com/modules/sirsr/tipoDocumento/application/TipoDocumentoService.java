@@ -5,6 +5,10 @@
  */
 package com.modules.sirsr.tipoDocumento.application;
 
+import com.modules.sirsr.documento.application.DocumentoDTO;
+import com.modules.sirsr.documento.application.DocumentoService;
+import com.modules.sirsr.solicitud.application.SolicitudDTO;
+import com.modules.sirsr.solicitud.application.SolicitudService;
 import com.modules.sirsr.tipoDocumento.domain.TipoDocumento;
 import com.modules.sirsr.tipoDocumento.domain.TipoDocumentoRepository;
 import com.modules.sirsr.config.Mensaje;
@@ -13,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -34,6 +39,10 @@ public class TipoDocumentoService {
 
     public List<TipoDocumentoDTO> findAll() {
         return tipoDocumentoMapper.toTipoDocumentoDTOs(tipoDocumentoRepository.findAll());
+    }
+
+    public List<TipoDocumentoDTO> findAllByTiposDocumentoNot(List<Integer> documentoDTOs) {
+        return tipoDocumentoMapper.toTipoDocumentoDTOs(tipoDocumentoRepository.findByIdTipoDocumentoNotIn(documentoDTOs));
     }
 
     public TipoDocumentoDTO findById(int id) {

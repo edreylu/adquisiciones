@@ -47,6 +47,15 @@ and open the template in the editor.
                                     </div>
                                     <div class="row">
                                         <div class="col-md-3">
+                                            <h5 class="card-title">Estatus: </h5>
+
+                                        </div>
+                                        <div class="col-md-9">
+                                            <h6 th:attr="style='color:'+${solicitud.estatus.colorhex}+'; -webkit-text-stroke: 0.5px black;'" th:text="${solicitud.estatus.descripcion}"></h6>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
                                             <h5 class="card-title">Unidad Responsable: </h5>
                                         </div>
                                         <div class="col-md-9">
@@ -83,7 +92,7 @@ and open the template in the editor.
                                             <h5 class="card-title">Firma Director: </h5>
                                         </div>
                                         <div class="col-md-9">
-                                            <h6>[[${solicitud.firmaDirector}]]</h6>
+                                            <h6 data-toggle="tooltip" data-placement="top" th:if="${solicitud.firmaDirector!=null}" th:attr="title=${solicitud.firmaDirector}">Autorizado y firmado</h6>
                                         </div>
                                     </div>
                                     <br/>
@@ -104,10 +113,10 @@ and open the template in the editor.
                                             <tbody>
                                             <tr th:each="dato: ${documentos}">
                                                 <td style="width:20%" th:text="${dato.idDocumento}"></td>
-                                                <td style="width:20%" th:text="${dato.fechaActualizacion}"></td>
+                                                <td style="width:20%" th:text="${#dates.format(dato.fechaActualizacion,'dd/MM/yyyy')}"></td>
                                                 <td style="width:40%" th:text="${dato.tipoDocumento.descripcion}"></td>
                                                 <td style="width:20%">
-                                                    <a id="boton_ver" href="#" style="font-size:15px;color: #333333;" th:href="@{/admonadq/solicitudes/downloadPDF/{id}(id=${dato.idDocumento})}" >
+                                                    <a id="boton_ver" href="#" style="font-size:15px;color: #333333;" th:href="@{/descargas/solicitudes/documentos/download/{id}(id=${dato.idDocumento})}" >
                                                         <i title="Descargar Documento" class="fa fa-download"></i>
                                                     </a>
                                                 </td>

@@ -2,28 +2,33 @@ package com.modules.sirsr.requisicion.application;
 
 import com.modules.sirsr.marca.application.MarcaMapper;
 import com.modules.sirsr.producto.application.ProductoMapper;
+import com.modules.sirsr.producto.domain.Producto;
+import com.modules.sirsr.producto.domain.ProductoRepository;
 import com.modules.sirsr.requisicion.domain.DetalleRequisicion;
+import com.modules.sirsr.requisicion.domain.Requisicion;
+import com.modules.sirsr.requisicion.domain.RequisicionRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Component
 public class DetalleRequisicionMapper {
 
-    ModelMapper modelMapper = new ModelMapper();
     private final RequisicionMapper requisicionMapper;
     private final MarcaMapper marcaMapper;
     private final ProductoMapper productoMapper;
+    private final ProductoRepository productoRepository;
+    private final RequisicionRepository requisicionRepository;
 
     @Autowired
-    public DetalleRequisicionMapper(RequisicionMapper requisicionMapper, MarcaMapper marcaMapper, ProductoMapper productoMapper) {
+    public DetalleRequisicionMapper(RequisicionMapper requisicionMapper, MarcaMapper marcaMapper, ProductoMapper productoMapper, ProductoRepository productoRepository, RequisicionRepository requisicionRepository) {
         this.requisicionMapper = requisicionMapper;
         this.marcaMapper = marcaMapper;
         this.productoMapper = productoMapper;
+        this.productoRepository = productoRepository;
+        this.requisicionRepository = requisicionRepository;
     }
 
     public DetalleRequisicion toDetalleRequisicion(DetalleRequisicionDTO detalleRequisicionDTO) {
@@ -31,7 +36,14 @@ public class DetalleRequisicionMapper {
         if(Objects.isNull(detalleRequisicionDTO)){
             return null;
         }
-         DetalleRequisicion detalleRequisicion = modelMapper.map(detalleRequisicionDTO, DetalleRequisicion.class);
+         DetalleRequisicion detalleRequisicion = new DetalleRequisicion();
+        detalleRequisicion.setIdDetalleRequisicion(detalleRequisicionDTO.getIdDetalleRequisicion());
+        detalleRequisicion.setIdRequisicion(detalleRequisicionDTO.getIdRequisicion());
+        detalleRequisicion.setProducto(productoMapper.toProducto(detalleRequisicionDTO.getProducto()));
+        detalleRequisicion.setRequisicion(requisicionMapper.toRequisicion(detalleRequisicionDTO.getRequisicion()));
+        detalleRequisicion.setCantidadAutorizada(detalleRequisicionDTO.getCantidadAutorizada());
+        detalleRequisicion.setCantidadSolicitada(detalleRequisicionDTO.getCantidadSolicitada());
+        detalleRequisicion.setPrecioUnitario(detalleRequisicionDTO.getPrecioUnitario());
 
         return detalleRequisicion;
     }
@@ -47,7 +59,7 @@ public class DetalleRequisicionMapper {
         detalleRequisicionDTO.setIdRequisicion(detalleRequisicion.getIdRequisicion());
         detalleRequisicionDTO.setProducto(productoMapper.toProductoDTO(detalleRequisicion.getProducto()));
         detalleRequisicionDTO.setRequisicion(requisicionMapper.toRequisicionDTO(detalleRequisicion.getRequisicion()));
-        detalleRequisicionDTO.setCantidadAutorizada(detalleRequisicion.getCantidadAutorizada());
+        detalleRequisicionDTO.setCantidadAutorizada(0);
         detalleRequisicionDTO.setCantidadSolicitada(detalleRequisicion.getCantidadSolicitada());
         detalleRequisicionDTO.setPrecioUnitario(detalleRequisicion.getPrecioUnitario());
 
@@ -63,6 +75,28 @@ public class DetalleRequisicionMapper {
             list.add(toDetalleRequisicionDTO(detalleRequisicion));
         }
         return list;
+    }
+
+    public Set<DetalleRequisicionDTO> toDetalleRequisicionDTOsSet(Set<DetalleRequisicion> detalleRequisiciones) {
+        if (Objects.isNull(detalleRequisiciones)) {
+            return null;
+        }
+        Set<DetalleRequisicionDTO> list = new HashSet<>(detalleRequisiciones.size());
+        for (DetalleRequisicion detalleRequisicion : detalleRequisiciones) {
+            list.add(toDetalleRequisicionDTO(detalleRequisicion));
+        }
+        return list;
+    }
+
+    public DetalleRequisicion setToUpdate(DetalleRequisicionDTO detalleRequisicionDTO) {
+        DetalleRequisicion detalleRequisicionFound = new DetalleRequisicion();
+        Producto producto = productoRepository.findById(detalleRequisicionDTO.getProducto().getIdProducto()).get();
+        Requisicion requisicion = requisicionRepository.findById(detalleRequisicionDTO.getIdRequisicion()).get();
+        detalleRequisicionFound.setIdDetalleRequisicion(detalleRequisicionDTO.getIdDetalleRequisicion());
+        detalleRequisicionFound.setRequisicion(requisicion);
+        detalleRequisicionFound.setProducto(producto);
+        detalleRequisicionFound.setCantidadSolicitada(detalleRequisicionDTO.getCantidadSolicitada());
+        return detalleRequisicionFound;
     }
 
 }

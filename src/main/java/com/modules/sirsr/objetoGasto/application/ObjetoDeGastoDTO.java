@@ -1,6 +1,6 @@
 package com.modules.sirsr.objetoGasto.application;
 import com.modules.sirsr.estatus.application.EstatusDTO;
-import com.modules.sirsr.partidaGastoGenerica.domain.PartidaGastoGenerica;
+import com.modules.sirsr.partidaGastoGenerica.application.PartidaGastoGenericaDTO;
 
 import java.util.Date;
 
@@ -11,7 +11,7 @@ public class ObjetoDeGastoDTO {
     private Date fechaInicio;
     private Date fechaFinal;
     private EstatusDTO estatus;
-    private PartidaGastoGenerica claveGenerica;
+    private PartidaGastoGenericaDTO claveGenerica;
 
     public String getObjetoGasto() {
         return objetoGasto;
@@ -61,11 +61,11 @@ public class ObjetoDeGastoDTO {
         this.estatus = estatus;
     }
 
-    public PartidaGastoGenerica getClaveGenerica() {
+    public PartidaGastoGenericaDTO getClaveGenerica() {
         return claveGenerica;
     }
 
-    public void setClaveGenerica(PartidaGastoGenerica claveGenerica) {
+    public void setClaveGenerica(PartidaGastoGenericaDTO claveGenerica) {
         this.claveGenerica = claveGenerica;
     }
 }

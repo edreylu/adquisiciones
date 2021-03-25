@@ -1,11 +1,8 @@
 package com.modules.sirsr.estatus.application;
 
 import com.modules.sirsr.estatus.domain.Estatus;
-import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -13,15 +10,18 @@ import java.util.Objects;
 @Component
 public class EstatusMapper {
 
-    ModelMapper modelMapper = new ModelMapper();
-
     public Estatus toEstatus(EstatusDTO estatusDTO){
         
             if (Objects.isNull(estatusDTO)) {
                 return null;
             }
             
-            Estatus estatus = modelMapper.map(estatusDTO, Estatus.class);
+            Estatus estatus = new Estatus();
+        estatus.setIdEstatus(estatusDTO.getIdEstatus());
+        estatus.setClave(estatusDTO.getClave());
+        estatus.setColorhex(estatusDTO.getColorhex());
+        estatus.setDescripcion(estatusDTO.getDescripcion());
+        estatus.setExplicacion(estatusDTO.getExplicacion());
             
             return estatus;
         
@@ -32,8 +32,12 @@ public class EstatusMapper {
         if (Objects.isNull(estatus)) {
             return null;
         }
-        EstatusDTO estatusDTO = modelMapper.map(estatus, EstatusDTO.class);
-
+        EstatusDTO estatusDTO = new EstatusDTO();
+        estatusDTO.setIdEstatus(estatus.getIdEstatus());
+        estatusDTO.setClave(estatus.getClave());
+        estatusDTO.setColorhex(estatus.getColorhex());
+        estatusDTO.setDescripcion(estatus.getDescripcion());
+        estatusDTO.setExplicacion(estatus.getExplicacion());
         return estatusDTO;
 
     }

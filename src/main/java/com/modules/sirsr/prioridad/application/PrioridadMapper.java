@@ -1,11 +1,10 @@
 package com.modules.sirsr.prioridad.application;
 
+import com.modules.sirsr.estatus.application.EstatusMapper;
 import com.modules.sirsr.prioridad.domain.Prioridad;
 import com.modules.sirsr.unidadResponsable.application.UnidadResponsableMapper;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -13,14 +12,17 @@ import java.util.Objects;
 @Component
 public class PrioridadMapper {
 
-    ModelMapper modelMapper = new ModelMapper();
+    private final EstatusMapper estatusMapper = new EstatusMapper();
     private final UnidadResponsableMapper unidadResponsableMapper = new UnidadResponsableMapper();
 
     public PrioridadDTO toPrioridadDTO(Prioridad prioridad) {
         if (Objects.isNull(prioridad)) {
             return null;
         }
-        PrioridadDTO prioridadDTO = modelMapper.map(prioridad, PrioridadDTO.class);
+        PrioridadDTO prioridadDTO = new PrioridadDTO();
+        prioridadDTO.setIdPrioridad(prioridad.getIdPrioridad());
+        prioridadDTO.setDescripcion(prioridad.getDescripcion());
+        prioridadDTO.setEstatus(estatusMapper.toEstatusDTO(prioridad.getEstatus()));
 
         return prioridadDTO;
     }
@@ -36,13 +38,14 @@ public class PrioridadMapper {
         return list;
     }
 
-    public Prioridad toPrioridad(PrioridadDTO prioridadDTO) throws IOException {
+    public Prioridad toPrioridad(PrioridadDTO prioridadDTO) {
         if (Objects.isNull(prioridadDTO)) {
             return null;
         }
-
-
-        Prioridad prioridad = modelMapper.map(prioridadDTO, Prioridad.class);
+        Prioridad prioridad = new Prioridad();
+        prioridad.setIdPrioridad(prioridadDTO.getIdPrioridad());
+        prioridad.setDescripcion(prioridadDTO.getDescripcion());
+        prioridad.setEstatus(estatusMapper.toEstatus(prioridadDTO.getEstatus()));
         return prioridad;
     }
 

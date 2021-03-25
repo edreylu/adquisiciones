@@ -15,8 +15,12 @@ import com.modules.sirsr.config.Mensaje;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -26,9 +30,9 @@ import java.util.Optional;
 public class DetalleRequisicionService {
 
     private final DetalleRequisicionRepository detalleRequisicionRepository;
+    private final DetalleRequisicionMapper detalleRequisicionMapper;
     private final RequisicionService requisicionService;
     private final ProductoService productoService;
-    private final DetalleRequisicionMapper detalleRequisicionMapper;
     private DetalleRequisicionDTO detalleRequisicionDTO;
     private RequisicionDTO requisicionDTO;
     private ProductoDTO productoDTO;
@@ -53,31 +57,66 @@ public class DetalleRequisicionService {
         return detalleRequisicionDTOS;
     }
 
-
     public DetalleRequisicionDTO findById(int id) {
         Optional<DetalleRequisicion> detalleRequisicionOptional = detalleRequisicionRepository.findById(id);
-        DetalleRequisicionDTO detalleRequisicionDTO = detalleRequisicionMapper.toDetalleRequisicionDTO(detalleRequisicionOptional.get());
+        detalleRequisicionDTO = detalleRequisicionMapper.toDetalleRequisicionDTO(detalleRequisicionOptional.get());
         return detalleRequisicionDTO;
     }
 
     public Mensaje save(DetalleRequisicionDTO detalleRequisicionDTO, int id) {
         try {
+            List<DetalleRequisicionDTO> detallesRequisicionDTOs = this.findByIdRequisicion(id);
             requisicionDTO = requisicionService.findById(id);
-            productoDTO = productoService.findById(detalleRequisicionDTO.getProducto().getIdProducto());
-            detalleRequisicionDTO.setRequisicion(requisicionDTO);
-            detalleRequisicionDTO.setProducto(productoDTO);
-            detalleRequisicionRepository.save(detalleRequisicionMapper.toDetalleRequisicion(detalleRequisicionDTO));
-            msg = Mensaje.CREATE("Agregado correctamente", 1);
+            detallesRequisicionDTOs.add(detalleRequisicionDTO);
+            Double montoTotal = getMontoTotal.apply(detallesRequisicionDTOs);
+            if(montoTotal <= requisicionDTO.getMontoSuficiencia()) {
+                System.out.println("monto total: "+montoTotal);
+                System.out.println("monto getMontoSuficiencia: "+requisicionDTO.getMontoSuficiencia());
+                productoDTO = productoService.findById(detalleRequisicionDTO.getProducto().getIdProducto());
+                detalleRequisicionDTO.setRequisicion(requisicionDTO);
+                detalleRequisicionDTO.setProducto(productoDTO);
+                detalleRequisicionRepository.save(detalleRequisicionMapper.toDetalleRequisicion(detalleRequisicionDTO));
+                msg = Mensaje.CREATE("Agregado correctamente", 1);
+            }
+            else{
+                Double totalTransaccion = detalleRequisicionDTO.getProducto().getPrecioDeReferencia()*detalleRequisicionDTO.getCantidadSolicitada();
+                msg = Mensaje.CREATE("Monto excede la suficiencia con la que cuentas, Intentaste agregar: $"+totalTransaccion
+                        +" y tu Monto Restante es: $"
+                        +(requisicionDTO.getMontoSuficiencia()-(montoTotal-totalTransaccion)), 3);
+            }
         }catch (Exception e){
             msg = Mensaje.CREATE("No se pudo agregar por: "+e.getMessage(), 2);
         }
         return msg;
     }
 
-    public Mensaje update(DetalleRequisicionDTO detalleRequisicionDTO, int id) {
+    public Mensaje update(DetalleRequisicionDTO detalleRequisicionDTO, int id, int idRequisicion) {
         try {
-
-            msg = Mensaje.CREATE("Actualizado correctamente", 1);
+            detalleRequisicionDTO.setIdDetalleRequisicion(id);
+            List<DetalleRequisicionDTO> detallesRequisicionDTOs = this.findByIdRequisicion(idRequisicion);
+            requisicionDTO = requisicionService.findById(idRequisicion);
+            List<DetalleRequisicionDTO> detallesList = new ArrayList<>();
+            detallesRequisicionDTOs.forEach(detalle -> {
+                if (detalle.getIdDetalleRequisicion() == detalleRequisicionDTO.getIdDetalleRequisicion()) {
+                    detallesList.add(detalleRequisicionDTO);
+                }else {
+                    detallesList.add(detalle);
+                }
+            });
+            Double montoTotal = getMontoTotal.apply(detallesList);
+            if(montoTotal <= requisicionDTO.getMontoSuficiencia()) {
+                System.out.println("monto total: "+montoTotal);
+                System.out.println("monto getMontoSuficiencia: "+requisicionDTO.getMontoSuficiencia());
+                productoDTO = productoService.findById(detalleRequisicionDTO.getProducto().getIdProducto());
+                detalleRequisicionDTO.setRequisicion(requisicionDTO);
+                detalleRequisicionDTO.setProducto(productoDTO);
+                detalleRequisicionRepository.save(detalleRequisicionMapper.toDetalleRequisicion(detalleRequisicionDTO));
+                msg = Mensaje.CREATE("Actualizado correctamente", 1);
+            }
+            else{
+                msg = Mensaje.CREATE("Monto excede la suficiencia con la que cuentas, El total asciende a: $"+montoTotal
+                        +" y tu suficiencia total es: $"+requisicionDTO.getMontoSuficiencia(), 3);
+            }
         }catch (Exception e){
             msg = Mensaje.CREATE("No se pudo Actualizar por: "+e.getMessage(), 2);
         }
@@ -94,5 +133,13 @@ public class DetalleRequisicionService {
         return msg;
 
     }
+
+    public Function<List<DetalleRequisicionDTO>, Double> getMontoTotal = detallesRequisicion -> {
+      return detallesRequisicion
+              .stream()
+              .mapToDouble(value ->
+                      value.getProducto().getPrecioDeReferencia() * value.getCantidadSolicitada())
+              .sum();
+    };
 
 }

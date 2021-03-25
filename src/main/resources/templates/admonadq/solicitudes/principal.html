@@ -30,25 +30,27 @@ and open the template in the editor.
                     <center><strong><div th:text="${mensaje}"></div></strong></center>
                 </div>
                 
-                <table class="table table-sm table-hover table-bordered table-wrapper-scroll-y my-custom-scrollbar" id="tablaDatos">
+                <table class="table table-sm table-hover table-bordered table-wrapper-scroll-y my-custom-scrollbar" id="tablaSolicitudes">
                     <thead>
                         <tr>
-                            <th style="width:5%">ID SOLICITUD</th>
-                            <th style="width:10%">FECHA CREACION</th>
-                            <th style="width:50%"> UNIDAD RESPONSABLE </th>
+                            <th style="width:5%">NO.</th>
+                            <th style="width:5%">FECHA CREACION</th>
+                            <th style="width:10%">MES CALENDAR.</th>
+                            <th style="width:45%"> UNIDAD RESPONSABLE </th>
                             <th style="width:15%">PRIORIDAD</th>
-                            <th style="width:10%">ESTATUS</th>
-                            <th style="width:10%"> VALIDAR SOLICITUD </th>
+                            <th style="width:15%">ESTATUS</th>
+                            <th style="width:5%"> VALIDAR </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="dato: ${lista}">
                             <td style="width:5%" th:text="${dato.idSolicitud}"></td>
-                            <td style="width:10%" th:text="${#dates.format(dato.fechaCreacion,'dd/MM/yyyy')}"></td>
+                            <td style="width:5%" th:text="${#dates.format(dato.fechaCreacion,'dd/MM/yyyy')}"></td>
+                            <td style="width:5%" th:text="${dato.mesCalendarizacionStr}"></td>
                             <td style="width:50%" th:text="${dato.unidadResponsable.descripcion}"></td>
                             <td style="width:15%" th:text="${dato.prioridad.descripcion}"></td>
-                            <td style="width:10%" th:text="${dato.estatus.descripcion}"></td>
-                            <td style="width:10%">
+                            <td style="width:15%" th:attr="style='background:'+${dato.estatus.colorhex}" th:text="${dato.estatus.descripcion}"></td>
+                            <td style="width:5%">
                                 <a id="boton_revisar" style="font-size:15px;color: #333333;" th:href="@{/admonadq/solicitudes/revisar/{id}(id=${dato.idSolicitud})}">
                                     <i class="fa fa-search"></i>
                                 </a>

@@ -56,12 +56,6 @@ public class ObjetoDeGasto{
     @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
     @ManyToOne(optional = false)
     private Estatus estatus;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "objetoDeGasto")
-    private List<ClavePresupuestaria> clavesPresupuestarias;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "objetoGasto")
-    private List<Consolidacion> consolidaciones;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "objetoGasto")
-    private List<TipoProducto> tiposProducto;
 
     public String getObjetoGasto() {
         return objetoGasto;
@@ -119,29 +113,4 @@ public class ObjetoDeGasto{
         this.estatus = estatus;
     }
 
-    public List<ClavePresupuestaria> getClavesPresupuestarias() {
-        return clavesPresupuestarias;
-    }
-
-    public void setClavesPresupuestarias(List<ClavePresupuestaria> clavesPresupuestarias) {
-        this.clavesPresupuestarias = clavesPresupuestarias;
-    }
-
-    public List<Consolidacion> getConsolidaciones() {
-        return consolidaciones;
-    }
-
-    public void setConsolidaciones(List<Consolidacion> consolidaciones) {
-        this.consolidaciones = consolidaciones;
-    }
-
-    public List<TipoProducto> getTiposProducto() {
-        return tiposProducto;
-    }
-
-    public void setTiposProducto(List<TipoProducto> tiposProducto) {
-        this.tiposProducto = tiposProducto;
-    }
-
-    
 }

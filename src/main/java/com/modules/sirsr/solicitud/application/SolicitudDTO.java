@@ -36,6 +36,7 @@ public class SolicitudDTO{
     private Date fechaCreacion;
     private int anioCalendarizacion;
     private int mesCalendarizacion;
+    private String mesCalendarizacionStr;
     private String actividadOUso;
     private Date fechaEmision;
     private String firmaDirector;
@@ -184,5 +185,13 @@ public class SolicitudDTO{
 
     public void setRequisiciones(List<RequisicionDTO> requisiciones) {
         this.requisiciones = requisiciones;
+    }
+
+    public String getMesCalendarizacionStr() {
+        return mesCalendarizacionStr;
+    }
+
+    public void setMesCalendarizacionStr(String mesCalendarizacionStr) {
+        this.mesCalendarizacionStr = mesCalendarizacionStr;
     }
 }

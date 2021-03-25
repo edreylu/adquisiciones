@@ -3,48 +3,40 @@ package com.modules.sirsr.solicitud.application;
 import com.modules.sirsr.documento.application.DocumentoMapper;
 import com.modules.sirsr.estatus.application.EstatusMapper;
 import com.modules.sirsr.prioridad.application.PrioridadMapper;
-import com.modules.sirsr.requisicion.application.RequisicionMapper;
 import com.modules.sirsr.solicitud.domain.Solicitud;
-import com.modules.sirsr.requisicion.domain.Requisicion;
-
-import java.io.IOException;
-
-import com.modules.sirsr.requisicion.application.RequisicionDTO;
 import com.modules.sirsr.unidadResponsable.application.UnidadResponsableMapper;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.time.Month;
+import java.time.format.TextStyle;
+import java.util.*;
 
 @Component
 public class SolicitudMapper {
-
-    ModelMapper modelMapper = new ModelMapper();
-
+    EstatusMapper estatusMapper = new EstatusMapper();
+    PrioridadMapper prioridadMapper = new PrioridadMapper();
+    UnidadResponsableMapper unidadResponsableMapper = new UnidadResponsableMapper();
 
     public SolicitudDTO toSolicitudDTO(Solicitud solicitud) {
         if (Objects.isNull(solicitud)) {
             return null;
         }
-
-        EstatusMapper estatusMapper = new EstatusMapper();
-        PrioridadMapper prioridadMapper = new PrioridadMapper();
-        UnidadResponsableMapper unidadResponsableMapper = new UnidadResponsableMapper();
+        Month month=Month.of(solicitud.getMesCalendarizacion());
+        String monthName=month.getDisplayName(TextStyle.FULL, new Locale("es", "ES")).toUpperCase();
 
         SolicitudDTO solicitudDTO = new SolicitudDTO();
         solicitudDTO.setIdSolicitud(solicitud.getIdSolicitud());
         solicitudDTO.setFechaCreacion(solicitud.getFechaCreacion());
         solicitudDTO.setAnioCalendarizacion(solicitud.getAnioCalendarizacion());
         solicitudDTO.setMesCalendarizacion(solicitud.getMesCalendarizacion());
+        solicitudDTO.setMesCalendarizacionStr(monthName);
         solicitudDTO.setActividadOUso(solicitud.getActividadOUso());
         solicitudDTO.setFechaEmision(solicitud.getFechaEmision());
         solicitudDTO.setFirmaDirector(solicitud.getFirmaDirector());
         solicitudDTO.setFolio(solicitud.getFolio());
         solicitudDTO.setClaveUr(solicitud.getClaveUr());
         solicitudDTO.setFechaAutorizacion(solicitud.getFechaAutorizacion());
+        solicitudDTO.setFechaRecepcion(solicitud.getFechaRecepcion());
         solicitudDTO.setEstatus(estatusMapper.toEstatusDTO(solicitud.getEstatus()));
         solicitudDTO.setPrioridad(prioridadMapper.toPrioridadDTO(solicitud.getPrioridad()));
         solicitudDTO.setUnidadResponsable(unidadResponsableMapper.toUnidadResponsableDTO(solicitud.getUnidadResponsable()));
@@ -63,19 +55,36 @@ public class SolicitudMapper {
         return list;
     }
 
-    public Solicitud toSolicitud(SolicitudDTO solicitudDTO) throws IOException {
+    public Solicitud toSolicitud(SolicitudDTO solicitudDTO){
         if (Objects.isNull(solicitudDTO)) {
             return null;
         }
 
-        Solicitud solicitud = modelMapper.map(solicitudDTO, Solicitud.class);
+        Solicitud solicitud = new Solicitud();
+        solicitud.setIdSolicitud(solicitudDTO.getIdSolicitud());
+        solicitud.setFechaCreacion(solicitudDTO.getFechaCreacion());
+        solicitud.setAnioCalendarizacion(solicitudDTO.getAnioCalendarizacion());
+        solicitud.setMesCalendarizacion(solicitudDTO.getMesCalendarizacion());
+        solicitud.setActividadOUso(solicitudDTO.getActividadOUso());
+        solicitud.setFechaEmision(solicitudDTO.getFechaEmision());
+        solicitud.setFirmaDirector(solicitudDTO.getFirmaDirector());
+        solicitud.setFolio(solicitudDTO.getFolio());
+        solicitud.setClaveUr(solicitudDTO.getClaveUr());
+        solicitud.setFechaAutorizacion(solicitudDTO.getFechaAutorizacion());
+        solicitud.setFechaRecepcion(solicitudDTO.getFechaRecepcion());
+        solicitud.setEstatus(estatusMapper.toEstatus(solicitudDTO.getEstatus()));
+        solicitud.setPrioridad(prioridadMapper.toPrioridad(solicitudDTO.getPrioridad()));
+        solicitud.setUnidadResponsable(unidadResponsableMapper.toUnidadResponsable(solicitudDTO.getUnidadResponsable()));
 
         return solicitud;
     }
 
-    public Requisicion setToUpdate(Requisicion requisicionFound, RequisicionDTO requisicionDTO) {
-        //requisicionFound.setRequisicionName("ROLE_" + requisicionDTO.getRequisicionName());
-        return requisicionFound;
+    public Solicitud setToUpdate(Solicitud solicitudFound, SolicitudDTO solicitudDTO) {
+        PrioridadMapper prioridadMapper = new PrioridadMapper();
+        solicitudFound.setActividadOUso(solicitudDTO.getActividadOUso());
+        solicitudFound.setMesCalendarizacion(solicitudDTO.getMesCalendarizacion());
+        solicitudFound.setPrioridad(prioridadMapper.toPrioridad(solicitudDTO.getPrioridad()));
+        return solicitudFound;
     }
     
     private String replaceCaracter(String caracter, int opcion) {
