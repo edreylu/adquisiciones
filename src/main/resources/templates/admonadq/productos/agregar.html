@@ -13,9 +13,9 @@ and open the template in the editor.
 <body>
 	<header th:replace="layout :: header"></header>
 	<div class="container mt-2 col-lg-4">
-		<div class="card">
+		<div class="card sombra bordeCard">
 			<div class="card-header text-center">
-				<lable class="tituloPrincipal">Agregar Producto</lable>
+				<lable class="tituloPrincipal">Agregar producto</lable>
 			</div>
 			<div class="card-body">
 
@@ -30,7 +30,7 @@ and open the template in the editor.
 									th:value="${unidad.idUnidadMedida}"
 									th:utext="${unidad.nombre}"/>
 						</select>
-					<div class="invalid-feedback">UNIDAD DE MEDIDA ES REQUERIDO</div>
+					<div class="invalid-feedback">Unidad de medida es requerido</div>
 						</div>
 					</div>
 					<div class="row">

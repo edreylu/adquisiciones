@@ -13,7 +13,7 @@ and open the template in the editor.
     <body>
         <header th:replace="layout :: header"></header>
         <div class="container mt-2 col-lg-6">
-            <div class="card border-info">
+            <div class="card sombra bordeCard">
                 <div class="panel-group">
                     <div class="card">
                         <div class="card-header">
@@ -39,7 +39,7 @@ and open the template in the editor.
                             </h5>
                             <hr/>
                             <center><button class="btn btn-primary" type="button" th:onclick="showAsignarPersonal()">
-                                    <i class="fa fa-building-o" aria-hidden="true"></i> Asignar Personal a usuario</button></center>
+                                    <i class="fa fa-building-o" aria-hidden="true"></i> Asignar personal a usuario</button></center>
                             <input type="hidden" th:value="${personalAsignado}" id="personalAsignado" />
                             <hr/>
                          <a th:href="@{/admin/usuarios}">Regresar</a>

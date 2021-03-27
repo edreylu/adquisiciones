@@ -4,11 +4,6 @@
  * and open the template in the editor.
  */
 package com.modules.sirsr.tipoDocumento.application;
-
-import com.modules.sirsr.documento.application.DocumentoDTO;
-import com.modules.sirsr.documento.application.DocumentoService;
-import com.modules.sirsr.solicitud.application.SolicitudDTO;
-import com.modules.sirsr.solicitud.application.SolicitudService;
 import com.modules.sirsr.tipoDocumento.domain.TipoDocumento;
 import com.modules.sirsr.tipoDocumento.domain.TipoDocumentoRepository;
 import com.modules.sirsr.config.Mensaje;
@@ -39,6 +34,22 @@ public class TipoDocumentoService {
 
     public List<TipoDocumentoDTO> findAll() {
         return tipoDocumentoMapper.toTipoDocumentoDTOs(tipoDocumentoRepository.findAll());
+    }
+    
+    public List<Integer> findAllIdDocumentosObligatorios() {
+        List<TipoDocumentoDTO> tiposDocumentosObligatorios = tipoDocumentoMapper.toTipoDocumentoDTOs(tipoDocumentoRepository.findByObligatorio("S"));
+        List<Integer> idTipoDocumentosObligatorios = tiposDocumentosObligatorios
+                                                .stream()
+                                                .map(tipoDocumentoObligatorio -> tipoDocumentoObligatorio.getIdTipoDocumento()).collect(Collectors.toList());
+        return idTipoDocumentosObligatorios;
+    }
+    
+    public List<Integer> findAllIdDocumentosUnicos() {
+        List<TipoDocumentoDTO> tiposDocumentosUnicos = tipoDocumentoMapper.toTipoDocumentoDTOs(tipoDocumentoRepository.findByUnico("S"));
+        List<Integer> idTipoDocumentosObligatorios = tiposDocumentosUnicos
+                                                .stream()
+                                                .map(tipoDocumentosUnico -> tipoDocumentosUnico.getIdTipoDocumento()).collect(Collectors.toList());
+        return idTipoDocumentosObligatorios;
     }
 
     public List<TipoDocumentoDTO> findAllByTiposDocumentoNot(List<Integer> documentoDTOs) {

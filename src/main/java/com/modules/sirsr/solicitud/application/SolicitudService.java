@@ -5,9 +5,6 @@
  */
 package com.modules.sirsr.solicitud.application;
 
-import com.modules.sirsr.config.Utils;
-import com.modules.sirsr.documento.application.DocumentoDTO;
-import com.modules.sirsr.documento.application.DocumentoService;
 import com.modules.sirsr.documento.domain.Documento;
 import com.modules.sirsr.estatus.application.EstatusDTO;
 import com.modules.sirsr.estatus.application.EstatusService;
@@ -18,9 +15,8 @@ import com.modules.sirsr.prioridad.application.PrioridadMapper;
 import java.util.*;
 
 import com.modules.sirsr.config.Mensaje;
+import com.modules.sirsr.config.Utils;
 import java.time.Instant;
-import java.util.function.Function;
-
 import com.modules.sirsr.prioridad.domain.PrioridadRepository;
 import com.modules.sirsr.revision.application.RevisionDTO;
 import com.modules.sirsr.revision.domain.Revision;
@@ -34,6 +30,8 @@ import org.springframework.stereotype.Service;
 import com.modules.sirsr.usuario.application.UsuarioDTO;
 import com.modules.sirsr.usuario.application.UsuarioService;
 import com.modules.sirsr.config.WebUtils;
+import com.modules.sirsr.tipoDocumento.application.TipoDocumentoService;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -45,11 +43,13 @@ public class SolicitudService {
     private final SolicitudRepository solicitudRepository;
     private final UsuarioService usuarioService;
     private final EstatusService estatusService;
+    private final TipoDocumentoService tipoDocumentoService;
     private final PrioridadRepository prioridadRepository;
     private final RevisionRepository revisionRepository;
     private final SolicitudMapper solicitudMapper;
     private final PrioridadMapper prioridadMapper;
     private final FolioRequisicionRepository folioRequisicionRepository;
+    private List<Integer> idTiposDocumentoObligatorios;
     private SolicitudDTO solicitudDTO;
     private UsuarioDTO usuarioDTO;
     private EstatusDTO estatusDTO;
@@ -57,7 +57,7 @@ public class SolicitudService {
     private Mensaje msg;
 
     @Autowired
-    public SolicitudService(SolicitudRepository solicitudRepository, UsuarioService usuarioService, EstatusService estatusService, PrioridadRepository prioridadRepository, RevisionRepository revisionRepository, SolicitudMapper solicitudMapper, PrioridadMapper prioridadMapper, FolioRequisicionRepository folioRequisicionRepository) {
+    public SolicitudService(SolicitudRepository solicitudRepository, UsuarioService usuarioService, EstatusService estatusService,TipoDocumentoService tipoDocumentoService, PrioridadRepository prioridadRepository, RevisionRepository revisionRepository, SolicitudMapper solicitudMapper, PrioridadMapper prioridadMapper, FolioRequisicionRepository folioRequisicionRepository) {
         this.solicitudRepository = solicitudRepository;
         this.usuarioService = usuarioService;
         this.estatusService = estatusService;
@@ -66,6 +66,7 @@ public class SolicitudService {
         this.solicitudMapper = solicitudMapper;
         this.prioridadMapper = prioridadMapper;
         this.folioRequisicionRepository = folioRequisicionRepository;
+        this.tipoDocumentoService = tipoDocumentoService;
     }
 
     public List<SolicitudDTO> findAll() {
@@ -137,7 +138,7 @@ public class SolicitudService {
 
     public Mensaje emitirById(int id) {
         Solicitud solicitud = solicitudRepository.findById(id).get();
-        if(areDocumentsComplete.apply(solicitud.getDocumentos())){
+        if(areDocumentsComplete(solicitud.getDocumentos())){
             try {
                 solicitud.setEstatus(estatusService.estatusFindById(11));
                 solicitud.setFechaEmision(Date.from(Instant.now()));
@@ -203,15 +204,16 @@ public class SolicitudService {
         }catch (Exception e){
         }
     }
-
-    public Function<List<Documento>, Boolean> areDocumentsComplete = documentos -> {
-        boolean isValid = documentos.stream()
-                .anyMatch(documentoDTO ->
-                        documentoDTO.getTipoDocumento().getIdTipoDocumento() == 1);
-        boolean isValid2 = documentos.stream()
-                .anyMatch(documentoDTO ->
-                        documentoDTO.getTipoDocumento().getIdTipoDocumento() == 2);
-        return isValid && isValid2;
-    };
-
+    
+    public Boolean areDocumentsComplete(List<Documento> documentos) {
+       idTiposDocumentoObligatorios = tipoDocumentoService.findAllIdDocumentosObligatorios();
+       List<Integer> idTiposDocumento = documentos
+                                        .stream()
+                                        .map(idTipoDocumento -> 
+                                                idTipoDocumento.getTipoDocumento().getIdTipoDocumento()).collect(Collectors.toList());
+        boolean isValid = idTiposDocumentoObligatorios.stream()
+                .allMatch(idTipoDocumentoObligatorio -> idTiposDocumento.contains(idTipoDocumentoObligatorio));
+        return isValid;
+    }
+    
 }

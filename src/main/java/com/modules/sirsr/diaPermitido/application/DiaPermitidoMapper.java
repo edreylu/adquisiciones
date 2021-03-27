@@ -1,13 +1,8 @@
 package com.modules.sirsr.diaPermitido.application;
 
-import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
-
-import org.apache.tomcat.jni.Local;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import com.modules.sirsr.diaPermitido.domain.DiaPermitido;

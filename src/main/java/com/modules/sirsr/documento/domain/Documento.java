@@ -32,7 +32,7 @@ public class Documento{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "documento_generator")
-    @SequenceGenerator(name = "documento_generator", sequenceName = "ADQUISICIONES.SEQ_DOCUMENTO", allocationSize = 1)
+    @SequenceGenerator(name = "documento_generator", sequenceName = "SEQ_DOCUMENTO", allocationSize = 1)
     @Column(name = "ID_DOCUMENTO")
     private Integer idDocumento;
     @Lob

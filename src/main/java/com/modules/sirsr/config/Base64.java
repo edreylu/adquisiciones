@@ -1,4 +1,4 @@
-package utilerias;
+package com.modules.sirsr.config;
 
 /**
  * <p>Encodes and decodes to and from Base64 notation.</p>

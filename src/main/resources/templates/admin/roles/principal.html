@@ -16,12 +16,12 @@ and open the template in the editor.
         
         <div class="container mt-4" th:switch="${lista}">
        <div class="text-center"><lable class="tituloPrincipal">ROLES</lable></div>
-       <h2 th:case="null">No hay Roles</h2>
+       <h2 th:case="null">No hay roles</h2>
         <div th:case="*">
-        <div class="card border-info">
+        <div class="card sombra bordeCard">
             
             <div class="card-header text-white">
-                <a id="boton_agregar" style="font-size:15px;color: #333333;" title="Agregar Rol" th:href="@{/admin/roles/agregar}" class="fas fa-plus-circle"></a>
+                <a class="sombraChica" data-toggle="tooltip" data-placement="top"  title="Agregar Rol" th:href="@{/admin/roles/agregar}"><img th:src="@{/img/icons/agregar.png}" class="iconos"></a>
             </div>
             <div class="card-body table-responsive-md">
                 <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" 
@@ -44,14 +44,14 @@ and open the template in the editor.
                         <tr th:each="dato: ${lista}">
                             <td style="width:10%" th:text="${dato.noRole}"></td>
                             <td style="width:60%" th:text="${#strings.replace(dato.roleName, 'ROLE_', '')}"></td>
-                            <td style="width:15%">
-                                <a id="boton_editar" style="font-size:15px;color: #333333;" th:href="@{/admin/roles/editar/{id}(id=${dato.noRole})}">
-                                    <i title="Editar Rol" class="fas fa-edit"></i>
+                            <td style="width:15%; text-align: center">
+                                <a th:href="@{/admin/roles/editar/{id}(id=${dato.noRole})}">
+                                    <img th:src="@{/img/icons/editar.png}" class="iconos" title="Editar usuario" data-toggle="tooltip" data-placement="top">
                                 </a>
                             </td>
-                            <td style="width:15%">
-                                <a id="boton_eliminar" href="#" style="font-size:15px;color: #333333;" th:onclick="'mensajeEliminar(\''+ ${dato.noRole} +'\')'">
-                                    <i title="Eliminar Rol" class="fas fa-trash-alt"></i>
+                            <td style="width:15%; text-align: center;">
+                                <a th:onclick="'mensajeEliminar(\''+ ${dato.noRole} +'\')'">
+                                    <img th:src="@{/img/icons/eliminar.png}" class="iconos" title="Eliminar usuario" data-toggle="tooltip" data-placement="top">
                                 </a>
                                 <input type="hidden" value="roles" id="nombreModulo">
                             </td>

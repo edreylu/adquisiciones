@@ -83,8 +83,6 @@ public class SolicitudUsuarioController {
 
     @GetMapping("/solicitudes/agregar")
     public String agregar(Model model) {
-        partidasEspecificas = objetoDeGastoService.findAll();
-        model.addAttribute("partidasEspecificas", partidasEspecificas);
         model.addAttribute("solicitud", new SolicitudDTO());
         return "usuario/solicitudes/agregar";
     }

@@ -18,10 +18,10 @@ and open the template in the editor.
        <div class="text-center"><lable class="tituloPrincipal">TIPOS DE PERSONA FISCAL</lable></div>
        <h2 th:case="null">No hay tipos de persona fiscal</h2>
         <div th:case="*">
-        <div class="card border-info">
+        <div class="card sombra bordeCard">
             
             <div class="card-header text-white">
-                <a id="boton_agregar" style="font-size:15px;color: #333333;" title="Agregar Tipo de persona fiscal" th:href="@{/admonadq/tipospersonafiscal/agregar}" class="fas fa-plus-circle"></a>
+                <a class="sombraChica" title="Agregar Tipo de persona fiscal" data-toggle="tooltip" data-placement="top" th:href="@{/admonadq/tipospersonafiscal/agregar}"><img th:src="@{/img/icons/agregar.png}" class="iconos"></a>
             </div>
             <div class="card-body table-responsive-md">
                 <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" 
@@ -35,7 +35,7 @@ and open the template in the editor.
                     <thead>
                         <tr>
                             <th style="width:10%">ID</th>
-                            <th style="width:60%">DESCRIPCION</th>
+                            <th style="width:60%">DESCRIPCIÓN</th>
                             <th style="width:20%"> </th>
                             <th style="width:20%"> </th>
                         </tr>

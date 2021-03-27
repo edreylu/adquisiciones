@@ -11,17 +11,11 @@ import com.modules.sirsr.solicitud.application.SolicitudDTO;
 import com.modules.sirsr.solicitud.application.SolicitudService;
 import com.modules.sirsr.tipoDocumento.application.TipoDocumentoDTO;
 import com.modules.sirsr.tipoDocumento.application.TipoDocumentoService;
-import com.modules.sirsr.requisicion.domain.RequisicionRepository;
 import com.modules.sirsr.config.Mensaje;
-import com.modules.sirsr.solicitud.domain.SolicitudRepository;
-import com.modules.sirsr.tipoDocumento.domain.TipoDocumentoRepository;
-import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
 import java.util.*;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -35,6 +29,7 @@ public class DocumentoService {
     private final SolicitudService solicitudService;
     private final TipoDocumentoService tipoDocumentoService;
     private final DocumentoMapper documentoMapper;
+    private List<Integer> idTiposDocumentosUnicos;
     private Mensaje msg;
 
     @Autowired
@@ -88,17 +83,16 @@ public class DocumentoService {
 
     }
 
-    public Function<Integer, List<Integer>> getTiposDocumentosNot = idSolicitud -> {
+    public List<Integer> getTiposDocumentoNot(int idSolicitud) {
+        idTiposDocumentosUnicos = tipoDocumentoService.findAllIdDocumentosObligatorios();
         List<Integer> documentoDTOs = this.findByIdSolicitud(idSolicitud)
                 .stream()
-                .filter(documentoDTO ->
-                           documentoDTO.getTipoDocumento().getIdTipoDocumento() == 1
-                        || documentoDTO.getTipoDocumento().getIdTipoDocumento() == 2)
+                .filter(documentoDTO -> idTiposDocumentosUnicos.contains(documentoDTO.getTipoDocumento().getIdTipoDocumento()))
                 .map(documentoDTO ->
                            documentoDTO.getTipoDocumento().getIdTipoDocumento())
                 .collect(Collectors.toList());
         if(documentoDTOs.isEmpty())documentoDTOs.add(0);
         return documentoDTOs;
-    };
+    }
 
 }

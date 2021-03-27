@@ -16,9 +16,9 @@ and open the template in the editor.
         
         <div class="container mt-4" th:switch="${lista}">
        <div class="text-center"><lable class="tituloPrincipal">SOLICITUDES</lable></div>
-       <h2 th:case="null">No hay Solicitudes</h2>
+       <h2 th:case="null">No hay solicitudes</h2>
         <div th:case="*">
-        <div class="card border-info">
+        <div class="card sombra bordeCard">
             
             <div class="card-header text-white">
             </div>
@@ -34,25 +34,25 @@ and open the template in the editor.
                     <thead>
                         <tr>
                             <th style="width:5%">NO.</th>
-                            <th style="width:5%">FECHA CREACION</th>
+                            <th style="width:5%">FECHA CREACIÓN</th>
                             <th style="width:10%">MES CALENDAR.</th>
-                            <th style="width:45%"> UNIDAD RESPONSABLE </th>
+                            <th style="width:40%">UNIDAD RESPONSABLE</th>
                             <th style="width:15%">PRIORIDAD</th>
                             <th style="width:15%">ESTATUS</th>
-                            <th style="width:5%"> VALIDAR </th>
+                            <th style="width:10%">  </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="dato: ${lista}">
                             <td style="width:5%" th:text="${dato.idSolicitud}"></td>
                             <td style="width:5%" th:text="${#dates.format(dato.fechaCreacion,'dd/MM/yyyy')}"></td>
-                            <td style="width:5%" th:text="${dato.mesCalendarizacionStr}"></td>
-                            <td style="width:50%" th:text="${dato.unidadResponsable.descripcion}"></td>
+                            <td style="width:10%" th:text="${dato.mesCalendarizacionStr}"></td>
+                            <td style="width:40%" th:text="${dato.unidadResponsable.descripcion}"></td>
                             <td style="width:15%" th:text="${dato.prioridad.descripcion}"></td>
                             <td style="width:15%" th:attr="style='background:'+${dato.estatus.colorhex}" th:text="${dato.estatus.descripcion}"></td>
-                            <td style="width:5%">
-                                <a id="boton_revisar" style="font-size:15px;color: #333333;" th:href="@{/admonadq/solicitudes/revisar/{id}(id=${dato.idSolicitud})}">
-                                    <i class="fa fa-search"></i>
+                            <td style="width:10%; text-align: center">
+                                <a title="Validar solicitud" data-toggle="tooltip" data-placement="top" th:href="@{/admonadq/solicitudes/revisar/{id}(id=${dato.idSolicitud})}">
+                                    <img th:src="@{/img/icons/validasolicitud.png}" class="iconos" >
                                 </a>
                             </td>
                         </tr>

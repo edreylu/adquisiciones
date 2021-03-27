@@ -1,5 +1,6 @@
 package com.modules.sirsr.unidadResponsable.application;
 
+import com.modules.sirsr.estatus.application.EstatusMapper;
 import com.modules.sirsr.unidadResponsable.domain.UnidadResponsable;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,8 @@ import java.util.Objects;
 
 @Component
 public class UnidadResponsableMapper {
+    
+    private EstatusMapper estatusMapper = new EstatusMapper();
 
     public UnidadResponsableDTO toUnidadResponsableDTO(UnidadResponsable unidadResponsable) {
         if (Objects.isNull(unidadResponsable)) {
@@ -20,7 +23,7 @@ public class UnidadResponsableMapper {
         unidadResponsableDTO.setDescripcion(unidadResponsable.getDescripcion());
         unidadResponsableDTO.setFechaInicio(unidadResponsable.getFechaInicio());
         unidadResponsableDTO.setFechaFinal(unidadResponsable.getFechaFinal());
-        //unidadResponsableDTO.setEstatus(unidadResponsable.getEstatus());
+        unidadResponsableDTO.setEstatus(estatusMapper.toEstatusDTO(unidadResponsable.getEstatus()));
 
         return unidadResponsableDTO;
     }
@@ -46,7 +49,7 @@ public class UnidadResponsableMapper {
         unidadResponsable.setDescripcion(unidadResponsableDTO.getDescripcion());
         unidadResponsable.setFechaInicio(unidadResponsableDTO.getFechaInicio());
         unidadResponsable.setFechaFinal(unidadResponsableDTO.getFechaFinal());
-        //unidadResponsable.setEstatus(unidadResponsableDTO.getEstatus());
+        unidadResponsable.setEstatus(estatusMapper.toEstatus(unidadResponsableDTO.getEstatus()));
 
         return unidadResponsable;
     }

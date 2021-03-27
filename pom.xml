@@ -9,11 +9,11 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.modules</groupId>
-    <artifactId>adquisiciones</artifactId>
+    <artifactId>SIRSR</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>adquisiciones</name>
-    <description>Demo project for Spring Boot</description>
+    <name>SIRSR</name>
+    <description>Proyecto SIRSR para solicitud de requisiciones</description>
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -37,6 +37,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <!--<exclusions>
+	         <exclusion>
+	            <groupId>org.springframework.boot</groupId>
+	            <artifactId>spring-boot-starter-tomcat</artifactId>
+	        </exclusion> 
+	    </exclusions>-->
         </dependency>
         <dependency>
             <groupId>com.oracle.database.jdbc</groupId>
@@ -53,11 +59,6 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
-        <!--<dependency>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                    <scope>provided</scope>
-                </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -87,6 +88,12 @@
             <artifactId>commons-io</artifactId>
             <version>2.6</version>
         </dependency>
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>servlet-api</artifactId>
+    <version>2.5</version>
+    <scope>provided</scope>
+</dependency>
     </dependencies>
 
     <build>
@@ -97,5 +104,29 @@
             </plugin>
         </plugins>
     </build>
-  
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-snapshots</id>
+            <url>https://repo.spring.io/snapshot</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <url>https://repo.spring.io/milestone</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </pluginRepository>
+    </pluginRepositories>
+    <repositories>
+        <repository>
+            <id>central</id>
+            <name>Central Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 </project>

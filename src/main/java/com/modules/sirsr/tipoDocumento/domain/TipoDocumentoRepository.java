@@ -16,4 +16,6 @@ import java.util.List;
  */
 public interface TipoDocumentoRepository extends JpaRepository<TipoDocumento, Integer>{
     List<TipoDocumento> findByIdTipoDocumentoNotIn(List<Integer> tiposDocumento);
+    List<TipoDocumento> findByObligatorio(String obligatorio);
+    List<TipoDocumento> findByUnico(String unico);
 }

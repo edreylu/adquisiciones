@@ -13,9 +13,9 @@ and open the template in the editor.
     <body>
         <header th:replace="layout :: header"></header>
        <div class="container mt-2 col-lg-8">
-           <div class="card">
+           <div class="card sombra bordeCard">
                 <div class="card-header text-center">
-                <lable class="tituloPrincipal">Emitir Solicitud</lable>
+                <lable class="tituloPrincipal">Emitir solicitud</lable>
                 </div>
                 <div class="card-body">
                     <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
@@ -171,7 +171,7 @@ and open the template in the editor.
                    <div class="modal-content">
                        <div class="modal-header">
 
-                           <h4 class="modal-title">Detalles Requisicion.</h4>
+                           <h4 class="modal-title">Detalles requisición.</h4>
                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                <span aria-hidden="true">&times;</span>
                            </button>

@@ -16,12 +16,12 @@ and open the template in the editor.
         
         <div class="container mt-4" th:switch="${lista}">
        <div class="text-center"><lable class="tituloPrincipal">PRODUCTOS</lable></div>
-       <h2 th:case="null">No hay Proveedores</h2>
+       <h2 th:case="null">No hay proveedores</h2>
         <div th:case="*">
-        <div class="card border-info">
+        <div class="card sombra bordeCard">
             
             <div class="card-header text-white">
-                <a id="boton_agregar" data-toggle="tooltip" data-placement="top" style="font-size:15px;color: #333333;" title="Agregar Producto" th:href="@{/admonadq/productos/agregar}" class="fas fa-plus-circle"></a>
+                <a class="sombraChica" data-toggle="tooltip" data-placement="top" title="Agregar Producto" th:href="@{/admonadq/productos/agregar}"><img th:src="@{/img/icons/agregar.png}" class="iconos"></a>
             </div>
             <div class="card-body table-responsive-md">
                 <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" 
@@ -37,7 +37,7 @@ and open the template in the editor.
                             <th style="width:5%">ID</th>
                             <th style="width:10%">UNIDAD MEDIDA</th>
                             <th style="width:15%">TIPO PRODUCTO</th>
-                            <th style="width:40%">CARACTERISTICAS</th>
+                            <th style="width:40%">CARACTERÍSTICAS</th>
                             <th style="width:10%">PRECIO REFERENCIA</th>
                             <th style="width:10%">ESTATUS</th>
                             <th style="width:5%"> </th>

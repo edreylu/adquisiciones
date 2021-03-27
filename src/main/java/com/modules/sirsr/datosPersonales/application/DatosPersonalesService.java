@@ -38,6 +38,12 @@ public class DatosPersonalesService {
     public List<DatosPersonalesDTO> findByNoPersonal(int noPersonal) {
         return datosPersonalesMapper.toUnidadResponsableDTOs(datosPersonalesRepository.findByNoPersonal(noPersonal));
     }
+    
+    public List<DatosPersonalesDTO> findByNombrePersonal(String nombrePersonal) {
+        return datosPersonalesMapper.toUnidadResponsableDTOs(datosPersonalesRepository
+                .findByNombreIgnoreCaseContainingOrApellidoPaternoIgnoreCaseContainingOrApellidoMaternoIgnoreCaseContaining(nombrePersonal,nombrePersonal,nombrePersonal));
+    }
+    
     public DatosPersonales findByCorreo(String email) {
         DatosPersonales personal = datosPersonalesRepository.findByCorreo(email);
         return personal;

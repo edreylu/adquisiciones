@@ -13,9 +13,9 @@ and open the template in the editor.
 <body>
 	<header th:replace="layout :: header"></header>
 	<div class="container mt-2 col-lg-4">
-		<div class="card">
+		<div class="card sombra bordeCard">
 			<div class="card-header text-center">
-				<lable class="tituloPrincipal">Editar Producto</lable>
+				<lable class="tituloPrincipal">Editar producto</lable>
 			</div>
 			<div class="card-body">
 				<form class="needs-validation" novalidate method="post" action="#"
@@ -58,7 +58,7 @@ and open the template in the editor.
 												<div class="col-md-12">
 					<label class="tituloTexto">PRECIO REFERENCIA</label>
 					<input type="number" step="0.01" name="precioDeReferencia" class="form-control" th:value="${producto.precioDeReferencia}" required />
-					<div class="invalid-feedback">Precio Referencia es requerido</div>
+					<div class="invalid-feedback">Precio referencia es requerido</div>
 												</div>
 											</div>
 					<br/>

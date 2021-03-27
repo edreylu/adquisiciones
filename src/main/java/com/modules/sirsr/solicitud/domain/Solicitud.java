@@ -24,7 +24,7 @@ public class Solicitud {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "solicitud_generator")
-    @SequenceGenerator(name = "solicitud_generator", sequenceName = "ADQUISICIONES.SEQ_SOLICITUD", allocationSize = 1)
+    @SequenceGenerator(name = "solicitud_generator", sequenceName = "SEQ_SOLICITUD", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID_SOLICITUD")
     private Integer idSolicitud;

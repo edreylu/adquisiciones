@@ -14,6 +14,8 @@ import java.util.Objects;
 public class UsuarioMapper {
     
     EstatusMapper estatusMapper = new EstatusMapper();
+    DatosPersonalesMapper datosPersonalesMapper = new DatosPersonalesMapper();
+    UnidadResponsableMapper unidadResponsableMapper = new UnidadResponsableMapper();
 
     public UsuarioDTO toUsuarioDTO(Usuario usuario){
         if (Objects.isNull(usuario)) {
@@ -21,8 +23,6 @@ public class UsuarioMapper {
         }
 
         UsuarioDTO usuarioDTO = new UsuarioDTO();
-        DatosPersonalesMapper datosPersonalesMapper = new DatosPersonalesMapper();
-        UnidadResponsableMapper unidadResponsableMapper = new UnidadResponsableMapper();
 
         usuarioDTO.setNoUsuario(usuario.getNoUsuario());
         usuarioDTO.setUserName(usuario.getUserName());
@@ -60,6 +60,8 @@ public class UsuarioMapper {
         usuario.setEncrytedPassword(usuarioDTO.getEncrytedPassword());
         usuario.setFechaAuditoria(usuarioDTO.getFechaAuditoria());
         usuario.setEstatus(estatusMapper.toEstatus(usuarioDTO.getEstatus()));
+        usuario.setDatosPersonales(datosPersonalesMapper.toPersonal(usuarioDTO.getPersonal()));
+        usuario.setUnidadResponsable(unidadResponsableMapper.toUnidadResponsable(usuarioDTO.getUnidadResponsable()));
         usuario.setEnabled(usuarioDTO.getEnabled());
         return usuario;
     }

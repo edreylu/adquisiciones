@@ -18,9 +18,9 @@ and open the template in the editor.
             <center><lable class="tituloPrincipal">USUARIOS</lable></center>
        <h2 th:case="null">No hay usuarios</h2>
         <div th:case="*">
-        <div class="card border-info">
+        <div class="card sombra bordeCard">
             <div class="card-header text-white">
-                <a id="boton_agregar" style="font-size:15px;color: #333333;" title="Agregar usuario" th:href="@{/admin/usuarios/agregar}" class="fas fa-plus-circle"></a>
+                <a class="sombraChica" data-toggle="tooltip" data-placement="top" title="Agregar usuario" th:href="@{/admin/usuarios/agregar}"><img th:src="@{/img/icons/agregar.png}" class="iconos"></a>
             </div>
             <div class="card-body table-responsive-md">
                 <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" 
@@ -35,12 +35,11 @@ and open the template in the editor.
                         <tr>
                             <th style="width:5%">NO</th>
                             <th style="width:10%">USUARIO</th>
-                            <th style="width:10%">CORREO</th>
+                            <th style="width:15%">CORREO</th>
                             <th style="width:27%">NOMBRE</th>
                             <th style="width:13%">FECHA AUDITORIO</th>
-                            <th style="width:10%">TELEFONO</th>
+                            <th style="width:10%">TELÉFONO</th>
                             <th style="width:5%">ESTATUS</th>
-                            <th style="width:5%"> </th>
                             <th style="width:5%"> </th>
                             <th style="width:5%"> </th>
                             <th style="width:5%"> </th>
@@ -50,7 +49,7 @@ and open the template in the editor.
                         <tr th:each="dato: ${lista}">
                             <td style="width:5%" th:text="${dato.noUsuario}"></td>
                             <td style="width:10%" th:text="${dato.userName}"></td>
-                            <td style="width:10%" th:text="${dato.personal.correo}"></td>
+                            <td style="width:15%" th:text="${dato.personal.correo}"></td>
                             <td style="width:27%" th:text="${dato.personal.nombreCompleto}"></td>
                             <td style="width:13%" th:text="${#dates.format(dato.fechaAuditoria,'dd/MM/yyyy')}"></td>
                             <td style="width:10%" th:text="${dato.personal.telefonoFijo}"></td>
@@ -64,11 +63,6 @@ and open the template in the editor.
                                     <i class="fas fa-toggle-off" th:if="${dato.enabled == 0}" title="Activar"></i><i class="fas fa-toggle-on" th:if="${dato.enabled == 1}" title="Inactivar"></i>
                                 </a>
                                 <input type="hidden" value="usuarios" id="nombreModulo">
-                            </td>
-                            <td style="width:5%">
-                                <a id="boton_unidad" href="#" style="font-size:15px;color: #333333;" th:href="@{/admin/usuarios/asignarPersonal/{id}(id=${dato.noUsuario})}">
-                                    <i title="Asignar Personal" class="fa fa-address-card"></i>
-                                </a>
                             </td>
                             <td style="width:5%">
                                 <a id="boton_asignar" style="font-size:15px;color: #333333;" th:href="@{/admin/usuarios/asignarRoles/{id}(id=${dato.noUsuario})}"><i title="Asignar roles a usuario" class="fas fa-sitemap"></i></a>

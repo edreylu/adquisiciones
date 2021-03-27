@@ -207,6 +207,7 @@ background: rgba(240, 238, 238, 0.97);
 		max-width: 450px;
 		 }
 
+
 .dialogForm {
     max-width: 500px;
     margin: .1 rem auto;
@@ -236,7 +237,6 @@ font-size: 5px;
 
 }
 
-// Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767.98px) {
 #titleApp{
 font-size: 10px;
@@ -249,7 +249,6 @@ font-size: 10px;
 
 
 
-// Medium devices (tablets, 768px and up)
 @media (min-width: 768px) and (max-width: 991.98px) {
 
 #titleApp{
@@ -261,7 +260,6 @@ font-size: 10px;
     }
 }
 
-// Large devices (desktops, 992px and up)
 @media (min-width: 992px) and (max-width: 1199.98px) {
  #titleApp {
     font-size: 13px;
@@ -271,7 +269,6 @@ font-size: 10px;
     }
 }
 
-// Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
  #titleApp {
    font-size: 14px;
@@ -280,3 +277,23 @@ font-size: 10px;
    width: 100px;
    }
  }
+ 
+.sombra{
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+.sombraChica{
+    -webkit-box-shadow: 4px 8px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow:    4px 8px 5px 0px rgba(0,0,0,0.75);
+    box-shadow:        4px 8x 5x 0px rgba(0,0,0,0.75);
+}
+
+.bordeCard{
+	border: 1px solid #b2babb;
+}
+
+.iconos{
+	width: 20px !important;
+}

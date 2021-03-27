@@ -13,9 +13,9 @@ and open the template in the editor.
     <body>
         <header th:replace="layout :: header"></header>
        <div class="container mt-2 col-lg-8">
-           <div class="card">
+           <div class="card sombra bordeCard">
                 <div class="card-header text-center">
-                <lable class="tituloPrincipal">Asignar Documentos a Solicitud</lable>
+                <lable class="tituloPrincipal">Asignar documentos a solicitud</lable>
                 </div>
                 <div class="card-body">
                     <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
@@ -31,11 +31,11 @@ and open the template in the editor.
                                     <label class="form-label tituloTexto">SE REQUIEREN LOS SIGUIENTES DOCUMENTOS:</label>
                                     <br/>
                                     <br/>
-                                    <label class="form-label" style="font-size: large;">-Un Volante de Sucifiencia *</label>
+                                    <label class="form-label" style="font-size: large;">-Volante de sucifiencia *</label>
                                     <br/>
-                                    <label class="form-label" style="font-size: large;">-Un Oficio de Solicitud de Requisicion *</label>
+                                    <label class="form-label" style="font-size: large;">-Oficio de solicitud de requisición *</label>
                                     <br/>
-                                    <label class="form-label" style="font-size: large;">-Varios otros Documentos Adicionales</label>
+                                    <label class="form-label" style="font-size: large;">-Otros documentos adicionales</label>
                                 </div>
                             </div>
                             <hr/>

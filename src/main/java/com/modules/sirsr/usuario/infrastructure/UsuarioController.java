@@ -127,13 +127,19 @@ public class UsuarioController {
         return "redirect:/admin/usuarios";
     }
 
-    @GetMapping("admin/usuarios/searchPersonal/{noPersonal}/{noUsuario}")
-    public String searchPersonal(@PathVariable("noPersonal") int noPersonal, @PathVariable("noUsuario") int noUsuario, Model model) {
-        personal = datosPersonalesService.findByNoPersonal(noPersonal);
-        model.addAttribute("noPersonal", noPersonal);
-        model.addAttribute("noUsuario", noUsuario);
+    @GetMapping("admin/usuarios/searchPersonal/{nombrePersonal}")
+    public String searchPersonal(@PathVariable("nombrePersonal") String nombrePersonal, Model model) {
+        personal = datosPersonalesService.findByNombrePersonal(nombrePersonal);
+        model.addAttribute("nombrePersonal", nombrePersonal);
         model.addAttribute("personal", personal);
-        return "admin/usuarios/asignarPersonal :: #datosPersonal";
+        return "admin/usuarios/agregar :: #datosPersonal";
+    }
+    
+    @GetMapping("admin/usuarios/updateNoPersonal/{id}")
+    public String updateNoPersonal(@PathVariable("id") int id, Model model) {
+        DatosPersonalesDTO personal = datosPersonalesService.findById(id);
+        model.addAttribute("noPersonal", personal.getNoPersonal());
+        return "admin/usuarios/agregar :: #noPersonal";
     }
 
     @GetMapping("usuario/editarPerfil/{userName}")

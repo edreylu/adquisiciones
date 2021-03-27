@@ -13,9 +13,9 @@ and open the template in the editor.
     <body>
         <header th:replace="layout :: header"></header>
        <div class="container mt-2 col-lg-8">
-           <div class="card">
+           <div class="card sombra bordeCard">
                 <div class="card-header text-center">
-                <lable class="tituloPrincipal">Editar Solicitud</lable>
+                <lable class="tituloPrincipal">Editar solicitud</lable>
                 </div>
                 <div class="card-body">
                     
@@ -52,10 +52,10 @@ and open the template in the editor.
                             <br/>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label class="tituloTexto">Justificacion Del Uso</label>
+                                    <label class="tituloTexto">Justificación Del Uso</label>
                                     <textarea name="actividadOUso" class="form-control" th:field="${solicitud.actividadOUso}" required>
                                     </textarea>
-                                    <div class="invalid-feedback">Actividad o Uso es requerido</div>
+                                    <div class="invalid-feedback">Actividad o uso es requerido</div>
                                 </div>
                             </div>
                             

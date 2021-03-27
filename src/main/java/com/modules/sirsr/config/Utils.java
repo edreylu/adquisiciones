@@ -19,7 +19,7 @@ public class Utils {
         byte[] bytes = folio.getBytes();
         String cadena = null;
         try {
-            cadena = utilerias.Base64.encodeBytes(bytes, utilerias.Base64.GZIP);
+            cadena = Base64.encodeBytes(bytes, Base64.GZIP);
         } catch (IOException e) {
             e.printStackTrace();
         }

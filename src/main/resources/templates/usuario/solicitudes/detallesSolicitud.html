@@ -13,9 +13,9 @@ and open the template in the editor.
     <body>
         <header th:replace="layout :: header"></header>
        <div class="container mt-2 col-lg-8">
-           <div class="card">
+           <div class="card sombra bordeCard">
                 <div class="card-header text-center">
-                <lable class="tituloPrincipal">Detalles Solicitud</lable>
+                <lable class="tituloPrincipal">Detalles solicitud</lable>
                 </div>
                 <div class="card-body">
                     <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
@@ -73,7 +73,7 @@ and open the template in the editor.
                                     </div>
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <h5 class="card-title">Actividad o Uso: </h5>
+                                                <h5 class="card-title">Actividad o uso: </h5>
                                             </div>
                                             <div class="col-md-9">
                                                 <h6>[[${solicitud.actividadOUso}]]</h6>
@@ -81,7 +81,7 @@ and open the template in the editor.
                                         </div>
                                             <div class="row">
                                                 <div class="col-md-3">
-                                                    <h5 class="card-title">Firma Director: </h5>
+                                                    <h5 class="card-title">Firma director: </h5>
                                                 </div>
                                                 <div class="col-md-9">
                                                     <h6 data-toggle="tooltip" data-placement="top" th:if="${solicitud.firmaDirector!=null}" th:attr="title=${solicitud.firmaDirector}">Autorizado y firmado</h6>

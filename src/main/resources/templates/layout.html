@@ -1,203 +1,264 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-    <head th:fragment="head">
-        <meta charset="UTF-8"/>
-        <title th:text="-SIRSR-"></title>
-        <link rel="icon" type="image/png" style="width: 30%" th:href="@{/img/logosep.png}" />
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://unpkg.com/sweetalert2@9.5.3/dist/sweetalert2.all.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <script src="https://kit.fontawesome.com/cff6dddb5f.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css" integrity="sha512-Fppbdpv9QhevzDE+UHmdxL4HoW8HantO+rC8oQB2hCofV+dWV2hePnP5SgiWR1Y1vbJeYONZfzQc5iII6sID2Q==" crossorigin="anonymous" />
-        <link rel="stylesheet" th:href="@{/css/dataTables.bootstrap4.min.css}">
-        <link rel="stylesheet" th:href="@{/css/estilos.css}">
-        <link rel="stylesheet" th:href="@{/css/component-chosen.css}">
-        <script th:src="@{/js/chosen.jquery.min.js}"></script>
-        <script th:src="@{/js/jquery.dataTables.min.js}"></script>
-        <script th:src="@{/js/dataTables.bootstrap4.min.js}"></script>
-        <script th:src="@{/js/operaciones.js}"></script>
-        <script th:src="@{/js/alerta.js}"></script>
-        <script th:src="@{/js/procesos.js}"></script>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:fragment="head">
+<meta charset="UTF-8" />
+<title th:text="-SIRSR-"></title>
+<link rel="icon" type="image/png" style="width: 30%"
+	th:href="@{/img/logosep.png}" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://unpkg.com/sweetalert2@9.5.3/dist/sweetalert2.all.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/cff6dddb5f.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css"
+	integrity="sha512-Fppbdpv9QhevzDE+UHmdxL4HoW8HantO+rC8oQB2hCofV+dWV2hePnP5SgiWR1Y1vbJeYONZfzQc5iII6sID2Q=="
+	crossorigin="anonymous" />
+<link rel="stylesheet" th:href="@{/css/dataTables.bootstrap4.min.css}">
+<link rel="stylesheet" th:href="@{/css/estilos.css}">
+<link rel="stylesheet" th:href="@{/css/component-chosen.css}">
+<script th:src="@{/js/chosen.jquery.min.js}"></script>
+<script th:src="@{/js/jquery.dataTables.min.js}"></script>
+<script th:src="@{/js/dataTables.bootstrap4.min.js}"></script>
+<script th:src="@{/js/operaciones.js}"></script>
+<script th:src="@{/js/alerta.js}"></script>
+<script th:src="@{/js/procesos.js}"></script>
 
-    </head>
-    <body>
-        <header th:fragment="header">
-            <nav class="navbar navbar-expand-lg navbar navbar-light fixed-top" id="fondoBanner">
-                <a th:href="@{/}">
-                    <img th:src="@{/img/logosep.png}" id="logoSep" alt="">
-                </a>
-                    <strong>SIRSR     </strong>
-                <a class="navbar-brand" sec:authorize="isAuthenticated()" ></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent" sec:authorize="isAuthenticated()">
-                    <ul class="navbar-nav">
-                        <div sec:authorize="isAuthenticated()">
-                        <a class="navbar-brand" th:href="@{/menu}" >
-                            <i class="fas fa-home"> </i> </a>
-                        </div>
-                        <div sec:authorize="hasRole('ROLE_ADMIN')">
-                        <li class="nav-item dropdown"> 
-                            <a class="nav-link dropdown-toggle"  href="#" data-toggle="dropdown"  aria-haspopup="true"  aria-expanded="false">
-                                <i class='fas fa-cogs'> </i>  ADMINISTRACION </a>
+</head>
+<body>
+	<header th:fragment="header">
+		<nav class="navbar navbar-expand-lg navbar navbar-light fixed-top"
+			id="fondoBanner">
+			<a th:href="@{/}"> <img th:src="@{/img/logosep.png}" id="logoSep"
+				alt="">
+			</a> <strong>SIRSR </strong> <a class="navbar-brand"
+				sec:authorize="isAuthenticated()"></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent"
+				sec:authorize="isAuthenticated()">
+				<ul class="navbar-nav">
+					<div sec:authorize="isAuthenticated()">
+						<a class="navbar-brand" th:href="@{/menu}"> <img class="iconos"
+								th:src="@{/img/icons/home.png}"  > </i>
+						</a>
+					</div>
+					<div sec:authorize="hasRole('ROLE_ADMIN')">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"> <img 
+								th:src="@{/img/icons/admin.png}" class="iconos"> ADMINISTRACIÓN
+						</a>
 
-                            <div class="dropdown-menu"  aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" th:href="@{/admin/roles}" >
-                                    <i class='fa fa-fw fa-bars'> </i>  ROLES </a>
-                                <a class="dropdown-item" th:href="@{/admin/usuarios}" >
-                                    <i class='fas fa-users'> </i>  USUARIOS </a> 
-                            </div>
-                        </li>
-                        </div>
-                        <div sec:authorize="hasRole('ROLE_USER')">
-                        <li class="nav-item dropdown"> 
-                            <a class="nav-link dropdown-toggle"  href="#" data-toggle="dropdown"  aria-haspopup="true"  aria-expanded="false">
-                                <i class='fas fa-money-check-alt'> </i>  SOLICITUDES </a>
+							<div class="dropdown-menu"
+								aria-labelledby="navbarDropdownMenuLink">
+								<a class="dropdown-item" th:href="@{/admin/roles}"> <i
+									class='fa fa-fw fa-bars'> </i> ROLES
+								</a> <a class="dropdown-item" th:href="@{/admin/usuarios}"> <i
+									class='fas fa-users'> </i> USUARIOS
+								</a>
+							</div></li>
+					</div>
+					<div sec:authorize="hasRole('ROLE_USER')">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">  <img
+								th:src="@{/img/icons/solicitud.png}" class="iconos"> SOLICITUDES
+						</a>
 
-                            <div class="dropdown-menu"  aria-labelledby="navbarDropdownMenuLink">
-                                    
-                                <a class="dropdown-item" th:href="@{/usuario/solicitudes}" >
-                                    <i class='fas fa-money-check-alt'> </i>  SOLICITUDES </a>
-                            </div>
-                        </li>
-                        </div>
-                        <div sec:authorize="hasRole('ROLE_DIRECTORUR')">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle"  href="#" data-toggle="dropdown"  aria-haspopup="true"  aria-expanded="false">
-                                    <i class='fas fa-money-check-alt'> </i>  EMITIR SOLICITUDES </a>
+							<div class="dropdown-menu"
+								aria-labelledby="navbarDropdownMenuLink">
 
-                                <div class="dropdown-menu"  aria-labelledby="navbarDropdownMenuLink">
+								<a class="dropdown-item" th:href="@{/usuario/solicitudes}">
+									 <img th:src="@{/img/icons/solicitud.png}" class="iconos"> SOLICITUDES
+								</a>
+							</div></li>
+					</div>
+					<div sec:authorize="hasRole('ROLE_DIRECTORUR')">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"> <img
+								th:src="@{/img/icons/emitirsolicitud.png}" class="iconos"> EMITIR
+								SOLICITUDES
+						</a>
 
-                                    <a class="dropdown-item" th:href="@{/directorur/solicitudes}" >
-                                        <i class='fas fa-money-check-alt'> </i>  EMITIR SOLICITUDES </a>
-                                </div>
-                            </li>
-                        </div>
-                        <div sec:authorize="hasRole('ROLE_ADMONADQ')">
-                        <li class="nav-item dropdown"> 
-                            <a class="nav-link dropdown-toggle"  href="#"  data-toggle="dropdown"  aria-haspopup="true"  aria-expanded="false">
-                                <i class='fas fa-shopping-cart'> </i>  SOLICITUDES </a>
+							<div class="dropdown-menu"
+								aria-labelledby="navbarDropdownMenuLink">
 
-                            <div class="dropdown-menu"  aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" th:href="@{/admonadq/solicitudes}" >
-                                    <i class='fas fa-shopping-cart'> </i>  SOLICITUDES </a>
-                                    
-                            </div>
-                        </li>
-                        </div>
-                        <div sec:authorize="hasRole('ROLE_ADMONADQ')">
-                        <li class="nav-item dropdown"> 
-                            <a class="nav-link dropdown-toggle"  href="#" data-toggle="dropdown"  aria-haspopup="true"  aria-expanded="false">
-                                <i class='fa fa-book'> </i>  CATALOGOS </a>
+								<a class="dropdown-item" th:href="@{/directorur/solicitudes}">
+									<img th:src="@{/img/icons/emitirsolicitud.png}" class="iconos">
+									EMITIR SOLICITUDES
+								</a>
+							</div></li>
+					</div>
+					<div sec:authorize="hasRole('ROLE_ADMONADQ')">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"> <img
+								th:src="@{/img/icons/solicitudrevision.png}" class="iconos">
+								SOLICITUDES
+						</a>
 
-                            <div class="dropdown-menu"  aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" th:href="@{/admonadq/proveedores}" >
-                                    <i class='fa fa-truck'> </i>  PROVEEDORES </a>
+							<div class="dropdown-menu"
+								aria-labelledby="navbarDropdownMenuLink">
+								<a class="dropdown-item" th:href="@{/admonadq/solicitudes}">
+									<img th:src="@{/img/icons/solicitudrevision.png}" class="iconos">
+									SOLICITUDES
+								</a>
 
-                                <a class="dropdown-item" th:href="@{/admonadq/productos}" >
-                                    <i class='fa fa-product-hunt'> </i>  PRODUCTOS </a>
-                            </div>
-                        </li>
-                        </div>
+							</div></li>
+					</div>
+					<div sec:authorize="hasRole('ROLE_ADMONADQ')">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">
+                           <img th:src="@{/img/icons/catalogos.png}" class="iconos"> CATALOGOS
+						</a>
 
-                        <div sec:authorize="hasRole('ROLE_ADMONADQ')">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle"  href="#" data-toggle="dropdown"  aria-haspopup="true"  aria-expanded="false">
-                                    <i class='fa fa-book'> </i>  CONFIGURACIÓN </a>
+							<div class="dropdown-menu"
+								aria-labelledby="navbarDropdownMenuLink">
+								<a class="dropdown-item" th:href="@{/admonadq/proveedores}">
+									<i class='fa fa-truck'> </i> PROVEEDORES
+								</a> <a class="dropdown-item" th:href="@{/admonadq/productos}">
+									<i class='fa fa-product-hunt'> </i> PRODUCTOS
+								</a>
+							</div></li>
+					</div>
 
-                                <div class="dropdown-menu"  aria-labelledby="navbarDropdownMenuLink">
+					<div sec:authorize="hasRole('ROLE_ADMONADQ')">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">
+							<img th:src="@{/img/icons/configuracion.png}" class="iconos"> CONFIGURACIÓN
+						</a>
 
-                                    <a class="dropdown-item" th:href="@{/admonadq/foliosrequisiciones}" >
-                                        <i class="fas fa-sort-numeric-down"></i> FOLIOS REQUISICIONES</a>
-                                    <a class="dropdown-item" th:href="@{/admonadq/diaspermitidos}" >
-                                        <i class="far fa-calendar-alt"></i> DÍAS PERMITIDOS</a>
-                                </div>
+							<div class="dropdown-menu"
+								aria-labelledby="navbarDropdownMenuLink">
 
-                            </li>
-                                </div>
+								<a class="dropdown-item"
+									th:href="@{/admonadq/foliosrequisiciones}"> <i
+									class="fas fa-sort-numeric-down"></i> FOLIOS REQUISICIONES
+								</a> <a class="dropdown-item" th:href="@{/admonadq/diaspermitidos}">
+									<i class="far fa-calendar-alt"></i> DÍAS PERMITIDOS
+								</a>
+							</div></li>
+					</div>
 
-                    </ul>
+				</ul>
 
-                    <ul class="navbar-nav ml-auto nav-flex-icons">
-                        <input id="userNamePerfil" type="hidden" th:value="${#httpServletRequest.userPrincipal.name}"/>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false"> 
-                                <i class="fas fa-user" > Bienvenido, [[${#httpServletRequest.userPrincipal.name}]]</i></a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-                                
-                                <a class="dropdown-item"  onclick="mensajeCerrarSesion()"> 
-                                    <i class="fas fa-share-square"> </i>  Cerrar Sesion </a>
-                            </div> 
-                        </li> 
-                    </ul>
-                </div>
-            </nav>
-        <div id="perfilModalHolder"></div>
-        </header>
-        <div class="container">
-            
+				<ul class="navbar-nav ml-auto nav-flex-icons">
+					<input id="userNamePerfil" type="hidden"
+						th:value="${#httpServletRequest.userPrincipal.name}" />
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<div> Bienvenido,
+								[[${#httpServletRequest.userPrincipal.name}]]</div>
+					</a>
+						<div class="dropdown-menu dropdown-menu-right dropdown-default"
+							aria-labelledby="navbarDropdownMenuLink-333">
 
-        <div class="modal fade" id="perfilModal" tabindex="-1" role="dialog" aria-hidden="true" th:fragment="modalPerfil">
-            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
+							<a class="dropdown-item" onclick="mensajeCerrarSesion()"> <i
+								class="fas fa-share-square"> </i> Cerrar sesión
+							</a>
+						</div></li>
+				</ul>
+			</div>
+		</nav>
+		<div id="perfilModalHolder"></div>
+	</header>
+	<div class="container">
 
-                        <h4 class="modal-title" id="myModalChangeLabel">Editar Perfil</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="post" action="#" th:action="@{/usuario/updatePerfil/{userName}(userName=${usuario.userName})}" th:object="${usuario}">
-                        <div class="row">
-                            <div class="col-md-6"><b class="tituloTexto">Nombre: </b>
-                                <input type="text" name="nombre" class="form-control" th:field="${usuario.nombre}" required/>
-                                <div class="invalid-feedback">Nombre es requerido</div>
-                            </div>
-                            <div class="col-md-6"><b class="tituloTexto">Apellido Paterno: </b>
-                                <input type="text" name="apellidoPaterno" class="form-control" th:field="${usuario.apellidoPaterno}" required/>
-                                <div class="invalid-feedback">Apellido paterno es requerido</div>
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-md-6"><b class="tituloTexto">Apellido Materno: </b>
-                                <input type="text" name="apellidoMaterno" class="form-control" th:field="${usuario.apellidoMaterno}" required/></div>
-                            <div class="invalid-feedback">Apellido paterno es requerido</div>
-                            <div class="col-md-6"><b class="tituloTexto">Correo: </b>
-                                <input type="email" name="correo" class="form-control" th:field="${usuario.correo}" required/>
-                                <div class="invalid-feedback">Proporciona un Correo valido</div>
-                            </div>
-                        </div>
+		<div class="modal fade" id="perfilModal" tabindex="-1" role="dialog"
+			aria-hidden="true" th:fragment="modalPerfil">
+			<div class="modal-dialog modal-lg modal-dialog-centered"
+				role="document">
+				<div class="modal-content">
+					<div class="modal-header">
 
-                        <div class="row">
-                            <div class="col-md-6"><b class="tituloTexto">Telefono: </b>
-                                <input type="text" name="telefono" class="form-control" th:field="${usuario.telefono}" required/>
-                                <div class="invalid-feedback">Telefono es requerido</div>
-                            </div>
-                            <div class="col-md-6"><b class="tituloTexto">Telefono2: </b>
-                                <input type="text" name="telefono2" class="form-control" th:field="${usuario.telefono2}" required/>
-                            </div>
-                        </div>
+						<h4 class="modal-title" id="myModalChangeLabel">Editar Perfil</h4>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form method="post" action="#"
+							th:action="@{/usuario/updatePerfil/{userName}(userName=${usuario.userName})}"
+							th:object="${usuario}">
+							<div class="row">
+								<div class="col-md-6">
+									<b class="tituloTexto">Nombre: </b> <input type="text"
+										name="nombre" class="form-control"
+										th:field="${usuario.nombre}" required />
+									<div class="invalid-feedback">Nombre es requerido</div>
+								</div>
+								<div class="col-md-6">
+									<b class="tituloTexto">Apellido Paterno: </b> <input
+										type="text" name="apellidoPaterno" class="form-control"
+										th:field="${usuario.apellidoPaterno}" required />
+									<div class="invalid-feedback">Apellido paterno es
+										requerido</div>
+								</div>
+							</div>
 
-                        <br/>
-                        <br/>
-                        <input type="submit" class="btn btn-success" value="Actualizar">
-                    </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+							<div class="row">
+								<div class="col-md-6">
+									<b class="tituloTexto">Apellido Materno: </b> <input
+										type="text" name="apellidoMaterno" class="form-control"
+										th:field="${usuario.apellidoMaterno}" required />
+								</div>
+								<div class="invalid-feedback">Apellido paterno es
+									requerido</div>
+								<div class="col-md-6">
+									<b class="tituloTexto">Correo: </b> <input type="email"
+										name="correo" class="form-control"
+										th:field="${usuario.correo}" required />
+									<div class="invalid-feedback">Proporciona un Correo
+										valido</div>
+								</div>
+							</div>
 
-        </div>
-        <footer th:fragment="footer">
+							<div class="row">
+								<div class="col-md-6">
+									<b class="tituloTexto">Telefono: </b> <input type="text"
+										name="telefono" class="form-control"
+										th:field="${usuario.telefono}" required />
+									<div class="invalid-feedback">Telefono es requerido</div>
+								</div>
+								<div class="col-md-6">
+									<b class="tituloTexto">Telefono2: </b> <input type="text"
+										name="telefono2" class="form-control"
+										th:field="${usuario.telefono2}" required />
+								</div>
+							</div>
 
-        </footer>
-    </body>
+							<br /> <br /> <input type="submit" class="btn btn-success"
+								value="Actualizar">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<footer th:fragment="footer"> </footer>
+</body>
 </html>

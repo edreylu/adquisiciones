@@ -32,6 +32,25 @@ public class DatosPersonalesMapper {
         return datosPersonalesDTO;
     }
     
+    public DatosPersonales toPersonal(DatosPersonalesDTO datosPersonalesDTO) {
+        if (Objects.isNull(datosPersonalesDTO)) {
+            return null;
+        }
+
+        DatosPersonales datosPersonales = new DatosPersonales();
+
+        datosPersonales.setNoPersonal(datosPersonalesDTO.getNoPersonal());
+        datosPersonales.setApellidoPaterno(datosPersonalesDTO.getApellidoPaterno());
+        datosPersonales.setApellidoMaterno(datosPersonalesDTO.getApellidoMaterno());
+        datosPersonales.setNombre(datosPersonalesDTO.getNombre());
+        datosPersonales.setCorreo(datosPersonalesDTO.getCorreo());
+        datosPersonales.setTelefonoFijo(datosPersonalesDTO.getTelefonoFijo());
+        datosPersonales.setTelefonoMovil(datosPersonalesDTO.getTelefonoMovil());
+        
+
+        return datosPersonales;
+    }
+    
     public List<DatosPersonalesDTO> toUnidadResponsableDTOs(List<DatosPersonales> personales) {
         if (Objects.isNull(personales)) {
             return null;

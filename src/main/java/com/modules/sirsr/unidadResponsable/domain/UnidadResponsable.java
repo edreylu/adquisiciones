@@ -52,7 +52,7 @@ public class UnidadResponsable {
     @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
     @ManyToOne(optional = false)
     private Estatus estatus;
-    
+    /*
     @JoinTable(name = "PRODUCTO_UNIDADRESP",
             joinColumns = @JoinColumn(name = "PRODUNIDRESP_UNIDADRESP_FK", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "PRODUNIRESP_PRODUCTO_FK", nullable = false))
@@ -65,7 +65,7 @@ public class UnidadResponsable {
     private List<Usuario> usuarios;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidadResponsable")
     private List<Solicitud> solicitudes;
-
+*/
     public String getClaveUr() {
         return claveUr;
     }
@@ -106,37 +106,4 @@ public class UnidadResponsable {
         this.estatus = estatus;
     }
 
-    public List<Producto> getProductos() {
-        return productos;
-    }
-
-    public void setProductos(List<Producto> productos) {
-        this.productos = productos;
-    }
-
-    public List<ClavePresupuestaria> getClavesPresupuestarias() {
-        return clavesPresupuestarias;
-    }
-
-    public void setClavesPresupuestarias(List<ClavePresupuestaria> clavesPresupuestarias) {
-        this.clavesPresupuestarias = clavesPresupuestarias;
-    }
-
-    public List<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
-    }
-
-    public List<Solicitud> getSolicitudes() {
-        return solicitudes;
-    }
-
-    public void setSolicitudes(List<Solicitud> solicitudes) {
-        this.solicitudes = solicitudes;
-    }
-
-    
 }

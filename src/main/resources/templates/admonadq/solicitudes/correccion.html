@@ -13,15 +13,15 @@ and open the template in the editor.
     <body>
         <header th:replace="layout :: header"></header>
         <div class="container mt-2 col-lg-4">
-            <div class="card">
+            <div class="card sombra bordeCard">
                 <div class="card-header text-center">
-                 <lable class="tituloPrincipal">Agregar Correccion</lable>
+                 <lable class="tituloPrincipal">Agregar corrección</lable>
                 </div>
                 <div class="card-body">
                     
                     <form class="needs-validation" novalidate method="post" action="#" th:action="@{/admonadq/solicitudes/correccion/add/{id}(id=${solicitud.idSolicitud})}" th:object="${revision}">
 
-                        <label class="tituloTexto">Observacion</label>
+                        <label class="tituloTexto">Observación</label>
                         <input type="text" name="observacion" class="form-control" required/>
                         <div class="invalid-feedback">Observacion es requerido</div>
                         <br/>

@@ -18,5 +18,6 @@ public interface DatosPersonalesRepository extends JpaRepository<DatosPersonales
 
     DatosPersonales findByCorreo(String email);
     List<DatosPersonales> findByNoPersonal(Integer noPersonal);
+    List<DatosPersonales> findByNombreIgnoreCaseContainingOrApellidoPaternoIgnoreCaseContainingOrApellidoMaternoIgnoreCaseContaining(String nombre, String apelllidoPaterno, String apellidoMaterno);
     
 }

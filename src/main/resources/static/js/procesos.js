@@ -33,16 +33,20 @@ function editarPerfil() {
 }
 
 function showAsignarPersonal(){
+    let listPersonal = document.getElementById("listPersonal");
+    if(listPersonal!=null){
+    listPersonal.innerHTML = "";
+     }
     $("#asignarPersonalModal").modal();
 }
 
-function searchPersonal() {
-    var noPersonal = document.getElementById("noPersonal").value;
-    var noUsuario = document.getElementById("noUsuario").value;
-    console.log("../../usuarios/searchPersonal/" + noPersonal + "/"+noUsuario);
-    if (noPersonal != "" && noUsuario != 0) {
+function searchPersonal(tipo) {
+    let root = tipo == 1 ? "" : "../";
+    var nombrePersonal = document.getElementById("nombrePersonal").value;
+    console.log(root+"../usuarios/searchPersonal/" + nombrePersonal );
+    if (nombrePersonal != "" && nombrePersonal != null) {
         var xhr = getXhr();
-        xhr.open("GET", "../../usuarios/searchPersonal/" + noPersonal + "/"+noUsuario, true);
+        xhr.open("GET",root+"../usuarios/searchPersonal/" + nombrePersonal, true);
         xhr.onreadystatechange = () => {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 let data = xhr.responseText;
@@ -52,6 +56,11 @@ function searchPersonal() {
         }
         xhr.send(null);
     }
+}
+
+function updateNoPersonal(id) {
+   document.getElementById("noPersonal").value = id;
+   $('#asignarPersonalModal').modal('hide');
 }
 
 

@@ -20,15 +20,15 @@ and open the template in the editor.
 		</div>
 		<h2 th:case="null">No hay registros</h2>
 		<div th:case="*" style="width: 60%; margin: auto auto">
-			<div class="card border-info">
+			<div class="card sombra bordeCard">
 
 				<div class="card-header text-white" style="min-height: 50px">
 					<div th:if="${anioActual != null}">
-						<a id="boton_agregar" style="font-size: 15px; color: #333333;>"
+						<a class="sombraChica" data-placement="top"
 							title="Agregar nuevo año" data-toggle="tooltip"
-							th:onclick="'mensajeAltaAnio(\''+ ${anioActual} +'\')'"
-							
-							class="fas fa-plus-circle "></a>
+							th:onclick="'mensajeAltaAnio(\''+ ${anioActual} +'\')'">
+							<img th:src="@{/img/icons/agregar.png}" class="iconos">
+						</a>
 
 					</div>
 

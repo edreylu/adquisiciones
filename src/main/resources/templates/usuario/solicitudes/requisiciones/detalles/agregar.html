@@ -13,9 +13,9 @@ and open the template in the editor.
     <body>
         <header th:replace="layout :: header"></header>
         <div class="container mt-2 col-lg-8">
-            <div class="card">
+            <div class="card sombra bordeCard">
                 <div class="card-header text-center">
-                 <lable class="tituloPrincipal">Agregar Producto.</lable>
+                 <lable class="tituloPrincipal">Agregar producto.</lable>
                 </div>
                 <div class="card-body">
 
@@ -42,7 +42,7 @@ and open the template in the editor.
                                     <input th:if="${producto!=null}" hidden th:value="${producto.precioDeReferencia}" name="producto.precioDeReferencia">
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="tituloTexto">Unidad de Medida: </label>
+                                    <label class="tituloTexto">Unidad de medida: </label>
                                     <h6 th:if="${producto!=null}" th:text="${producto.unidadMedida.nombre}"></h6>
                                     <input th:if="${producto!=null}" hidden th:value="${producto.unidadMedida.nombre}" name="producto.unidadMedida.nombre">
                                 </div>
@@ -51,7 +51,7 @@ and open the template in the editor.
                             </br>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label class="form-label tituloTexto" for="cantidadSolicitada">Cantidad Solicitada:</label>
+                                    <label class="form-label tituloTexto" for="cantidadSolicitada">Cantidad solicitada:</label>
                                     <input type="number" class="form-control" name="cantidadSolicitada" id="cantidadSolicitada" required />
                                     <div class="invalid-feedback">Cantidad solicitada es requerido</div>
                                 </div>

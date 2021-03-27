@@ -13,10 +13,10 @@ and open the template in the editor.
     <body>
         <header th:replace="layout :: header"></header>
        <div class="container mt-4">
-           <div class="card border-info">
+           <div class="card sombra bordeCard">
 
                 <div class="card-header text-center">
-                <lable class="tituloPrincipal">Asignar Productos a Requisicion</lable>
+                <lable class="tituloPrincipal">Asignar productos a requisición</lable>
                 </div>
                 <div class="card-body">
                     <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
@@ -29,7 +29,7 @@ and open the template in the editor.
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label class="form-label tituloTexto">PRODUCTOS PARA REQUISICION: </label>
+                                    <label class="form-label tituloTexto">PRODUCTOS PARA REQUISICIÓN: </label>
                                     <label style="font-size: small; text-align: center;">[[${requisicion.clavePresupuestaria.claveCompleta}]]</label>
                                     <br/>
                                     <label class="form-label tituloTexto">UNIDAD RESPONSABLE: </label>
@@ -62,7 +62,7 @@ and open the template in the editor.
                                         <tr>
                                             <th style="width:10%">NO</th>
                                             <th style="width:10%">CANTIDAD SOLICITADA</th>
-                                            <th style="width:50%">CARACTERISTICAS</th>
+                                            <th style="width:50%">CARACTERÍSTICAS</th>
                                             <th style="width:10%">PRECIO DE REFERENCIA</th>
                                             <th style="width:10%"> </th>
                                             <th style="width:10%"> </th>

@@ -77,8 +77,8 @@ public class DocumentoController {
     @GetMapping("usuario/solicitudes/documentos/addDocumento/{id}")
     public String documento(@PathVariable("id") int id, Model model) {
         solicitudDTO = solicitudService.findById(id);
-        List<Integer> tiposDocumentosNot = documentoService.getTiposDocumentosNot.apply(id);
-        tiposDocumento = tipoDocumentoService.findAllByTiposDocumentoNot(tiposDocumentosNot);
+        List<Integer> tiposDocumentoNot = documentoService.getTiposDocumentoNot(id);
+        tiposDocumento = tipoDocumentoService.findAllByTiposDocumentoNot(tiposDocumentoNot);
         model.addAttribute("tiposDocumento", tiposDocumento);
         model.addAttribute("solicitud", solicitudDTO);
         model.addAttribute("documento", new DocumentoDTO());

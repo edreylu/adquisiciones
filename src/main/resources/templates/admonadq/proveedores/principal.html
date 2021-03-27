@@ -16,12 +16,12 @@ and open the template in the editor.
         
         <div class="container mt-4" th:switch="${lista}">
        <div class="text-center"><lable class="tituloPrincipal">PROVEEDORES</lable></div>
-       <h2 th:case="null">No hay Proveedores</h2>
+       <h2 th:case="null">No hay proveedores</h2>
         <div th:case="*">
-        <div class="card border-info">
+        <div class="card sombra bordeCard">
             
             <div class="card-header text-white">
-                <a id="boton_agregar" style="font-size:15px;color: #333333;" title="Agregar Proveedor" th:href="@{/admonadq/proveedores/agregar}" class="fas fa-plus-circle"></a>
+                <a class="sombraChica" data-toggle="tooltip" data-placement="top" title="Agregar proveedores" th:href="@{/admonadq/proveedores/agregar}"><img th:src="@{/img/icons/agregar.png}" class="iconos"></a>
             </div>
             <div class="card-body table-responsive-md">
                 <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" 
@@ -53,8 +53,8 @@ and open the template in the editor.
                             <td style="width:15%" th:text="${dato.telefono1}"></td>
                             <td style="width:10%" th:text="${dato.estatusDTO.descripcion}"></td>
                             <td style="width:5%; text-align: center">
-                                <a id="boton_editar" style="font-size:15px;color: #333333;" th:href="@{/admonadq/proveedores/editar/{id}(id=${dato.idProveedor})}">
-                                    <i title="Editar Rol" class="fas fa-edit"></i>
+                                <a th:href="@{/admonadq/proveedores/editar/{id}(id=${dato.idProveedor})}">
+                                    <img th:src="@{/img/icons/editar.png}" class="iconos" title="Editar proveedor" data-toggle="tooltip" data-placement="top">
                                 </a>
                             </td>
                             <td style="width:5%; text-align: center">

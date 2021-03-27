@@ -13,9 +13,9 @@ and open the template in the editor.
 <body>
 	<header th:replace="layout :: header"></header>
 	<div class="container mt-2 col-lg-4">
-		<div class="card">
+		<div class="card sombra bordeCard">
 			<div class="card-header text-center">
-				<lable class="tituloPrincipal">Editar Proveedor</lable>
+				<lable class="tituloPrincipal">Editar proveedor</lable>
 			</div>
 			<div class="card-body">
 				<form class="needs-validation" novalidate method="post" action="#"
@@ -31,10 +31,10 @@ and open the template in the editor.
 						name="rfc" class="form-control" th:value="${proveedor.rfc}"
 						required />
 					<div class="invalid-feedback">RFC es requerido</div>
-					<label class="tituloTexto">RAZON SOCIAL</label> <input type="text"
+					<label class="tituloTexto">RAZÓN SOCIAL</label> <input type="text"
 						name="razonSocial" class="form-control"
 						th:value="${proveedor.razonSocial}" required />
-					<div class="invalid-feedback">Razon Social es requerido</div>
+					<div class="invalid-feedback">RAZÓN SOCIAL es requerido</div>
 					<label class="tituloTexto">NOMBRE COMERCIAL</label> <input
 						type="text" name="nombreComercial" th:value="${proveedor.nombreComercial}" class="form-control" />
 					<div class="invalid-feedback">NOMBRE COMERCIAL es requerido</div>

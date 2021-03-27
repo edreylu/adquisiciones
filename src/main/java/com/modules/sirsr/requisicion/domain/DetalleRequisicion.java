@@ -36,7 +36,7 @@ public class DetalleRequisicion{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "detallerequisicion_generator")
-    @SequenceGenerator(name = "detallerequisicion_generator", sequenceName = "ADQUISICIONES.SEQ_DETALLE_REQUISICION", allocationSize = 1)
+    @SequenceGenerator(name = "detallerequisicion_generator", sequenceName = "SEQ_DETALLE_REQUISICION", allocationSize = 1)
     @Column(name = "ID_DETALLE_REQUISICION")
     private Integer idDetalleRequisicion;
     @Column(name = "ID_REQUISICION", updatable = false, insertable = false)

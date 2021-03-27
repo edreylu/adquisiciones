@@ -27,7 +27,7 @@
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             Has salido de session.
         </div>
-            <div class="dialogForm text-center">
+            <div class="dialogForm text-center sombra">
                 <div class="modal-content">
                     <div class="col-12 user-img">
                         <img th:src="@{/img/logosep.png}" width="220" height="100"/>
@@ -44,7 +44,7 @@
                             <div class="input-group">
                                 <input id="password" type="password" class="form-control" placeholder="Password" name="password" required>
                                     <div class="input-group-append">
-                                        <button id="show_password" class="btn btn-primary" type="button" onclick="mostrarPassword()"> <span class="fa fa-eye-slash icon"></span> </button>
+                                        <button id="show_password" class="btn btn btn-dark" type="button" onclick="mostrarPassword()"> <span class="fa fa-eye-slash icon"></span> </button>
                                     </div>
                             </div>
                         </div>
@@ -52,7 +52,7 @@
                             <div class="g-recaptcha" th:attr="data-sitekey=${key}" data-callback="enabledSubmit"></div>
                         </div>
                         
-                        <button id="botonSpinner" type="submit" class="btn btn-primary" >
+                        <button id="botonSpinner" type="submit" class="btn btn-dark" >
                             <i class="fas fa-sign-in-alt"></i> <span>Ingresar</span> </button>
                         <hr/>
                         <button type="button" class="btn btn-light" data-toggle="modal" data-target="#passwordChangeModal">Reiniciar Contraseña</button>
@@ -86,7 +86,7 @@
                                         <input type="email" name="email" class="form-control" placeholder="Ingresa tu correo" required autofocus/>
                                     </p>
                                     <p class="text-center">
-                                        <input type="submit" value="Enviar correo" class="btn btn-primary" />
+                                        <input type="submit" value="Enviar correo" class="btn btn-dark" />
                                     </p>
                                 </div>
                         </form>
