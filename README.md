@@ -1,3 +1,3 @@
 ##### SISTEMA ADQUISICIONES #####
 
-Base del sistema de adquisiciones para comenzar a construir modulos y catalogos.
+Proyecto para registrar y controlar solicitudes de requisicion.
