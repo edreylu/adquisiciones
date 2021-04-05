@@ -76,12 +76,12 @@ and open the template in the editor.
                                             <td style="width:10%" th:text="${dato.producto.precioDeReferencia}"></td>
                                             <td style="width:10%">
                                                 <a id="boton_editar" href="#" style="font-size:15px;color: #333333;" th:href="@{/usuario/solicitudes/requisiciones/detalles/editar/{id}(id=${dato.idDetalleRequisicion})}">
-                                                    <i title="Editar Solicitud" class="fas fa-edit"></i>
+                                                    <img th:src="@{/img/icons/editar.png}" class="iconos" title="Editar Detalle" data-toggle="tooltip" data-placement="top" >
                                                 </a>
                                             </td>
                                             <td style="width:10%">
                                                 <a id="boton_eliminar" href="#" style="font-size:15px;color: #333333;" th:onclick="'mensajeEliminarDetalle(\''+ ${dato.idDetalleRequisicion} +'\',\''+ ${requisicion.idRequisicion} +'\')'">
-                                                    <i title="Eliminar Detalle" class="fas fa-trash-alt"></i>
+                                                    <img th:src="@{/img/icons/eliminar.png}" class="iconos" title="Eliminar Detalle" data-toggle="tooltip" data-placement="top">
                                                 </a>
                                                 <input type="hidden" value="detalles" id="nombreModulo">
                                             </td>

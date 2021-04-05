@@ -31,11 +31,13 @@ and open the template in the editor.
                                     <label class="form-label tituloTexto">SE REQUIEREN LOS SIGUIENTES DOCUMENTOS:</label>
                                     <br/>
                                     <br/>
-                                    <label class="form-label" style="font-size: large;">-Volante de sucifiencia *</label>
+                                    <label class="form-label" style="font-size: large;">-Volante de Sucifiencia *</label>
                                     <br/>
-                                    <label class="form-label" style="font-size: large;">-Oficio de solicitud de requisición *</label>
+                                    <label class="form-label" style="font-size: large;">-Oficio de Solicitud de requisición *</label>
                                     <br/>
-                                    <label class="form-label" style="font-size: large;">-Otros documentos adicionales</label>
+                                    <label class="form-label" style="font-size: large;">-Oficio de Justificación *</label>
+                                    <br/>
+                                    <label class="form-label" style="font-size: large;">-Otros Documentos adicionales</label>
                                 </div>
                             </div>
                             <hr/>
@@ -97,23 +99,24 @@ and open the template in the editor.
                     </div>
                     <div class="modal-body">
                         <div id="opcionesAsignarPersonal" class="card-body table-responsive-md">
-                            <form class="needs-validation" novalidate method="post" action="#" enctype="multipart/form-data"
+                            <form method="post" action="#" enctype="multipart/form-data"
                                   th:action="@{/usuario/solicitudes/documentos/update/{id}(id=${solicitud.idSolicitud})}" th:object="${documento}">
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label class="form-label tituloTexto" for="documento">Documento:</label>
-                                            <input type="file" class="form-control-file" name="file" id="documento" />
+                                            <input type="file" class="form-control-file" name="file" id="documento" required/>
                                             <div class="invalid-feedback">Documento es requerido</div>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="tituloTexto">Tipo de Documento</label>
-                                            <select id="tipoDocumento" name="tipoDocumento.idTipoDocumento" class="form-control">
+                                            <select id="tipoDocumento" name="tipoDocumento.idTipoDocumento" class="form-control" required>
                                                 <option value="">Selecciona...</option>
                                                 <option th:each="tipo : ${tiposDocumento}"
                                                         th:value="${tipo.idTipoDocumento}"
                                                         th:utext="${tipo.descripcion}"/>
                                             </select>
+                                            <div class="invalid-feedback">Tipo de Documento es requerido</div>
                                         </div>
                                     </div>
                             <br/>

@@ -5,7 +5,7 @@
  */
 package com.modules.sirsr.config;
  
-import com.modules.sirsr.usuario.application.UserDetailsServiceImpl;
+import com.modules.sirsr.usuario.domain.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

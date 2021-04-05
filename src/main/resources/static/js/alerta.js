@@ -24,6 +24,32 @@ console.log(idestatus);
         });
 }
 
+function mensajeActiInactiDiaPermitido( dia, mes, anio, idestatus) {
+	
+	console.log('Estatus: ' + idestatus + ' dia ' + dia + ' mes ' + mes +' anio ' + anio);
+	    Swal
+	        .fire({
+	            title: idestatus==0?"Activar":"Inactivar",
+	            text: "¿Desea "+(idestatus==0?"Activar":"Inactivar")+" este día?",
+	            icon: 'warning',
+	            showCancelButton: true,
+	            confirmButtonText: "Si",
+	            cancelButtonText: "No",
+	        })
+	        .then(resultado => {
+	            if (resultado.value) {
+	                // Hicieron click en "Sí"
+	          let enabled=idestatus==0?1:0;
+	          let fechaString = dia+'-'+mes+'-'+ anio;
+	          window.location = "diaspermitidos"+"/eliminar/"+fechaString+"/"+enabled;
+	                
+	            } else {
+	                // Dijeron que no
+	                console.log("*NO se cerro*");
+	            }
+        });
+}
+
 function mensajeAltaAnio(anio) {
 	let modulo = document.getElementById("nombreModulo").value;
 	console.log(anio);
@@ -46,6 +72,28 @@ function mensajeAltaAnio(anio) {
 	            }
 	        });
 	}
+        
+function mensajeAceptarRechazar(id) {
+    let modulo = document.getElementById("nombreModulo").value;
+        Swal.fire({
+  title: '¿Que desea hacer con el producto?',
+  showDenyButton: true,
+  showCancelButton: true,
+  confirmButtonText: "Aceptar",
+  denyButtonText: "Rechazar",
+  cancelButtonText: "Cancelar",
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below */
+  if (result.isConfirmed) {
+      window.location = modulo+"/actionToSuggestion/"+id+"/"+1;
+    Swal.fire('El producto fue aceptado!', '', 'success');
+  } else if (result.isDenied) {
+      window.location = modulo+"/actionToSuggestion/"+id+"/"+0;
+    Swal.fire('El producto se rechazo', '', 'info');
+  }
+});
+
+}
 
 function mensajeEliminar(id) {
 let modulo = document.getElementById("nombreModulo").value;
@@ -206,6 +254,19 @@ function mensajeCerrarSesion(){
                 console.log("*NO se cerro*");
             }
         });
+}
+
+function alertaProductos(){
+    Swal.fire({
+  position: 'top-end',
+  icon: 'warning',
+  title: 'Tienes sugerencias de productos sin atender',
+  showCloseButton: true,
+  focusConfirm: false,
+  confirmButtonText:
+    '<i class="fa fa-thumbs-up"></i> Esta bien ir a Productos sugeridos',
+  confirmButtonAriaLabel: 'Te enviara a productos a validar'
+  });
 }
   
   

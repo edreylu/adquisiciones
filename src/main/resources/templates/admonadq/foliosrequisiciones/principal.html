@@ -65,10 +65,12 @@ and open the template in the editor.
 									id="boton_activar" href="#"
 									style="font-size: 15px; color: #333333;"
 									th:onclick="'mensajeActivarInactivar(\''+ ${dato.anio} +'\',\''+ ${dato.estatus.idEstatus} +'\')'">
-										<i class="fas fa-toggle-off"
-										th:if="${dato.estatus.idEstatus == 0}" title="Activar"></i><i
-										class="fas fa-toggle-on"
-										th:if="${dato.estatus.idEstatus == 1}" title="Inactivar"></i>
+									<img th:src="@{/img/icons/toggleoff.png}" class="iconos"
+										data-toggle="tooltip" data-placement="top" th:if="${dato.estatus.idEstatus == 0}"
+										title="Activar">
+										<img th:src="@{/img/icons/toggleon.png}" class="iconos"
+										data-toggle="tooltip" data-placement="top" th:if="${dato.estatus.idEstatus == 1}" title="Inactivar">
+										
 								</a>
 								</td>
 							</tr>

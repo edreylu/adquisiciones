@@ -7,33 +7,31 @@
 		name="com.modules_adquisiciones_war_0.0.1-SNAPSHOTPU"
 		transaction-type="RESOURCE_LOCAL">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-		<class>com.modules.sirsr.persistence.entity.Volante</class>
-		<class>com.modules.sirsr.tipoProducto.domain.TipoProducto</class>
-		<class>com.modules.sirsr.subTipoProducto.domain.SubTipoProducto</class>
-		<class>com.modules.sirsr.formaPago.domain.FormaPago</class>
-		<class>com.modules.sirsr.revision.domain.Revision</class>
-		<class>com.modules.sirsr.clavePresupuestaria.domain.ClavePresupuestaria</class>
-		<class>com.modules.sirsr.diaPermitido.domain.DiaPermitido</class>
-		<class>com.modules.sirsr.tipoRevision.domain.TipoRevision</class>
-		<class>com.modules.sirsr.objetoGasto.domain.ObjetoDeGasto</class>
-		<class>com.modules.sirsr.folioRequisicion.domain.FolioRequisicion</class>
-		<class>com.modules.sirsr.consolidacion.domain.Consolidacion</class>
-		<class>com.modules.sirsr.detalleConsolidacion.domain.DetalleConsolidacion</class>
-		<class>com.modules.sirsr.solicitud.domain.Solicitud</class>
-		<class>com.modules.sirsr.cotizaConsolidacion.domain.CotizaConsolidacion</class>
-		<class>com.modules.sirsr.tipoPersonaFiscal.domain.TipoPersonaFiscal</class>
-		<class>com.modules.sirsr.datosPersonales.domain.DatosPersonales</class>
-		<class>com.modules.sirsr.marca.domain.Marca</class>
-		<class>com.modules.sirsr.seguimientoSolicitud.domain.SeguimientoSolicitud</class>
-		<class>com.modules.sirsr.detalleCotizaConsolida.domain.DetalleCotizaConsolida</class>
-		<class>com.modules.sirsr.invitacionACotizarConsolida.domain.InvitacionACotizarConsolida</class>
-		<class>com.modules.sirsr.cotizaRequisicion.domain.CotizaRequisicion</class>
-		<class>com.modules.sirsr.prioridad.domain.Prioridad</class>
-		<class>com.modules.sirsr.invitacionACotizarRequis.domain.InvitacionACotizarRequis</class>
-		<class>com.modules.sirsr.producto.domain.Producto</class>
-		<class>com.modules.sirsr.estatus.domain.Estatus</class>
-		<class>com.modules.sirsr.detalleCotizaRequis.domain.DetalleCotizaRequis</class>
-		<class>com.modules.sirsr.requisicion.domain.Requisicion</class>
+		<class>com.modules.sirsr.tipoProducto.persistence.TipoProducto</class>
+		<class>com.modules.sirsr.subTipoProducto.persistence.SubTipoProducto</class>
+		<class>com.modules.sirsr.formaPago.persistence.FormaPago</class>
+		<class>com.modules.sirsr.revision.persistence.Revision</class>
+		<class>com.modules.sirsr.clavePresupuestaria.persistence.ClavePresupuestaria</class>
+		<class>com.modules.sirsr.diaPermitido.persistence.DiaPermitido</class>
+		<class>com.modules.sirsr.objetoGasto.persistence.ObjetoDeGasto</class>
+		<class>com.modules.sirsr.folioRequisicion.persistence.FolioRequisicion</class>
+		<class>com.modules.sirsr.consolidacion.persistence.Consolidacion</class>
+		<class>com.modules.sirsr.detalleConsolidacion.persistence.DetalleConsolidacion</class>
+		<class>com.modules.sirsr.solicitud.persistence.Solicitud</class>
+		<class>com.modules.sirsr.cotizaConsolidacion.persistence.CotizaConsolidacion</class>
+		<class>com.modules.sirsr.tipoPersonaFiscal.persistence.TipoPersonaFiscal</class>
+		<class>com.modules.sirsr.datosPersonales.persistence.DatosPersonales</class>
+		<class>com.modules.sirsr.marca.persistence.Marca</class>
+		<class>com.modules.sirsr.seguimientoSolicitud.persistence.SeguimientoSolicitud</class>
+		<class>com.modules.sirsr.detalleCotizaConsolida.persistence.DetalleCotizaConsolida</class>
+		<class>com.modules.sirsr.invitacionACotizarConsolida.persistence.InvitacionACotizarConsolida</class>
+		<class>com.modules.sirsr.cotizaRequisicion.persistence.CotizaRequisicion</class>
+		<class>com.modules.sirsr.prioridad.persistence.Prioridad</class>
+		<class>com.modules.sirsr.invitacionACotizarRequis.persistence.InvitacionACotizarRequis</class>
+		<class>com.modules.sirsr.producto.persistence.Producto</class>
+		<class>com.modules.sirsr.estatus.persistence.Estatus</class>
+		<class>com.modules.sirsr.detalleCotizaRequis.persistence.DetalleCotizaRequis</class>
+		<class>com.modules.sirsr.requisicion.persistence.Requisicion</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
 			<property name="javax.persistence.jdbc.url"

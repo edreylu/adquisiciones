@@ -18,21 +18,39 @@
 })();
 
 $(() => {
+  //areThereProductsSuggestions();
+  
   $('[data-toggle="tooltip"]').tooltip();
 
-  $('.date').datepicker({
-  			autoclose : true
-  		});
+    $('.date').datepicker({
+  	   format : 'dd-mm-yyyy',
+  	   autoclose: true,
+  	   language: 'es',
+   });
 
-  		$('.close-button').unbind();
+    $('.close-button').unbind();
 
-  		$('.close-button').click(function() {
-  			if ($('.datepicker').is(":visible")) {
-  				$('.date').datepicker('hide');
+    $('.close-button').click(function() {
+  	  if ($('.datepicker').is(":visible")) {
+  	    $('.date').datepicker('hide');
+  	  } else {
+  	    $('.date').datepicker('show');
+  	  }
+  	});
+
+
+    $('#divrango').hide();
+  	$(function() {
+  		$('input:radio').change(function() {
+  			if ($(this).val() == "1") {
+  				$("#divdia").show();
+  				$("#divrango").hide();
   			} else {
-  				$('.date').datepicker('show');
+  				$("#divrango").show();
+  				$("#divdia").hide();
   			}
   		});
+  	});
 })
 
 //$(document).ready

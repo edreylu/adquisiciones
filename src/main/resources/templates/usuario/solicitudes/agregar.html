@@ -67,8 +67,15 @@ and open the template in the editor.
                          </div>
                         <br/>
                         <br/>
-                        <input type="submit" class="btn btn-success" value="Agregar">
-                        <a th:href="@{/usuario/solicitudes}">Regresar</a>
+                        <div>
+							<a th:href="@{/usuario/solicitudes}" style="float: left;"><img
+								th:src="@{/img/icons/regresar.png}" style="width: 30px"
+								data-toggle="tooltip" data-placement="right" title="Regresar"></a>
+							<input type="submit" class="btn btn-dark" value="Aceptar"
+								style="float: right;">
+
+						</div>
+                        
                         </div>
                     </form>
                     </div>

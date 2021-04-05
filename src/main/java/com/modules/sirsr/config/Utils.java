@@ -1,9 +1,9 @@
 package com.modules.sirsr.config;
 
-import com.modules.sirsr.solicitud.domain.Solicitud;
-import com.modules.sirsr.solicitud.domain.SolicitudRepository;
-import com.modules.sirsr.usuario.application.UsuarioDTO;
-import com.modules.sirsr.usuario.application.UsuarioService;
+import com.modules.sirsr.solicitud.persistence.Solicitud;
+import com.modules.sirsr.solicitud.persistence.SolicitudRepository;
+import com.modules.sirsr.usuario.domain.UsuarioDTO;
+import com.modules.sirsr.usuario.domain.UsuarioService;
 
 import java.io.IOException;
 import java.util.Formatter;

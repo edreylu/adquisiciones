@@ -20,7 +20,7 @@ function editarPerfil() {
     var URLdomain = "http://" + window.location.host;
     let xhr = getXhr();
     var userNamePerfil = document.getElementById("userNamePerfil").value;
-    xhr.open("GET", URLdomain + "/adquisiciones/usuario/editarPerfil/" + userNamePerfil, true);
+    xhr.open("GET", URLdomain + "/SIRSR/usuario/editarPerfil/" + userNamePerfil, true);
     xhr.onreadystatechange = () => {
         if (xhr.readyState == 4 && xhr.status == 200) {
             let data = xhr.responseText;
@@ -139,4 +139,21 @@ console.log("../documentos/addDocumento/" + id );
              }
          }
          xhr.send(null);
+}
+
+function areThereProductsSuggestions() {
+var URLdomain = "http://" + window.location.host;
+console.log(URLdomain+"/SIRSR/admonadq/productos/areThereProductsSuggestions" );
+         var xhr = getXhr();
+         xhr.open("GET", URLdomain+"/SIRSR/admonadq/productos/areThereProductsSuggestions", true);
+         xhr.onreadystatechange = () => {
+             if (xhr.readyState === 4 && xhr.status === 200) {
+                 let data = xhr.responseText;
+                 console.log(data);
+                 if(data==="S"){
+                     alertaProductos();
+                 }
+             }
+         }
+    xhr.send(null);
 }

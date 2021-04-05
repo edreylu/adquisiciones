@@ -42,6 +42,10 @@ and open the template in the editor.
 								<b class="tituloTexto">TELEFONO: </b> <label class="descTexto"
 									th:text="${usuario.personal.telefonoFijo}"></label>
 							</div>
+                                                        <div class="col-md-4">
+								<b class="tituloTexto">TELEFONO MOVIL: </b> <label class="descTexto"
+									th:text="${usuario.personal.telefonoMovil}"></label>
+							</div>
 						</div>
 
 					</div>
@@ -51,10 +55,24 @@ and open the template in the editor.
 			<br />
 			<div class="card">
 				<div class="card-header">
-					<div class="tituloPrincipal">INFORMACIÓN ADICIONAL</div>
+					<div class="tituloPrincipal">INFORMACIÓN DE UNIDAD RESPONSABLE</div>
 				</div>
 				<div class="card-body">
-					<div class="panel-body"></div>
+                                    <div class="panel-body">
+                                        <div class="row">
+							<div class="col-md-4">
+								<b class="tituloTexto">CLAVE UR: </b> <label class="descTexto"
+									th:text="${usuario.unidadResponsable.claveUr}"></label>
+							</div>
+							<div class="col-md-8">
+								<b class="tituloTexto">NOMBRE UR: </b> <label class="descTexto"
+									th:text="${usuario.unidadResponsable.descripcion}"></label>
+							</div>
+				      </div>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                    </div>
 
 				</div>
 			</div>

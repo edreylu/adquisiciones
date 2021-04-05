@@ -15,6 +15,12 @@ and open the template in the editor.
         <header th:replace="layout :: header"></header>
         
         <div class="container mt-4" th:switch="${lista}">
+            <div th:if="${areThereProductsSuggestions}"
+                     class="alert alert-warning alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong><div align="center">¡Hay productos sugeridos para atender! Da click 
+                            <a th:href="@{/admonadq/productosSugeridos}">Aquí</a> para consultarlos.</div></strong>
+                </div>
        <div class="text-center"><lable class="tituloPrincipal">SOLICITUDES</lable></div>
        <h2 th:case="null">No hay solicitudes</h2>
         <div th:case="*">

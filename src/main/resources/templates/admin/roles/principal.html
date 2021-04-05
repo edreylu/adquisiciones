@@ -46,7 +46,7 @@ and open the template in the editor.
                             <td style="width:60%" th:text="${#strings.replace(dato.roleName, 'ROLE_', '')}"></td>
                             <td style="width:15%; text-align: center">
                                 <a th:href="@{/admin/roles/editar/{id}(id=${dato.noRole})}">
-                                    <img th:src="@{/img/icons/editar.png}" class="iconos" title="Editar usuario" data-toggle="tooltip" data-placement="top">
+                                    <img th:src="@{/img/icons/editar.png}" class="iconos" title="Editar rol" data-toggle="tooltip" data-placement="top">
                                 </a>
                             </td>
                             <td style="width:15%; text-align: center;">

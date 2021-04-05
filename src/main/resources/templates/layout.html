@@ -11,8 +11,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="https://unpkg.com/sweetalert2@9.5.3/dist/sweetalert2.all.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
@@ -22,6 +21,8 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.es.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css"
 	integrity="sha512-Fppbdpv9QhevzDE+UHmdxL4HoW8HantO+rC8oQB2hCofV+dWV2hePnP5SgiWR1Y1vbJeYONZfzQc5iII6sID2Q=="
@@ -35,7 +36,6 @@
 <script th:src="@{/js/operaciones.js}"></script>
 <script th:src="@{/js/alerta.js}"></script>
 <script th:src="@{/js/procesos.js}"></script>
-
 </head>
 <body>
 	<header th:fragment="header">
@@ -43,7 +43,7 @@
 			id="fondoBanner">
 			<a th:href="@{/}"> <img th:src="@{/img/logosep.png}" id="logoSep"
 				alt="">
-			</a> <strong>SIRSR </strong> <a class="navbar-brand"
+			</a> <span class="texto-borde">SIRSR</span> <a class="navbar-brand"
 				sec:authorize="isAuthenticated()"></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
@@ -55,107 +55,107 @@
 				sec:authorize="isAuthenticated()">
 				<ul class="navbar-nav">
 					<div sec:authorize="isAuthenticated()">
-						<a class="navbar-brand" th:href="@{/menu}"> <img class="iconos"
-								th:src="@{/img/icons/home.png}"  > </i>
+						<a class="navbar-brand" th:href="@{/menu}"> <img
+							class="iconos" th:src="@{/img/icons/home.png}"> </i>
 						</a>
 					</div>
 					<div sec:authorize="hasRole('ROLE_ADMIN')">
 						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false"> <img 
-								th:src="@{/img/icons/admin.png}" class="iconos"> ADMINISTRACIÓN
+							class="nav-link dropdown-toggle titulosMenu" href="#"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<img th:src="@{/img/icons/admin.png}" class="iconos">
+								ADMINISTRACIÓN
 						</a>
 
 							<div class="dropdown-menu"
 								aria-labelledby="navbarDropdownMenuLink">
-								<a class="dropdown-item" th:href="@{/admin/roles}"> <i
-									class='fa fa-fw fa-bars'> </i> ROLES
-								</a> <a class="dropdown-item" th:href="@{/admin/usuarios}"> <i
-									class='fas fa-users'> </i> USUARIOS
+								<a class="dropdown-item" th:href="@{/admin/roles}"> <img
+									th:src="@{/img/icons/roles.png}" class="iconos"> ROLES
+								</a> <a class="dropdown-item" th:href="@{/admin/usuarios}"> <img
+									th:src="@{/img/icons/usuarios.png}" class="iconos">
+									USUARIOS
 								</a>
 							</div></li>
 					</div>
-					<div sec:authorize="hasRole('ROLE_USER')">
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">  <img
-								th:src="@{/img/icons/solicitud.png}" class="iconos"> SOLICITUDES
-						</a>
+					<sec:authorize
+						access="hasAnyRole('USER', 'ADMONADQ', 'DIRECTORUR')">
 
-							<div class="dropdown-menu"
-								aria-labelledby="navbarDropdownMenuLink">
 
-								<a class="dropdown-item" th:href="@{/usuario/solicitudes}">
-									 <img th:src="@{/img/icons/solicitud.png}" class="iconos"> SOLICITUDES
-								</a>
-							</div></li>
-					</div>
-					<div sec:authorize="hasRole('ROLE_DIRECTORUR')">
 						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false"> <img
-								th:src="@{/img/icons/emitirsolicitud.png}" class="iconos"> EMITIR
+							class="nav-link dropdown-toggle titulosMenu" href="#"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<img th:src="@{/img/icons/solicitud.png}" class="iconos">
 								SOLICITUDES
 						</a>
 
 							<div class="dropdown-menu"
 								aria-labelledby="navbarDropdownMenuLink">
-
-								<a class="dropdown-item" th:href="@{/directorur/solicitudes}">
-									<img th:src="@{/img/icons/emitirsolicitud.png}" class="iconos">
-									EMITIR SOLICITUDES
-								</a>
-							</div></li>
-					</div>
-					<div sec:authorize="hasRole('ROLE_ADMONADQ')">
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false"> <img
-								th:src="@{/img/icons/solicitudrevision.png}" class="iconos">
-								SOLICITUDES
-						</a>
-
-							<div class="dropdown-menu"
-								aria-labelledby="navbarDropdownMenuLink">
-								<a class="dropdown-item" th:href="@{/admonadq/solicitudes}">
-									<img th:src="@{/img/icons/solicitudrevision.png}" class="iconos">
-									SOLICITUDES
-								</a>
+								<div sec:authorize="hasRole('ROLE_USER')">
+									<a class="dropdown-item" th:href="@{/usuario/solicitudes}">
+										<img th:src="@{/img/icons/solicitud.png}" class="iconos">
+										GENERAR SOLICITUDES
+									</a>
+								</div>
+								<div sec:authorize="hasRole('ROLE_DIRECTORUR')">
+									<a class="dropdown-item" th:href="@{/directorur/solicitudes}">
+										<img th:src="@{/img/icons/emitirsolicitud.png}" class="iconos">
+										EMITIR SOLICITUDES
+									</a>
+								</div>
+								<div sec:authorize="hasRole('ROLE_ADMONADQ')">
+									<a class="dropdown-item" th:href="@{/admonadq/solicitudes}">
+										<img th:src="@{/img/icons/solicitudrevision.png}"
+										class="iconos"> VALIDAR SOLICITUDES
+									</a>
+								</div>
 
 							</div></li>
-					</div>
+
+
+					</sec:authorize>
+
 					<div sec:authorize="hasRole('ROLE_ADMONADQ')">
 						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">
-                           <img th:src="@{/img/icons/catalogos.png}" class="iconos"> CATALOGOS
+							class="nav-link dropdown-toggle titulosMenu" href="#"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<img th:src="@{/img/icons/catalogos.png}" class="iconos">
+								CATALOGOS
 						</a>
 
 							<div class="dropdown-menu"
 								aria-labelledby="navbarDropdownMenuLink">
 								<a class="dropdown-item" th:href="@{/admonadq/proveedores}">
-									<i class='fa fa-truck'> </i> PROVEEDORES
+									<img th:src="@{/img/icons/proveedores.png}" class="iconos">
+									PROVEEDORES
 								</a> <a class="dropdown-item" th:href="@{/admonadq/productos}">
-									<i class='fa fa-product-hunt'> </i> PRODUCTOS
+									<img th:src="@{/img/icons/productos.png}" class="iconos">
+									PRODUCTOS
+								</a> <a class="dropdown-item"
+									th:href="@{/admonadq/productosSugeridos}"> <img
+									th:src="@{/img/icons/productos.png}" class="iconos">
+									PRODUCTOS SUGERIDOS
 								</a>
 							</div></li>
 					</div>
 
 					<div sec:authorize="hasRole('ROLE_ADMONADQ')">
 						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">
-							<img th:src="@{/img/icons/configuracion.png}" class="iconos"> CONFIGURACIÓN
+							class="nav-link dropdown-toggle titulosMenu" href="#"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<img th:src="@{/img/icons/configuracion.png}" class="iconos">
+								CONFIGURACIÓN
 						</a>
 
 							<div class="dropdown-menu"
 								aria-labelledby="navbarDropdownMenuLink">
 
 								<a class="dropdown-item"
-									th:href="@{/admonadq/foliosrequisiciones}"> <i
-									class="fas fa-sort-numeric-down"></i> FOLIOS REQUISICIONES
+									th:href="@{/admonadq/foliosrequisiciones}"> <img
+									th:src="@{/img/icons/folios.png}" class="iconos"> FOLIOS
+									REQUISICIONES
 								</a> <a class="dropdown-item" th:href="@{/admonadq/diaspermitidos}">
-									<i class="far fa-calendar-alt"></i> DÍAS PERMITIDOS
+									<img th:src="@{/img/icons/diaspermitidos.png}" class="iconos">
+									DÍAS PERMITIDOS
 								</a>
 							</div></li>
 					</div>
@@ -163,13 +163,11 @@
 				</ul>
 
 				<ul class="navbar-nav ml-auto nav-flex-icons">
-					<input id="userNamePerfil" type="hidden"
-						th:value="${#httpServletRequest.userPrincipal.name}" />
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<div> Bienvenido,
-								[[${#httpServletRequest.userPrincipal.name}]]</div>
+					<input id="userNamePerfil" type="hidden" th:value="${#httpServletRequest.userPrincipal.name}" />
+					<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<img th:src="@{/img/icons/userprofile.png}" style="width: 30px;">
+								Bienvenido, [[${#httpServletRequest.userPrincipal.name}]]
 					</a>
 						<div class="dropdown-menu dropdown-menu-right dropdown-default"
 							aria-labelledby="navbarDropdownMenuLink-333">
