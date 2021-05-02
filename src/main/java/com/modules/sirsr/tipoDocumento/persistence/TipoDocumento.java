@@ -21,66 +21,77 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "TIPO_DOCUMENTO")
-public class TipoDocumento{
+public class TipoDocumento {
 
-    @Id
-    @Basic(optional = false)
-    @Column(name = "ID_TIPO_DOCUMENTO")
-    private Integer idTipoDocumento;
-    @Basic(optional = false)
-    @Column(name = "DESCRIPCION")
-    private String descripcion;
-    @Basic(optional = false)
-    @Column(name = "OBLIGATORIO")
-    private String obligatorio;
-    @Basic(optional = false)
-    @Column(name = "UNICO")
-    private String unico;
-    
-    @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
-    @ManyToOne(optional = false)
-    private Estatus estatus;
+	@Id
+	@Basic(optional = false)
+	@Column(name = "ID_TIPO_DOCUMENTO")
+	private Integer idTipoDocumento;
+	@Basic(optional = false)
+	@Column(name = "DESCRIPCION")
+	private String descripcion;
+	@Basic(optional = false)
+	@Column(name = "OBLIGATORIO")
+	private String obligatorio;
+	@Basic(optional = false)
+	@Column(name = "UNICO")
+	private String unico;
 
-    public Integer getIdTipoDocumento() {
-        return idTipoDocumento;
-    }
+	@JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
+	@ManyToOne(optional = false)
+	private Estatus estatus;
+	
+	public TipoDocumento() {
+		
+	}
 
-    public void setIdTipoDocumento(Integer idTipoDocumento) {
-        this.idTipoDocumento = idTipoDocumento;
-    }
+	public TipoDocumento(Integer idTipoDocumento, String descripcion, String obligatorio, String unico,
+			Estatus estatus) {
+		this.idTipoDocumento = idTipoDocumento;
+		this.descripcion = descripcion;
+		this.obligatorio = obligatorio;
+		this.unico = unico;
+		this.estatus = estatus;
+	}
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+	public Integer getIdTipoDocumento() {
+		return idTipoDocumento;
+	}
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+	public void setIdTipoDocumento(Integer idTipoDocumento) {
+		this.idTipoDocumento = idTipoDocumento;
+	}
 
-    public String getObligatorio() {
-        return obligatorio;
-    }
+	public String getDescripcion() {
+		return descripcion;
+	}
 
-    public void setObligatorio(String obligatorio) {
-        this.obligatorio = obligatorio;
-    }
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
-    public String getUnico() {
-        return unico;
-    }
+	public String getObligatorio() {
+		return obligatorio;
+	}
 
-    public void setUnico(String unico) {
-        this.unico = unico;
-    }
+	public void setObligatorio(String obligatorio) {
+		this.obligatorio = obligatorio;
+	}
 
-    public Estatus getEstatus() {
-        return estatus;
-    }
+	public String getUnico() {
+		return unico;
+	}
 
-    public void setEstatus(Estatus estatus) {
-        this.estatus = estatus;
-    }
+	public void setUnico(String unico) {
+		this.unico = unico;
+	}
 
-    
+	public Estatus getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(Estatus estatus) {
+		this.estatus = estatus;
+	}
 
 }

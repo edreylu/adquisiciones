@@ -22,25 +22,25 @@ import java.util.Optional;
 @Service
 public class SubTipoProductoService {
 
-    private final SubTipoProductoRepository subTipoProductoRepository;
-    private final SubTipoProductoMapper subTipoProductoMapper;
-    private Mensaje msg;
+	private final SubTipoProductoRepository subTipoProductoRepository;
+	private final SubTipoProductoMapper subTipoProductoMapper;
+	private Mensaje msg;
 
-    @Autowired
-    public SubTipoProductoService(SubTipoProductoRepository subTipoProductoRepository, SubTipoProductoMapper subTipoProductoMapper) {
-        this.subTipoProductoRepository = subTipoProductoRepository;
-        this.subTipoProductoMapper = subTipoProductoMapper;
-    }
-    
+	@Autowired
+	public SubTipoProductoService(SubTipoProductoRepository subTipoProductoRepository,
+			SubTipoProductoMapper subTipoProductoMapper) {
+		this.subTipoProductoRepository = subTipoProductoRepository;
+		this.subTipoProductoMapper = subTipoProductoMapper;
+	}
 
-    public List<SubTipoProductoDTO> findAll() {
-        return subTipoProductoMapper.toSubTipoProductoDTOs(subTipoProductoRepository.findAll());
-    }
+	public List<SubTipoProductoDTO> findAll() {
+		return subTipoProductoMapper.toSubTipoProductoDTOs(subTipoProductoRepository.findAll());
+	}
 
-    public SubTipoProductoDTO findById(int id) {
-        Optional<SubTipoProducto> subTipoProductoOptional = subTipoProductoRepository.findById(id);
-        SubTipoProductoDTO tipoDocumentoDTO = subTipoProductoMapper.toSubTipoProductoDTO(subTipoProductoOptional.get());
-        return tipoDocumentoDTO;
-    }
+	public SubTipoProductoDTO findById(int id) {
+		Optional<SubTipoProducto> subTipoProductoOptional = subTipoProductoRepository.findById(id);
+		SubTipoProductoDTO tipoDocumentoDTO = subTipoProductoMapper.toSubTipoProductoDTO(subTipoProductoOptional.get());
+		return tipoDocumentoDTO;
+	}
 
 }

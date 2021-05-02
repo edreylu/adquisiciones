@@ -34,6 +34,9 @@ and open the template in the editor.
                                         <input type="submit" class="btn btn-dark" th:if="${solicitud.estatus.idEstatus==13}" value="Emitir"></input>
                                         <a th:onclick="'observaciones(\''+ ${solicitud.idSolicitud} +'\')'" class="btn btn-light active" role="button" aria-pressed="true" th:if="${solicitud.estatus.idEstatus==13}">Ver Observaciones</a>
                                         <a th:href="@{/usuario/solicitudes}" class="btn btn-light active" role="button" aria-pressed="true">Regresar</a>
+                                        <a href="#" style="font-size:15px;color: #333333;" th:href="@{/descargas/solicitudes/reporteSolicitud/download/{id}(id=${solicitud.idSolicitud})}" >
+                                            <i title="Descargar Documento" class="fa fa-download"></i>
+                                        </a>
                                     </div>
                                     <br/>
                                     <hr/>

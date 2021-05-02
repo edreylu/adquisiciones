@@ -1,7 +1,6 @@
 package com.modules.sirsr.montoAdjudicacion.persistence;
 
 import com.modules.sirsr.montoAdjudicacion.domain.MontoAdjudicacionDTO;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -10,38 +9,36 @@ import java.util.Objects;
 
 @Component
 public class MontoAdjudicacionMapper {
-    
-    private ModelMapper modelMapper = new ModelMapper();
 
-    public MontoAdjudicacionDTO toMontoAdjudicacionDTO(MontoAdjudicacion montoAdjudicacion){
-        if (Objects.isNull(montoAdjudicacion)) {
-            return null;
-        }
+	public MontoAdjudicacionDTO toMontoAdjudicacionDTO(MontoAdjudicacion montoAdjudicacion) {
+		if (Objects.isNull(montoAdjudicacion)) {
+			return null;
+		}
 
-        MontoAdjudicacionDTO montoAdjudicacionDTO = modelMapper.map(montoAdjudicacion, MontoAdjudicacionDTO.class);
+		MontoAdjudicacionDTO montoAdjudicacionDTO = new MontoAdjudicacionDTO();
 
-        return montoAdjudicacionDTO;
-    }
+		return montoAdjudicacionDTO;
+	}
 
-    public List<MontoAdjudicacionDTO> toMontoAdjudicacionsDTOs(List<MontoAdjudicacion> montoAdjudicacions) {
-        if (Objects.isNull(montoAdjudicacions)) {
-            return null;
-        }
+	public List<MontoAdjudicacionDTO> toMontoAdjudicacionsDTOs(List<MontoAdjudicacion> montoAdjudicacions) {
+		if (Objects.isNull(montoAdjudicacions)) {
+			return null;
+		}
 
-        List<MontoAdjudicacionDTO> list = new ArrayList<>(montoAdjudicacions.size());
-        for (MontoAdjudicacion montoAdjudicacion : montoAdjudicacions) {
-            list.add(toMontoAdjudicacionDTO(montoAdjudicacion));
-        }
+		List<MontoAdjudicacionDTO> list = new ArrayList<>(montoAdjudicacions.size());
+		for (MontoAdjudicacion montoAdjudicacion : montoAdjudicacions) {
+			list.add(toMontoAdjudicacionDTO(montoAdjudicacion));
+		}
 
-        return list;
-    }
+		return list;
+	}
 
-    public MontoAdjudicacion toMontoAdjudicacion(MontoAdjudicacionDTO montoAdjudicacionDTO) {
-        if (Objects.isNull(montoAdjudicacionDTO)) {
-            return null;
-        }
-        MontoAdjudicacion montoAdjudicacion = new MontoAdjudicacion();
-        return montoAdjudicacion;
-    }
+	public MontoAdjudicacion toMontoAdjudicacion(MontoAdjudicacionDTO montoAdjudicacionDTO) {
+		if (Objects.isNull(montoAdjudicacionDTO)) {
+			return null;
+		}
+		MontoAdjudicacion montoAdjudicacion = new MontoAdjudicacion();
+		return montoAdjudicacion;
+	}
 
 }

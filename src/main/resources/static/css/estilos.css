@@ -1,3 +1,4 @@
+
 body {
     background-color: #ffffff;
 	color: black;
@@ -156,12 +157,6 @@ text-align: left;
     border-radius: .3rem;
 }
 
-#divContentEncuesta {
-position: relative;
-height: 400px;
-overflow: auto;
-}
-
 #fondoBannerA{
 background-color:#76828ea3;
 }
@@ -176,12 +171,6 @@ background: rgba(240, 238, 238, 0.97);
  padding-bottom: 0;  
  margin-top: 61px; 
 }
-.navbar-nav.navbar-center {
-    position: absolute;
-    left: 40%;
-    transform: translatex(-30%);
-}
-
 
 .card-header {
     font: 13px Arial, Helvetica, sans-serif;
@@ -207,7 +196,6 @@ background: rgba(240, 238, 238, 0.97);
 		max-width: 450px;
 		 }
 
-
 .dialogForm {
     max-width: 500px;
     margin: .1 rem auto;
@@ -226,57 +214,10 @@ width: 100px;
   font-size: large;
 }
 
-@media (max-width: 575.98px) {
-#titleApp{
-font-size: 5px;
-  }
-
-  #logoSep{
-    width: 70px;
-    }
-
+.navbar-expand-lg .navbar-nav .nav-link {
+    padding-right: 0;
+    padding-left: 0;
 }
-
-@media (min-width: 576px) and (max-width: 767.98px) {
-#titleApp{
-font-size: 10px;
-  }
-
-  #logoSep{
-    width: 70px;
-    }
-}
-
-
-
-@media (min-width: 768px) and (max-width: 991.98px) {
-
-#titleApp{
-  font-size: 12px;
-  }
-
-  #logoSep{
-    width: 80px;
-    }
-}
-
-@media (min-width: 992px) and (max-width: 1199.98px) {
- #titleApp {
-    font-size: 13px;
-     }
-    #logoSep{
-    width: 90px;
-    }
-}
-
-@media (min-width: 1200px) {
- #titleApp {
-   font-size: 14px;
-    }
-   #logoSep{
-   width: 100px;
-   }
- }
  
 .sombra{
     -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);

@@ -22,36 +22,36 @@ import java.util.Optional;
 @Service
 public class MarcaService {
 
-    private final MarcaRepository marcaRepository;
-    private final MarcaMapper marcaMapper;
-    private Mensaje msg;
+	private final MarcaRepository marcaRepository;
+	private final MarcaMapper marcaMapper;
+	private Mensaje msg;
 
-    @Autowired
-    public MarcaService(MarcaRepository marcaRepository, MarcaMapper marcaMapper) {
-        this.marcaRepository = marcaRepository;
-        this.marcaMapper = marcaMapper;
-    }
+	@Autowired
+	public MarcaService(MarcaRepository marcaRepository, MarcaMapper marcaMapper) {
+		this.marcaRepository = marcaRepository;
+		this.marcaMapper = marcaMapper;
+	}
 
-    public List<MarcaDTO> findAll() {
-        return marcaMapper.toMarcaDTOs(marcaRepository.findAll());
-    }
+	public List<MarcaDTO> findAll() {
+		return marcaMapper.toMarcaDTOs(marcaRepository.findAll());
+	}
 
-    public MarcaDTO findById(int id) {
-        Optional<Marca> marcaOptional = marcaRepository.findById(id);
-        MarcaDTO marcaDTO = marcaMapper.toMarcaDTO(marcaOptional.get());
-        return marcaDTO;
-    }
+	public MarcaDTO findById(int id) {
+		Optional<Marca> marcaOptional = marcaRepository.findById(id);
+		MarcaDTO marcaDTO = marcaMapper.toMarcaDTO(marcaOptional.get());
+		return marcaDTO;
+	}
 
-    public Mensaje save(MarcaDTO marcaDTO) {
-        return msg;
-    }
+	public Mensaje save(MarcaDTO marcaDTO) {
+		return msg;
+	}
 
-    public Mensaje update(MarcaDTO marcaDTO, int id) {
-        return msg;
-    }
+	public Mensaje update(MarcaDTO marcaDTO, int id) {
+		return msg;
+	}
 
-    public Mensaje deleteById(int id) {
-        return msg;
-    }
+	public Mensaje deleteById(int id) {
+		return msg;
+	}
 
 }

@@ -20,60 +20,59 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "UNIDAD_MEDIDA")
-public class UnidadMedida{
+public class UnidadMedida {
 
-    @Id
-    @Column(name = "ID_UNIDAD_MEDIDA")
-    private Integer idUnidadMedida;
-    @Column(name = "CLAVE_UNIDAD")
-    private String claveUnidad;
-    @Column(name = "NOMBRE")
-    private String nombre;
-    @Column(name = "DESCRIPCION")
-    private String descripcion;
-    @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
-    @ManyToOne(optional = false)
-    private Estatus estatus;
+	@Id
+	@Column(name = "ID_UNIDAD_MEDIDA")
+	private Integer idUnidadMedida;
+	@Column(name = "CLAVE_UNIDAD")
+	private String claveUnidad;
+	@Column(name = "NOMBRE")
+	private String nombre;
+	@Column(name = "DESCRIPCION")
+	private String descripcion;
+	@JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
+	@ManyToOne(optional = false)
+	private Estatus estatus;
 
-    public Integer getIdUnidadMedida() {
-        return idUnidadMedida;
-    }
+	public Integer getIdUnidadMedida() {
+		return idUnidadMedida;
+	}
 
-    public void setIdUnidadMedida(Integer idUnidadMedida) {
-        this.idUnidadMedida = idUnidadMedida;
-    }
+	public void setIdUnidadMedida(Integer idUnidadMedida) {
+		this.idUnidadMedida = idUnidadMedida;
+	}
 
-    public String getClaveUnidad() {
-        return claveUnidad;
-    }
+	public String getClaveUnidad() {
+		return claveUnidad;
+	}
 
-    public void setClaveUnidad(String claveUnidad) {
-        this.claveUnidad = claveUnidad;
-    }
+	public void setClaveUnidad(String claveUnidad) {
+		this.claveUnidad = claveUnidad;
+	}
 
-    public String getNombre() {
-        return nombre;
-    }
+	public String getNombre() {
+		return nombre;
+	}
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+	public String getDescripcion() {
+		return descripcion;
+	}
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
-    public Estatus getEstatus() {
-        return estatus;
-    }
+	public Estatus getEstatus() {
+		return estatus;
+	}
 
-    public void setEstatus(Estatus estatus) {
-        this.estatus = estatus;
-    }
+	public void setEstatus(Estatus estatus) {
+		this.estatus = estatus;
+	}
 
-    
 }

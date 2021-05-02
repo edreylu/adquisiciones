@@ -1,52 +1,68 @@
 package com.modules.sirsr.montoAdjudicacion.domain;
 
 import com.modules.sirsr.estatus.domain.EstatusDTO;
-import java.math.BigDecimal;
 
-public class MontoAdjudicacionDTO {
-    private int montoAdjudicacion;
-    private String tipoContratacion;
-    private BigDecimal importeSuperiorA;
-    private BigDecimal importeLimite;
-    private EstatusDTO estatus;
+import java.io.Serializable;
 
-    public int getMontoAdjudicacion() {
-        return montoAdjudicacion;
-    }
+public class MontoAdjudicacionDTO implements Serializable{
+	private int montoAdjudicacion;
+	private String tipoContratacion;
+	private Double importeSuperiorA;
+	private Double importeLimite;
+	private EstatusDTO estatus;
+	
+	public MontoAdjudicacionDTO() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
 
-    public void setMontoAdjudicacion(int montoAdjudicacion) {
-        this.montoAdjudicacion = montoAdjudicacion;
-    }
+	public MontoAdjudicacionDTO(int montoAdjudicacion, String tipoContratacion, Double importeSuperiorA,
+			Double importeLimite, EstatusDTO estatus) {
+		this.montoAdjudicacion = montoAdjudicacion;
+		this.tipoContratacion = tipoContratacion;
+		this.importeSuperiorA = importeSuperiorA;
+		this.importeLimite = importeLimite;
+		this.estatus = estatus;
+	}
 
-    public String getTipoContratacion() {
-        return tipoContratacion;
-    }
+	public int getMontoAdjudicacion() {
+		return montoAdjudicacion;
+	}
 
-    public void setTipoContratacion(String tipoContratacion) {
-        this.tipoContratacion = tipoContratacion;
-    }
+	public void setMontoAdjudicacion(int montoAdjudicacion) {
+		this.montoAdjudicacion = montoAdjudicacion;
+	}
 
-    public BigDecimal getImporteSuperiorA() {
-        return importeSuperiorA;
-    }
+	public String getTipoContratacion() {
+		return tipoContratacion;
+	}
 
-    public void setImporteSuperiorA(BigDecimal importeSuperiorA) {
-        this.importeSuperiorA = importeSuperiorA;
-    }
+	public void setTipoContratacion(String tipoContratacion) {
+		this.tipoContratacion = tipoContratacion;
+	}
 
-    public BigDecimal getImporteLimite() {
-        return importeLimite;
-    }
+	public Double getImporteSuperiorA() {
+		return importeSuperiorA;
+	}
 
-    public void setImporteLimite(BigDecimal importeLimite) {
-        this.importeLimite = importeLimite;
-    }
+	public void setImporteSuperiorA(Double importeSuperiorA) {
+		this.importeSuperiorA = importeSuperiorA;
+	}
 
-    public EstatusDTO getEstatus() {
-        return estatus;
-    }
+	public Double getImporteLimite() {
+		return importeLimite;
+	}
 
-    public void setEstatus(EstatusDTO estatus) {
-        this.estatus = estatus;
-    }
+	public void setImporteLimite(Double importeLimite) {
+		this.importeLimite = importeLimite;
+	}
+
+	public EstatusDTO getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(EstatusDTO estatus) {
+		this.estatus = estatus;
+	}
 }

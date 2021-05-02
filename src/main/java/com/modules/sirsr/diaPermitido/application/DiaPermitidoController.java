@@ -49,7 +49,7 @@ public class DiaPermitidoController {
 
 	@PostMapping("/diaspermitidos/add_day")
 	public String agregarDia(DiaPermitidoDTO diaPermitido, RedirectAttributes redirectAttrs) {
- 	msg.crearMensaje(diaPermitidoService.saveDay(diaPermitido), redirectAttrs);
+		msg.crearMensaje(diaPermitidoService.saveDay(diaPermitido), redirectAttrs);
 		return "redirect:/admonadq/diaspermitidos";
 	}
 

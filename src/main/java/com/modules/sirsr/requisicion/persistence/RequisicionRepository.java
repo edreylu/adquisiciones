@@ -12,8 +12,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * @author Edward Reyes
  */
-public interface RequisicionRepository extends JpaRepository<Requisicion, Integer>{
+public interface RequisicionRepository extends JpaRepository<Requisicion, Integer> {
 
-    List<Requisicion> findByIdSolicitud(Integer idSolicitud);
+	List<Requisicion> findByIdSolicitud(Integer idSolicitud);
 
 }

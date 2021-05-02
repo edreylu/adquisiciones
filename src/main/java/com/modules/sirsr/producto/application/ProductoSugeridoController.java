@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.modules.sirsr.producto.application;
+
 import com.modules.sirsr.config.Mensaje;
 import com.modules.sirsr.producto.domain.ProductoDTO;
 import com.modules.sirsr.producto.domain.ProductoService;
@@ -31,55 +32,56 @@ import java.util.Objects;
 @RequestMapping("/admonadq")
 public class ProductoSugeridoController {
 
-    private final ProductoService productoService;
-    private final TipoProductoService tipoProductoService;
-    private final UnidadMedidaService unidadMedidaService;
-    private List<ProductoDTO> productos;
-    private List<TipoProductoDTO> tiposProductoDTOs;
-    private List<UnidadMedidaDTO> unidadesMedidaDTOs;
-    private ProductoDTO productoDTO;
-    private final Mensaje msg = new Mensaje();
+	private final ProductoService productoService;
+	private final TipoProductoService tipoProductoService;
+	private final UnidadMedidaService unidadMedidaService;
+	private List<ProductoDTO> productos;
+	private List<TipoProductoDTO> tiposProductoDTOs;
+	private List<UnidadMedidaDTO> unidadesMedidaDTOs;
+	private ProductoDTO productoDTO;
+	private final Mensaje msg = new Mensaje();
 
-    @Autowired
-    public ProductoSugeridoController(ProductoService productoService, TipoProductoService tipoProductoService, UnidadMedidaService unidadMedidaService) {
-        this.productoService = productoService;
-        this.tipoProductoService = tipoProductoService;
-        this.unidadMedidaService = unidadMedidaService;
-    }
+	@Autowired
+	public ProductoSugeridoController(ProductoService productoService, TipoProductoService tipoProductoService,
+			UnidadMedidaService unidadMedidaService) {
+		this.productoService = productoService;
+		this.tipoProductoService = tipoProductoService;
+		this.unidadMedidaService = unidadMedidaService;
+	}
 
-    @GetMapping("/productosSugeridos")
-    public String listar(Model model) {
-        productos = productoService.findAllSuggestions();
-        model.addAttribute("lista", productos);
-        return "admonadq/productosSugeridos/principal";
-    }
+	@GetMapping("/productosSugeridos")
+	public String listar(Model model) {
+		productos = productoService.findAllSuggestions();
+		model.addAttribute("lista", productos);
+		return "admonadq/productosSugeridos/principal";
+	}
 
-    @GetMapping("/productosSugeridos/editar/{id}")
-    public String editar(@PathVariable("id") int id, Model model) {
-        productoDTO = productoService.findById(id);
-        tiposProductoDTOs = tipoProductoService.findAll();
-        unidadesMedidaDTOs = unidadMedidaService.findAll();
-        String validUrl = "redirect:/admonadq/productosSugeridos";
-        if(Objects.nonNull(productoDTO)){
-            model.addAttribute("producto", productoDTO);
-            model.addAttribute("tiposProducto", tiposProductoDTOs);
-            model.addAttribute("unidadesMedida", unidadesMedidaDTOs);
-            validUrl = "admonadq/productosSugeridos/editar";
-        }
-        return validUrl;
-    }
+	@GetMapping("/productosSugeridos/editar/{id}")
+	public String editar(@PathVariable("id") int id, Model model) {
+		productoDTO = productoService.findById(id);
+		tiposProductoDTOs = tipoProductoService.findAll();
+		unidadesMedidaDTOs = unidadMedidaService.findAll();
+		String validUrl = "redirect:/admonadq/productosSugeridos";
+		if (Objects.nonNull(productoDTO)) {
+			model.addAttribute("producto", productoDTO);
+			model.addAttribute("tiposProducto", tiposProductoDTOs);
+			model.addAttribute("unidadesMedida", unidadesMedidaDTOs);
+			validUrl = "admonadq/productosSugeridos/editar";
+		}
+		return validUrl;
+	}
 
-    @PostMapping("/productosSugeridos/update")
-    public String editar(ProductoDTO productoDTO, RedirectAttributes redirectAttrs){
-        msg.crearMensaje(productoService.updateToSuggestions(productoDTO), redirectAttrs);
-        return "redirect:/admonadq/productosSugeridos";
-    }
+	@PostMapping("/productosSugeridos/update")
+	public String editar(ProductoDTO productoDTO, RedirectAttributes redirectAttrs) {
+		msg.crearMensaje(productoService.updateToSuggestions(productoDTO), redirectAttrs);
+		return "redirect:/admonadq/productosSugeridos";
+	}
 
-    @GetMapping("/productosSugeridos/actionToSuggestion/{id}/{idEstatus}")
-    public String actionToSuggestion(@PathVariable("id") int id,@PathVariable("idEstatus") int idEstatus,
-                           RedirectAttributes redirectAttrs) {
-        msg.crearMensaje(productoService.actionToSuggestion(id,idEstatus), redirectAttrs);
-        return "redirect:/admonadq/productosSugeridos";
-    }
-    
+	@GetMapping("/productosSugeridos/actionToSuggestion/{id}/{idEstatus}")
+	public String actionToSuggestion(@PathVariable("id") int id, @PathVariable("idEstatus") int idEstatus,
+			RedirectAttributes redirectAttrs) {
+		msg.crearMensaje(productoService.actionToSuggestion(id, idEstatus), redirectAttrs);
+		return "redirect:/admonadq/productosSugeridos";
+	}
+
 }

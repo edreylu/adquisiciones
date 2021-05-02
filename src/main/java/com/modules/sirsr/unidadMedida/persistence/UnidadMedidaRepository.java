@@ -11,6 +11,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * @author Edward Reyes
  */
-public interface UnidadMedidaRepository extends JpaRepository<UnidadMedida, Integer>{
-    
+public interface UnidadMedidaRepository extends JpaRepository<UnidadMedida, Integer> {
+
 }

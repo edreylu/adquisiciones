@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package com.modules.sirsr.estatus.persistence;
-import java.io.Serializable;
+
 
 import javax.persistence.*;
 
@@ -14,59 +14,70 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "ESTATUS")
-public class Estatus implements Serializable{
+public class Estatus {
 
-    @Id
-    @Basic(optional = false)
-    @Column(name = "ID_ESTATUS")
-    private Integer idEstatus;
-    @Column(name = "CLAVE")
-    private String clave;
-    @Basic(optional = false)
-    @Column(name = "DESCRIPCION")
-    private String descripcion;
-    @Column(name = "COLORHEX")
-    private String colorhex;
-    @Column(name = "EXPLICACION")
-    private String explicacion;
+	@Id
+	@Basic(optional = false)
+	@Column(name = "ID_ESTATUS")
+	private Integer idEstatus;
+	@Column(name = "CLAVE")
+	private String clave;
+	@Basic(optional = false)
+	@Column(name = "DESCRIPCION")
+	private String descripcion;
+	@Column(name = "COLORHEX")
+	private String colorhex;
+	@Column(name = "EXPLICACION")
+	private String explicacion;
 
-    public Integer getIdEstatus() {
-        return idEstatus;
-    }
+	public Estatus() {
+		
+	}
+	public Estatus(Integer idEstatus, String clave, String descripcion, String colorhex, String explicacion) {
+		this.idEstatus = idEstatus;
+		this.clave = clave;
+		this.descripcion = descripcion;
+		this.colorhex = colorhex;
+		this.explicacion = explicacion;
+	}
 
-    public void setIdEstatus(Integer idEstatus) {
-        this.idEstatus = idEstatus;
-    }
+	public Integer getIdEstatus() {
+		return idEstatus;
+	}
 
-    public String getClave() {
-        return clave;
-    }
+	public void setIdEstatus(Integer idEstatus) {
+		this.idEstatus = idEstatus;
+	}
 
-    public void setClave(String clave) {
-        this.clave = clave;
-    }
+	public String getClave() {
+		return clave;
+	}
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+	public void setClave(String clave) {
+		this.clave = clave;
+	}
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+	public String getDescripcion() {
+		return descripcion;
+	}
 
-    public String getColorhex() {
-        return colorhex;
-    }
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
-    public void setColorhex(String colorhex) {
-        this.colorhex = colorhex;
-    }
+	public String getColorhex() {
+		return colorhex;
+	}
 
-    public String getExplicacion() {
-        return explicacion;
-    }
+	public void setColorhex(String colorhex) {
+		this.colorhex = colorhex;
+	}
 
-    public void setExplicacion(String explicacion) {
-        this.explicacion = explicacion;
-    }
+	public String getExplicacion() {
+		return explicacion;
+	}
+
+	public void setExplicacion(String explicacion) {
+		this.explicacion = explicacion;
+	}
 }

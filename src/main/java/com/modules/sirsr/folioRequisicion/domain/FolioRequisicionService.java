@@ -38,8 +38,7 @@ public class FolioRequisicionService {
 		for (FolioRequisicion folioRequisicion : listaFolioRequisicion) {
 			System.out.println("Desde el service: " + folioRequisicion.getAnio());
 		}
-		return folioRequisicionMapper
-				.toListaFolioRequisicioneDTO(listaFolioRequisicion);
+		return folioRequisicionMapper.toListaFolioRequisicioneDTO(listaFolioRequisicion);
 	}
 
 	public Mensaje activarInactivar(int id, int idEstatus) {
@@ -71,39 +70,39 @@ public class FolioRequisicionService {
 		if (!Objects.isNull(anio)) {
 			folioRequisicionConsulta = folioRequisicionRepository.findById(anio);
 			if (folioRequisicionConsulta.isPresent()) {
-				 anio =  null;
-			} 
+				anio = null;
+			}
 		}
 		return anio;
 	}
 
 	public Mensaje save(Integer anio) {
 		try {
-            FolioRequisicionDTO folioRequisicionDTO = new FolioRequisicionDTO();
-            folioRequisicionDTO.setAnio(anio);
-            folioRequisicionDTO.setConsecutivo(1);
-            folioRequisicionDTO.setEstatus(estatusRepository.findById(1).get());
-			if(updateEstatusInactivo()==1) {
+			FolioRequisicionDTO folioRequisicionDTO = new FolioRequisicionDTO();
+			folioRequisicionDTO.setAnio(anio);
+			folioRequisicionDTO.setConsecutivo(1);
+			folioRequisicionDTO.setEstatus(estatusRepository.findById(1).get());
+			if (updateEstatusInactivo() == 1) {
 				folioRequisicionRepository.save(folioRequisicionMapper.toFolioRequisicion(folioRequisicionDTO));
 				msg = Mensaje.CREATE("Agregado correctamente", 1);
 			}
-		
+
 		} catch (Exception e) {
 			msg = Mensaje.CREATE("No se pudo agregar por: " + e.getMessage(), 2);
 		}
 		return msg;
 	}
-	
+
 	private int updateEstatusInactivo() {
 		try {
-            folioRequisicionRepository.inactiveAll(0,1);
-            return 1;
-			
+			folioRequisicionRepository.inactiveAll(0, 1);
+			return 1;
+
 		} catch (Exception e) {
 			System.out.println("Error al actualizar: " + e.getMessage());
 			return 0;
 		}
-		
+
 	}
 
 }

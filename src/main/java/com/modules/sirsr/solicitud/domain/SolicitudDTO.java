@@ -7,10 +7,15 @@ package com.modules.sirsr.solicitud.domain;
 
 import com.modules.sirsr.documento.domain.DocumentoDTO;
 import com.modules.sirsr.estatus.domain.EstatusDTO;
+import com.modules.sirsr.estatus.persistence.Estatus;
 import com.modules.sirsr.prioridad.domain.PrioridadDTO;
+import com.modules.sirsr.prioridad.persistence.Prioridad;
 import com.modules.sirsr.requisicion.domain.RequisicionDTO;
 import com.modules.sirsr.revision.domain.RevisionDTO;
 import com.modules.sirsr.unidadResponsable.domain.UnidadResponsableDTO;
+import com.modules.sirsr.unidadResponsable.persistence.UnidadResponsable;
+
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -18,167 +23,202 @@ import java.util.List;
  *
  * @author Edward Reyes
  */
-public class SolicitudDTO{
-    private int idSolicitud;
-    private Date fechaCreacion;
-    private int anioCalendarizacion;
-    private int mesCalendarizacion;
-    private String mesCalendarizacionStr;
-    private String actividadOUso;
-    private Date fechaEmision;
-    private String firmaDirector;
-    private String folio;
-    private String claveUr;
-    private Date fechaRecepcion;
-    private Date fechaAutorizacion;
-    private EstatusDTO estatus;
-    private PrioridadDTO prioridad;
-    private UnidadResponsableDTO unidadResponsable;
-    private List<DocumentoDTO> documentos;
-    private List<RevisionDTO> revisiones;
-    private List<RequisicionDTO> requisiciones;
+public class SolicitudDTO implements Serializable{
+	private int idSolicitud;
+	private Date fechaCreacion;
+	private int anioCalendarizacion;
+	private int mesCalendarizacion;
+	private String mesCalendarizacionStr;
+	private String actividadOUso;
+	private Date fechaEmision;
+	private String firmaDirector;
+	private String folio;
+	private String claveUr;
+	private Date fechaRecepcion;
+	private Date fechaAutorizacion;
+	private EstatusDTO estatus;
+	private PrioridadDTO prioridad;
+	private UnidadResponsableDTO unidadResponsable;
+	private List<DocumentoDTO> documentos;
+	private List<RevisionDTO> revisiones;
+	private List<RequisicionDTO> requisiciones;
 
-    public int getIdSolicitud() {
-        return idSolicitud;
-    }
+	public SolicitudDTO() {
+	}
 
-    public void setIdSolicitud(int idSolicitud) {
-        this.idSolicitud = idSolicitud;
-    }
+	public SolicitudDTO(Date fechaCreacion, Integer anioCalendarizacion, Integer mesCalendarizacion, String actividadOUso,
+			EstatusDTO estatus, PrioridadDTO prioridad, UnidadResponsableDTO unidadResponsable) {
+		this.fechaCreacion = fechaCreacion;
+		this.anioCalendarizacion = anioCalendarizacion;
+		this.mesCalendarizacion = mesCalendarizacion;
+		this.actividadOUso = actividadOUso;
+		this.estatus = estatus;
+		this.prioridad = prioridad;
+		this.unidadResponsable = unidadResponsable;
+	}
 
-    public Date getFechaCreacion() {
-        return fechaCreacion;
-    }
+	public SolicitudDTO(SolicitudDTO solicitud) {
+		this.idSolicitud = solicitud.getIdSolicitud();
+		this.fechaCreacion = solicitud.getFechaCreacion();
+		this.anioCalendarizacion = solicitud.getAnioCalendarizacion();
+		this.mesCalendarizacion = solicitud.getMesCalendarizacion();
+		this.mesCalendarizacionStr = solicitud.getMesCalendarizacionStr();
+		this.actividadOUso = solicitud.getActividadOUso();
+		this.fechaEmision = solicitud.getFechaEmision();
+		this.firmaDirector = solicitud.getFirmaDirector();
+		this.folio = solicitud.getFolio();
+		this.claveUr = solicitud.getClaveUr();
+		this.fechaRecepcion = solicitud.getFechaRecepcion();
+		this.fechaAutorizacion = solicitud.getFechaAutorizacion();
+		this.estatus = solicitud.getEstatus();
+		this.prioridad = solicitud.getPrioridad();
+		this.unidadResponsable = solicitud.getUnidadResponsable();
+		this.documentos = solicitud.getDocumentos();
+		this.revisiones = solicitud.getRevisiones();
+		this.requisiciones = solicitud.getRequisiciones();
+	}
 
-    public void setFechaCreacion(Date fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
-    }
+	public int getIdSolicitud() {
+		return idSolicitud;
+	}
 
-    public int getAnioCalendarizacion() {
-        return anioCalendarizacion;
-    }
+	public void setIdSolicitud(int idSolicitud) {
+		this.idSolicitud = idSolicitud;
+	}
 
-    public void setAnioCalendarizacion(int anioCalendarizacion) {
-        this.anioCalendarizacion = anioCalendarizacion;
-    }
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
 
-    public int getMesCalendarizacion() {
-        return mesCalendarizacion;
-    }
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
 
-    public void setMesCalendarizacion(int mesCalendarizacion) {
-        this.mesCalendarizacion = mesCalendarizacion;
-    }
+	public int getAnioCalendarizacion() {
+		return anioCalendarizacion;
+	}
 
-    public String getActividadOUso() {
-        return actividadOUso;
-    }
+	public void setAnioCalendarizacion(int anioCalendarizacion) {
+		this.anioCalendarizacion = anioCalendarizacion;
+	}
 
-    public void setActividadOUso(String actividadOUso) {
-        this.actividadOUso = actividadOUso;
-    }
+	public int getMesCalendarizacion() {
+		return mesCalendarizacion;
+	}
 
-    public Date getFechaEmision() {
-        return fechaEmision;
-    }
+	public void setMesCalendarizacion(int mesCalendarizacion) {
+		this.mesCalendarizacion = mesCalendarizacion;
+	}
 
-    public void setFechaEmision(Date fechaEmision) {
-        this.fechaEmision = fechaEmision;
-    }
+	public String getActividadOUso() {
+		return actividadOUso;
+	}
 
-    public String getFirmaDirector() {
-        return firmaDirector;
-    }
+	public void setActividadOUso(String actividadOUso) {
+		this.actividadOUso = actividadOUso;
+	}
 
-    public void setFirmaDirector(String firmaDirector) {
-        this.firmaDirector = firmaDirector;
-    }
+	public Date getFechaEmision() {
+		return fechaEmision;
+	}
 
-    public String getFolio() {
-        return folio;
-    }
+	public void setFechaEmision(Date fechaEmision) {
+		this.fechaEmision = fechaEmision;
+	}
 
-    public void setFolio(String folio) {
-        this.folio = folio;
-    }
+	public String getFirmaDirector() {
+		return firmaDirector;
+	}
 
-    public String getClaveUr() {
-        return claveUr;
-    }
+	public void setFirmaDirector(String firmaDirector) {
+		this.firmaDirector = firmaDirector;
+	}
 
-    public void setClaveUr(String claveUr) {
-        this.claveUr = claveUr;
-    }
+	public String getFolio() {
+		return folio;
+	}
 
-    public Date getFechaRecepcion() {
-        return fechaRecepcion;
-    }
+	public void setFolio(String folio) {
+		this.folio = folio;
+	}
 
-    public void setFechaRecepcion(Date fechaRecepcion) {
-        this.fechaRecepcion = fechaRecepcion;
-    }
+	public String getClaveUr() {
+		return claveUr;
+	}
 
-    public Date getFechaAutorizacion() {
-        return fechaAutorizacion;
-    }
+	public void setClaveUr(String claveUr) {
+		this.claveUr = claveUr;
+	}
 
-    public void setFechaAutorizacion(Date fechaAutorizacion) {
-        this.fechaAutorizacion = fechaAutorizacion;
-    }
+	public Date getFechaRecepcion() {
+		return fechaRecepcion;
+	}
 
-    public EstatusDTO getEstatus() {
-        return estatus;
-    }
+	public void setFechaRecepcion(Date fechaRecepcion) {
+		this.fechaRecepcion = fechaRecepcion;
+	}
 
-    public void setEstatus(EstatusDTO estatus) {
-        this.estatus = estatus;
-    }
+	public Date getFechaAutorizacion() {
+		return fechaAutorizacion;
+	}
 
-    public PrioridadDTO getPrioridad() {
-        return prioridad;
-    }
+	public void setFechaAutorizacion(Date fechaAutorizacion) {
+		this.fechaAutorizacion = fechaAutorizacion;
+	}
 
-    public void setPrioridad(PrioridadDTO prioridad) {
-        this.prioridad = prioridad;
-    }
+	public EstatusDTO getEstatus() {
+		return estatus;
+	}
 
-    public UnidadResponsableDTO getUnidadResponsable() {
-        return unidadResponsable;
-    }
+	public void setEstatus(EstatusDTO estatus) {
+		this.estatus = estatus;
+	}
 
-    public void setUnidadResponsable(UnidadResponsableDTO unidadResponsable) {
-        this.unidadResponsable = unidadResponsable;
-    }
+	public PrioridadDTO getPrioridad() {
+		return prioridad;
+	}
 
-    public List<DocumentoDTO> getDocumentos() {
-        return documentos;
-    }
+	public void setPrioridad(PrioridadDTO prioridad) {
+		this.prioridad = prioridad;
+	}
 
-    public void setDocumentos(List<DocumentoDTO> documentos) {
-        this.documentos = documentos;
-    }
+	public UnidadResponsableDTO getUnidadResponsable() {
+		return unidadResponsable;
+	}
 
-    public List<RevisionDTO> getRevisiones() {
-        return revisiones;
-    }
+	public void setUnidadResponsable(UnidadResponsableDTO unidadResponsable) {
+		this.unidadResponsable = unidadResponsable;
+	}
 
-    public void setRevisiones(List<RevisionDTO> revisiones) {
-        this.revisiones = revisiones;
-    }
+	public List<DocumentoDTO> getDocumentos() {
+		return documentos;
+	}
 
-    public List<RequisicionDTO> getRequisiciones() {
-        return requisiciones;
-    }
+	public void setDocumentos(List<DocumentoDTO> documentos) {
+		this.documentos = documentos;
+	}
 
-    public void setRequisiciones(List<RequisicionDTO> requisiciones) {
-        this.requisiciones = requisiciones;
-    }
+	public List<RevisionDTO> getRevisiones() {
+		return revisiones;
+	}
 
-    public String getMesCalendarizacionStr() {
-        return mesCalendarizacionStr;
-    }
+	public void setRevisiones(List<RevisionDTO> revisiones) {
+		this.revisiones = revisiones;
+	}
 
-    public void setMesCalendarizacionStr(String mesCalendarizacionStr) {
-        this.mesCalendarizacionStr = mesCalendarizacionStr;
-    }
+	public List<RequisicionDTO> getRequisiciones() {
+		return requisiciones;
+	}
+
+	public void setRequisiciones(List<RequisicionDTO> requisiciones) {
+		this.requisiciones = requisiciones;
+	}
+
+	public String getMesCalendarizacionStr() {
+		return mesCalendarizacionStr;
+	}
+
+	public void setMesCalendarizacionStr(String mesCalendarizacionStr) {
+		this.mesCalendarizacionStr = mesCalendarizacionStr;
+	}
 }

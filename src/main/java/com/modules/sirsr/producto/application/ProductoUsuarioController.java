@@ -31,36 +31,36 @@ import java.util.List;
 @RequestMapping("/usuario")
 public class ProductoUsuarioController {
 
-    private final ProductoService productoService;
-    private final TipoProductoService tipoProductoService;
-    private final UnidadMedidaService unidadMedidaService;
-    private List<TipoProductoDTO> tiposProductoDTOs;
-    private List<UnidadMedidaDTO> unidadesMedidaDTOs;
-    private final Mensaje msg = new Mensaje();
+	private final ProductoService productoService;
+	private final TipoProductoService tipoProductoService;
+	private final UnidadMedidaService unidadMedidaService;
+	private List<TipoProductoDTO> tiposProductoDTOs;
+	private List<UnidadMedidaDTO> unidadesMedidaDTOs;
+	private final Mensaje msg = new Mensaje();
 
-    @Autowired
-    public ProductoUsuarioController(ProductoService productoService, TipoProductoService tipoProductoService, UnidadMedidaService unidadMedidaService) {
-        this.productoService = productoService;
-        this.tipoProductoService = tipoProductoService;
-        this.unidadMedidaService = unidadMedidaService;
-    }
+	@Autowired
+	public ProductoUsuarioController(ProductoService productoService, TipoProductoService tipoProductoService,
+			UnidadMedidaService unidadMedidaService) {
+		this.productoService = productoService;
+		this.tipoProductoService = tipoProductoService;
+		this.unidadMedidaService = unidadMedidaService;
+	}
 
+	@GetMapping("/solicitudes/requisiciones/detalles/sugerir/{id}")
+	public String sugerir(Model model, @PathVariable("id") int id) {
+		tiposProductoDTOs = tipoProductoService.findAll();
+		unidadesMedidaDTOs = unidadMedidaService.findAll();
+		model.addAttribute("producto", new ProductoDTO());
+		model.addAttribute("tiposProducto", tiposProductoDTOs);
+		model.addAttribute("unidadesMedida", unidadesMedidaDTOs);
+		model.addAttribute("idRequisicion", id);
+		return "usuario/solicitudes/requisiciones/detalles/agregarProducto";
+	}
 
-    @GetMapping("/solicitudes/requisiciones/detalles/sugerir/{id}")
-    public String sugerir(Model model, @PathVariable("id") int id) {
-        tiposProductoDTOs = tipoProductoService.findAll();
-        unidadesMedidaDTOs = unidadMedidaService.findAll();
-        model.addAttribute("producto", new ProductoDTO());
-        model.addAttribute("tiposProducto", tiposProductoDTOs);
-        model.addAttribute("unidadesMedida", unidadesMedidaDTOs);
-        model.addAttribute("idRequisicion", id);
-        return "usuario/solicitudes/requisiciones/detalles/agregarProducto";
-    }
-
-    @PostMapping("/solicitudes/requisiciones/detalles/addSugerencia/{id}")
-    public String sugerir(ProductoDTO productoDTO, @PathVariable("id") int id, RedirectAttributes redirectAttrs) {
-        msg.crearMensaje(productoService.saveToUsuario(productoDTO), redirectAttrs);
-        return "redirect:/usuario/solicitudes/requisiciones/detalles/"+id;
-    }
+	@PostMapping("/solicitudes/requisiciones/detalles/addSugerencia/{id}")
+	public String sugerir(ProductoDTO productoDTO, @PathVariable("id") int id, RedirectAttributes redirectAttrs) {
+		msg.crearMensaje(productoService.saveToUsuario(productoDTO), redirectAttrs);
+		return "redirect:/usuario/solicitudes/requisiciones/detalles/" + id;
+	}
 
 }

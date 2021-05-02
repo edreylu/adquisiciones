@@ -23,33 +23,33 @@ import com.modules.sirsr.estatus.persistence.Estatus;
 @Table(name = "FOLIO_REQUISICION")
 public class FolioRequisicion {
 
-    @Id
-    @Basic(optional = false)
-    @Column(name = "ANIO")
-    private Integer anio;
-    @Basic(optional = false)
-    @Column(name = "CONSECUTIVO")
-    private Integer consecutivo;
-    
-    @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
-    @ManyToOne(optional = false)
-    private Estatus estatus;
+	@Id
+	@Basic(optional = false)
+	@Column(name = "ANIO")
+	private Integer anio;
+	@Basic(optional = false)
+	@Column(name = "CONSECUTIVO")
+	private Integer consecutivo;
 
-    public Integer getAnio() {
-        return anio;
-    }
+	@JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
+	@ManyToOne(optional = false)
+	private Estatus estatus;
 
-    public void setAnio(Integer anio) {
-        this.anio = anio;
-    }
+	public Integer getAnio() {
+		return anio;
+	}
 
-    public Integer getConsecutivo() {
-        return consecutivo;
-    }
+	public void setAnio(Integer anio) {
+		this.anio = anio;
+	}
 
-    public void setConsecutivo(Integer consecutivo) {
-        this.consecutivo = consecutivo;
-    }
+	public Integer getConsecutivo() {
+		return consecutivo;
+	}
+
+	public void setConsecutivo(Integer consecutivo) {
+		this.consecutivo = consecutivo;
+	}
 
 	public Estatus getEstatus() {
 		return estatus;
@@ -58,8 +58,5 @@ public class FolioRequisicion {
 	public void setEstatus(Estatus estatus) {
 		this.estatus = estatus;
 	}
-    
-    
 
-    
 }

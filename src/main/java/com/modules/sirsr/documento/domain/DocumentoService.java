@@ -26,74 +26,70 @@ import java.util.stream.Collectors;
 @Service
 public class DocumentoService {
 
-    private final DocumentoRepository documentoRepository;
-    private final SolicitudService solicitudService;
-    private final TipoDocumentoService tipoDocumentoService;
-    private final DocumentoMapper documentoMapper;
-    private List<Integer> idTiposDocumentosUnicos;
-    private Mensaje msg;
+	private final DocumentoRepository documentoRepository;
+	private final SolicitudService solicitudService;
+	private final TipoDocumentoService tipoDocumentoService;
+	private List<Integer> idTiposDocumentosUnicos;
+	private Mensaje msg;
 
-    @Autowired
-    public DocumentoService(DocumentoRepository documentoRepository, SolicitudService solicitudService, TipoDocumentoService tipoDocumentoService, DocumentoMapper documentoMapper) {
-        this.documentoRepository = documentoRepository;
-        this.solicitudService = solicitudService;
-        this.tipoDocumentoService = tipoDocumentoService;
-        this.documentoMapper = documentoMapper;
-    }
-    
+	@Autowired
+	public DocumentoService(DocumentoRepository documentoRepository, SolicitudService solicitudService,
+			TipoDocumentoService tipoDocumentoService) {
+		this.documentoRepository = documentoRepository;
+		this.solicitudService = solicitudService;
+		this.tipoDocumentoService = tipoDocumentoService;
+	}
 
-    public List<DocumentoDTO> findAll() {
-        return documentoMapper.toDocumentoDTOs(documentoRepository.findAll());
-    }
+	public List<DocumentoDTO> findAll() {
+		return DocumentoMapper.toDocumentoDTOs(documentoRepository.findAll());
+	}
 
-    public DocumentoDTO findById(int id) {
-        Optional<Documento> documentoOptional = documentoRepository.findById(id);
-        DocumentoDTO documentoDTO = documentoMapper.toDocumentoDTO(documentoOptional.get());
-        return documentoDTO;
-    }
+	public DocumentoDTO findById(int id) {
+		Optional<Documento> documentoOptional = documentoRepository.findById(id);
+		DocumentoDTO documentoDTO = DocumentoMapper.toDocumentoDTO(documentoOptional.get());
+		return documentoDTO;
+	}
 
-    public List<DocumentoDTO> findByIdSolicitud(int idSolicitud) {
-        List<DocumentoDTO> documentoDTOs = documentoMapper.toDocumentoDTOs(documentoRepository.findByIdSolicitud(idSolicitud));
-        return documentoDTOs;
-    }
+	public List<DocumentoDTO> findByIdSolicitud(int idSolicitud) {
+		List<DocumentoDTO> documentoDTOs = DocumentoMapper.toDocumentoDTOs(documentoRepository.findByIdSolicitud(idSolicitud));
+		return documentoDTOs;
+	}
 
-    public Mensaje save(DocumentoDTO documentoDTO, int id) {
-        try {
-            SolicitudDTO solicitud = solicitudService.findById(id);
-            TipoDocumentoDTO tipoDocumento = tipoDocumentoService.findById(documentoDTO.getTipoDocumento().getIdTipoDocumento());
-            documentoDTO.setSolicitud(solicitud);
-            documentoDTO.setTipoDocumento(tipoDocumento);
-            documentoRepository.save(documentoMapper.toDocumento(documentoDTO));
+	public Mensaje save(DocumentoDTO documentoDTO) {
+		try {
+			SolicitudDTO solicitud = solicitudService.findById(documentoDTO.getSolicitud().getIdSolicitud());
+			TipoDocumentoDTO tipoDocumento = tipoDocumentoService
+					.findById(documentoDTO.getTipoDocumento().getIdTipoDocumento());
+			documentoDTO.setSolicitud(solicitud);
+			documentoDTO.setTipoDocumento(tipoDocumento);
+			documentoRepository.save(DocumentoMapper.toDocumento(documentoDTO));
 
-            msg = Mensaje.CREATE("Documentos agregados correctamente", 1);
-        }catch (Exception e){
-            msg = Mensaje.CREATE("No se pudo agregar documento por: "+e.getMessage(), 2);
-        }
-        return msg;
-    }
+			msg = Mensaje.success("Documentos agregados correctamente");
+		} catch (Exception e) {
+			msg = Mensaje.danger("No se pudo agregar documento por: " + e.getMessage());
+		}
+		return msg;
+	}
 
+	public Mensaje deleteById(int id) {
+		try {
+			documentoRepository.deleteById(id);
+			msg = Mensaje.success("Eliminado correctamente");
+		} catch (Exception e) {
+			msg = Mensaje.danger("No se pudo Eliminar.");
+		}
+		return msg;
 
-    public Mensaje deleteById(int id) {
-        try {
-            documentoRepository.deleteById(id);
-            msg = Mensaje.CREATE("Eliminado correctamente", 1);
-        }catch (Exception e){
-            msg = Mensaje.CREATE("No se pudo Eliminar.", 2);
-        }
-        return msg;
+	}
 
-    }
-
-    public List<Integer> getTiposDocumentoNot(int idSolicitud) {
-        idTiposDocumentosUnicos = tipoDocumentoService.findAllIdDocumentosObligatorios();
-        List<Integer> documentoDTOs = this.findByIdSolicitud(idSolicitud)
-                .stream()
-                .filter(documentoDTO -> idTiposDocumentosUnicos.contains(documentoDTO.getTipoDocumento().getIdTipoDocumento()))
-                .map(documentoDTO ->
-                           documentoDTO.getTipoDocumento().getIdTipoDocumento())
-                .collect(Collectors.toList());
-        if(documentoDTOs.isEmpty())documentoDTOs.add(0);
-        return documentoDTOs;
-    }
+	public List<Integer> getTiposDocumentoNot(int idSolicitud) {
+		idTiposDocumentosUnicos = tipoDocumentoService.findAllIdDocumentosUnicos();
+		List<Integer> documentoDTOs = this.findByIdSolicitud(idSolicitud).stream().filter(
+				documentoDTO -> idTiposDocumentosUnicos.contains(documentoDTO.getTipoDocumento().getIdTipoDocumento()))
+				.map(documentoDTO -> documentoDTO.getTipoDocumento().getIdTipoDocumento()).collect(Collectors.toList());
+		if (documentoDTOs.isEmpty())
+			documentoDTOs.add(0);
+		return documentoDTOs;
+	}
 
 }

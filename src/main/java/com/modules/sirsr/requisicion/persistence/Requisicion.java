@@ -19,94 +19,94 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "REQUISICION")
-public class Requisicion{
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "requisicion_generator")
-    @SequenceGenerator(name = "requisicion_generator", sequenceName = "SEQ_REQUISICION", allocationSize = 1)
-    @Basic(optional = false)
-    @Column(name = "ID_REQUISICION")
-    private Integer idRequisicion;
-    @Column(name = "ID_SOLICITUD", insertable = false, updatable = false)
-    private Integer idSolicitud;
-    @Column(name = "MONTO_SUFICIENCIA")
-    private Double montoSuficiencia;
-    @JoinColumn(name = "ID_CLAVE_PRESUP", referencedColumnName = "ID_CLAVE_PRESUP")
-    @ManyToOne(optional = false)
-    private ClavePresupuestaria clavePresupuestaria;
-    @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
-    @ManyToOne(optional = false)
-    private Estatus estatus;
-    @JoinColumn(name = "ID_MONTO_ADJUDICACION", referencedColumnName = "ID_MONTO_ADJUDICACION")
-    @ManyToOne
-    private MontoAdjudicacion montoAdjudicacion;
-    @JoinColumn(name = "ID_SOLICITUD", referencedColumnName = "ID_SOLICITUD")
-    @ManyToOne(optional = false)
-    private Solicitud solicitud;
-    @OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL,mappedBy="requisicion")
-    private List<DetalleRequisicion> detallesRequisicion;
+public class Requisicion {
 
-    public Integer getIdRequisicion() {
-        return idRequisicion;
-    }
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "requisicion_generator")
+	@SequenceGenerator(name = "requisicion_generator", sequenceName = "SEQ_REQUISICION", allocationSize = 1)
+	@Basic(optional = false)
+	@Column(name = "ID_REQUISICION")
+	private Integer idRequisicion;
+	@Column(name = "ID_SOLICITUD", insertable = false, updatable = false)
+	private Integer idSolicitud;
+	@Column(name = "MONTO_SUFICIENCIA")
+	private Double montoSuficiencia;
+	@JoinColumn(name = "ID_CLAVE_PRESUP", referencedColumnName = "ID_CLAVE_PRESUP")
+	@ManyToOne(optional = false)
+	private ClavePresupuestaria clavePresupuestaria;
+	@JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
+	@ManyToOne(optional = false)
+	private Estatus estatus;
+	@JoinColumn(name = "ID_MONTO_ADJUDICACION", referencedColumnName = "ID_MONTO_ADJUDICACION")
+	@ManyToOne
+	private MontoAdjudicacion montoAdjudicacion;
+	@JoinColumn(name = "ID_SOLICITUD", referencedColumnName = "ID_SOLICITUD")
+	@ManyToOne(optional = false)
+	private Solicitud solicitud;
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "requisicion")
+	private List<DetalleRequisicion> detallesRequisicion;
 
-    public void setIdRequisicion(Integer idRequisicion) {
-        this.idRequisicion = idRequisicion;
-    }
+	public Integer getIdRequisicion() {
+		return idRequisicion;
+	}
 
-    public Double getMontoSuficiencia() {
-        return montoSuficiencia;
-    }
+	public void setIdRequisicion(Integer idRequisicion) {
+		this.idRequisicion = idRequisicion;
+	}
 
-    public void setMontoSuficiencia(Double montoSuficiencia) {
-        this.montoSuficiencia = montoSuficiencia;
-    }
+	public Double getMontoSuficiencia() {
+		return montoSuficiencia;
+	}
 
-    public ClavePresupuestaria getClavePresupuestaria() {
-        return clavePresupuestaria;
-    }
+	public void setMontoSuficiencia(Double montoSuficiencia) {
+		this.montoSuficiencia = montoSuficiencia;
+	}
 
-    public void setClavePresupuestaria(ClavePresupuestaria clavePresupuestaria) {
-        this.clavePresupuestaria = clavePresupuestaria;
-    }
+	public ClavePresupuestaria getClavePresupuestaria() {
+		return clavePresupuestaria;
+	}
 
-    public Estatus getEstatus() {
-        return estatus;
-    }
+	public void setClavePresupuestaria(ClavePresupuestaria clavePresupuestaria) {
+		this.clavePresupuestaria = clavePresupuestaria;
+	}
 
-    public void setEstatus(Estatus estatus) {
-        this.estatus = estatus;
-    }
+	public Estatus getEstatus() {
+		return estatus;
+	}
 
-    public MontoAdjudicacion getMontoAdjudicacion() {
-        return montoAdjudicacion;
-    }
+	public void setEstatus(Estatus estatus) {
+		this.estatus = estatus;
+	}
 
-    public void setMontoAdjudicacion(MontoAdjudicacion montoAdjudicacion) {
-        this.montoAdjudicacion = montoAdjudicacion;
-    }
+	public MontoAdjudicacion getMontoAdjudicacion() {
+		return montoAdjudicacion;
+	}
 
-    public Solicitud getSolicitud() {
-        return solicitud;
-    }
+	public void setMontoAdjudicacion(MontoAdjudicacion montoAdjudicacion) {
+		this.montoAdjudicacion = montoAdjudicacion;
+	}
 
-    public void setSolicitud(Solicitud solicitud) {
-        this.solicitud = solicitud;
-    }
+	public Solicitud getSolicitud() {
+		return solicitud;
+	}
 
-    public Integer getIdSolicitud() {
-        return idSolicitud;
-    }
+	public void setSolicitud(Solicitud solicitud) {
+		this.solicitud = solicitud;
+	}
 
-    public void setIdSolicitud(Integer idSolicitud) {
-        this.idSolicitud = idSolicitud;
-    }
+	public Integer getIdSolicitud() {
+		return idSolicitud;
+	}
 
-    public List<DetalleRequisicion> getDetallesRequisicion() {
-        return detallesRequisicion;
-    }
+	public void setIdSolicitud(Integer idSolicitud) {
+		this.idSolicitud = idSolicitud;
+	}
 
-    public void setDetallesRequisicion(List<DetalleRequisicion> detallesRequisicion) {
-        this.detallesRequisicion = detallesRequisicion;
-    }
+	public List<DetalleRequisicion> getDetallesRequisicion() {
+		return detallesRequisicion;
+	}
+
+	public void setDetallesRequisicion(List<DetalleRequisicion> detallesRequisicion) {
+		this.detallesRequisicion = detallesRequisicion;
+	}
 }

@@ -11,6 +11,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * @author Edward Reyes
  */
-public interface ObjetoDeGastoRepository extends JpaRepository<ObjetoDeGasto, String>{
+public interface ObjetoDeGastoRepository extends JpaRepository<ObjetoDeGasto, String> {
 
 }

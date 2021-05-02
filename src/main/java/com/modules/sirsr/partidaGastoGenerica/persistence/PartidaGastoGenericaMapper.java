@@ -12,40 +12,40 @@ import java.util.Objects;
 @Component
 public class PartidaGastoGenericaMapper {
 
-    private final EstatusMapper estatusMapper = new EstatusMapper();
-    private final ConceptoMapper conceptoMapper = new ConceptoMapper();
+	public static PartidaGastoGenerica toPartidaGastoGenerica(PartidaGastoGenericaDTO partidaGastoGenericaDTO) {
+		PartidaGastoGenerica partidaGastoGenerica = new PartidaGastoGenerica();
+		partidaGastoGenerica.setClaveGenerica(partidaGastoGenericaDTO.getClaveGenerica());
+		partidaGastoGenerica.setDescripcion(partidaGastoGenericaDTO.getDescripcion());
+		partidaGastoGenerica.setDefinicion(partidaGastoGenericaDTO.getDefinicion());
+		partidaGastoGenerica.setFechaInicio(partidaGastoGenericaDTO.getFechaInicio());
+		partidaGastoGenerica.setFechaFinal(partidaGastoGenericaDTO.getFechaFinal());
+		partidaGastoGenerica.setConcepto(ConceptoMapper.toConcepto(partidaGastoGenericaDTO.getConcepto()));
+		partidaGastoGenerica.setEstatus(EstatusMapper.toEstatus(partidaGastoGenericaDTO.getEstatus()));
+		return partidaGastoGenerica;
+	}
 
-    public PartidaGastoGenerica toPartidaGastoGenerica(PartidaGastoGenericaDTO partidaGastoGenericaDTO){
-        PartidaGastoGenerica partidaGastoGenerica = new PartidaGastoGenerica();
-        partidaGastoGenerica.setClaveGenerica(partidaGastoGenericaDTO.getClaveGenerica());
-        partidaGastoGenerica.setDescripcion(partidaGastoGenericaDTO.getDescripcion());
-        partidaGastoGenerica.setDefinicion(partidaGastoGenericaDTO.getDefinicion());
-        partidaGastoGenerica.setFechaInicio(partidaGastoGenericaDTO.getFechaInicio());
-        partidaGastoGenerica.setFechaFinal(partidaGastoGenericaDTO.getFechaFinal());
-        partidaGastoGenerica.setConcepto(conceptoMapper.toConcepto(partidaGastoGenericaDTO.getConcepto()));
-        partidaGastoGenerica.setEstatus(estatusMapper.toEstatus(partidaGastoGenericaDTO.getEstatus()));
-        return partidaGastoGenerica;
-    }
-    public PartidaGastoGenericaDTO toPartidaGastoGenericaDTO(PartidaGastoGenerica partidaGastoGenerica){
-        PartidaGastoGenericaDTO partidaGastoGenericaDTO = new PartidaGastoGenericaDTO();
-        partidaGastoGenericaDTO.setClaveGenerica(partidaGastoGenerica.getClaveGenerica());
-        partidaGastoGenericaDTO.setDescripcion(partidaGastoGenerica.getDescripcion());
-        partidaGastoGenericaDTO.setDefinicion(partidaGastoGenerica.getDefinicion());
-        partidaGastoGenericaDTO.setFechaInicio(partidaGastoGenerica.getFechaInicio());
-        partidaGastoGenericaDTO.setFechaFinal(partidaGastoGenerica.getFechaFinal());
-        partidaGastoGenericaDTO.setConcepto(conceptoMapper.toConceptoDTO(partidaGastoGenerica.getConcepto()));
-        partidaGastoGenericaDTO.setEstatus(estatusMapper.toEstatusDTO(partidaGastoGenerica.getEstatus()));
+	public static PartidaGastoGenericaDTO toPartidaGastoGenericaDTO(PartidaGastoGenerica partidaGastoGenerica) {
+		PartidaGastoGenericaDTO partidaGastoGenericaDTO = new PartidaGastoGenericaDTO();
+		partidaGastoGenericaDTO.setClaveGenerica(partidaGastoGenerica.getClaveGenerica());
+		partidaGastoGenericaDTO.setDescripcion(partidaGastoGenerica.getDescripcion());
+		partidaGastoGenericaDTO.setDefinicion(partidaGastoGenerica.getDefinicion());
+		partidaGastoGenericaDTO.setFechaInicio(partidaGastoGenerica.getFechaInicio());
+		partidaGastoGenericaDTO.setFechaFinal(partidaGastoGenerica.getFechaFinal());
+		partidaGastoGenericaDTO.setConcepto(ConceptoMapper.toConceptoDTO(partidaGastoGenerica.getConcepto()));
+		partidaGastoGenericaDTO.setEstatus(EstatusMapper.toEstatusDTO(partidaGastoGenerica.getEstatus()));
 
-        return partidaGastoGenericaDTO;
-    }
-    public List<PartidaGastoGenericaDTO> toPartidaGastoGenericaDTOs(List<PartidaGastoGenerica> partidaGastoGenericas){
-        if (Objects.isNull(partidaGastoGenericas)) {
-            return null;
-        }
-        List<PartidaGastoGenericaDTO> list = new ArrayList<>(partidaGastoGenericas.size());
-        for (PartidaGastoGenerica partidaGastoGenerica : partidaGastoGenericas) {
-            list.add(toPartidaGastoGenericaDTO(partidaGastoGenerica));
-        }
-        return list;
-    }
+		return partidaGastoGenericaDTO;
+	}
+
+	public static List<PartidaGastoGenericaDTO> toPartidaGastoGenericaDTOs(
+			List<PartidaGastoGenerica> partidaGastoGenericas) {
+		if (Objects.isNull(partidaGastoGenericas)) {
+			return null;
+		}
+		List<PartidaGastoGenericaDTO> list = new ArrayList<>(partidaGastoGenericas.size());
+		for (PartidaGastoGenerica partidaGastoGenerica : partidaGastoGenericas) {
+			list.add(toPartidaGastoGenericaDTO(partidaGastoGenerica));
+		}
+		return list;
+	}
 }

@@ -15,90 +15,102 @@ import java.util.Date;
  * @author Edward Reyes
  */
 public class ProductoDTO {
-    private Integer idProducto;
-    private String caracteristicas;
-    private Double precioDeReferencia;
-    private Date fechaActualizacion;
-    private int permisoUr;
-    private UnidadMedidaDTO unidadMedida;
-    private TipoProductoDTO tipoProducto;
-    private EstatusDTO estatus;
+	private Integer idProducto;
+	private String caracteristicas;
+	private Double precioDeReferencia;
+	private Date fechaActualizacion;
+	private int permisoUr;
+	private UnidadMedidaDTO unidadMedida;
+	private TipoProductoDTO tipoProducto;
+	private EstatusDTO estatus;
+	
+	public ProductoDTO() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
 
-    public Integer getIdProducto() {
-        return idProducto;
-    }
+	public ProductoDTO(Integer idProducto, String caracteristicas, Double precioDeReferencia, Date fechaActualizacion,
+			int permisoUr, UnidadMedidaDTO unidadMedida, TipoProductoDTO tipoProducto, EstatusDTO estatus) {
+		this.idProducto = idProducto;
+		this.caracteristicas = caracteristicas;
+		this.precioDeReferencia = precioDeReferencia;
+		this.fechaActualizacion = fechaActualizacion;
+		this.permisoUr = permisoUr;
+		this.unidadMedida = unidadMedida;
+		this.tipoProducto = tipoProducto;
+		this.estatus = estatus;
+	}
 
-    public void setIdProducto(Integer idProducto) {
-        this.idProducto = idProducto;
-    }
+	public Integer getIdProducto() {
+		return idProducto;
+	}
 
-    public String getCaracteristicas() {
-        return caracteristicas;
-    }
+	public void setIdProducto(Integer idProducto) {
+		this.idProducto = idProducto;
+	}
 
-    public void setCaracteristicas(String caracteristicas) {
-        this.caracteristicas = caracteristicas;
-    }
+	public String getCaracteristicas() {
+		return caracteristicas;
+	}
 
-    public Double getPrecioDeReferencia() {
-        return precioDeReferencia;
-    }
+	public void setCaracteristicas(String caracteristicas) {
+		this.caracteristicas = caracteristicas;
+	}
 
-    public void setPrecioDeReferencia(Double precioDeReferencia) {
-        this.precioDeReferencia = precioDeReferencia;
-    }
+	public Double getPrecioDeReferencia() {
+		return precioDeReferencia;
+	}
 
-    public Date getFechaActualizacion() {
-        return fechaActualizacion;
-    }
+	public void setPrecioDeReferencia(Double precioDeReferencia) {
+		this.precioDeReferencia = precioDeReferencia;
+	}
 
-    public void setFechaActualizacion(Date fechaActualizacion) {
-        this.fechaActualizacion = fechaActualizacion;
-    }
+	public Date getFechaActualizacion() {
+		return fechaActualizacion;
+	}
 
-    public int getPermisoUr() {
-        return permisoUr;
-    }
+	public void setFechaActualizacion(Date fechaActualizacion) {
+		this.fechaActualizacion = fechaActualizacion;
+	}
 
-    public void setPermisoUr(int permisoUr) {
-        this.permisoUr = permisoUr;
-    }
+	public int getPermisoUr() {
+		return permisoUr;
+	}
 
-    public UnidadMedidaDTO getUnidadMedida() {
-        return unidadMedida;
-    }
+	public void setPermisoUr(int permisoUr) {
+		this.permisoUr = permisoUr;
+	}
 
-    public void setUnidadMedida(UnidadMedidaDTO unidadMedida) {
-        this.unidadMedida = unidadMedida;
-    }
+	public UnidadMedidaDTO getUnidadMedida() {
+		return unidadMedida;
+	}
 
-    public TipoProductoDTO getTipoProducto() {
-        return tipoProducto;
-    }
+	public void setUnidadMedida(UnidadMedidaDTO unidadMedida) {
+		this.unidadMedida = unidadMedida;
+	}
 
-    public void setTipoProducto(TipoProductoDTO tipoProducto) {
-        this.tipoProducto = tipoProducto;
-    }
+	public TipoProductoDTO getTipoProducto() {
+		return tipoProducto;
+	}
 
-    public EstatusDTO getEstatus() {
-        return estatus;
-    }
+	public void setTipoProducto(TipoProductoDTO tipoProducto) {
+		this.tipoProducto = tipoProducto;
+	}
 
-    public void setEstatus(EstatusDTO estatus) {
-        this.estatus = estatus;
-    }
+	public EstatusDTO getEstatus() {
+		return estatus;
+	}
 
-    @Override
-    public String toString() {
-        return "ProductoDTO{" +
-                "idProducto=" + idProducto +
-                ", caracteristicas='" + caracteristicas + '\'' +
-                ", precioDeReferencia=" + precioDeReferencia +
-                ", fechaActualizacion=" + fechaActualizacion +
-                ", permisoUr=" + permisoUr +
-                ", unidadMedida=" + unidadMedida +
-                ", tipoProducto=" + tipoProducto +
-                ", estatus=" + estatus +
-                '}';
-    }
+	public void setEstatus(EstatusDTO estatus) {
+		this.estatus = estatus;
+	}
+
+	@Override
+	public String toString() {
+		return "ProductoDTO{" + "idProducto=" + idProducto + ", caracteristicas='" + caracteristicas + '\''
+				+ ", precioDeReferencia=" + precioDeReferencia + ", fechaActualizacion=" + fechaActualizacion
+				+ ", permisoUr=" + permisoUr + ", unidadMedida=" + unidadMedida + ", tipoProducto=" + tipoProducto
+				+ ", estatus=" + estatus + '}';
+	}
 }

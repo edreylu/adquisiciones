@@ -8,74 +8,90 @@ package com.modules.sirsr.partidaGastoGenerica.domain;
 import com.modules.sirsr.concepto.domain.ConceptoDTO;
 import com.modules.sirsr.estatus.domain.EstatusDTO;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author Edward Reyes
  */
-public class PartidaGastoGenericaDTO {
-    private Integer claveGenerica;
-    private String descripcion;
-    private String definicion;
-    private Date fechaInicio;
-    private Date fechaFinal;
-    private ConceptoDTO concepto;
-    private EstatusDTO estatus;
+public class PartidaGastoGenericaDTO implements Serializable {
+	private Integer claveGenerica;
+	private String descripcion;
+	private String definicion;
+	private Date fechaInicio;
+	private Date fechaFinal;
+	private ConceptoDTO concepto;
+	private EstatusDTO estatus;
+	
+	public PartidaGastoGenericaDTO() {
+		// TODO Auto-generated constructor stub
+	}
 
-    public Integer getClaveGenerica() {
-        return claveGenerica;
-    }
+	public PartidaGastoGenericaDTO(Integer claveGenerica, String descripcion, String definicion, Date fechaInicio,
+			Date fechaFinal, ConceptoDTO concepto, EstatusDTO estatus) {
+		this.claveGenerica = claveGenerica;
+		this.descripcion = descripcion;
+		this.definicion = definicion;
+		this.fechaInicio = fechaInicio;
+		this.fechaFinal = fechaFinal;
+		this.concepto = concepto;
+		this.estatus = estatus;
+	}
 
-    public void setClaveGenerica(Integer claveGenerica) {
-        this.claveGenerica = claveGenerica;
-    }
+	public Integer getClaveGenerica() {
+		return claveGenerica;
+	}
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+	public void setClaveGenerica(Integer claveGenerica) {
+		this.claveGenerica = claveGenerica;
+	}
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+	public String getDescripcion() {
+		return descripcion;
+	}
 
-    public String getDefinicion() {
-        return definicion;
-    }
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
-    public void setDefinicion(String definicion) {
-        this.definicion = definicion;
-    }
+	public String getDefinicion() {
+		return definicion;
+	}
 
-    public Date getFechaInicio() {
-        return fechaInicio;
-    }
+	public void setDefinicion(String definicion) {
+		this.definicion = definicion;
+	}
 
-    public void setFechaInicio(Date fechaInicio) {
-        this.fechaInicio = fechaInicio;
-    }
+	public Date getFechaInicio() {
+		return fechaInicio;
+	}
 
-    public Date getFechaFinal() {
-        return fechaFinal;
-    }
+	public void setFechaInicio(Date fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
 
-    public void setFechaFinal(Date fechaFinal) {
-        this.fechaFinal = fechaFinal;
-    }
+	public Date getFechaFinal() {
+		return fechaFinal;
+	}
 
-    public ConceptoDTO getConcepto() {
-        return concepto;
-    }
+	public void setFechaFinal(Date fechaFinal) {
+		this.fechaFinal = fechaFinal;
+	}
 
-    public void setConcepto(ConceptoDTO concepto) {
-        this.concepto = concepto;
-    }
+	public ConceptoDTO getConcepto() {
+		return concepto;
+	}
 
-    public EstatusDTO getEstatus() {
-        return estatus;
-    }
+	public void setConcepto(ConceptoDTO concepto) {
+		this.concepto = concepto;
+	}
 
-    public void setEstatus(EstatusDTO estatus) {
-        this.estatus = estatus;
-    }
+	public EstatusDTO getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(EstatusDTO estatus) {
+		this.estatus = estatus;
+	}
 }

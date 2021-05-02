@@ -11,42 +11,43 @@ import java.util.Objects;
 
 @Component
 public class RevisionMapper {
-    
-    private ModelMapper modelMapper = new ModelMapper();
-    private SolicitudMapper solicitudMapper = new SolicitudMapper();
 
-    public RevisionDTO toRevisionDTO(Revision revision){
-        if (Objects.isNull(revision)) {
-            return null;
-        }
 
-        RevisionDTO revisionDTO = new RevisionDTO();
-        revisionDTO.setFechaRevision(revision.getRevisionPK().getFechaRevision());
-        revisionDTO.setObservacion(revision.getObservacion());
-        revisionDTO.setSolicitud(solicitudMapper.toSolicitudDTO(revision.getSolicitud()));
+	public static RevisionDTO toRevisionDTO(Revision revision) {
+		if (Objects.isNull(revision)) {
+			return null;
+		}
 
-        return revisionDTO;
-    }
+		RevisionDTO revisionDTO = new RevisionDTO();
+		revisionDTO.setFechaRevision(revision.getRevisionPK().getFechaRevision());
+		revisionDTO.setObservacion(revision.getObservacion());
+		revisionDTO.setSolicitud(SolicitudMapper.toSolicitudDTO(revision.getSolicitud()));
 
-    public List<RevisionDTO> toRevisionsDTOs(List<Revision> revisions) {
-        if (Objects.isNull(revisions)) {
-            return null;
-        }
+		return revisionDTO;
+	}
 
-        List<RevisionDTO> list = new ArrayList<>(revisions.size());
-        for (Revision revision : revisions) {
-            list.add(toRevisionDTO(revision));
-        }
+	public static List<RevisionDTO> toRevisionsDTOs(List<Revision> revisions) {
+		if (Objects.isNull(revisions)) {
+			return null;
+		}
 
-        return list;
-    }
+		List<RevisionDTO> list = new ArrayList<>(revisions.size());
+		for (Revision revision : revisions) {
+			list.add(toRevisionDTO(revision));
+		}
 
-    public Revision toRevision(RevisionDTO revisionDTO) {
-        if (Objects.isNull(revisionDTO)) {
-            return null;
-        }
-        Revision revision = new Revision();
-        return revision;
-    }
+		return list;
+	}
+
+	public static Revision toRevision(RevisionDTO revisionDTO) {
+		if (Objects.isNull(revisionDTO)) {
+			return null;
+		}
+		Revision revision = new Revision();
+		revision.setRevisionPK(new RevisionPK(revisionDTO.getFechaRevision(), revision.getIdSolicitud()));
+		revision.setObservacion(revisionDTO.getObservacion());
+		revision.setSolicitud(SolicitudMapper.toSolicitud(revisionDTO.getSolicitud()));
+		return revision;
+	}
 
 }

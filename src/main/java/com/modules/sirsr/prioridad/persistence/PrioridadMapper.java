@@ -12,45 +12,42 @@ import java.util.Objects;
 @Component
 public class PrioridadMapper {
 
-    private final EstatusMapper estatusMapper = new EstatusMapper();
-    private final UnidadResponsableMapper unidadResponsableMapper = new UnidadResponsableMapper();
+	public static PrioridadDTO toPrioridadDTO(Prioridad prioridad) {
+		if (Objects.isNull(prioridad)) {
+			return null;
+		}
+		PrioridadDTO prioridadDTO = new PrioridadDTO();
+		prioridadDTO.setIdPrioridad(prioridad.getIdPrioridad());
+		prioridadDTO.setDescripcion(prioridad.getDescripcion());
+		prioridadDTO.setEstatus(EstatusMapper.toEstatusDTO(prioridad.getEstatus()));
 
-    public PrioridadDTO toPrioridadDTO(Prioridad prioridad) {
-        if (Objects.isNull(prioridad)) {
-            return null;
-        }
-        PrioridadDTO prioridadDTO = new PrioridadDTO();
-        prioridadDTO.setIdPrioridad(prioridad.getIdPrioridad());
-        prioridadDTO.setDescripcion(prioridad.getDescripcion());
-        prioridadDTO.setEstatus(estatusMapper.toEstatusDTO(prioridad.getEstatus()));
+		return prioridadDTO;
+	}
 
-        return prioridadDTO;
-    }
+	public static List<PrioridadDTO> toPrioridadDTOs(List<Prioridad> prioridades) {
+		if (Objects.isNull(prioridades)) {
+			return null;
+		}
+		List<PrioridadDTO> list = new ArrayList<>(prioridades.size());
+		for (Prioridad prioridad : prioridades) {
+			list.add(toPrioridadDTO(prioridad));
+		}
+		return list;
+	}
 
-    public List<PrioridadDTO> toPrioridadDTOs(List<Prioridad> prioridades) {
-        if (Objects.isNull(prioridades)) {
-            return null;
-        }
-        List<PrioridadDTO> list = new ArrayList<>(prioridades.size());
-        for (Prioridad prioridad : prioridades) {
-            list.add(toPrioridadDTO(prioridad));
-        }
-        return list;
-    }
+	public static Prioridad toPrioridad(PrioridadDTO prioridadDTO) {
+		if (Objects.isNull(prioridadDTO)) {
+			return null;
+		}
+		Prioridad prioridad = new Prioridad();
+		prioridad.setIdPrioridad(prioridadDTO.getIdPrioridad());
+		prioridad.setDescripcion(prioridadDTO.getDescripcion());
+		prioridad.setEstatus(EstatusMapper.toEstatus(prioridadDTO.getEstatus()));
+		return prioridad;
+	}
 
-    public Prioridad toPrioridad(PrioridadDTO prioridadDTO) {
-        if (Objects.isNull(prioridadDTO)) {
-            return null;
-        }
-        Prioridad prioridad = new Prioridad();
-        prioridad.setIdPrioridad(prioridadDTO.getIdPrioridad());
-        prioridad.setDescripcion(prioridadDTO.getDescripcion());
-        prioridad.setEstatus(estatusMapper.toEstatus(prioridadDTO.getEstatus()));
-        return prioridad;
-    }
-
-    public Prioridad setToUpdate(Prioridad prioridadFound, PrioridadDTO prioridadDTO) {
-        return prioridadFound;
-    }
+	public static Prioridad setToUpdate(Prioridad prioridadFound, PrioridadDTO prioridadDTO) {
+		return prioridadFound;
+	}
 
 }

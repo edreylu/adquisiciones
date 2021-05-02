@@ -19,9 +19,9 @@ public class TipoPersonaFiscalService {
 	private final TipoPersonaFiscalMapper tipoPersonaFiscalMapper;
 	private final EstatusService estatusService;
 
-
 	@Autowired
-	public TipoPersonaFiscalService(TipoPersonaFiscalRepository tipoPersonaFiscalRepository, TipoPersonaFiscalMapper tipoPersonaFiscalMapper, EstatusService estatusService) {
+	public TipoPersonaFiscalService(TipoPersonaFiscalRepository tipoPersonaFiscalRepository,
+			TipoPersonaFiscalMapper tipoPersonaFiscalMapper, EstatusService estatusService) {
 		this.tipoPersonaFiscalRepository = tipoPersonaFiscalRepository;
 		this.tipoPersonaFiscalMapper = tipoPersonaFiscalMapper;
 		this.estatusService = estatusService;
@@ -44,8 +44,9 @@ public class TipoPersonaFiscalService {
 		try {
 			Optional<TipoPersonaFiscal> tipoPersonaFiscal = tipoPersonaFiscalRepository.findById(id);
 			if (tipoPersonaFiscal.isPresent()) {
-				
-				tipoPersonaFiscalRepository.save(tipoPersonaFiscalMapper.toUpdatePersonaFiscal(tipoPersonaFiscal.get(), tipoPersonaFiscalDTO));
+
+				tipoPersonaFiscalRepository.save(
+						tipoPersonaFiscalMapper.toUpdatePersonaFiscal(tipoPersonaFiscal.get(), tipoPersonaFiscalDTO));
 				msg = Mensaje.CREATE("Actualizado correctamente", 1);
 			}
 
@@ -54,33 +55,33 @@ public class TipoPersonaFiscalService {
 		}
 		return msg;
 	}
-	
+
 	public Mensaje save(TipoPersonaFiscalDTO tipoPersonaFiscalDTO) {
-        try {
-        	tipoPersonaFiscalDTO.setIdEstatus(1);
-        	tipoPersonaFiscalRepository.save(tipoPersonaFiscalMapper.toTipoPersonaFiscal(tipoPersonaFiscalDTO));
-            msg = Mensaje.CREATE("Agregado correctamente", 1);
-        }catch (Exception e){
-            msg = Mensaje.CREATE("No se pudo agregar por: "+e.getMessage(), 2);
-        }
-        return msg;
-    }
-	
+		try {
+			tipoPersonaFiscalDTO.setIdEstatus(1);
+			tipoPersonaFiscalRepository.save(tipoPersonaFiscalMapper.toTipoPersonaFiscal(tipoPersonaFiscalDTO));
+			msg = Mensaje.CREATE("Agregado correctamente", 1);
+		} catch (Exception e) {
+			msg = Mensaje.CREATE("No se pudo agregar por: " + e.getMessage(), 2);
+		}
+		return msg;
+	}
+
 	public Mensaje borraPorId(int id, int idEstatus) {
 
-        String action = idEstatus == 1 ? "Activado" : "Inactivado";
-        try {
-            Optional<TipoPersonaFiscal> tipoPersonaFiscal = tipoPersonaFiscalRepository.findById(id);
-            if(tipoPersonaFiscal.isPresent()) {
-            	tipoPersonaFiscal.get().setIdEstatus(idEstatus);
-            }
-            
-            tipoPersonaFiscalRepository.save(tipoPersonaFiscal.get());
-            msg = Mensaje.CREATE(action + " correctamente", 1);
-        } catch (Exception e) {
-            msg = Mensaje.CREATE("No se pudo " + action + " por: " + e.getMessage(), 2);
-        }
-        return msg;
+		String action = idEstatus == 1 ? "Activado" : "Inactivado";
+		try {
+			Optional<TipoPersonaFiscal> tipoPersonaFiscal = tipoPersonaFiscalRepository.findById(id);
+			if (tipoPersonaFiscal.isPresent()) {
+				tipoPersonaFiscal.get().setIdEstatus(idEstatus);
+			}
 
-    }
+			tipoPersonaFiscalRepository.save(tipoPersonaFiscal.get());
+			msg = Mensaje.CREATE(action + " correctamente", 1);
+		} catch (Exception e) {
+			msg = Mensaje.CREATE("No se pudo " + action + " por: " + e.getMessage(), 2);
+		}
+		return msg;
+
+	}
 }

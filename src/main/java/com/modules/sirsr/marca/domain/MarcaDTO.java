@@ -12,31 +12,31 @@ import com.modules.sirsr.estatus.domain.EstatusDTO;
  * @author Edward Reyes
  */
 public class MarcaDTO {
-    private int idMarca;
-    private String descripcion;
-    private EstatusDTO estatus;
+	private int idMarca;
+	private String descripcion;
+	private EstatusDTO estatus;
 
-    public int getIdMarca() {
-        return idMarca;
-    }
+	public int getIdMarca() {
+		return idMarca;
+	}
 
-    public void setIdMarca(int idMarca) {
-        this.idMarca = idMarca;
-    }
+	public void setIdMarca(int idMarca) {
+		this.idMarca = idMarca;
+	}
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+	public String getDescripcion() {
+		return descripcion;
+	}
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
-    public EstatusDTO getEstatus() {
-        return estatus;
-    }
+	public EstatusDTO getEstatus() {
+		return estatus;
+	}
 
-    public void setEstatus(EstatusDTO estatus) {
-        this.estatus = estatus;
-    }
+	public void setEstatus(EstatusDTO estatus) {
+		this.estatus = estatus;
+	}
 }

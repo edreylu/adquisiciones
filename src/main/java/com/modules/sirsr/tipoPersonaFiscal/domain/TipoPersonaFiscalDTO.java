@@ -1,40 +1,35 @@
 package com.modules.sirsr.tipoPersonaFiscal.domain;
 
-
 public class TipoPersonaFiscalDTO {
-	
-	
-    private Integer idTipoPersonaFiscal;
-    
-    private String descripcion;
-    
-    private Integer idEstatus;
-    
-    
-    public Integer getIdTipoPersonaFiscal() {
-        return idTipoPersonaFiscal;
-    }
 
-    public void setIdTipoPersonaFiscal(Integer idTipoPersonaFiscal) {
-        this.idTipoPersonaFiscal = idTipoPersonaFiscal;
-    }
+	private Integer idTipoPersonaFiscal;
 
-    public Integer getIdEstatus() {
-        return idEstatus;
-    }
+	private String descripcion;
 
-    public void setIdEstatus(Integer idEstatus) {
-        this.idEstatus = idEstatus;
-    }
+	private Integer idEstatus;
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+	public Integer getIdTipoPersonaFiscal() {
+		return idTipoPersonaFiscal;
+	}
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+	public void setIdTipoPersonaFiscal(Integer idTipoPersonaFiscal) {
+		this.idTipoPersonaFiscal = idTipoPersonaFiscal;
+	}
 
-    
+	public Integer getIdEstatus() {
+		return idEstatus;
+	}
+
+	public void setIdEstatus(Integer idEstatus) {
+		this.idEstatus = idEstatus;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
 }

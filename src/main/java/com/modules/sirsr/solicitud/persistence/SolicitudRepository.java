@@ -14,7 +14,8 @@ import java.util.List;
  *
  * @author Edward Reyes
  */
-public interface SolicitudRepository extends JpaRepository<Solicitud, Integer>{
-    List<Solicitud> findByClaveUr(String claveUr, Sort sort);
-    List<Solicitud> findByIdEstatusGreaterThanEqual(Integer idEstatus);
+public interface SolicitudRepository extends JpaRepository<Solicitud, Integer> {
+	List<Solicitud> findByClaveUr(String claveUr, Sort sort);
+
+	List<Solicitud> findByIdEstatusGreaterThanEqual(Integer idEstatus);
 }

@@ -22,50 +22,46 @@ import java.util.Optional;
 @Service
 public class EstatusService {
 
-    private final EstatusRepository estatusRepository;
-    private final EstatusMapper estatusMapper;
-    private Mensaje msg;
+	private final EstatusRepository estatusRepository;
+	private Mensaje msg;
 
-    @Autowired
-    public EstatusService(EstatusRepository estatusRepository, EstatusMapper estatusMapper) {
-        this.estatusRepository = estatusRepository;
-        this.estatusMapper = estatusMapper;
-    }
-    
+	@Autowired
+	public EstatusService(EstatusRepository estatusRepository) {
+		this.estatusRepository = estatusRepository;
+	}
 
-    public List<EstatusDTO> findAll(){
-        return estatusMapper.toEstatusDTOs(estatusRepository.findAll());
-    }
+	public List<EstatusDTO> findAll() {
+		return EstatusMapper.toEstatusDTOs(estatusRepository.findAll());
+	}
 
-    public EstatusDTO findById(int id){
-        Optional<Estatus> estatusOptional = estatusRepository.findById(id);
-        EstatusDTO estatusDTO = estatusMapper.toEstatusDTO(estatusOptional.get());
-        return estatusDTO;
-    }
+	public EstatusDTO findById(int id) {
+		Optional<Estatus> estatusOptional = estatusRepository.findById(id);
+		EstatusDTO estatusDTO = EstatusMapper.toEstatusDTO(estatusOptional.get());
+		return estatusDTO;
+	}
 
-    public Estatus estatusFindById(int id){
-        Optional<Estatus> estatusOptional = estatusRepository.findById(id);
-        return estatusOptional.get();
-    }
+	public Estatus estatusFindById(int id) {
+		Optional<Estatus> estatusOptional = estatusRepository.findById(id);
+		return estatusOptional.get();
+	}
 
-    public Mensaje save(EstatusDTO estatusDTO, int id) {
-        try {
-            msg = Mensaje.CREATE("Estatuss agregados correctamente", 1);
-        }catch (Exception e){
-            msg = Mensaje.CREATE("No se pudo agregar estatuss por: "+e.getMessage(), 2);
-        }
-        return msg;
-    }
+	public Mensaje save(EstatusDTO estatusDTO, int id) {
+		try {
+			msg = Mensaje.CREATE("Estatuss agregados correctamente", 1);
+		} catch (Exception e) {
+			msg = Mensaje.CREATE("No se pudo agregar estatuss por: " + e.getMessage(), 2);
+		}
+		return msg;
+	}
 
+	public Mensaje deleteById(int id) {
+		try {
+			msg = Mensaje.CREATE("Eliminado correctamente", 1);
+		} catch (Exception e) {
+			msg = Mensaje.CREATE("No se pudo Eliminar.", 2);
+		}
+		return msg;
 
-    public Mensaje deleteById(int id) {
-        try {
-            msg = Mensaje.CREATE("Eliminado correctamente", 1);
-        }catch (Exception e){
-            msg = Mensaje.CREATE("No se pudo Eliminar.", 2);
-        }
-        return msg;
-
-    }
+	}
 
 }

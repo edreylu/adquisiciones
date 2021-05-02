@@ -22,58 +22,56 @@ import java.util.Optional;
 @Service
 public class PrioridadService {
 
-    private final PrioridadRepository prioridadRepository;
-    private final PrioridadMapper prioridadMapper;
-    private Mensaje msg;
+	private final PrioridadRepository prioridadRepository;
+	private Mensaje msg;
 
-    @Autowired
-    public PrioridadService(PrioridadRepository prioridadRepository, PrioridadMapper prioridadMapper) {
-        this.prioridadRepository = prioridadRepository;
-        this.prioridadMapper = prioridadMapper;
-    }
+	@Autowired
+	public PrioridadService(PrioridadRepository prioridadRepository) {
+		this.prioridadRepository = prioridadRepository;
+	}
 
-    public List<PrioridadDTO> findAll() {
-        return prioridadMapper.toPrioridadDTOs(prioridadRepository.findAll());
-    }
+	public List<PrioridadDTO> findAll() {
+		return PrioridadMapper.toPrioridadDTOs(prioridadRepository.findAll());
+	}
 
-    public PrioridadDTO findById(int id) {
-        Optional<Prioridad> prioridadOptional = prioridadRepository.findById(id);
-        PrioridadDTO prioridadDTO = prioridadMapper.toPrioridadDTO(prioridadOptional.get());
-        return prioridadDTO;
-    }
+	public PrioridadDTO findById(int id) {
+		Optional<Prioridad> prioridadOptional = prioridadRepository.findById(id);
+		PrioridadDTO prioridadDTO = PrioridadMapper.toPrioridadDTO(prioridadOptional.get());
+		return prioridadDTO;
+	}
 
-    public Mensaje save(PrioridadDTO prioridadDTO) {
-        try {
+	public Mensaje save(PrioridadDTO prioridadDTO) {
+		try {
 
-            prioridadRepository.save(prioridadMapper.toPrioridad(prioridadDTO));
-            msg = Mensaje.CREATE("Agregado correctamente", 1);
-        }catch (Exception e){
-            msg = Mensaje.CREATE("No se pudo agregar por: "+e.getMessage(), 2);
-        }
-        return msg;
-    }
+			prioridadRepository.save(PrioridadMapper.toPrioridad(prioridadDTO));
+			msg = Mensaje.success("Agregado correctamente");
+		} catch (Exception e) {
+			msg = Mensaje.danger("No se pudo agregar por: " + e.getMessage());
+		}
+		return msg;
+	}
 
-    public Mensaje update(PrioridadDTO prioridadDTO, int id) {
-        try {
-            Optional<Prioridad> prioridadFound = prioridadRepository.findById(id);
-            Prioridad prioridad = prioridadMapper.setToUpdate(prioridadFound.get(), prioridadDTO);
-            prioridadRepository.save(prioridad);
-            msg = Mensaje.CREATE("Actualizado correctamente", 1);
-        }catch (Exception e){
-            msg = Mensaje.CREATE("No se pudo Actualizar por: "+e.getMessage(), 2);
-        }
-        return msg;
-    }
+	public Mensaje update(PrioridadDTO prioridadDTO, int id) {
+		try {
+			Optional<Prioridad> prioridadFound = prioridadRepository.findById(id);
+			Prioridad prioridad = PrioridadMapper.setToUpdate(prioridadFound.get(), prioridadDTO);
+			prioridadRepository.save(prioridad);
+			msg = Mensaje.success("Actualizado correctamente");
+		} catch (Exception e) {
+			msg = Mensaje.danger("No se pudo Actualizar por: " + e.getMessage());
+		}
+		return msg;
+	}
 
-    public Mensaje deleteById(int id) {
-        try {
-            prioridadRepository.deleteById(id);
-            msg = Mensaje.CREATE("Eliminado correctamente", 1);
-        }catch (Exception e){
-            msg = Mensaje.CREATE("No se pudo Eliminar por que hay usuarios asociados a rol.", 2);
-        }
-        return msg;
+	public Mensaje deleteById(int id) {
+		try {
+			prioridadRepository.deleteById(id);
+			msg = Mensaje.success("Eliminado correctamente");
+		} catch (Exception e) {
+			msg = Mensaje.danger("No se pudo Eliminar por que hay usuarios asociados a rol.");
+		}
+		return msg;
 
-    }
+	}
 
 }

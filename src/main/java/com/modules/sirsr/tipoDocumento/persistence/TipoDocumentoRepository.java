@@ -13,8 +13,10 @@ import java.util.List;
  *
  * @author Edward Reyes
  */
-public interface TipoDocumentoRepository extends JpaRepository<TipoDocumento, Integer>{
-    List<TipoDocumento> findByIdTipoDocumentoNotIn(List<Integer> tiposDocumento);
-    List<TipoDocumento> findByObligatorio(String obligatorio);
-    List<TipoDocumento> findByUnico(String unico);
+public interface TipoDocumentoRepository extends JpaRepository<TipoDocumento, Integer> {
+	List<TipoDocumento> findByIdTipoDocumentoNotIn(List<Integer> tiposDocumento);
+
+	List<TipoDocumento> findByObligatorio(String obligatorio);
+
+	List<TipoDocumento> findByUnico(String unico);
 }

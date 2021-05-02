@@ -1,51 +1,66 @@
 package com.modules.sirsr.unidadMedida.domain;
 
+import java.io.Serializable;
+
 import com.modules.sirsr.estatus.domain.EstatusDTO;
 
-public class UnidadMedidaDTO {
-    private Integer idUnidadMedida;
-    private String claveUnidad;
-    private String nombre;
-    private String descripcion;
-    private EstatusDTO estatus;
+public class UnidadMedidaDTO implements Serializable{
+	private Integer idUnidadMedida;
+	private String claveUnidad;
+	private String nombre;
+	private String descripcion;
+	private EstatusDTO estatus;
+	
+	public UnidadMedidaDTO() {
+		// TODO Auto-generated constructor stub
+	}
 
-    public Integer getIdUnidadMedida() {
-        return idUnidadMedida;
-    }
+	public UnidadMedidaDTO(Integer idUnidadMedida, String claveUnidad, String nombre, String descripcion,
+			EstatusDTO estatus) {
+		this.idUnidadMedida = idUnidadMedida;
+		this.claveUnidad = claveUnidad;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.estatus = estatus;
+	}
 
-    public void setIdUnidadMedida(Integer idUnidadMedida) {
-        this.idUnidadMedida = idUnidadMedida;
-    }
+	public Integer getIdUnidadMedida() {
+		return idUnidadMedida;
+	}
 
-    public String getClaveUnidad() {
-        return claveUnidad;
-    }
+	public void setIdUnidadMedida(Integer idUnidadMedida) {
+		this.idUnidadMedida = idUnidadMedida;
+	}
 
-    public void setClaveUnidad(String claveUnidad) {
-        this.claveUnidad = claveUnidad;
-    }
+	public String getClaveUnidad() {
+		return claveUnidad;
+	}
 
-    public String getNombre() {
-        return nombre;
-    }
+	public void setClaveUnidad(String claveUnidad) {
+		this.claveUnidad = claveUnidad;
+	}
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+	public String getNombre() {
+		return nombre;
+	}
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+	public String getDescripcion() {
+		return descripcion;
+	}
 
-    public EstatusDTO getEstatus() {
-        return estatus;
-    }
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
-    public void setEstatus(EstatusDTO estatus) {
-        this.estatus = estatus;
-    }
+	public EstatusDTO getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(EstatusDTO estatus) {
+		this.estatus = estatus;
+	}
 }

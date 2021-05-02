@@ -268,6 +268,30 @@ function alertaProductos(){
   confirmButtonAriaLabel: 'Te enviara a productos a validar'
   });
 }
+
+
+function mensajeEliminarActividad(idProveedor, idActividad) {
+	let modulo = document.getElementById("nombreModulo").value;
+	console.log("Proveedor: " + idProveedor + " modulo " + modulo + " Actvidad " + idActividad);
+	    Swal
+	        .fire({
+	            title: "Eliminar",
+	            text: "¿Desea eliminar esta actividad?",
+	            icon: 'warning',
+	            showCancelButton: true,
+	            confirmButtonText: "Si",
+	            cancelButtonText: "No",
+	        })
+	        .then(resultado => {
+	            if (resultado.value) {
+	                // Hicieron click en "Sí"
+	                window.location = "../"+modulo+"/eliminar/"+idProveedor+"/"+idActividad;
+	            } else {
+	                // Dijeron que no
+	                console.log("*NO se cerro*");
+	            }
+	        });
+	}
   
   
   

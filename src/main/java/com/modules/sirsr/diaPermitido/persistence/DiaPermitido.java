@@ -18,7 +18,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
 /**
  *
  * @author Edward Reyes
@@ -27,22 +26,22 @@ import javax.persistence.TemporalType;
 @Table(name = "DIA_PERMITIDO")
 public class DiaPermitido {
 
-    @Id
-    @Basic(optional = false)
-    @Column(name = "DIA_PERMITIDO")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date diaPermitido;
-    @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
-    @ManyToOne(optional = false)
-    private Estatus estatus;
+	@Id
+	@Basic(optional = false)
+	@Column(name = "DIA_PERMITIDO")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date diaPermitido;
+	@JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
+	@ManyToOne(optional = false)
+	private Estatus estatus;
 
-    public Date getDiaPermitido() {
-        return diaPermitido;
-    }
+	public Date getDiaPermitido() {
+		return diaPermitido;
+	}
 
-    public void setDiaPermitido(Date diaPermitido) {
-        this.diaPermitido = diaPermitido;
-    }
+	public void setDiaPermitido(Date diaPermitido) {
+		this.diaPermitido = diaPermitido;
+	}
 
 	public Estatus getEstatus() {
 		return estatus;
@@ -51,7 +50,5 @@ public class DiaPermitido {
 	public void setEstatus(Estatus estatus) {
 		this.estatus = estatus;
 	}
-    
-    
 
 }

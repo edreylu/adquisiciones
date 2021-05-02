@@ -13,6 +13,6 @@ import java.util.List;
  *
  * @author Edward Reyes
  */
-public interface DocumentoRepository extends JpaRepository<Documento, Integer>{
-    List<Documento> findByIdSolicitud(Integer idSolicitud);
+public interface DocumentoRepository extends JpaRepository<Documento, Integer> {
+	List<Documento> findByIdSolicitud(Integer idSolicitud);
 }

@@ -17,19 +17,19 @@ import java.util.function.Function;
  */
 public class WebUtils {
 
-    public static String getUserName() {
+	public static String getUserName() {
 
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        UserDetails userDetails = null;
-        if (principal instanceof UserDetails) {
-            userDetails = (UserDetails) principal;
-        }
-        return userDetails.getUsername();
-    }
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = null;
+		if (principal instanceof UserDetails) {
+			userDetails = (UserDetails) principal;
+		}
+		return userDetails.getUsername();
+	}
 
-    public static Function<HttpServletRequest, String> getSiteURL = request -> {
-        String siteURL = request.getRequestURL().toString();
-        return siteURL.replace(request.getServletPath(), "");
-    };
+	public static Function<HttpServletRequest, String> getSiteURL = request -> {
+		String siteURL = request.getRequestURL().toString();
+		return siteURL.replace(request.getServletPath(), "");
+	};
 
 }

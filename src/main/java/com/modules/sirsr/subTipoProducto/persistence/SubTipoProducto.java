@@ -24,51 +24,50 @@ import javax.persistence.Table;
 @Table(name = "SUBTIPO_PRODUCTO")
 public class SubTipoProducto {
 
-    @Id
-    @Basic(optional = false)
-    @Column(name = "ID_SUBTIPO_PRODUCTO")
-    private Integer idSubtipoProducto;
-    @Basic(optional = false)
-    @Column(name = "DESCRIPCION")
-    private String descripcion;
-    @JoinColumn(name = "ID_TIPO_PRODUCTO", referencedColumnName = "ID_TIPO_PRODUCTO")
-    @ManyToOne(optional = false)
-    private TipoProducto tipoProducto;
-    @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
-    @ManyToOne(optional = false)
-    private Estatus estatus;
+	@Id
+	@Basic(optional = false)
+	@Column(name = "ID_SUBTIPO_PRODUCTO")
+	private Integer idSubtipoProducto;
+	@Basic(optional = false)
+	@Column(name = "DESCRIPCION")
+	private String descripcion;
+	@JoinColumn(name = "ID_TIPO_PRODUCTO", referencedColumnName = "ID_TIPO_PRODUCTO")
+	@ManyToOne(optional = false)
+	private TipoProducto tipoProducto;
+	@JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
+	@ManyToOne(optional = false)
+	private Estatus estatus;
 
-    public Integer getIdSubtipoProducto() {
-        return idSubtipoProducto;
-    }
+	public Integer getIdSubtipoProducto() {
+		return idSubtipoProducto;
+	}
 
-    public void setIdSubtipoProducto(Integer idSubtipoProducto) {
-        this.idSubtipoProducto = idSubtipoProducto;
-    }
+	public void setIdSubtipoProducto(Integer idSubtipoProducto) {
+		this.idSubtipoProducto = idSubtipoProducto;
+	}
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+	public String getDescripcion() {
+		return descripcion;
+	}
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
-    public TipoProducto getTipoProducto() {
-        return tipoProducto;
-    }
+	public TipoProducto getTipoProducto() {
+		return tipoProducto;
+	}
 
-    public void setTipoProducto(TipoProducto tipoProducto) {
-        this.tipoProducto = tipoProducto;
-    }
+	public void setTipoProducto(TipoProducto tipoProducto) {
+		this.tipoProducto = tipoProducto;
+	}
 
-    public Estatus getEstatus() {
-        return estatus;
-    }
+	public Estatus getEstatus() {
+		return estatus;
+	}
 
-    public void setEstatus(Estatus estatus) {
-        this.estatus = estatus;
-    }
+	public void setEstatus(Estatus estatus) {
+		this.estatus = estatus;
+	}
 
-    
 }

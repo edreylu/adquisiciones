@@ -26,75 +26,93 @@ import javax.persistence.TemporalType;
 @Table(name = "UNIDAD_RESPONSABLE")
 public class UnidadResponsable {
 
-    @Id
-    @Basic(optional = false)
-    @Column(name = "CLAVE_UR")
-    private String claveUr;
-    @Basic(optional = false)
-    @Column(name = "DESCRIPCION")
-    private String descripcion;
-    @Basic(optional = false)
-    @Column(name = "FECHA_INICIO")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaInicio;
-    @Column(name = "FECHA_FINAL")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaFinal;
-    @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
-    @ManyToOne(optional = false)
-    private Estatus estatus;
-    /*
-    @JoinTable(name = "PRODUCTO_UNIDADRESP",
-            joinColumns = @JoinColumn(name = "PRODUNIDRESP_UNIDADRESP_FK", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "PRODUNIRESP_PRODUCTO_FK", nullable = false))
-    @ManyToMany
-    private List<Producto> productos;
+	@Id
+	@Basic(optional = false)
+	@Column(name = "CLAVE_UR")
+	private String claveUr;
+	@Basic(optional = false)
+	@Column(name = "DESCRIPCION")
+	private String descripcion;
+	@Basic(optional = false)
+	@Column(name = "FECHA_INICIO")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechaInicio;
+	@Column(name = "FECHA_FINAL")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechaFinal;
+	@JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
+	@ManyToOne(optional = false)
+	private Estatus estatus;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidadResponsable")
-    private List<ClavePresupuestaria> clavesPresupuestarias;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidadResponsable")
-    private List<Usuario> usuarios;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidadResponsable")
-    private List<Solicitud> solicitudes;
-*/
-    public String getClaveUr() {
-        return claveUr;
-    }
+	/*
+	 * @JoinTable(name = "PRODUCTO_UNIDADRESP", joinColumns = @JoinColumn(name =
+	 * "PRODUNIDRESP_UNIDADRESP_FK", nullable = false), inverseJoinColumns
+	 * = @JoinColumn(name = "PRODUNIRESP_PRODUCTO_FK", nullable = false))
+	 * 
+	 * @ManyToMany private List<Producto> productos;
+	 * 
+	 * @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidadResponsable") private
+	 * List<ClavePresupuestaria> clavesPresupuestarias;
+	 * 
+	 * @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidadResponsable") private
+	 * List<Usuario> usuarios;
+	 * 
+	 * @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidadResponsable") private
+	 * List<Solicitud> solicitudes;
+	 */
+	
 
-    public void setClaveUr(String claveUr) {
-        this.claveUr = claveUr;
-    }
+	public UnidadResponsable() {
+		
+	}
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+	
+	public UnidadResponsable(String claveUr, String descripcion, Date fechaInicio, Date fechaFinal, Estatus estatus) {
+		this.claveUr = claveUr;
+		this.descripcion = descripcion;
+		this.fechaInicio = fechaInicio;
+		this.fechaFinal = fechaFinal;
+		this.estatus = estatus;
+	}
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+	public String getClaveUr() {
+		return claveUr;
+	}
 
-    public Date getFechaInicio() {
-        return fechaInicio;
-    }
+	public void setClaveUr(String claveUr) {
+		this.claveUr = claveUr;
+	}
 
-    public void setFechaInicio(Date fechaInicio) {
-        this.fechaInicio = fechaInicio;
-    }
+	public String getDescripcion() {
+		return descripcion;
+	}
 
-    public Date getFechaFinal() {
-        return fechaFinal;
-    }
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
-    public void setFechaFinal(Date fechaFinal) {
-        this.fechaFinal = fechaFinal;
-    }
+	public Date getFechaInicio() {
+		return fechaInicio;
+	}
 
-    public Estatus getEstatus() {
-        return estatus;
-    }
+	public void setFechaInicio(Date fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
 
-    public void setEstatus(Estatus estatus) {
-        this.estatus = estatus;
-    }
+	public Date getFechaFinal() {
+		return fechaFinal;
+	}
+
+	public void setFechaFinal(Date fechaFinal) {
+		this.fechaFinal = fechaFinal;
+	}
+
+	public Estatus getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(Estatus estatus) {
+		this.estatus = estatus;
+	}
 
 }

@@ -5,12 +5,16 @@
  */
 package com.modules.sirsr.proveedor.persistence;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+
+
 
 /**
  *
  * @author Edward Reyes
  */
 public interface ProveedorRepository extends JpaRepository<Proveedor, Integer>{
-    
+	 List<Proveedor> findAllByEstatusIdEstatus(Integer idEstatus);
 }

@@ -22,61 +22,61 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "TIPO_PRODUCTO")
-public class TipoProducto{
+public class TipoProducto {
 
-    @Id
-    @Basic(optional = false)
-    @Column(name = "ID_TIPO_PRODUCTO")
-    private Integer idTipoProducto;
-    @Basic(optional = false)
-    @Column(name = "DESCRIPCION")
-    private String descripcion;
-    @Column(name = "OBJETO_GASTO", insertable = false, updatable = false)
-    private String objetoGastoStr;
-    @JoinColumn(name = "OBJETO_GASTO", referencedColumnName = "OBJETO_GASTO")
-    @ManyToOne(optional = false)
-    private ObjetoDeGasto objetoGasto;
-    @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
-    @ManyToOne(optional = false)
-    private Estatus estatus;
+	@Id
+	@Basic(optional = false)
+	@Column(name = "ID_TIPO_PRODUCTO")
+	private Integer idTipoProducto;
+	@Basic(optional = false)
+	@Column(name = "DESCRIPCION")
+	private String descripcion;
+	@Column(name = "OBJETO_GASTO", insertable = false, updatable = false)
+	private String objetoGastoStr;
+	@JoinColumn(name = "OBJETO_GASTO", referencedColumnName = "OBJETO_GASTO")
+	@ManyToOne(optional = false)
+	private ObjetoDeGasto objetoGasto;
+	@JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
+	@ManyToOne(optional = false)
+	private Estatus estatus;
 
-    public Integer getIdTipoProducto() {
-        return idTipoProducto;
-    }
+	public Integer getIdTipoProducto() {
+		return idTipoProducto;
+	}
 
-    public void setIdTipoProducto(Integer idTipoProducto) {
-        this.idTipoProducto = idTipoProducto;
-    }
+	public void setIdTipoProducto(Integer idTipoProducto) {
+		this.idTipoProducto = idTipoProducto;
+	}
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+	public String getDescripcion() {
+		return descripcion;
+	}
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
-    public ObjetoDeGasto getObjetoGasto() {
-        return objetoGasto;
-    }
+	public ObjetoDeGasto getObjetoGasto() {
+		return objetoGasto;
+	}
 
-    public void setObjetoGasto(ObjetoDeGasto objetoGasto) {
-        this.objetoGasto = objetoGasto;
-    }
+	public void setObjetoGasto(ObjetoDeGasto objetoGasto) {
+		this.objetoGasto = objetoGasto;
+	}
 
-    public Estatus getEstatus() {
-        return estatus;
-    }
+	public Estatus getEstatus() {
+		return estatus;
+	}
 
-    public void setEstatus(Estatus estatus) {
-        this.estatus = estatus;
-    }
+	public void setEstatus(Estatus estatus) {
+		this.estatus = estatus;
+	}
 
-    public String getObjetoGastoStr() {
-        return objetoGastoStr;
-    }
+	public String getObjetoGastoStr() {
+		return objetoGastoStr;
+	}
 
-    public void setObjetoGastoStr(String objetoGastoStr) {
-        this.objetoGastoStr = objetoGastoStr;
-    }
+	public void setObjetoGastoStr(String objetoGastoStr) {
+		this.objetoGastoStr = objetoGastoStr;
+	}
 }

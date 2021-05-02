@@ -10,96 +10,105 @@ import com.modules.sirsr.producto.domain.ProductoDTO;
 
 import java.math.BigDecimal;
 
-
 /**
  *
  * @author Edward Reyes
  */
 public class DetalleRequisicionDTO {
-    private int idDetalleRequisicion;
-    private int idRequisicion;
-    private int cantidadSolicitada;
-    private BigDecimal precioUnitario;
-    private int cantidadAutorizada;
-    private RequisicionDTO requisicion;
-    private MarcaDTO marca;
-    private ProductoDTO producto;
+	private int idDetalleRequisicion;
+	private int idRequisicion;
+	private int cantidadSolicitada;
+	private Double precioUnitario;
+	private int cantidadAutorizada;
+	private RequisicionDTO requisicion;
+	private MarcaDTO marca;
+	private ProductoDTO producto;
+	
+	public DetalleRequisicionDTO() {
+		// TODO Auto-generated constructor stub
+	}
 
-    public int getIdDetalleRequisicion() {
-        return idDetalleRequisicion;
-    }
+	
 
-    public void setIdDetalleRequisicion(int idDetalleRequisicion) {
-        this.idDetalleRequisicion = idDetalleRequisicion;
-    }
+	public DetalleRequisicionDTO(int idDetalleRequisicion, int cantidadSolicitada, Double precioUnitario,
+			RequisicionDTO requisicion, MarcaDTO marca, ProductoDTO producto) {
+		this.idDetalleRequisicion = idDetalleRequisicion;
+		this.cantidadSolicitada = cantidadSolicitada;
+		this.precioUnitario = precioUnitario;
+		this.requisicion = requisicion;
+		this.marca = marca;
+		this.producto = producto;
+	}
 
-    public int getIdRequisicion() {
-        return idRequisicion;
-    }
+	public int getIdDetalleRequisicion() {
+		return idDetalleRequisicion;
+	}
 
-    public void setIdRequisicion(int idRequisicion) {
-        this.idRequisicion = idRequisicion;
-    }
+	public void setIdDetalleRequisicion(int idDetalleRequisicion) {
+		this.idDetalleRequisicion = idDetalleRequisicion;
+	}
 
-    public int getCantidadSolicitada() {
-        return cantidadSolicitada;
-    }
+	public int getIdRequisicion() {
+		return idRequisicion;
+	}
 
-    public void setCantidadSolicitada(int cantidadSolicitada) {
-        this.cantidadSolicitada = cantidadSolicitada;
-    }
+	public void setIdRequisicion(int idRequisicion) {
+		this.idRequisicion = idRequisicion;
+	}
 
-    public BigDecimal getPrecioUnitario() {
-        return precioUnitario;
-    }
+	public int getCantidadSolicitada() {
+		return cantidadSolicitada;
+	}
 
-    public void setPrecioUnitario(BigDecimal precioUnitario) {
-        this.precioUnitario = precioUnitario;
-    }
+	public void setCantidadSolicitada(int cantidadSolicitada) {
+		this.cantidadSolicitada = cantidadSolicitada;
+	}
 
-    public int getCantidadAutorizada() {
-        return cantidadAutorizada;
-    }
+	public Double getPrecioUnitario() {
+		return precioUnitario;
+	}
 
-    public void setCantidadAutorizada(int cantidadAutorizada) {
-        this.cantidadAutorizada = cantidadAutorizada;
-    }
+	public void setPrecioUnitario(Double precioUnitario) {
+		this.precioUnitario = precioUnitario;
+	}
 
-    public RequisicionDTO getRequisicion() {
-        return requisicion;
-    }
+	public int getCantidadAutorizada() {
+		return cantidadAutorizada;
+	}
 
-    public void setRequisicion(RequisicionDTO requisicion) {
-        this.requisicion = requisicion;
-    }
+	public void setCantidadAutorizada(int cantidadAutorizada) {
+		this.cantidadAutorizada = cantidadAutorizada;
+	}
 
-    public MarcaDTO getMarca() {
-        return marca;
-    }
+	public RequisicionDTO getRequisicion() {
+		return requisicion;
+	}
 
-    public void setMarca(MarcaDTO marca) {
-        this.marca = marca;
-    }
+	public void setRequisicion(RequisicionDTO requisicion) {
+		this.requisicion = requisicion;
+	}
 
-    public ProductoDTO getProducto() {
-        return producto;
-    }
+	public MarcaDTO getMarca() {
+		return marca;
+	}
 
-    public void setProducto(ProductoDTO producto) {
-        this.producto = producto;
-    }
+	public void setMarca(MarcaDTO marca) {
+		this.marca = marca;
+	}
 
-    @Override
-    public String toString() {
-        return "DetalleRequisicionDTO{" +
-                "idDetalleRequisicion=" + idDetalleRequisicion +
-                ", idRequisicion=" + idRequisicion +
-                ", cantidadSolicitada=" + cantidadSolicitada +
-                ", precioUnitario=" + precioUnitario +
-                ", cantidadAutorizada=" + cantidadAutorizada +
-                ", requisicion=" + requisicion +
-                ", marca=" + marca +
-                ", producto=" + producto +
-                '}';
-    }
+	public ProductoDTO getProducto() {
+		return producto;
+	}
+
+	public void setProducto(ProductoDTO producto) {
+		this.producto = producto;
+	}
+
+	@Override
+	public String toString() {
+		return "DetalleRequisicionDTO{" + "idDetalleRequisicion=" + idDetalleRequisicion + ", idRequisicion="
+				+ idRequisicion + ", cantidadSolicitada=" + cantidadSolicitada + ", precioUnitario=" + precioUnitario
+				+ ", cantidadAutorizada=" + cantidadAutorizada + ", requisicion=" + requisicion + ", marca=" + marca
+				+ ", producto=" + producto + '}';
+	}
 }

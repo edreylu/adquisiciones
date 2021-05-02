@@ -13,10 +13,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * @author Edward Reyes
  */
-public interface DatosPersonalesRepository extends JpaRepository<DatosPersonales, Integer>{
+public interface DatosPersonalesRepository extends JpaRepository<DatosPersonales, Integer> {
 
-    DatosPersonales findByCorreo(String email);
-    List<DatosPersonales> findByNoPersonal(Integer noPersonal);
-    List<DatosPersonales> findByNombreIgnoreCaseContainingOrApellidoPaternoIgnoreCaseContainingOrApellidoMaternoIgnoreCaseContaining(String nombre, String apelllidoPaterno, String apellidoMaterno);
-    
+	DatosPersonales findByCorreo(String email);
+
+	List<DatosPersonales> findByNoPersonal(Integer noPersonal);
+
+	List<DatosPersonales> findByNombreIgnoreCaseContainingOrApellidoPaternoIgnoreCaseContainingOrApellidoMaternoIgnoreCaseContaining(
+			String nombre, String apelllidoPaterno, String apellidoMaterno);
+
 }

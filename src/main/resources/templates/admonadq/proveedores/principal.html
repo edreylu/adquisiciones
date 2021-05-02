@@ -24,7 +24,7 @@ and open the template in the editor.
 
 				<div class="card-header text-white">
 					<a class="sombraChica" data-toggle="tooltip" data-placement="top"
-						title="Agregar proveedores"
+						title="Agregar proveedor"
 						th:href="@{/admonadq/proveedores/agregar}"><img
 						th:src="@{/img/icons/agregar.png}" class="iconos"></a>
 				</div>
@@ -44,23 +44,30 @@ and open the template in the editor.
 						<thead>
 							<tr>
 								<th style="width: 10%">ID</th>
-								<th style="width: 20%">RFC</th>
-								<th style="width: 20%">RAZÓN SOCIAL</th>
+								<th style="width: 10%">RFC</th>
+								<th style="width: 25%">RAZÓN SOCIAL</th>
 								<th style="width: 20%">CORREO</th>
-								<th style="width: 20%">TELÉFONO</th>
-								<th style="width: 20%">ESTATUS</th>
-								<th style="width: 15%"></th>
-								<th style="width: 15%"></th>
+								<th style="width: 10%">TELÉFONO</th>
+								<th style="width: 10%">ESTATUS</th>
+								<th style="width: 5%"></th>
+								<th style="width: 5%"></th>
+								<th style="width: 5%"></th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr th:each="dato: ${lista}">
 								<td style="width: 10%" th:text="${dato.idProveedor}"></td>
-								<td style="width: 15%" th:text="${dato.rfc}"></td>
-								<td style="width: 20%" th:text="${dato.razonSocial}"></td>
+								<td style="width: 10%" th:text="${dato.rfc}"></td>
+								<td style="width: 25%" th:text="${dato.razonSocial}"></td>
 								<td style="width: 20%" th:text="${dato.correoElectronico}"></td>
-								<td style="width: 15%" th:text="${dato.telefono1}"></td>
-								<td style="width: 10%" th:text="${dato.estatusDTO.descripcion}"></td>
+								<td style="width: 10%" th:text="${dato.telefono1}"></td>
+								<td style="width: 10%" th:text="${dato.estatus.descripcion}"></td>
+								<td style="width: 5%; text-align: center" ><a
+									th:href="@{/admonadq/proveedores/actividad/{id}(id=${dato.idProveedor})}">
+										<img th:src="@{/img/icons/asignar.png}" class="iconos"
+										title="Actividades" data-toggle="tooltip"
+										data-placement="top">
+								</a></td>
 								<td style="width: 5%; text-align: center"><a
 									th:href="@{/admonadq/proveedores/editar/{id}(id=${dato.idProveedor})}">
 										<img th:src="@{/img/icons/editar.png}" class="iconos"
@@ -69,13 +76,13 @@ and open the template in the editor.
 								</a></td>
 								<td style="width: 5%; text-align: center"><a
 									id="boton_activar" href="#"
-									th:onclick="'mensajeActivarInactivar(\''+ ${dato.idProveedor} +'\',\''+ ${dato.estatusDTO.idEstatus} +'\')'">
+									th:onclick="'mensajeActivarInactivar(\''+ ${dato.idProveedor} +'\',\''+ ${dato.estatus.idEstatus} +'\')'">
 										<img th:src="@{/img/icons/toggleoff.png}" class="iconos"
 										data-toggle="tooltip" data-placement="top"
-										th:if="${dato.estatusDTO.idEstatus == 0}" title="Activar">
+										th:if="${dato.estatus.idEstatus == 0}" title="Activar">
 										<img th:src="@{/img/icons/toggleon.png}" class="iconos"
 										data-toggle="tooltip" data-placement="top"
-										th:if="${dato.estatusDTO.idEstatus == 1}" title="Inactivar">
+										th:if="${dato.estatus.idEstatus == 1}" title="Inactivar">
 								</a> <input type="hidden" value="proveedores" id="nombreModulo">
 								</td>
 							</tr>

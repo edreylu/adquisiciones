@@ -23,40 +23,49 @@ import javax.persistence.Table;
 @Table(name = "PRIORIDAD")
 public class Prioridad {
 
-    @Id
-    @Basic(optional = false)
-    @Column(name = "ID_PRIORIDAD")
-    private Integer idPrioridad;
-    @Basic(optional = false)
-    @Column(name = "DESCRIPCION")
-    private String descripcion;
-    @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
-    @ManyToOne(optional = false)
-    private Estatus estatus;
+	@Id
+	@Basic(optional = false)
+	@Column(name = "ID_PRIORIDAD")
+	private Integer idPrioridad;
+	@Basic(optional = false)
+	@Column(name = "DESCRIPCION")
+	private String descripcion;
+	@JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
+	@ManyToOne(optional = false)
+	private Estatus estatus;
 
-    public Integer getIdPrioridad() {
-        return idPrioridad;
-    }
+	public Prioridad() {
 
-    public void setIdPrioridad(Integer idPrioridad) {
-        this.idPrioridad = idPrioridad;
-    }
+	}
+	
+	public Prioridad(Integer idPrioridad, String descripcion, Estatus estatus) {
+		this.idPrioridad = idPrioridad;
+		this.descripcion = descripcion;
+		this.estatus = estatus;
+	}
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+	public Integer getIdPrioridad() {
+		return idPrioridad;
+	}
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+	public void setIdPrioridad(Integer idPrioridad) {
+		this.idPrioridad = idPrioridad;
+	}
 
-    public Estatus getEstatus() {
-        return estatus;
-    }
+	public String getDescripcion() {
+		return descripcion;
+	}
 
-    public void setEstatus(Estatus estatus) {
-        this.estatus = estatus;
-    }
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
-    
+	public Estatus getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(Estatus estatus) {
+		this.estatus = estatus;
+	}
+
 }

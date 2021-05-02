@@ -1,205 +1,238 @@
 package com.modules.sirsr.clavePresupuestaria.domain;
+
 import com.modules.sirsr.objetoGasto.domain.ObjetoDeGastoDTO;
 import com.modules.sirsr.unidadResponsable.domain.UnidadResponsableDTO;
 
-
 public class ClavePresupuestariaDTO {
-    private Integer idClavePresup;
-    private String anio;
-    private String ramo;
-    private String institucion;
-    private String finalidad;
-    private String funcion;
-    private String subfuncion;
-    private String programaPresupuestario;
-    private String subprogramaPresupuestario;
-    private String actividadInstitucional;
-    private String identificadorGasto;
-    private String fuenteFinanciamiento;
-    private String origen;
-    private String procedencia;
-    private String actividadEspecifica;
-    private String tipoGasto;
-    private String region;
-    private String municipio;
-    private String ppi;
-    private String claveCompleta;
-    private ObjetoDeGastoDTO objetoDeGasto;
-    private UnidadResponsableDTO unidadResponsable;
+	private Integer idClavePresup;
+	private String anio;
+	private String ramo;
+	private String institucion;
+	private String finalidad;
+	private String funcion;
+	private String subfuncion;
+	private String programaPresupuestario;
+	private String subprogramaPresupuestario;
+	private String actividadInstitucional;
+	private String identificadorGasto;
+	private String fuenteFinanciamiento;
+	private String origen;
+	private String procedencia;
+	private String actividadEspecifica;
+	private String tipoGasto;
+	private String region;
+	private String municipio;
+	private String ppi;
+	private String claveCompleta;
+	private ObjetoDeGastoDTO objetoDeGasto;
+	private UnidadResponsableDTO unidadResponsable;
+	
+	public ClavePresupuestariaDTO() {
+		// TODO Auto-generated constructor stub
+	}
 
-    public Integer getIdClavePresup() {
-        return idClavePresup;
-    }
+	public ClavePresupuestariaDTO(Integer idClavePresup, String anio, String ramo, String institucion, String finalidad,
+			String funcion, String subfuncion, String programaPresupuestario, String subprogramaPresupuestario,
+			String actividadInstitucional, String identificadorGasto, String fuenteFinanciamiento, String origen,
+			String procedencia, String actividadEspecifica, String tipoGasto, String region, String municipio,
+			String ppi, ObjetoDeGastoDTO objetoDeGasto, UnidadResponsableDTO unidadResponsable) {
+		this.idClavePresup = idClavePresup;
+		this.anio = anio;
+		this.ramo = ramo;
+		this.institucion = institucion;
+		this.finalidad = finalidad;
+		this.funcion = funcion;
+		this.subfuncion = subfuncion;
+		this.programaPresupuestario = programaPresupuestario;
+		this.subprogramaPresupuestario = subprogramaPresupuestario;
+		this.actividadInstitucional = actividadInstitucional;
+		this.identificadorGasto = identificadorGasto;
+		this.fuenteFinanciamiento = fuenteFinanciamiento;
+		this.origen = origen;
+		this.procedencia = procedencia;
+		this.actividadEspecifica = actividadEspecifica;
+		this.tipoGasto = tipoGasto;
+		this.region = region;
+		this.municipio = municipio;
+		this.ppi = ppi;
+		this.objetoDeGasto = objetoDeGasto;
+		this.unidadResponsable = unidadResponsable;
+	}
 
-    public void setIdClavePresup(Integer idClavePresup) {
-        this.idClavePresup = idClavePresup;
-    }
 
-    public String getAnio() {
-        return anio;
-    }
+	public Integer getIdClavePresup() {
+		return idClavePresup;
+	}
 
-    public void setAnio(String anio) {
-        this.anio = anio;
-    }
+	public void setIdClavePresup(Integer idClavePresup) {
+		this.idClavePresup = idClavePresup;
+	}
 
-    public String getRamo() {
-        return ramo;
-    }
+	public String getAnio() {
+		return anio;
+	}
 
-    public void setRamo(String ramo) {
-        this.ramo = ramo;
-    }
+	public void setAnio(String anio) {
+		this.anio = anio;
+	}
 
-    public String getInstitucion() {
-        return institucion;
-    }
+	public String getRamo() {
+		return ramo;
+	}
 
-    public void setInstitucion(String institucion) {
-        this.institucion = institucion;
-    }
+	public void setRamo(String ramo) {
+		this.ramo = ramo;
+	}
 
-    public void setUnidadResponsable(UnidadResponsableDTO unidadResponsable) {
-        this.unidadResponsable = unidadResponsable;
-    }
+	public String getInstitucion() {
+		return institucion;
+	}
 
-    public String getFinalidad() {
-        return finalidad;
-    }
+	public void setInstitucion(String institucion) {
+		this.institucion = institucion;
+	}
 
-    public void setFinalidad(String finalidad) {
-        this.finalidad = finalidad;
-    }
+	public void setUnidadResponsable(UnidadResponsableDTO unidadResponsable) {
+		this.unidadResponsable = unidadResponsable;
+	}
 
-    public String getFuncion() {
-        return funcion;
-    }
+	public String getFinalidad() {
+		return finalidad;
+	}
 
-    public void setFuncion(String funcion) {
-        this.funcion = funcion;
-    }
+	public void setFinalidad(String finalidad) {
+		this.finalidad = finalidad;
+	}
 
-    public String getSubfuncion() {
-        return subfuncion;
-    }
+	public String getFuncion() {
+		return funcion;
+	}
 
-    public void setSubfuncion(String subfuncion) {
-        this.subfuncion = subfuncion;
-    }
+	public void setFuncion(String funcion) {
+		this.funcion = funcion;
+	}
 
-    public String getProgramaPresupuestario() {
-        return programaPresupuestario;
-    }
+	public String getSubfuncion() {
+		return subfuncion;
+	}
 
-    public void setProgramaPresupuestario(String programaPresupuestario) {
-        this.programaPresupuestario = programaPresupuestario;
-    }
+	public void setSubfuncion(String subfuncion) {
+		this.subfuncion = subfuncion;
+	}
 
-    public String getSubprogramaPresupuestario() {
-        return subprogramaPresupuestario;
-    }
+	public String getProgramaPresupuestario() {
+		return programaPresupuestario;
+	}
 
-    public void setSubprogramaPresupuestario(String subprogramaPresupuestario) {
-        this.subprogramaPresupuestario = subprogramaPresupuestario;
-    }
+	public void setProgramaPresupuestario(String programaPresupuestario) {
+		this.programaPresupuestario = programaPresupuestario;
+	}
 
-    public String getActividadInstitucional() {
-        return actividadInstitucional;
-    }
+	public String getSubprogramaPresupuestario() {
+		return subprogramaPresupuestario;
+	}
 
-    public void setActividadInstitucional(String actividadInstitucional) {
-        this.actividadInstitucional = actividadInstitucional;
-    }
+	public void setSubprogramaPresupuestario(String subprogramaPresupuestario) {
+		this.subprogramaPresupuestario = subprogramaPresupuestario;
+	}
 
-    public String getIdentificadorGasto() {
-        return identificadorGasto;
-    }
+	public String getActividadInstitucional() {
+		return actividadInstitucional;
+	}
 
-    public void setIdentificadorGasto(String identificadorGasto) {
-        this.identificadorGasto = identificadorGasto;
-    }
+	public void setActividadInstitucional(String actividadInstitucional) {
+		this.actividadInstitucional = actividadInstitucional;
+	}
 
-    public String getFuenteFinanciamiento() {
-        return fuenteFinanciamiento;
-    }
+	public String getIdentificadorGasto() {
+		return identificadorGasto;
+	}
 
-    public void setFuenteFinanciamiento(String fuenteFinanciamiento) {
-        this.fuenteFinanciamiento = fuenteFinanciamiento;
-    }
+	public void setIdentificadorGasto(String identificadorGasto) {
+		this.identificadorGasto = identificadorGasto;
+	}
 
-    public String getOrigen() {
-        return origen;
-    }
+	public String getFuenteFinanciamiento() {
+		return fuenteFinanciamiento;
+	}
 
-    public void setOrigen(String origen) {
-        this.origen = origen;
-    }
+	public void setFuenteFinanciamiento(String fuenteFinanciamiento) {
+		this.fuenteFinanciamiento = fuenteFinanciamiento;
+	}
 
-    public String getProcedencia() {
-        return procedencia;
-    }
+	public String getOrigen() {
+		return origen;
+	}
 
-    public void setProcedencia(String procedencia) {
-        this.procedencia = procedencia;
-    }
+	public void setOrigen(String origen) {
+		this.origen = origen;
+	}
 
-    public String getActividadEspecifica() {
-        return actividadEspecifica;
-    }
+	public String getProcedencia() {
+		return procedencia;
+	}
 
-    public void setActividadEspecifica(String actividadEspecifica) {
-        this.actividadEspecifica = actividadEspecifica;
-    }
+	public void setProcedencia(String procedencia) {
+		this.procedencia = procedencia;
+	}
 
-    public String getTipoGasto() {
-        return tipoGasto;
-    }
+	public String getActividadEspecifica() {
+		return actividadEspecifica;
+	}
 
-    public void setTipoGasto(String tipoGasto) {
-        this.tipoGasto = tipoGasto;
-    }
+	public void setActividadEspecifica(String actividadEspecifica) {
+		this.actividadEspecifica = actividadEspecifica;
+	}
 
-    public String getRegion() {
-        return region;
-    }
+	public String getTipoGasto() {
+		return tipoGasto;
+	}
 
-    public void setRegion(String region) {
-        this.region = region;
-    }
+	public void setTipoGasto(String tipoGasto) {
+		this.tipoGasto = tipoGasto;
+	}
 
-    public String getMunicipio() {
-        return municipio;
-    }
+	public String getRegion() {
+		return region;
+	}
 
-    public void setMunicipio(String municipio) {
-        this.municipio = municipio;
-    }
+	public void setRegion(String region) {
+		this.region = region;
+	}
 
-    public String getPpi() {
-        return ppi;
-    }
+	public String getMunicipio() {
+		return municipio;
+	}
 
-    public void setPpi(String ppi) {
-        this.ppi = ppi;
-    }
+	public void setMunicipio(String municipio) {
+		this.municipio = municipio;
+	}
 
-    public ObjetoDeGastoDTO getObjetoDeGasto() {
-        return objetoDeGasto;
-    }
+	public String getPpi() {
+		return ppi;
+	}
 
-    public void setObjetoDeGasto(ObjetoDeGastoDTO objetoDeGasto) {
-        this.objetoDeGasto = objetoDeGasto;
-    }
+	public void setPpi(String ppi) {
+		this.ppi = ppi;
+	}
 
-    public String getClaveCompleta() {
-        return claveCompleta;
-    }
+	public ObjetoDeGastoDTO getObjetoDeGasto() {
+		return objetoDeGasto;
+	}
 
-    public void setClaveCompleta(String claveCompleta) {
-        this.claveCompleta = claveCompleta;
-    }
+	public void setObjetoDeGasto(ObjetoDeGastoDTO objetoDeGasto) {
+		this.objetoDeGasto = objetoDeGasto;
+	}
 
-    public UnidadResponsableDTO getUnidadResponsable() {
-        return unidadResponsable;
-    }
+	public String getClaveCompleta() {
+		return claveCompleta;
+	}
+
+	public void setClaveCompleta(String claveCompleta) {
+		this.claveCompleta = claveCompleta;
+	}
+
+	public UnidadResponsableDTO getUnidadResponsable() {
+		return unidadResponsable;
+	}
 }

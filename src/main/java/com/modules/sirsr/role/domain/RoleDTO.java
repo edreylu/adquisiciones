@@ -13,33 +13,33 @@ import java.util.Objects;
  */
 
 public class RoleDTO {
-    
-    private int noRole;
-    private String roleName;
-    private boolean selected;
 
-    public int getNoRole() {
-        return noRole;
-    }
+	private int noRole;
+	private String roleName;
+	private boolean selected;
 
-    public void setNoRole(int noRole) {
-        this.noRole = noRole;
-    }
+	public int getNoRole() {
+		return noRole;
+	}
 
-    public String getRoleName() {
-        return Objects.nonNull(roleName) ? roleName.toUpperCase() : roleName;
-    }
+	public void setNoRole(int noRole) {
+		this.noRole = noRole;
+	}
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
-    }
+	public String getRoleName() {
+		return Objects.nonNull(roleName) ? roleName.toUpperCase() : roleName;
+	}
 
-    public boolean isSelected() {
-        return selected;
-    }
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
 
-    public void setSelected(boolean selected) {
-        this.selected = selected;
-    }
+	public boolean isSelected() {
+		return selected;
+	}
+
+	public void setSelected(boolean selected) {
+		this.selected = selected;
+	}
 
 }

@@ -32,73 +32,72 @@ import javax.persistence.TemporalType;
 @Table(name = "COTIZA_CONSOLIDACION")
 public class CotizaConsolidacion {
 
-    @Id
-    @Basic(optional = false)
-    @Column(name = "ID_COTIZA_CONSOLIDACION")
-    private Integer idCotizaConsolidacion;
-    @Basic(optional = false)
-    @Column(name = "FECHA_RECEPCION")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaRecepcion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cotizaConsolidacion")
-    private List<DetalleCotizaConsolida> detallesCotizaConsolida;
-    @JoinColumn(name = "ID_CONSOLIDACION", referencedColumnName = "ID_CONSOLIDACION")
-    @ManyToOne(optional = false)
-    private Consolidacion consolidacion;
-    @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
-    @ManyToOne(optional = false)
-    private Estatus estatus;
-    @JoinColumn(name = "ID_PROVEEDOR", referencedColumnName = "ID_PROVEEDOR")
-    @ManyToOne(optional = false)
-    private Proveedor proveedor;
+	@Id
+	@Basic(optional = false)
+	@Column(name = "ID_COTIZA_CONSOLIDACION")
+	private Integer idCotizaConsolidacion;
+	@Basic(optional = false)
+	@Column(name = "FECHA_RECEPCION")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechaRecepcion;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cotizaConsolidacion")
+	private List<DetalleCotizaConsolida> detallesCotizaConsolida;
+	@JoinColumn(name = "ID_CONSOLIDACION", referencedColumnName = "ID_CONSOLIDACION")
+	@ManyToOne(optional = false)
+	private Consolidacion consolidacion;
+	@JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
+	@ManyToOne(optional = false)
+	private Estatus estatus;
+	@JoinColumn(name = "ID_PROVEEDOR", referencedColumnName = "ID_PROVEEDOR")
+	@ManyToOne(optional = false)
+	private Proveedor proveedor;
 
-    public Integer getIdCotizaConsolidacion() {
-        return idCotizaConsolidacion;
-    }
+	public Integer getIdCotizaConsolidacion() {
+		return idCotizaConsolidacion;
+	}
 
-    public void setIdCotizaConsolidacion(Integer idCotizaConsolidacion) {
-        this.idCotizaConsolidacion = idCotizaConsolidacion;
-    }
+	public void setIdCotizaConsolidacion(Integer idCotizaConsolidacion) {
+		this.idCotizaConsolidacion = idCotizaConsolidacion;
+	}
 
-    public Date getFechaRecepcion() {
-        return fechaRecepcion;
-    }
+	public Date getFechaRecepcion() {
+		return fechaRecepcion;
+	}
 
-    public void setFechaRecepcion(Date fechaRecepcion) {
-        this.fechaRecepcion = fechaRecepcion;
-    }
+	public void setFechaRecepcion(Date fechaRecepcion) {
+		this.fechaRecepcion = fechaRecepcion;
+	}
 
-    public List<DetalleCotizaConsolida> getDetallesCotizaConsolida() {
-        return detallesCotizaConsolida;
-    }
+	public List<DetalleCotizaConsolida> getDetallesCotizaConsolida() {
+		return detallesCotizaConsolida;
+	}
 
-    public void setDetallesCotizaConsolida(List<DetalleCotizaConsolida> detallesCotizaConsolida) {
-        this.detallesCotizaConsolida = detallesCotizaConsolida;
-    }
+	public void setDetallesCotizaConsolida(List<DetalleCotizaConsolida> detallesCotizaConsolida) {
+		this.detallesCotizaConsolida = detallesCotizaConsolida;
+	}
 
-    public Consolidacion getConsolidacion() {
-        return consolidacion;
-    }
+	public Consolidacion getConsolidacion() {
+		return consolidacion;
+	}
 
-    public void setConsolidacion(Consolidacion consolidacion) {
-        this.consolidacion = consolidacion;
-    }
+	public void setConsolidacion(Consolidacion consolidacion) {
+		this.consolidacion = consolidacion;
+	}
 
-    public Estatus getEstatus() {
-        return estatus;
-    }
+	public Estatus getEstatus() {
+		return estatus;
+	}
 
-    public void setEstatus(Estatus estatus) {
-        this.estatus = estatus;
-    }
+	public void setEstatus(Estatus estatus) {
+		this.estatus = estatus;
+	}
 
-    public Proveedor getProveedor() {
-        return proveedor;
-    }
+	public Proveedor getProveedor() {
+		return proveedor;
+	}
 
-    public void setProveedor(Proveedor proveedor) {
-        this.proveedor = proveedor;
-    }
+	public void setProveedor(Proveedor proveedor) {
+		this.proveedor = proveedor;
+	}
 
-    
 }

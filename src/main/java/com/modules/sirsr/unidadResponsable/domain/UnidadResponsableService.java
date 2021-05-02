@@ -8,7 +8,6 @@ package com.modules.sirsr.unidadResponsable.domain;
 import com.modules.sirsr.unidadResponsable.persistence.UnidadResponsableMapper;
 import com.modules.sirsr.unidadResponsable.persistence.UnidadResponsableRepository;
 
-
 import com.modules.sirsr.config.Mensaje;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,30 +19,29 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UnidadResponsableService {
-    
-    private final UnidadResponsableRepository unidadResponsableRepository;
-    private final UnidadResponsableMapper unidadResponsableMapper;
-    private Mensaje msg;
 
-    @Autowired
-    public UnidadResponsableService(UnidadResponsableRepository unidadResponsableRepository, UnidadResponsableMapper unidadResponsableMapper) {
-        this.unidadResponsableRepository = unidadResponsableRepository;
-        this.unidadResponsableMapper = unidadResponsableMapper;
-    }
+	private final UnidadResponsableRepository unidadResponsableRepository;
+	private Mensaje msg;
 
-    public List<UnidadResponsableDTO> findAll() {
-        return unidadResponsableMapper.toUnidadResponsableDTOs(unidadResponsableRepository.findAll());
-    }
+	@Autowired
+	public UnidadResponsableService(UnidadResponsableRepository unidadResponsableRepository) {
+		this.unidadResponsableRepository = unidadResponsableRepository;
+	}
 
-    public UnidadResponsableDTO findById(String id) {
-        UnidadResponsableDTO unidadResponsableDTO = unidadResponsableMapper.toUnidadResponsableDTO(unidadResponsableRepository.findById(id).get());
-        return unidadResponsableDTO;
-    }
+	public List<UnidadResponsableDTO> findAll() {
+		return UnidadResponsableMapper.toUnidadResponsableDTOs(unidadResponsableRepository.findAll());
+	}
 
-    public UnidadResponsableDTO findByClaveUr(String claveUr) {
-        UnidadResponsableDTO unidadResponsableDTO = unidadResponsableMapper.toUnidadResponsableDTO(unidadResponsableRepository.findByClaveUr(claveUr));
-        return unidadResponsableDTO;
-    }
+	public UnidadResponsableDTO findById(String id) {
+		UnidadResponsableDTO unidadResponsableDTO = UnidadResponsableMapper
+				.toUnidadResponsableDTO(unidadResponsableRepository.findById(id).get());
+		return unidadResponsableDTO;
+	}
 
+	public UnidadResponsableDTO findByClaveUr(String claveUr) {
+		UnidadResponsableDTO unidadResponsableDTO = UnidadResponsableMapper
+				.toUnidadResponsableDTO(unidadResponsableRepository.findByClaveUr(claveUr));
+		return unidadResponsableDTO;
+	}
 
 }

@@ -34,76 +34,75 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "COTIZA_REQUISICION")
 public class CotizaRequisicion {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cotizacion_generator")
-    @SequenceGenerator(name = "cotizacion_generator", sequenceName = "SEQ_COTIZACION", allocationSize = 1)
-    @Basic(optional = false)
-    @Column(name = "ID_COTIZA_REQUISICION")
-    private Integer idCotizaRequisicion;
-    @Basic(optional = false)
-    @Column(name = "FECHA_RECEPCION")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaRecepcion;
-    @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
-    @ManyToOne(optional = false)
-    private Estatus estatus;
-    @JoinColumn(name = "ID_PROVEEDOR", referencedColumnName = "ID_PROVEEDOR")
-    @ManyToOne(optional = false)
-    private Proveedor proveedor;
-    @JoinColumn(name = "ID_REQUISICION", referencedColumnName = "ID_REQUISICION")
-    @ManyToOne(optional = false)
-    private Requisicion requisicion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cotizaRequisicion")
-    private List<DetalleCotizaRequis> detallesCotizaRequis;
 
-    public Integer getIdCotizaRequisicion() {
-        return idCotizaRequisicion;
-    }
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cotizacion_generator")
+	@SequenceGenerator(name = "cotizacion_generator", sequenceName = "SEQ_COTIZACION", allocationSize = 1)
+	@Basic(optional = false)
+	@Column(name = "ID_COTIZA_REQUISICION")
+	private Integer idCotizaRequisicion;
+	@Basic(optional = false)
+	@Column(name = "FECHA_RECEPCION")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechaRecepcion;
+	@JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
+	@ManyToOne(optional = false)
+	private Estatus estatus;
+	@JoinColumn(name = "ID_PROVEEDOR", referencedColumnName = "ID_PROVEEDOR")
+	@ManyToOne(optional = false)
+	private Proveedor proveedor;
+	@JoinColumn(name = "ID_REQUISICION", referencedColumnName = "ID_REQUISICION")
+	@ManyToOne(optional = false)
+	private Requisicion requisicion;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cotizaRequisicion")
+	private List<DetalleCotizaRequis> detallesCotizaRequis;
 
-    public void setIdCotizaRequisicion(Integer idCotizaRequisicion) {
-        this.idCotizaRequisicion = idCotizaRequisicion;
-    }
+	public Integer getIdCotizaRequisicion() {
+		return idCotizaRequisicion;
+	}
 
-    public Date getFechaRecepcion() {
-        return fechaRecepcion;
-    }
+	public void setIdCotizaRequisicion(Integer idCotizaRequisicion) {
+		this.idCotizaRequisicion = idCotizaRequisicion;
+	}
 
-    public void setFechaRecepcion(Date fechaRecepcion) {
-        this.fechaRecepcion = fechaRecepcion;
-    }
+	public Date getFechaRecepcion() {
+		return fechaRecepcion;
+	}
 
-    public Estatus getEstatus() {
-        return estatus;
-    }
+	public void setFechaRecepcion(Date fechaRecepcion) {
+		this.fechaRecepcion = fechaRecepcion;
+	}
 
-    public void setEstatus(Estatus estatus) {
-        this.estatus = estatus;
-    }
+	public Estatus getEstatus() {
+		return estatus;
+	}
 
-    public Proveedor getProveedor() {
-        return proveedor;
-    }
+	public void setEstatus(Estatus estatus) {
+		this.estatus = estatus;
+	}
 
-    public void setProveedor(Proveedor proveedor) {
-        this.proveedor = proveedor;
-    }
+	public Proveedor getProveedor() {
+		return proveedor;
+	}
 
-    public Requisicion getRequisicion() {
-        return requisicion;
-    }
+	public void setProveedor(Proveedor proveedor) {
+		this.proveedor = proveedor;
+	}
 
-    public void setRequisicion(Requisicion requisicion) {
-        this.requisicion = requisicion;
-    }
+	public Requisicion getRequisicion() {
+		return requisicion;
+	}
 
-    public List<DetalleCotizaRequis> getDetallesCotizaRequis() {
-        return detallesCotizaRequis;
-    }
+	public void setRequisicion(Requisicion requisicion) {
+		this.requisicion = requisicion;
+	}
 
-    public void setDetallesCotizaRequis(List<DetalleCotizaRequis> detallesCotizaRequis) {
-        this.detallesCotizaRequis = detallesCotizaRequis;
-    }
+	public List<DetalleCotizaRequis> getDetallesCotizaRequis() {
+		return detallesCotizaRequis;
+	}
 
-    
+	public void setDetallesCotizaRequis(List<DetalleCotizaRequis> detallesCotizaRequis) {
+		this.detallesCotizaRequis = detallesCotizaRequis;
+	}
+
 }

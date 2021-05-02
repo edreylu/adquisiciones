@@ -14,49 +14,49 @@ import com.modules.sirsr.tipoProducto.domain.TipoProductoDTO;
  * @author Edward Reyes
  */
 public class SubTipoProductoDTO {
-    private int idSubtipoProducto;
-    private String descripcion;
-    private EstatusDTO estatus;
-    private ObjetoDeGastoDTO objetoDeGasto;
-    private TipoProductoDTO tipoProducto;
+	private int idSubtipoProducto;
+	private String descripcion;
+	private EstatusDTO estatus;
+	private ObjetoDeGastoDTO objetoDeGasto;
+	private TipoProductoDTO tipoProducto;
 
-    public int getIdSubtipoProducto() {
-        return idSubtipoProducto;
-    }
+	public int getIdSubtipoProducto() {
+		return idSubtipoProducto;
+	}
 
-    public void setIdSubtipoProducto(int idSubtipoProducto) {
-        this.idSubtipoProducto = idSubtipoProducto;
-    }
+	public void setIdSubtipoProducto(int idSubtipoProducto) {
+		this.idSubtipoProducto = idSubtipoProducto;
+	}
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+	public String getDescripcion() {
+		return descripcion;
+	}
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
-    public EstatusDTO getEstatus() {
-        return estatus;
-    }
+	public EstatusDTO getEstatus() {
+		return estatus;
+	}
 
-    public void setEstatus(EstatusDTO estatus) {
-        this.estatus = estatus;
-    }
+	public void setEstatus(EstatusDTO estatus) {
+		this.estatus = estatus;
+	}
 
-    public ObjetoDeGastoDTO getObjetoDeGasto() {
-        return objetoDeGasto;
-    }
+	public ObjetoDeGastoDTO getObjetoDeGasto() {
+		return objetoDeGasto;
+	}
 
-    public void setObjetoDeGasto(ObjetoDeGastoDTO objetoDeGasto) {
-        this.objetoDeGasto = objetoDeGasto;
-    }
+	public void setObjetoDeGasto(ObjetoDeGastoDTO objetoDeGasto) {
+		this.objetoDeGasto = objetoDeGasto;
+	}
 
-    public TipoProductoDTO getTipoProducto() {
-        return tipoProducto;
-    }
+	public TipoProductoDTO getTipoProducto() {
+		return tipoProducto;
+	}
 
-    public void setTipoProducto(TipoProductoDTO tipoProducto) {
-        this.tipoProducto = tipoProducto;
-    }
+	public void setTipoProducto(TipoProductoDTO tipoProducto) {
+		this.tipoProducto = tipoProducto;
+	}
 }

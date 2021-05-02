@@ -28,70 +28,69 @@ import javax.persistence.Table;
 @Table(name = "MARCA")
 public class Marca {
 
-    @Id
-    @Basic(optional = false)
-    @Column(name = "ID_MARCA")
-    private Integer idMarca;
-    @Basic(optional = false)
-    @Column(name = "DESCRIPCION")
-    private String descripcion;
-    @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
-    @ManyToOne(optional = false)
-    private Estatus estatus;
-    @OneToMany(mappedBy = "marca")
-    private List<DetalleCotizaConsolida> detallesCotizaConsolida;
-    @OneToMany(mappedBy = "marca")
-    private List<DetalleRequisicion> detallesRequisicion;
-    @OneToMany(mappedBy = "marca")
-    private List<DetalleCotizaRequis> detallesCotizaRequis;
+	@Id
+	@Basic(optional = false)
+	@Column(name = "ID_MARCA")
+	private Integer idMarca;
+	@Basic(optional = false)
+	@Column(name = "DESCRIPCION")
+	private String descripcion;
+	@JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
+	@ManyToOne(optional = false)
+	private Estatus estatus;
+	@OneToMany(mappedBy = "marca")
+	private List<DetalleCotizaConsolida> detallesCotizaConsolida;
+	@OneToMany(mappedBy = "marca")
+	private List<DetalleRequisicion> detallesRequisicion;
+	@OneToMany(mappedBy = "marca")
+	private List<DetalleCotizaRequis> detallesCotizaRequis;
 
-    public Integer getIdMarca() {
-        return idMarca;
-    }
+	public Integer getIdMarca() {
+		return idMarca;
+	}
 
-    public void setIdMarca(Integer idMarca) {
-        this.idMarca = idMarca;
-    }
+	public void setIdMarca(Integer idMarca) {
+		this.idMarca = idMarca;
+	}
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+	public String getDescripcion() {
+		return descripcion;
+	}
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
-    public Estatus getEstatus() {
-        return estatus;
-    }
+	public Estatus getEstatus() {
+		return estatus;
+	}
 
-    public void setEstatus(Estatus estatus) {
-        this.estatus = estatus;
-    }
+	public void setEstatus(Estatus estatus) {
+		this.estatus = estatus;
+	}
 
-    public List<DetalleCotizaConsolida> getDetallesCotizaConsolida() {
-        return detallesCotizaConsolida;
-    }
+	public List<DetalleCotizaConsolida> getDetallesCotizaConsolida() {
+		return detallesCotizaConsolida;
+	}
 
-    public void setDetallesCotizaConsolida(List<DetalleCotizaConsolida> detallesCotizaConsolida) {
-        this.detallesCotizaConsolida = detallesCotizaConsolida;
-    }
+	public void setDetallesCotizaConsolida(List<DetalleCotizaConsolida> detallesCotizaConsolida) {
+		this.detallesCotizaConsolida = detallesCotizaConsolida;
+	}
 
-    public List<DetalleRequisicion> getDetallesRequisicion() {
-        return detallesRequisicion;
-    }
+	public List<DetalleRequisicion> getDetallesRequisicion() {
+		return detallesRequisicion;
+	}
 
-    public void setDetallesRequisicion(List<DetalleRequisicion> detallesRequisicion) {
-        this.detallesRequisicion = detallesRequisicion;
-    }
+	public void setDetallesRequisicion(List<DetalleRequisicion> detallesRequisicion) {
+		this.detallesRequisicion = detallesRequisicion;
+	}
 
-    public List<DetalleCotizaRequis> getDetallesCotizaRequis() {
-        return detallesCotizaRequis;
-    }
+	public List<DetalleCotizaRequis> getDetallesCotizaRequis() {
+		return detallesCotizaRequis;
+	}
 
-    public void setDetallesCotizaRequis(List<DetalleCotizaRequis> detallesCotizaRequis) {
-        this.detallesCotizaRequis = detallesCotizaRequis;
-    }
+	public void setDetallesCotizaRequis(List<DetalleCotizaRequis> detallesCotizaRequis) {
+		this.detallesCotizaRequis = detallesCotizaRequis;
+	}
 
-    
 }

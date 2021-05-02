@@ -24,44 +24,43 @@ import java.util.Optional;
  */
 @Service
 public class ClavePresupuestariaService {
+	private final ClavePresupuestariaRepository clavePresupuestariaRepository;
+	private final UsuarioService usuarioService;
+	private Mensaje msg;
 
-    private final ClavePresupuestariaRepository clavePresupuestariaRepository;
-    private final ClavePresupuestariaMapper clavePresupuestariaMapper;
-    private final UsuarioService usuarioService;
-    private Mensaje msg;
+	@Autowired
+	public ClavePresupuestariaService(ClavePresupuestariaRepository clavePresupuestariaRepository,
+			UsuarioService usuarioService) {
+		this.clavePresupuestariaRepository = clavePresupuestariaRepository;
+		this.usuarioService = usuarioService;
+	}
 
-    @Autowired
-    public ClavePresupuestariaService(ClavePresupuestariaRepository clavePresupuestariaRepository, ClavePresupuestariaMapper clavePresupuestariaMapper, UsuarioService usuarioService) {
-        this.clavePresupuestariaRepository = clavePresupuestariaRepository;
-        this.clavePresupuestariaMapper = clavePresupuestariaMapper;
-        this.usuarioService = usuarioService;
-    }
+	public List<ClavePresupuestariaDTO> findAll() {
+		return ClavePresupuestariaMapper.toClavePresupuestariaDTOs(clavePresupuestariaRepository.findAll());
+	}
 
-    public List<ClavePresupuestariaDTO> findAll() {
-        return clavePresupuestariaMapper.toClavePresupuestariaDTOs(clavePresupuestariaRepository.findAll());
-    }
+	public List<ClavePresupuestariaDTO> findByClaveUr() {
+		UsuarioDTO usuarioDTO = usuarioService.findByUserName(WebUtils.getUserName());
+		return ClavePresupuestariaMapper.toClavePresupuestariaDTOs(
+				clavePresupuestariaRepository.findByUnidadResp(usuarioDTO.getUnidadResponsable().getClaveUr()));
+	}
 
-    public List<ClavePresupuestariaDTO> findByClaveUr() {
-        UsuarioDTO usuarioDTO = usuarioService.findByUserName(WebUtils.getUserName());
-        return clavePresupuestariaMapper.toClavePresupuestariaDTOs(clavePresupuestariaRepository.findByUnidadResp(usuarioDTO.getUnidadResponsable().getClaveUr()));
-    }
+	public ClavePresupuestariaDTO findById(int id) {
+		Optional<ClavePresupuestaria> clavePresupuestariaOptional = clavePresupuestariaRepository.findById(id);
+		ClavePresupuestariaDTO clavePresupuestariaDTO = ClavePresupuestariaMapper.toClavePresupuestariaDTO(clavePresupuestariaOptional.get());
+		return clavePresupuestariaDTO;
+	}
 
-    public ClavePresupuestariaDTO findById(int id) {
-        Optional<ClavePresupuestaria> clavePresupuestariaOptional = clavePresupuestariaRepository.findById(id);
-        ClavePresupuestariaDTO clavePresupuestariaDTO = clavePresupuestariaMapper.toClavePresupuestariaDTO(clavePresupuestariaOptional.get());
-        return clavePresupuestariaDTO;
-    }
+	public Mensaje save(ClavePresupuestariaDTO clavePresupuestariaDTO) {
+		return msg;
+	}
 
-    public Mensaje save(ClavePresupuestariaDTO clavePresupuestariaDTO) {
-        return msg;
-    }
+	public Mensaje update(ClavePresupuestariaDTO clavePresupuestariaDTO, int id) {
+		return msg;
+	}
 
-    public Mensaje update(ClavePresupuestariaDTO clavePresupuestariaDTO, int id) {
-        return msg;
-    }
-
-    public Mensaje deleteById(int id) {
-        return msg;
-    }
+	public Mensaje deleteById(int id) {
+		return msg;
+	}
 
 }

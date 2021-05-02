@@ -10,79 +10,95 @@ package com.modules.sirsr.datosPersonales.domain;
  * @author Edward Reyes
  */
 public class DatosPersonalesDTO {
-    
-    private int noPersonal;
-    private String apellidoPaterno;
-    private String apellidoMaterno;
-    private String nombre;
-    private String nombreCompleto;
-    private String correo;
-    private String telefonoFijo;
-    private String telefonoMovil;
 
-    public int getNoPersonal() {
-        return noPersonal;
-    }
+	private int noPersonal;
+	private String apellidoPaterno;
+	private String apellidoMaterno;
+	private String nombre;
+	private String nombreCompleto;
+	private String correo;
+	private String telefonoFijo;
+	private String telefonoMovil;
 
-    public void setNoPersonal(int noPersonal) {
-        this.noPersonal = noPersonal;
-    }
+	public DatosPersonalesDTO() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	public DatosPersonalesDTO(int noPersonal, String apellidoPaterno, String apellidoMaterno, String nombre,
+			String correo, String telefonoFijo, String telefonoMovil) {
+		this.noPersonal = noPersonal;
+		this.apellidoPaterno = apellidoPaterno;
+		this.apellidoMaterno = apellidoMaterno;
+		this.nombre = nombre;
+		this.correo = correo;
+		this.telefonoFijo = telefonoFijo;
+		this.telefonoMovil = telefonoMovil;
+	}
 
-    public String getApellidoPaterno() {
-        return apellidoPaterno;
-    }
 
-    public void setApellidoPaterno(String apellidoPaterno) {
-        this.apellidoPaterno = apellidoPaterno;
-    }
+	public int getNoPersonal() {
+		return noPersonal;
+	}
 
-    public String getApellidoMaterno() {
-        return apellidoMaterno;
-    }
+	public void setNoPersonal(int noPersonal) {
+		this.noPersonal = noPersonal;
+	}
 
-    public void setApellidoMaterno(String apellidoMaterno) {
-        this.apellidoMaterno = apellidoMaterno;
-    }
+	public String getApellidoPaterno() {
+		return apellidoPaterno;
+	}
 
-    public String getNombre() {
-        return nombre;
-    }
+	public void setApellidoPaterno(String apellidoPaterno) {
+		this.apellidoPaterno = apellidoPaterno;
+	}
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+	public String getApellidoMaterno() {
+		return apellidoMaterno;
+	}
 
-    public String getCorreo() {
-        return correo;
-    }
+	public void setApellidoMaterno(String apellidoMaterno) {
+		this.apellidoMaterno = apellidoMaterno;
+	}
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
+	public String getNombre() {
+		return nombre;
+	}
 
-    public String getTelefonoFijo() {
-        return telefonoFijo;
-    }
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-    public void setTelefonoFijo(String telefonoFijo) {
-        this.telefonoFijo = telefonoFijo;
-    }
+	public String getCorreo() {
+		return correo;
+	}
 
-    public String getTelefonoMovil() {
-        return telefonoMovil;
-    }
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
 
-    public void setTelefonoMovil(String telefonoMovil) {
-        this.telefonoMovil = telefonoMovil;
-    }
+	public String getTelefonoFijo() {
+		return telefonoFijo;
+	}
 
-    public String getNombreCompleto() {
-        return nombreCompleto;
-    }
+	public void setTelefonoFijo(String telefonoFijo) {
+		this.telefonoFijo = telefonoFijo;
+	}
 
-    public void setNombreCompleto(String nombreCompleto) {
-        this.nombreCompleto = nombreCompleto;
-    }
+	public String getTelefonoMovil() {
+		return telefonoMovil;
+	}
 
-    
+	public void setTelefonoMovil(String telefonoMovil) {
+		this.telefonoMovil = telefonoMovil;
+	}
+
+	public String getNombreCompleto() {
+		return nombreCompleto;
+	}
+
+	public void setNombreCompleto(String nombreCompleto) {
+		this.nombreCompleto = nombreCompleto;
+	}
+
 }

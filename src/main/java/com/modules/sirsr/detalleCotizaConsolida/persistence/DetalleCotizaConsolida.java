@@ -27,72 +27,70 @@ import javax.persistence.Table;
 @Table(name = "DETALLE_COTIZA_CONSOLIDA")
 public class DetalleCotizaConsolida {
 
-    @Id
-    @Basic(optional = false)
-    @Column(name = "ID_DETALLE_COTIZA_CONS")
-    private Integer idDetalleCotizaCons;
-    @Column(name = "PRECIO_UNITARIO")
-    private BigDecimal precioUnitario;
-    @Column(name = "CANTIDAD_COTIZADA")
-    private Integer cantidadCotizada;
-    @JoinColumn(name = "ID_COTIZA_CONSOLIDACION", referencedColumnName = "ID_COTIZA_CONSOLIDACION")
-    @ManyToOne(optional = false)
-    private CotizaConsolidacion cotizaConsolidacion;
-    @JoinColumn(name = "ID_DETALLE_CONSOLIDACION", referencedColumnName = "ID_DETALLE_CONSOLIDACION")
-    @OneToOne(optional = false)
-    private DetalleConsolidacion detalleConsolidacion;
-    @JoinColumn(name = "ID_MARCA", referencedColumnName = "ID_MARCA")
-    @ManyToOne
-    private Marca marca;
+	@Id
+	@Basic(optional = false)
+	@Column(name = "ID_DETALLE_COTIZA_CONS")
+	private Integer idDetalleCotizaCons;
+	@Column(name = "PRECIO_UNITARIO")
+	private BigDecimal precioUnitario;
+	@Column(name = "CANTIDAD_COTIZADA")
+	private Integer cantidadCotizada;
+	@JoinColumn(name = "ID_COTIZA_CONSOLIDACION", referencedColumnName = "ID_COTIZA_CONSOLIDACION")
+	@ManyToOne(optional = false)
+	private CotizaConsolidacion cotizaConsolidacion;
+	@JoinColumn(name = "ID_DETALLE_CONSOLIDACION", referencedColumnName = "ID_DETALLE_CONSOLIDACION")
+	@OneToOne(optional = false)
+	private DetalleConsolidacion detalleConsolidacion;
+	@JoinColumn(name = "ID_MARCA", referencedColumnName = "ID_MARCA")
+	@ManyToOne
+	private Marca marca;
 
-    public Integer getIdDetalleCotizaCons() {
-        return idDetalleCotizaCons;
-    }
+	public Integer getIdDetalleCotizaCons() {
+		return idDetalleCotizaCons;
+	}
 
-    public void setIdDetalleCotizaCons(Integer idDetalleCotizaCons) {
-        this.idDetalleCotizaCons = idDetalleCotizaCons;
-    }
+	public void setIdDetalleCotizaCons(Integer idDetalleCotizaCons) {
+		this.idDetalleCotizaCons = idDetalleCotizaCons;
+	}
 
-    public BigDecimal getPrecioUnitario() {
-        return precioUnitario;
-    }
+	public BigDecimal getPrecioUnitario() {
+		return precioUnitario;
+	}
 
-    public void setPrecioUnitario(BigDecimal precioUnitario) {
-        this.precioUnitario = precioUnitario;
-    }
+	public void setPrecioUnitario(BigDecimal precioUnitario) {
+		this.precioUnitario = precioUnitario;
+	}
 
-    public Integer getCantidadCotizada() {
-        return cantidadCotizada;
-    }
+	public Integer getCantidadCotizada() {
+		return cantidadCotizada;
+	}
 
-    public void setCantidadCotizada(Integer cantidadCotizada) {
-        this.cantidadCotizada = cantidadCotizada;
-    }
+	public void setCantidadCotizada(Integer cantidadCotizada) {
+		this.cantidadCotizada = cantidadCotizada;
+	}
 
-    public CotizaConsolidacion getCotizaConsolidacion() {
-        return cotizaConsolidacion;
-    }
+	public CotizaConsolidacion getCotizaConsolidacion() {
+		return cotizaConsolidacion;
+	}
 
-    public void setCotizaConsolidacion(CotizaConsolidacion cotizaConsolidacion) {
-        this.cotizaConsolidacion = cotizaConsolidacion;
-    }
+	public void setCotizaConsolidacion(CotizaConsolidacion cotizaConsolidacion) {
+		this.cotizaConsolidacion = cotizaConsolidacion;
+	}
 
-    public DetalleConsolidacion getDetalleConsolidacion() {
-        return detalleConsolidacion;
-    }
+	public DetalleConsolidacion getDetalleConsolidacion() {
+		return detalleConsolidacion;
+	}
 
-    public void setDetalleConsolidacion(DetalleConsolidacion detalleConsolidacion) {
-        this.detalleConsolidacion = detalleConsolidacion;
-    }
+	public void setDetalleConsolidacion(DetalleConsolidacion detalleConsolidacion) {
+		this.detalleConsolidacion = detalleConsolidacion;
+	}
 
-    public Marca getMarca() {
-        return marca;
-    }
+	public Marca getMarca() {
+		return marca;
+	}
 
-    public void setMarca(Marca marca) {
-        this.marca = marca;
-    }
+	public void setMarca(Marca marca) {
+		this.marca = marca;
+	}
 
-    
-    
 }

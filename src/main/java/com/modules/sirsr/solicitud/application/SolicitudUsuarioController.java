@@ -20,6 +20,7 @@ import com.modules.sirsr.requisicion.domain.DetalleRequisicionService;
 import com.modules.sirsr.requisicion.domain.RequisicionDTO;
 import com.modules.sirsr.requisicion.domain.RequisicionService;
 import com.modules.sirsr.revision.domain.RevisionDTO;
+import com.modules.sirsr.revision.domain.RevisionService;
 import com.modules.sirsr.revision.persistence.RevisionMapper;
 import com.modules.sirsr.revision.persistence.RevisionRepository;
 import com.modules.sirsr.solicitud.domain.SolicitudDTO;
@@ -40,119 +41,114 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * @author Edward Reyes
  */
 @Controller
-@RequestMapping(value = "/usuario")
+@RequestMapping("/usuario")
 public class SolicitudUsuarioController {
 
-    private final SolicitudService solicitudService;
-    private final ObjetoDeGastoService objetoDeGastoService;
-    private final RequisicionService requisicionService;
-    private final DetalleRequisicionService detalleRequisicionService;
-    private final DocumentoService documentoService;
-    private final UsuarioService usuarioService;
-    private final RevisionRepository revisionRepository;
-    private final RevisionMapper revisionMapper;
-    private List<SolicitudDTO> solicitudes;
-    private List<ObjetoDeGastoDTO> partidasEspecificas;
-    private List<RequisicionDTO> requisiciones;
-    private List<DetalleRequisicionDTO> detallesRequisicion;
-    private List<DocumentoDTO> documentos;
-    private List<RevisionDTO> revisiones;
-    private UsuarioDTO usuarioDTO;
-    private final Mensaje msg = new Mensaje();
+	private final SolicitudService solicitudService;
+	private final ObjetoDeGastoService objetoDeGastoService;
+	private final RequisicionService requisicionService;
+	private final DetalleRequisicionService detalleRequisicionService;
+	private final DocumentoService documentoService;
+	private final UsuarioService usuarioService;
+	private final RevisionService revisionService;
+	private List<SolicitudDTO> solicitudes;
+	private List<ObjetoDeGastoDTO> partidasEspecificas;
+	private List<RequisicionDTO> requisiciones;
+	private List<DetalleRequisicionDTO> detallesRequisicion;
+	private List<DocumentoDTO> documentos;
+	private List<RevisionDTO> revisiones;
+	private UsuarioDTO usuarioDTO;
 
-    @Autowired
-    public SolicitudUsuarioController(SolicitudService solicitudService, ObjetoDeGastoService objetoDeGastoService, RequisicionService requisicionService, DetalleRequisicionService detalleRequisicionService, DocumentoService documentoService, UsuarioService usuarioService, RevisionRepository revisionRepository, RevisionMapper revisionMapper) {
-        this.solicitudService = solicitudService;
-        this.objetoDeGastoService = objetoDeGastoService;
-        this.requisicionService = requisicionService;
-        this.detalleRequisicionService = detalleRequisicionService;
-        this.documentoService = documentoService;
-        this.usuarioService = usuarioService;
-        this.revisionRepository = revisionRepository;
-        this.revisionMapper = revisionMapper;
-    }
+	@Autowired
+	public SolicitudUsuarioController(SolicitudService solicitudService, ObjetoDeGastoService objetoDeGastoService,
+			RequisicionService requisicionService, DetalleRequisicionService detalleRequisicionService,
+			DocumentoService documentoService, UsuarioService usuarioService, RevisionService revisionService) {
+		this.solicitudService = solicitudService;
+		this.objetoDeGastoService = objetoDeGastoService;
+		this.requisicionService = requisicionService;
+		this.detalleRequisicionService = detalleRequisicionService;
+		this.documentoService = documentoService;
+		this.usuarioService = usuarioService;
+		this.revisionService = revisionService;
+	}
 
-    @GetMapping("/solicitudes")
-    public String listar(Model model) {
-        solicitudes= solicitudService.findByClaveUnidad();
-        usuarioDTO = usuarioService.findByUserName(WebUtils.getUserName());
-        model.addAttribute("lista", solicitudes);
-        model.addAttribute("unidadResponsable", usuarioDTO.getUnidadResponsable().getDescripcion());
-        return "usuario/solicitudes/principal";
-    }
+	@GetMapping("/solicitudes")
+	public String listar(Model model) {
+		solicitudes = solicitudService.findByClaveUnidad();
+		usuarioDTO = usuarioService.findByUserName(WebUtils.getUserName());
+		model.addAttribute("lista", solicitudes);
+		model.addAttribute("unidadResponsable", usuarioDTO.getUnidadResponsable().getDescripcion());
+		return "usuario/solicitudes/principal";
+	}
 
-    @GetMapping("/solicitudes/agregar")
-    public String agregar(Model model) {
-        model.addAttribute("solicitud", new SolicitudDTO());
-        return "usuario/solicitudes/agregar";
-    }
+	@GetMapping("/solicitudes/agregar")
+	public String agregar(Model model) {
+		model.addAttribute("solicitud", new SolicitudDTO());
+		return "usuario/solicitudes/agregar";
+	}
 
-    @PostMapping("/solicitudes/add")
-    public String agregar(SolicitudDTO solicitudDTO, RedirectAttributes redirectAttrs){
-        msg.crearMensaje(solicitudService.save(solicitudDTO), redirectAttrs);
-        return "redirect:/usuario/solicitudes";
-    }
+	@PostMapping("/solicitudes/add")
+	public String agregar(SolicitudDTO solicitudDTO, RedirectAttributes redirectAttrs) {
+		Mensaje.addMensaje(solicitudService.save(solicitudDTO), redirectAttrs);
+		return "redirect:/usuario/solicitudes";
+	}
 
-    @GetMapping("/solicitudes/editar/{id}")
-    public String editar(@PathVariable("id") int id, Model model) {
-        SolicitudDTO solicitudDTO = solicitudService.findById(id);
-        String validUrl = "redirect:/usuario/solicitudes";
-        if(Objects.nonNull(solicitudDTO)){
-            model.addAttribute("solicitud", solicitudDTO);
-            validUrl = "usuario/solicitudes/editar";
-        }
-        return validUrl;
-    }
+	@GetMapping("/solicitudes/editar/{id}")
+	public String editar(@PathVariable("id") int id, Model model) {
+		SolicitudDTO solicitudDTO = solicitudService.findById(id);
+		String validUrl = "redirect:/usuario/solicitudes";
+		if (Objects.nonNull(solicitudDTO)) {
+			model.addAttribute("solicitud", solicitudDTO);
+			validUrl = "usuario/solicitudes/editar";
+		}
+		return validUrl;
+	}
 
-    @GetMapping("/solicitudes/detallesSolicitud/{id}")
-    public String detalles(@PathVariable("id") int id, Model model) {
-        SolicitudDTO solicitudDTO = solicitudService.findById(id);
-        requisiciones = requisicionService.findByIdSolicitud(id);
-        documentos = documentoService.findByIdSolicitud(id);
-        String validUrl = "redirect:/usuario/solicitudes";
-        if(Objects.nonNull(solicitudDTO)){
-            model.addAttribute("solicitud", solicitudDTO);
-            model.addAttribute("requisiciones", requisiciones);
-            model.addAttribute("documentos", documentos);
-            validUrl = "usuario/solicitudes/detallesSolicitud";
-        }
-        return validUrl;
-    }
+	@PostMapping("/solicitudes/update/{id}")
+	public String editar(SolicitudDTO solicitudDTO, @PathVariable("id") int id, RedirectAttributes redirectAttrs) {
+		Mensaje.addMensaje(solicitudService.update(solicitudDTO, id), redirectAttrs);
+		return "redirect:/usuario/solicitudes";
+	}
 
-    @PostMapping("/solicitudes/update/{id}")
-    public String editar(SolicitudDTO solicitudDTO, @PathVariable("id") int id, RedirectAttributes redirectAttrs) {
-        msg.crearMensaje(solicitudService.update(solicitudDTO, id), redirectAttrs);
-        return "redirect:/usuario/solicitudes";
-    }
+	@GetMapping("/solicitudes/eliminar/{id}")
+	public String eliminar(@PathVariable("id") int id, RedirectAttributes redirectAttrs) {
+		Mensaje.addMensaje(solicitudService.deleteById(id), redirectAttrs);
+		return "redirect:/usuario/solicitudes";
+	}
+	
+	@GetMapping("/solicitudes/detallesSolicitud/{id}")
+	public String detalles(@PathVariable("id") int id, Model model) {
+		SolicitudDTO solicitudDTO = solicitudService.findById(id);
+		requisiciones = requisicionService.findByIdSolicitud(id);
+		documentos = documentoService.findByIdSolicitud(id);
+		String validUrl = "redirect:/usuario/solicitudes";
+		if (Objects.nonNull(solicitudDTO)) {
+			model.addAttribute("solicitud", solicitudDTO);
+			model.addAttribute("requisiciones", requisiciones);
+			model.addAttribute("documentos", documentos);
+			validUrl = "usuario/solicitudes/detallesSolicitud";
+		}
+		return validUrl;
+	}
 
-    @GetMapping("/solicitudes/eliminar/{id}")
-    public String eliminar(@PathVariable("id") int id,
-                           RedirectAttributes redirectAttrs) {
-        msg.crearMensaje(solicitudService.deleteById(id), redirectAttrs);
-        return "redirect:/usuario/solicitudes";
-    }
+	@PostMapping("/solicitudes/emitir/{id}")
+	public String emitir(@PathVariable("id") int id, RedirectAttributes redirectAttrs) {
+		Mensaje.addMensaje(solicitudService.emitirById(id), redirectAttrs);
+		return "redirect:/usuario/solicitudes";
+	}
 
+	@GetMapping("/solicitudes/searchDetallesRequisicion/{id}")
+	public String serchDetallesRequisicion(@PathVariable("id") int id, Model model) {
+		detallesRequisicion = detalleRequisicionService.findByIdRequisicion(id);
+		model.addAttribute("detallesRequisicion", detallesRequisicion);
+		return "usuario/solicitudes/detallesSolicitud :: modalDetalles";
+	}
 
-    @PostMapping("/solicitudes/emitir/{id}")
-    public String validar(@PathVariable("id") int id, Model model, RedirectAttributes redirectAttrs) {
-        msg.crearMensaje(solicitudService.emitirById(id), redirectAttrs);
-        return "redirect:/usuario/solicitudes";
-    }
-
-
-    @GetMapping("/solicitudes/searchDetallesRequisicion/{id}")
-    public String serchDetallesRequisicion(@PathVariable("id") int id, Model model) {
-        detallesRequisicion = detalleRequisicionService.findByIdRequisicion(id);
-        model.addAttribute("detallesRequisicion", detallesRequisicion);
-        return "usuario/solicitudes/detallesSolicitud :: modalDetalles";
-    }
-
-    @GetMapping("/solicitudes/searchObservaciones/{id}")
-    public String searchObservaciones(@PathVariable("id") int id, Model model) {
-        revisiones = revisionMapper.toRevisionsDTOs(revisionRepository.findByIdSolicitud(id));
-        model.addAttribute("observaciones", revisiones);
-        return "usuario/solicitudes/detallesSolicitud :: modalObservaciones";
-    }
-
+	@GetMapping("/solicitudes/searchObservaciones/{id}")
+	public String searchObservaciones(@PathVariable("id") int id, Model model) {
+		revisiones = revisionService.findByIdSolicitud(id);
+		model.addAttribute("observaciones", revisiones);
+		return "usuario/solicitudes/detallesSolicitud :: modalObservaciones";
+	}
 
 }

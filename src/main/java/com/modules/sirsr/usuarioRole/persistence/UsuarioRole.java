@@ -16,44 +16,45 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "USUARIOS_ROLES", uniqueConstraints = { @UniqueConstraint(name = "USUARIOS_ROLES_UK", columnNames = { "NO_USUARIO", "NO_ROL" }) })
+@Table(name = "USUARIOS_ROLES", uniqueConstraints = {
+		@UniqueConstraint(name = "USUARIOS_ROLES_UK", columnNames = { "NO_USUARIO", "NO_ROL" }) })
 public class UsuarioRole {
- 
-    @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="usuariorole_generator")
-    @SequenceGenerator(name = "usuariorole_generator", sequenceName = "SEQ_USUARIOROLE", allocationSize = 1)
-    @Column(name = "ID", nullable = false)
-    private Integer id;
- 
-    @ManyToOne
-    @JoinColumn(name = "NO_USUARIO", nullable = false)
-    private Usuario usuario;
- 
-    @ManyToOne
-    @JoinColumn(name = "NO_ROL", nullable = false)
-    private Role role;
 
-    public Integer getId() {
-        return id;
-    }
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usuariorole_generator")
+	@SequenceGenerator(name = "usuariorole_generator", sequenceName = "SEQ_USUARIOROLE", allocationSize = 1)
+	@Column(name = "ID", nullable = false)
+	private Integer id;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	@ManyToOne
+	@JoinColumn(name = "NO_USUARIO", nullable = false)
+	private Usuario usuario;
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
+	@ManyToOne
+	@JoinColumn(name = "NO_ROL", nullable = false)
+	private Role role;
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public Role getRole() {
-        return role;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public void setRole(Role role) {
-        this.role = role;
-    }
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
 }

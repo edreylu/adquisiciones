@@ -5,7 +5,6 @@
  */
 package com.modules.sirsr.usuario.domain;
 
-
 import com.modules.sirsr.datosPersonales.domain.DatosPersonalesDTO;
 import com.modules.sirsr.estatus.domain.EstatusDTO;
 import com.modules.sirsr.unidadResponsable.domain.UnidadResponsableDTO;
@@ -19,88 +18,104 @@ import java.util.Objects;
  */
 
 public class UsuarioDTO {
-    private int noUsuario;
-    private String userName;
-    private String password;
-    private String encrytedPassword;
-    private Date fechaAuditoria;
-    private EstatusDTO estatus;
-    private Integer enabled;
-    private DatosPersonalesDTO personal;
-    private UnidadResponsableDTO unidadResponsable;
+	private int noUsuario;
+	private String userName;
+	private String password;
+	private String encrytedPassword;
+	private Date fechaAuditoria;
+	private EstatusDTO estatus;
+	private Integer enabled;
+	private DatosPersonalesDTO personal;
+	private UnidadResponsableDTO unidadResponsable;
+	
+	public UsuarioDTO() {
+		// TODO Auto-generated constructor stub
+	}
+	
+
+	public UsuarioDTO(int noUsuario, String userName, Date fechaAuditoria, EstatusDTO estatus, Integer enabled,
+			DatosPersonalesDTO personal, UnidadResponsableDTO unidadResponsable) {
+		this.noUsuario = noUsuario;
+		this.userName = userName;
+		this.fechaAuditoria = fechaAuditoria;
+		this.estatus = estatus;
+		this.enabled = enabled;
+		this.personal = personal;
+		this.unidadResponsable = unidadResponsable;
+	}
 
 
-    public int getNoUsuario() {
-        return noUsuario;
-    }
 
-    public void setNoUsuario(int noUsuario) {
-        this.noUsuario = noUsuario;
-    }
+	public int getNoUsuario() {
+		return noUsuario;
+	}
 
-    public String getUserName() {
-        return Objects.nonNull(userName) ? userName.toUpperCase() : userName;
-    }
+	public void setNoUsuario(int noUsuario) {
+		this.noUsuario = noUsuario;
+	}
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+	public String getUserName() {
+		return Objects.nonNull(userName) ? userName.toUpperCase() : userName;
+	}
 
-    public String getEncrytedPassword() {
-        return encrytedPassword;
-    }
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
-    public String getPassword() {
-        return Objects.nonNull(password) ? password.toUpperCase() : password;
-    }
+	public String getEncrytedPassword() {
+		return encrytedPassword;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public String getPassword() {
+		return Objects.nonNull(password) ? password.toUpperCase() : password;
+	}
 
-    public void setEncrytedPassword(String encrytedPassword) {
-        this.encrytedPassword = encrytedPassword;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public Date getFechaAuditoria() {
-        return fechaAuditoria;
-    }
+	public void setEncrytedPassword(String encrytedPassword) {
+		this.encrytedPassword = encrytedPassword;
+	}
 
-    public void setFechaAuditoria(Date fechaAuditoria) {
-        this.fechaAuditoria = fechaAuditoria;
-    }
+	public Date getFechaAuditoria() {
+		return fechaAuditoria;
+	}
 
-    public UnidadResponsableDTO getUnidadResponsable() {
-        return unidadResponsable;
-    }
+	public void setFechaAuditoria(Date fechaAuditoria) {
+		this.fechaAuditoria = fechaAuditoria;
+	}
 
-    public void setUnidadResponsable(UnidadResponsableDTO unidadResponsable) {
-        this.unidadResponsable = unidadResponsable;
-    }
+	public UnidadResponsableDTO getUnidadResponsable() {
+		return unidadResponsable;
+	}
 
-    public EstatusDTO getEstatus() {
-        return estatus;
-    }
+	public void setUnidadResponsable(UnidadResponsableDTO unidadResponsable) {
+		this.unidadResponsable = unidadResponsable;
+	}
 
-    public void setEstatus(EstatusDTO estatus) {
-        this.estatus = estatus;
-    }
+	public EstatusDTO getEstatus() {
+		return estatus;
+	}
 
-    public Integer getEnabled() {
-        return enabled;
-    }
+	public void setEstatus(EstatusDTO estatus) {
+		this.estatus = estatus;
+	}
 
-    public void setEnabled(Integer enabled) {
-        this.enabled = enabled;
-    }
+	public Integer getEnabled() {
+		return enabled;
+	}
 
-    public DatosPersonalesDTO getPersonal() {
-        return personal;
-    }
+	public void setEnabled(Integer enabled) {
+		this.enabled = enabled;
+	}
 
-    public void setPersonal(DatosPersonalesDTO personal) {
-        this.personal = personal;
-    }
+	public DatosPersonalesDTO getPersonal() {
+		return personal;
+	}
 
+	public void setPersonal(DatosPersonalesDTO personal) {
+		this.personal = personal;
+	}
 
 }

@@ -15,9 +15,9 @@ import java.util.List;
  *
  * @author Edward Reyes
  */
-public interface RoleRepository extends JpaRepository<Role, Integer>{
+public interface RoleRepository extends JpaRepository<Role, Integer> {
 
-    @Query("Select ur.role.roleName from UsuarioRole ur where ur.usuario.noUsuario = :noUsuario ")
-    List<String> findByUsuario(@Param("noUsuario")  Integer noUsuario);
-    
+	@Query("Select ur.role.roleName from UsuarioRole ur where ur.usuario.noUsuario = :noUsuario ")
+	List<String> findByUsuario(@Param("noUsuario") Integer noUsuario);
+
 }

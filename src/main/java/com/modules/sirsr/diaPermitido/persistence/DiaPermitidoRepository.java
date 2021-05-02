@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DiaPermitidoRepository extends JpaRepository<DiaPermitido, Date> {
 
-	List<DiaPermitido>  findAllByOrderByDiaPermitidoDesc();
+	List<DiaPermitido> findAllByOrderByDiaPermitidoDesc();
 }

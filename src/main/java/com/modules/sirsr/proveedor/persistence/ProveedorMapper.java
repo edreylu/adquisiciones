@@ -1,39 +1,50 @@
 package com.modules.sirsr.proveedor.persistence;
 
-import com.modules.sirsr.estatus.persistence.Estatus;
-import com.modules.sirsr.proveedor.domain.ProveedorDTO;
-import com.modules.sirsr.tipoPersonaFiscal.persistence.TipoPersonaFiscal;
-
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import org.springframework.stereotype.Component;
+
+import com.modules.sirsr.actividad.persistence.ActividadMapper;
+import com.modules.sirsr.estatus.persistence.EstatusMapper;
+import com.modules.sirsr.proveedor.domain.ProveedorDTO;
+
 @Component
 public class ProveedorMapper {
-
-    public ProveedorDTO toProveedorDTO(Proveedor proveedor) {
+	
+	public static ProveedorDTO toProveedorDTO(Proveedor proveedor) {
         if (Objects.isNull(proveedor)) {
             return null;
         }
 
         ProveedorDTO proveedorDTO = new ProveedorDTO();
         proveedorDTO.setIdProveedor(proveedor.getIdProveedor());
-        proveedorDTO.setRfc(proveedor.getRfc());
         proveedorDTO.setRazonSocial(proveedor.getRazonSocial());
-        proveedorDTO.setNombreComercial(proveedor.getNombreComercial());
-        proveedorDTO.setPropietario(proveedor.getPropietario());
-        proveedorDTO.setRepresentante(proveedor.getRepresentante());
+        proveedorDTO.setRfc(proveedor.getRfc());
+        proveedorDTO.setTelefono1(proveedor.getTelefono1()); 
+        proveedorDTO.setTelefono2(proveedor.getTelefono2());
         proveedorDTO.setCorreoElectronico(proveedor.getCorreoElectronico());
-        proveedorDTO.getTipoPersonaFiscalDTO().setIdTipoPersonaFiscal(proveedor.getTipoPersonaFiscal().getIdTipoPersonaFiscal());
-        proveedorDTO.getEstatusDTO().setIdEstatus(proveedor.getEstatus().getIdEstatus());
-        proveedorDTO.getEstatusDTO().setDescripcion(proveedor.getEstatus().getDescripcion());
-
+        proveedorDTO.setFechaInicioOperaciones(proveedor.getFechaInicioOperaciones());
+        proveedorDTO.setNumeroProveedor(proveedor.getNumeroProveedor());
+        proveedorDTO.setRepresentanteLegal(proveedor.getRepresentanteLegal());
+        proveedorDTO.setCalle(proveedor.getCalle());
+        proveedorDTO.setNumeroExterior(proveedor.getNumeroExterior());
+        proveedorDTO.setNumeroInterior(proveedor.getNumeroInterior());
+        proveedorDTO.setColonia(proveedor.getColonia());
+        proveedorDTO.setCodigoPostal(proveedor.getCodigoPostal());
+        proveedorDTO.setLocalidad(proveedor.getLocalidad());
+        proveedorDTO.setCiudad(proveedor.getCiudad());
+        proveedorDTO.setFechaInicio(proveedor.getFechaInicio());
+        proveedorDTO.setFechaFin(proveedor.getFechaFin());
+        proveedorDTO.setEstatus(EstatusMapper.toEstatusDTO(proveedor.getEstatus()));
+        proveedorDTO.setActividades(ActividadMapper.toActividadDTOs(proveedor.getActividades()));
+                
         return proveedorDTO;
     }
 
-    public List<ProveedorDTO> toProveedorDTOs(List<Proveedor> proveedors) {
+    public static List<ProveedorDTO> toProveedorDTOs(List<Proveedor> proveedors) {
         if (Objects.isNull(proveedors)) {
             return null;
         }
@@ -50,37 +61,49 @@ public class ProveedorMapper {
         }
 
         Proveedor proveedor = new Proveedor();
-        proveedor.setEstatus(new Estatus());
-        proveedor.setTipoPersonaFiscal(new TipoPersonaFiscal());
-        
+       
         proveedor.setIdProveedor(proveedorDTO.getIdProveedor());
-        proveedor.setRfc(proveedorDTO.getRfc());
         proveedor.setRazonSocial(proveedorDTO.getRazonSocial());
-        proveedor.setNombreComercial(proveedorDTO.getNombreComercial());
-        proveedor.setPropietario(proveedorDTO.getPropietario());
-        proveedor.setRepresentante(proveedorDTO.getRepresentante());
-        proveedor.setTelefono1(proveedorDTO.getTelefono1());
+        proveedor.setRfc(proveedorDTO.getRfc());
+        proveedor.setTelefono1(proveedorDTO.getTelefono1()); 
         proveedor.setTelefono2(proveedorDTO.getTelefono2());
         proveedor.setCorreoElectronico(proveedorDTO.getCorreoElectronico());
-        proveedor.setDomicilio(proveedorDTO.getDomicilio());
-        proveedor.setCodigoPostal(proveedorDTO.getCodigoPostal());   
-        proveedor.getTipoPersonaFiscal().setIdTipoPersonaFiscal(proveedorDTO.getTipoPersonaFiscalDTO().getIdTipoPersonaFiscal());
-        proveedor.getEstatus().setIdEstatus(proveedorDTO.getEstatusDTO().getIdEstatus());
+        proveedor.setFechaInicioOperaciones(proveedorDTO.getFechaInicioOperaciones());
+        proveedor.setNumeroProveedor(proveedorDTO.getNumeroProveedor());
+        proveedor.setRepresentanteLegal(proveedorDTO.getRepresentanteLegal());
+        proveedor.setCalle(proveedorDTO.getCalle());
+        proveedor.setNumeroExterior(proveedorDTO.getNumeroExterior());
+        proveedor.setNumeroInterior(proveedorDTO.getNumeroInterior());
+        proveedor.setColonia(proveedorDTO.getColonia());
+        proveedor.setCodigoPostal(proveedorDTO.getCodigoPostal());
+        proveedor.setLocalidad(proveedorDTO.getLocalidad());
+        proveedor.setCiudad(proveedorDTO.getCiudad());
+        proveedor.setFechaInicio(proveedorDTO.getFechaInicio());
+        proveedor.setFechaFin(proveedorDTO.getFechaFin());
+        proveedor.setEstatus(EstatusMapper.toEstatus(proveedorDTO.getEstatus()));
         
         return proveedor;
     }
 
-    public Proveedor setToUpdate(Proveedor proveedorFound, ProveedorDTO proveedorDTO) {
-        proveedorFound.setRfc(proveedorDTO.getRfc());
-        proveedorFound.setRazonSocial(proveedorDTO.getRazonSocial());
-        proveedorFound.setNombreComercial(proveedorDTO.getNombreComercial());
-        proveedorFound.setPropietario(proveedorDTO.getPropietario());
-        proveedorFound.setRepresentante(proveedorDTO.getRepresentante());
-        proveedorFound.setTelefono1(proveedorDTO.getTelefono1());
-        proveedorFound.setTelefono2(proveedorDTO.getTelefono2());
-        proveedorFound.setCorreoElectronico(proveedorDTO.getCorreoElectronico());
-        proveedorFound.setDomicilio(proveedorDTO.getDomicilio());
-        proveedorFound.setCodigoPostal(proveedorDTO.getCodigoPostal());   
+    public static Proveedor setToUpdate(Proveedor proveedorFound, ProveedorDTO proveedorDTO) {
+    	
+    	proveedorFound.setRazonSocial(proveedorDTO.getRazonSocial());
+    	proveedorFound.setRfc(proveedorDTO.getRfc());
+    	proveedorFound.setTelefono1(proveedorDTO.getTelefono1()); 
+    	proveedorFound.setTelefono2(proveedorDTO.getTelefono2());
+    	proveedorFound.setCorreoElectronico(proveedorDTO.getCorreoElectronico());
+    	proveedorFound.setFechaInicioOperaciones(proveedorDTO.getFechaInicioOperaciones());
+    	proveedorFound.setNumeroProveedor(proveedorDTO.getNumeroProveedor());
+    	proveedorFound.setRepresentanteLegal(proveedorDTO.getRepresentanteLegal());
+    	proveedorFound.setCalle(proveedorDTO.getCalle());
+    	proveedorFound.setNumeroExterior(proveedorDTO.getNumeroExterior());
+    	proveedorFound.setNumeroInterior(proveedorDTO.getNumeroInterior());
+    	proveedorFound.setColonia(proveedorDTO.getColonia());
+    	proveedorFound.setCodigoPostal(proveedorDTO.getCodigoPostal());
+    	proveedorFound.setLocalidad(proveedorDTO.getLocalidad());
+    	proveedorFound.setCiudad(proveedorDTO.getCiudad());
+    	proveedorFound.setFechaInicio(proveedorDTO.getFechaInicio());
+    	proveedorFound.setFechaFin(proveedorDTO.getFechaFin());   
        
         return proveedorFound;
     }

@@ -1,95 +1,78 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
 <head th:fragment="head">
-<meta charset="UTF-8" />
-<title th:text="-SIRSR-"></title>
-<link rel="icon" type="image/png" style="width: 30%"
-	th:href="@{/img/logosep.png}" />
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="https://kit.fontawesome.com/cff6dddb5f.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.es.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css"
-	integrity="sha512-Fppbdpv9QhevzDE+UHmdxL4HoW8HantO+rC8oQB2hCofV+dWV2hePnP5SgiWR1Y1vbJeYONZfzQc5iII6sID2Q=="
-	crossorigin="anonymous" />
-<link rel="stylesheet" th:href="@{/css/dataTables.bootstrap4.min.css}">
-<link rel="stylesheet" th:href="@{/css/estilos.css}">
-<link rel="stylesheet" th:href="@{/css/component-chosen.css}">
-<script th:src="@{/js/chosen.jquery.min.js}"></script>
-<script th:src="@{/js/jquery.dataTables.min.js}"></script>
-<script th:src="@{/js/dataTables.bootstrap4.min.js}"></script>
-<script th:src="@{/js/operaciones.js}"></script>
-<script th:src="@{/js/alerta.js}"></script>
-<script th:src="@{/js/procesos.js}"></script>
+	<meta charset="UTF-8" />
+	<title th:text="-SIRSR-"></title>
+	<link rel="icon" type="image/png" style="width: 30%" th:href="@{/img/logosep.png}" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="https://kit.fontawesome.com/cff6dddb5f.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.es.min.js"></script>
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css" />
+	<link rel="stylesheet" th:href="@{/css/dataTables.bootstrap4.min.css}">
+	<link rel="stylesheet" th:href="@{/css/estilos.css}">
+	<link rel="stylesheet" th:href="@{/css/component-chosen.css}">
+	<script th:src="@{/js/chosen.jquery.min.js}"></script>
+	<script th:src="@{/js/jquery.dataTables.min.js}"></script>
+	<script th:src="@{/js/dataTables.bootstrap4.min.js}"></script>
+	<script th:src="@{/js/operaciones.js}"></script>
+	<script th:src="@{/js/alerta.js}"></script>
+	<script th:src="@{/js/procesos.js}"></script>
 </head>
+
 <body>
 	<header th:fragment="header">
-		<nav class="navbar navbar-expand-lg navbar navbar-light fixed-top"
-			id="fondoBanner">
-			<a th:href="@{/}"> <img th:src="@{/img/logosep.png}" id="logoSep"
-				alt="">
-			</a> <span class="texto-borde">SIRSR</span> <a class="navbar-brand"
-				sec:authorize="isAuthenticated()"></a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation">
+		<nav class="navbar navbar-expand-lg navbar navbar-light fixed-top" id="fondoBanner">
+			<a th:href="@{/}"> <img th:src="@{/img/logosep.png}" id="logoSep" alt="">
+			</a> <span class="texto-borde">SIRSR</span> <a class="navbar-brand" sec:authorize="isAuthenticated()"></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent"
-				sec:authorize="isAuthenticated()">
+			<div class="collapse navbar-collapse" id="navbarSupportedContent" sec:authorize="isAuthenticated()">
 				<ul class="navbar-nav">
 					<div sec:authorize="isAuthenticated()">
-						<a class="navbar-brand" th:href="@{/menu}"> <img
-							class="iconos" th:src="@{/img/icons/home.png}"> </i>
+						<a class="navbar-brand" th:href="@{/menu}"> <img class="iconos" th:src="@{/img/icons/home.png}">
+							</i>
 						</a>
 					</div>
 					<div sec:authorize="hasRole('ROLE_ADMIN')">
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle titulosMenu" href="#"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle titulosMenu" href="#"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<img th:src="@{/img/icons/admin.png}" class="iconos">
 								ADMINISTRACIÓN
-						</a>
+							</a>
 
-							<div class="dropdown-menu"
-								aria-labelledby="navbarDropdownMenuLink">
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 								<a class="dropdown-item" th:href="@{/admin/roles}"> <img
-									th:src="@{/img/icons/roles.png}" class="iconos"> ROLES
+										th:src="@{/img/icons/roles.png}" class="iconos"> ROLES
 								</a> <a class="dropdown-item" th:href="@{/admin/usuarios}"> <img
-									th:src="@{/img/icons/usuarios.png}" class="iconos">
+										th:src="@{/img/icons/usuarios.png}" class="iconos">
 									USUARIOS
 								</a>
-							</div></li>
+							</div>
+						</li>
 					</div>
-					<sec:authorize
-						access="hasAnyRole('USER', 'ADMONADQ', 'DIRECTORUR')">
+					<sec:authorize access="hasAnyRole('USER', 'ADMONADQ', 'DIRECTORUR')">
 
 
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle titulosMenu" href="#"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle titulosMenu" href="#"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<img th:src="@{/img/icons/solicitud.png}" class="iconos">
 								SOLICITUDES
-						</a>
+							</a>
 
-							<div class="dropdown-menu"
-								aria-labelledby="navbarDropdownMenuLink">
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 								<div sec:authorize="hasRole('ROLE_USER')">
 									<a class="dropdown-item" th:href="@{/usuario/solicitudes}">
 										<img th:src="@{/img/icons/solicitud.png}" class="iconos">
@@ -104,70 +87,71 @@
 								</div>
 								<div sec:authorize="hasRole('ROLE_ADMONADQ')">
 									<a class="dropdown-item" th:href="@{/admonadq/solicitudes}">
-										<img th:src="@{/img/icons/solicitudrevision.png}"
-										class="iconos"> VALIDAR SOLICITUDES
+										<img th:src="@{/img/icons/solicitudrevision.png}" class="iconos"> VALIDAR
+										SOLICITUDES
 									</a>
 								</div>
 
-							</div></li>
+							</div>
+						</li>
 
 
 					</sec:authorize>
 
 					<div sec:authorize="hasRole('ROLE_ADMONADQ')">
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle titulosMenu" href="#"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle titulosMenu" href="#"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<img th:src="@{/img/icons/catalogos.png}" class="iconos">
 								CATALOGOS
-						</a>
+							</a>
 
-							<div class="dropdown-menu"
-								aria-labelledby="navbarDropdownMenuLink">
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 								<a class="dropdown-item" th:href="@{/admonadq/proveedores}">
 									<img th:src="@{/img/icons/proveedores.png}" class="iconos">
 									PROVEEDORES
-								</a> <a class="dropdown-item" th:href="@{/admonadq/productos}">
+								</a> <a class="dropdown-item" th:href="@{/admonadq/actividades}"> <img
+										th:src="@{/img/icons/proveedores.png}" class="iconos">
+									ACTIVIDADES
+								</a>
+								<a class="dropdown-item" th:href="@{/admonadq/productos}">
 									<img th:src="@{/img/icons/productos.png}" class="iconos">
 									PRODUCTOS
-								</a> <a class="dropdown-item"
-									th:href="@{/admonadq/productosSugeridos}"> <img
-									th:src="@{/img/icons/productos.png}" class="iconos">
+								</a> <a class="dropdown-item" th:href="@{/admonadq/productosSugeridos}"> <img
+										th:src="@{/img/icons/productos.png}" class="iconos">
 									PRODUCTOS SUGERIDOS
 								</a>
-							</div></li>
+							</div>
+						</li>
 					</div>
 
 					<div sec:authorize="hasRole('ROLE_ADMONADQ')">
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle titulosMenu" href="#"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle titulosMenu" href="#"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<img th:src="@{/img/icons/configuracion.png}" class="iconos">
 								CONFIGURACIÓN
-						</a>
+							</a>
 
-							<div class="dropdown-menu"
-								aria-labelledby="navbarDropdownMenuLink">
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
-								<a class="dropdown-item"
-									th:href="@{/admonadq/foliosrequisiciones}"> <img
-									th:src="@{/img/icons/folios.png}" class="iconos"> FOLIOS
+								<a class="dropdown-item" th:href="@{/admonadq/foliosrequisiciones}"> <img
+										th:src="@{/img/icons/folios.png}" class="iconos"> FOLIOS
 									REQUISICIONES
 								</a> <a class="dropdown-item" th:href="@{/admonadq/diaspermitidos}">
 									<img th:src="@{/img/icons/diaspermitidos.png}" class="iconos">
 									DÍAS PERMITIDOS
 								</a>
-							</div></li>
+							</div>
+						</li>
 					</div>
 
 				</ul>
 
-				<ul class="navbar-nav ml-auto nav-flex-icons">
-					<input id="userNamePerfil" type="hidden" th:value="${#httpServletRequest.userPrincipal.name}" />
+				<ul class="navbar-nav ml-auto">
 					<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">
 							<img th:src="@{/img/icons/userprofile.png}" style="width: 30px;">
-								Bienvenido, [[${#httpServletRequest.userPrincipal.name}]]
+							Bienvenido, [[${#httpServletRequest.userPrincipal.name}]]
 					</a>
 						<div class="dropdown-menu dropdown-menu-right dropdown-default"
 							aria-labelledby="navbarDropdownMenuLink-333">

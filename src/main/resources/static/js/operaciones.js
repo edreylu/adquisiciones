@@ -19,7 +19,7 @@
 
 $(() => {
   //areThereProductsSuggestions();
-  
+  $('[rel="tooltip"]').tooltip();
   $('[data-toggle="tooltip"]').tooltip();
 
     $('.date').datepicker({

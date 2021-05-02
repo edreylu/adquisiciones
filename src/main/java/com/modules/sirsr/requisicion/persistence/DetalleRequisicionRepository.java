@@ -13,6 +13,6 @@ import java.util.List;
  *
  * @author Edward Reyes
  */
-public interface DetalleRequisicionRepository extends JpaRepository<DetalleRequisicion, Integer>{
-    List<DetalleRequisicion> findByIdRequisicion(Integer idRequisicion);
+public interface DetalleRequisicionRepository extends JpaRepository<DetalleRequisicion, Integer> {
+	List<DetalleRequisicion> findByIdRequisicion(Integer idRequisicion);
 }

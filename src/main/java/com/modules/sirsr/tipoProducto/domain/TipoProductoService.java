@@ -22,41 +22,42 @@ import java.util.Optional;
 @Service
 public class TipoProductoService {
 
-    private final TipoProductoRepository tipoProductoRepository;
-    private final TipoProductoMapper tipoProductoMapper;
-    private Mensaje msg;
+	private final TipoProductoRepository tipoProductoRepository;
+	private final TipoProductoMapper tipoProductoMapper;
+	private Mensaje msg;
 
-    @Autowired
-    public TipoProductoService(TipoProductoRepository tipoProductoRepository, TipoProductoMapper tipoProductoMapper) {
-        this.tipoProductoRepository = tipoProductoRepository;
-        this.tipoProductoMapper = tipoProductoMapper;
-    }
+	@Autowired
+	public TipoProductoService(TipoProductoRepository tipoProductoRepository, TipoProductoMapper tipoProductoMapper) {
+		this.tipoProductoRepository = tipoProductoRepository;
+		this.tipoProductoMapper = tipoProductoMapper;
+	}
 
-    public List<TipoProductoDTO> findAll() {
-        return tipoProductoMapper.toTipoProductoDTOs(tipoProductoRepository.findAll());
-    }
-    public List<TipoProductoDTO> findByObjetoGastoStr(String objetoGasto) {
-        List<TipoProducto> tiposProducto = tipoProductoRepository.findByObjetoGastoStr(objetoGasto);
-        List<TipoProductoDTO> tiposProductoDTO = tipoProductoMapper.toTipoProductoDTOs(tiposProducto);
-        return tiposProductoDTO;
-    }
+	public List<TipoProductoDTO> findAll() {
+		return tipoProductoMapper.toTipoProductoDTOs(tipoProductoRepository.findAll());
+	}
 
-    public TipoProductoDTO findById(int id) {
-        Optional<TipoProducto> tipoProductoOptional = tipoProductoRepository.findById(id);
-        TipoProductoDTO tipoProductoDTO = tipoProductoMapper.toTipoProductoDTO(tipoProductoOptional.get());
-        return tipoProductoDTO;
-    }
+	public List<TipoProductoDTO> findByObjetoGastoStr(String objetoGasto) {
+		List<TipoProducto> tiposProducto = tipoProductoRepository.findByObjetoGastoStr(objetoGasto);
+		List<TipoProductoDTO> tiposProductoDTO = tipoProductoMapper.toTipoProductoDTOs(tiposProducto);
+		return tiposProductoDTO;
+	}
 
-    public Mensaje save(TipoProductoDTO tipoProductoDTO) {
-        return msg;
-    }
+	public TipoProductoDTO findById(int id) {
+		Optional<TipoProducto> tipoProductoOptional = tipoProductoRepository.findById(id);
+		TipoProductoDTO tipoProductoDTO = tipoProductoMapper.toTipoProductoDTO(tipoProductoOptional.get());
+		return tipoProductoDTO;
+	}
 
-    public Mensaje update(TipoProductoDTO tipoProductoDTO, int id) {
-        return msg;
-    }
+	public Mensaje save(TipoProductoDTO tipoProductoDTO) {
+		return msg;
+	}
 
-    public Mensaje deleteById(int id) {
-        return msg;
-    }
+	public Mensaje update(TipoProductoDTO tipoProductoDTO, int id) {
+		return msg;
+	}
+
+	public Mensaje deleteById(int id) {
+		return msg;
+	}
 
 }

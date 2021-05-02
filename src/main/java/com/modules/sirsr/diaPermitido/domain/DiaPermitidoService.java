@@ -13,6 +13,8 @@ import java.util.Optional;
 import com.modules.sirsr.diaPermitido.persistence.DiaPermitidoMapper;
 import com.modules.sirsr.estatus.persistence.Estatus;
 import com.modules.sirsr.estatus.persistence.EstatusRepository;
+import com.modules.sirsr.config.util.Fecha;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -111,9 +113,9 @@ public class DiaPermitidoService {
 
 	}
 
-	public List<Date> getDatesBetween(DiaPermitidoDTO diaPermitidoDTO) { 
-		LocalDate inicio = diaPermitidoDTO.convertToLocalDateViaMilisecond(diaPermitidoDTO.getDiaPermitidoInicio());
-		LocalDate fin = diaPermitidoDTO.convertToLocalDateViaMilisecond(diaPermitidoDTO.getDiaPermitidoFin());
+	public List<Date> getDatesBetween(DiaPermitidoDTO diaPermitidoDTO) {
+		LocalDate inicio = Fecha.convertToLocalDateViaMilisecond(diaPermitidoDTO.getDiaPermitidoInicio());
+		LocalDate fin = Fecha.convertToLocalDateViaMilisecond(diaPermitidoDTO.getDiaPermitidoFin());
 
 		long noDias = ChronoUnit.DAYS.between(inicio, fin);
 		List<Date> listaFechas = new ArrayList<Date>();

@@ -24,40 +24,40 @@ import javax.persistence.Table;
 @Table(name = "TIPO_PERSONA_FISCAL")
 public class TipoPersonaFiscal {
 
-    @Id
-    @GeneratedValue
-    @Basic(optional = false)
-    @Column(name = "ID_TIPO_PERSONA_FISCAL")
-    private Integer idTipoPersonaFiscal;
-    
-    @Basic(optional = false)
-    @Column(name = "DESCRIPCION")
-    private String descripcion;
-    
-    @Basic(optional = false)
-    @Column(name = "ID_ESTATUS")
-    private Integer idEstatus;
-    
-    @OneToMany(mappedBy = "tipoPersonaFiscal")
-    private List<Proveedor> proveedores;
+	@Id
+	@GeneratedValue
+	@Basic(optional = false)
+	@Column(name = "ID_TIPO_PERSONA_FISCAL")
+	private Integer idTipoPersonaFiscal;
 
-    public Integer getIdTipoPersonaFiscal() {
-        return idTipoPersonaFiscal;
-    }
+	@Basic(optional = false)
+	@Column(name = "DESCRIPCION")
+	private String descripcion;
 
-    public void setIdTipoPersonaFiscal(Integer idTipoPersonaFiscal) {
-        this.idTipoPersonaFiscal = idTipoPersonaFiscal;
-    }
+	@Basic(optional = false)
+	@Column(name = "ID_ESTATUS")
+	private Integer idEstatus;
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+	@OneToMany(mappedBy = "tipoPersonaFiscal")
+	private List<Proveedor> proveedores;
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-    
-    public Integer getIdEstatus() {
+	public Integer getIdTipoPersonaFiscal() {
+		return idTipoPersonaFiscal;
+	}
+
+	public void setIdTipoPersonaFiscal(Integer idTipoPersonaFiscal) {
+		this.idTipoPersonaFiscal = idTipoPersonaFiscal;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public Integer getIdEstatus() {
 		return idEstatus;
 	}
 
@@ -66,12 +66,11 @@ public class TipoPersonaFiscal {
 	}
 
 	public List<Proveedor> getProveedores() {
-        return proveedores;
-    }
+		return proveedores;
+	}
 
-    public void setProveedores(List<Proveedor> proveedores) {
-        this.proveedores = proveedores;
-    }
+	public void setProveedores(List<Proveedor> proveedores) {
+		this.proveedores = proveedores;
+	}
 
-    
 }

@@ -12,102 +12,197 @@ and open the template in the editor.
 </head>
 <body>
 	<header th:replace="layout :: header"></header>
-	<div class="container mt-2 col-lg-4">
+	<div class="container mt-2 col-md-8">
 		<div class="card sombra bordeCard">
 			<div class="card-header text-center">
 				<lable class="tituloPrincipal">Agregar proveedor</lable>
 			</div>
-			<div class="card-body">
-
+			<div class="card-body mt-4">
 				<form class="needs-validation" novalidate method="post" action="#"
 					th:action="@{/admonadq/proveedores/add}" th:object="${proveedor}">
+					<div class="form-row">
+						<div class="form-group col-md-8">
+							<label for="inputRazon">NOMBRE O RAZÓN SOCIAL</label> <input
+								id="inputRazon" type="text" name="razonSocial"
+								class="form-control" maxlength="150" required />
+							<div class="invalid-feedback">Razón Social es requerido</div>
+						</div>
+						<div class="form-group col-md-4">
+							<label for="inputRFC">RFC</label> <input type="text"
+								class="form-control" id="inputRFC" maxlength="13" name="rfc"
+								required>
+							<div class="invalid-feedback">RFC es requerido</div>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="inputNumero">NÚMERO DE PROVEEDOR</label> <input
+								id="inputNumero" type="text" name="numeroProveedor"
+								class="form-control" maxlength="7" required />
+							<div class="invalid-feedback">Número de proveedor es
+								requerido</div>
+						</div>
+						<div class="form-group col-md-3">
+							<label for="inputFechaIniOpera">FECHA INICIO OPERACIONES</label>
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<div class="input-group-text">
+										<i class="far fa-calendar-alt"></i>
+									</div>
+								</div>
+								<input id="inputFechaIniOpera" type="date"
+									name="fechaInicioOperaciones"
+									class="form-control inputLowercase" required />
+								<div class="invalid-feedback">Fecha inicio operaciones es
+									requerido</div>
+							</div>
 
-					<div class="row">
-						<div class="col">
-							<label class="tituloTexto">TIPO DE PERSONA</label> <select
-								name="idTipoPersonaFiscal"
-								th:field="*{tipoPersonaFiscalDTO.idTipoPersonaFiscal}"
+
+						</div>
+						<div class="form-group col-md-3">
+							<label for="slcTipoPersona">TIPO DE PERSONA</label> <select
+								id="slcTipoPersona" name="idTipoPersonaFiscal"
+								th:field="*{tipoPersonaFiscal.idTipoPersonaFiscal}"
 								class="form-control">
+								<option th:value="${null}" th:text="--selecciona--" />
 								<option th:value="1" th:text="FISICA"></option>
 								<option th:value="2" th:text="MORAL"></option>
 							</select>
 							<div class="invalid-feedback">TIPO DE PERSONA ES REQUERIDO</div>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-3">
+							<label for="inputFechaInicio">FECHA INICIO</label>
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<div class="input-group-text">
+										<i class="far fa-calendar-alt"></i>
+									</div>
+								</div>
+								<input id="inputFechaInicio" type="date" name="fechaInicio"
+									class="form-control inputLowercase" required />
+								<div class="invalid-feedback">Fecha inicio es requerido</div>
+							</div>
+
+						</div>
+						<div class="form-group col-md-3">
+							<label for="inputFechaFin">FECHA FIN</label>
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<div class="input-group-text">
+										<i class="far fa-calendar-alt"></i>
+									</div>
+								</div>
+								<input id="inputFechaFin" type="date" name="fechaFin"
+									class="form-control inputLowercase" required />
+									<div class="invalid-feedback">Fecha fin es requerido</div>
+							</div>
+							
+						</div>
+
+					</div>
+					<div class="card mt-4">
+						<div class="card-header">DATOS DE CONTACTO</div>
+						<div class="card-body">
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="inputRepresentante">REPRESENTANTE LEGAL</label> <input
+										id="inputRepresentante" type="text" name="representanteLegal"
+										class="form-control" maxlength="100" required />
+									<div class="invalid-feedback">Fecha inicio es requerido</div>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="inputCorreo">CORREO ELECTRÓNICO</label>
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text">@</div>
+										</div>
+										<input id="inputCorreo" type="email" maxlength="75"
+											name="correoElectronico" class="form-control inputLowercase"
+											required />
+										<div class="invalid-feedback">Correo no válido</div>
+									</div>
+
+									
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="inputTel1">TELÉFONO 1 </label> <input
+										id="inputTel1" type="text" name="telefono1" maxlength="10"
+										class="form-control inputLowercase" placeholder="10 dígitos"
+										required />
+									<div class="invalid-feedback">Fecha inicio es requerido</div>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="inputTel2">TELÉFONO 2 </label> <input
+										id="inputTel2" type="text" name="telefono2" maxlength="10"
+										class="form-control inputLowercase" placeholder="10 dígitos"
+										required />
+									<div class="invalid-feedback">Fecha inicio operaciones</div>
+								</div>
+							</div>
 
 						</div>
 					</div>
-					<div class="row">
-						<div class="col">
-							<label class="tituloTexto">RFC</label> <input type="text"
-								name="rfc" class="form-control" required />
-							<div class="invalid-feedback">RFC es requerido</div>
+					<div class="card mt-4">
+						<div class="card-header">DOMICILIO</div>
+						<div class="card-body">
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="inputCalle">CALLE</label> <input id="inputCalle"
+										type="text" name="calle" class="form-control" maxlength="80"
+										required />
+									<div class="invalid-feedback">Calle es requerido</div>
+								</div>
+								<div class="form-group col-md-3">
+									<label for="inputNumExt">NÚMERO EXTERIOR</label> <input
+										id="inputNumExt" type="text" maxlength="30"
+										name="numeroExterior" class="form-control" required />
+									<div class="invalid-feedback">Número exterior es
+										requerido</div>
+								</div>
+								<div class="form-group col-md-3">
+									<label for="inputCorreo">NÚMERO INTERIOR</label> <input
+										id="inputCorreo" type="text" name="numeroInterior"
+										class="form-control" maxlength="50"/>
+									<div class="invalid-feedback">Número interior es
+										requerido</div>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="inputColonia">COLONIA</label> <input
+										id="inputColonia" type="text" name="colonia"
+										class="form-control" maxlength="70" required />
+									<div class="invalid-feedback">Colonia es requerido</div>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="inputCP">CÓDIGO POSTAL</label> <input id="inputCP"
+										type="text" name="codigoPostal" class="form-control"
+										maxlength="5" required />
+									<div class="invalid-feedback">Código postal es requerido</div>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="inputLocalidad">LOCALIDAD</label> <input
+										id="inputLocalidad" type="text" name="localidad"
+										class="form-control" maxlength="40" />
+									<div class="invalid-feedback">Localidad es requerido</div>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="inputCiudad">CIUDAD</label> <input id="inputCiudad"
+										type="text" name="ciudad" class="form-control" maxlength="35"
+										required />
+									<div class="invalid-feedback">Ciudad es requerido</div>
+								</div>
+							</div>
 						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							<label class="tituloTexto">RAZÓN SOCIAL</label> <input
-								type="text" name="razonSocial" class="form-control" required />
-							<div class="invalid-feedback">Razon Social es requerido</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							<label class="tituloTexto">NOMBRE COMERCIAL</label> <input
-								type="text" name="nombreComercial" class="form-control" />
-							<div class="invalid-feedback">NOMBRE COMERCIAL es requerido</div>
 
-						</div>
 					</div>
-					<div class="row">
-						<div class="col">
-							<label class="tituloTexto">PROPIETARIO</label> <input type="text"
-								name="propietario" class="form-control" />
-							<div class="invalid-feedback">PROPIETARIO es requerido</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							<label class="tituloTexto">REPRESENTANTE</label> <input
-								type="text" name="representante" class="form-control" />
-							<div class="invalid-feedback">REPRESENTANTE es requerido</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							<label class="tituloTexto">TELÉFONO 1</label> <input type="text"
-								name="telefono1" class="form-control" />
-							<div class="invalid-feedback">TELÉFONO 1 es requerido</div>
 
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							<label class="tituloTexto">TELÉFONO 2</label> <input type="text"
-								name="telefono2" class="form-control" />
-							<div class="invalid-feedback">TELEFONO 2 es requerido</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							<label class="tituloTexto">CORREO ELECTRÓNICO</label> <input
-								type="text" name="correoElectronico" class="form-control" />
-							<div class="invalid-feedback">CORREO ELECTRÓNICO es
-								requerido</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							<label class="tituloTexto">DOMICILIO</label> <input type="text"
-								name="domicilio" class="form-control" />
-							<div class="invalid-feedback">DOMICILIO es requerido</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							<label class="tituloTexto">CÓDIGO POSTAL</label> <input
-								type="text" name="codigoPostal" class="form-control" />
-							<div class="invalid-feedback">CÓDIGO POSTAL es requerido</div>
-						</div>
-					</div>
 					<br />
 					<div class="valid-feedback">Todo bien.</div>
 					<div class="invalid-feedback"></div>
@@ -122,7 +217,10 @@ and open the template in the editor.
 					</div>
 
 				</form>
+
 			</div>
+
+
 		</div>
 	</div>
 

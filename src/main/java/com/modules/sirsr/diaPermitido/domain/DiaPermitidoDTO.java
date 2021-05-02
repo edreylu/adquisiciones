@@ -10,7 +10,6 @@ import java.time.format.TextStyle;
 import java.util.Date;
 import java.util.Locale;
 
-
 public class DiaPermitidoDTO {
 
 	private Date diaPermitido;
@@ -85,26 +84,6 @@ public class DiaPermitidoDTO {
 
 	public void setDiaPermitidoFin(Date diaPermitidoFin) {
 		this.diaPermitidoFin = diaPermitidoFin;
-	}
-
-	// lo ocupamos para obtener el mes de una fecha en texto
-	public String obtenerTextoMes(Date date) {
-		Month month = convertToLocalDateViaMilisecond(date).getMonth();
-		return month.getDisplayName(TextStyle.FULL, new Locale("es", "ES"));
-	}
-
-	public int obtenerDia(Date date) {
-		int dia = convertToLocalDateViaMilisecond(date).getDayOfMonth();
-		return dia;
-	}
-
-	public int obtenerMes(Date date) {
-		int idMes = convertToLocalDateViaMilisecond(date).getMonthValue();
-		return idMes;
-	}
-
-	public LocalDate convertToLocalDateViaMilisecond(Date dateToConvert) {
-		return Instant.ofEpochMilli(dateToConvert.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
 	}
 
 }

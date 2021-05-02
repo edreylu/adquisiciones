@@ -44,7 +44,6 @@ public class SolicitudAdmonAdqController {
 	private List<RequisicionDTO> requisiciones;
 	private List<DetalleRequisicionDTO> detallesRequisicion;
 	private List<DocumentoDTO> documentos;
-	private final Mensaje msg = new Mensaje();
 
 	@Autowired
 	public SolicitudAdmonAdqController(SolicitudService solicitudService, RequisicionService requisicionService,
@@ -84,8 +83,8 @@ public class SolicitudAdmonAdqController {
 	}
 
 	@PostMapping("/solicitudes/aceptar/{id}")
-	public String validar(@PathVariable("id") int id, Model model, RedirectAttributes redirectAttrs) {
-		msg.crearMensaje(solicitudService.aceptarById(id), redirectAttrs);
+	public String aceptar(@PathVariable("id") int id, Model model, RedirectAttributes redirectAttrs) {
+		Mensaje.addMensaje(solicitudService.acceptById(id), redirectAttrs);
 		return "redirect:/admonadq/solicitudes";
 	}
 
@@ -101,7 +100,7 @@ public class SolicitudAdmonAdqController {
 	@PostMapping("/solicitudes/correccion/add/{id}")
 	public String correccion(@PathVariable("id") int id, RevisionDTO revisionDTO, Model model,
 			RedirectAttributes redirectAttrs) {
-		msg.crearMensaje(solicitudService.correction(revisionDTO, id), redirectAttrs);
+		Mensaje.addMensaje(solicitudService.correction(revisionDTO, id), redirectAttrs);
 		return "redirect:/admonadq/solicitudes";
 	}
 

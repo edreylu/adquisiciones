@@ -7,6 +7,7 @@ package com.modules.sirsr.solicitud.persistence;
 
 import com.modules.sirsr.documento.persistence.Documento;
 import com.modules.sirsr.estatus.persistence.Estatus;
+import com.modules.sirsr.requisicion.persistence.Requisicion;
 import com.modules.sirsr.unidadResponsable.persistence.UnidadResponsable;
 import com.modules.sirsr.prioridad.persistence.Prioridad;
 
@@ -22,178 +23,203 @@ import javax.persistence.*;
 @Table(name = "SOLICITUD")
 public class Solicitud {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "solicitud_generator")
-    @SequenceGenerator(name = "solicitud_generator", sequenceName = "SEQ_SOLICITUD", allocationSize = 1)
-    @Basic(optional = false)
-    @Column(name = "ID_SOLICITUD")
-    private Integer idSolicitud;
-    @Basic(optional = false)
-    @Column(name = "FECHA_CREACION")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaCreacion;
-    @Basic(optional = false)
-    @Column(name = "ANIO_CALENDARIZACION")
-    private Integer anioCalendarizacion;
-    @Basic(optional = false)
-    @Column(name = "MES_CALENDARIZACION")
-    private Integer mesCalendarizacion;
-    @Column(name = "ACTIVIDAD_O_USO")
-    private String actividadOUso;
-    @Column(name = "FECHA_EMISION")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaEmision;
-    @Column(name = "FIRMA_DIRECTOR")
-    private String firmaDirector;
-    @Column(name = "FOLIO")
-    private String folio;
-    @Column(name = "FECHA_RECEPCION")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaRecepcion;
-    @Column(name = "FECHA_AUTORIZACION")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaAutorizacion;
-    @Column(name = "CLAVE_UR", updatable = false, insertable = false)
-    private String claveUr;
-    @Column(name = "ID_ESTATUS", updatable = false, insertable = false)
-    private Integer idEstatus;
-    @JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
-    @ManyToOne(optional = false)
-    private Estatus estatus;
-    @JoinColumn(name = "ID_PRIORIDAD", referencedColumnName = "ID_PRIORIDAD")
-    @ManyToOne(optional = false)
-    private Prioridad prioridad;
-    @JoinColumn(name = "CLAVE_UR", referencedColumnName = "CLAVE_UR")
-    @ManyToOne(optional = false)
-    private UnidadResponsable unidadResponsable;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "solicitud")
-    private List<Documento> documentos;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "solicitud_generator")
+	@SequenceGenerator(name = "solicitud_generator", sequenceName = "SEQ_SOLICITUD", allocationSize = 1)
+	@Basic(optional = false)
+	@Column(name = "ID_SOLICITUD")
+	private Integer idSolicitud;
+	@Basic(optional = false)
+	@Column(name = "FECHA_CREACION")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechaCreacion;
+	@Basic(optional = false)
+	@Column(name = "ANIO_CALENDARIZACION")
+	private Integer anioCalendarizacion;
+	@Basic(optional = false)
+	@Column(name = "MES_CALENDARIZACION")
+	private Integer mesCalendarizacion;
+	@Column(name = "ACTIVIDAD_O_USO")
+	private String actividadOUso;
+	@Column(name = "FECHA_EMISION")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechaEmision;
+	@Column(name = "FIRMA_DIRECTOR")
+	private String firmaDirector;
+	@Column(name = "FOLIO")
+	private String folio;
+	@Column(name = "FECHA_RECEPCION")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechaRecepcion;
+	@Column(name = "FECHA_AUTORIZACION")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechaAutorizacion;
+	@Column(name = "CLAVE_UR", updatable = false, insertable = false)
+	private String claveUr;
+	@Column(name = "ID_ESTATUS", updatable = false, insertable = false)
+	private Integer idEstatus;
+	@JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
+	@ManyToOne(optional = false)
+	private Estatus estatus;
+	@JoinColumn(name = "ID_PRIORIDAD", referencedColumnName = "ID_PRIORIDAD")
+	@ManyToOne(optional = false)
+	private Prioridad prioridad;
+	@JoinColumn(name = "CLAVE_UR", referencedColumnName = "CLAVE_UR")
+	@ManyToOne(optional = false)
+	private UnidadResponsable unidadResponsable;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "solicitud")
+	private List<Documento> documentos;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "solicitud")
+	private List<Requisicion> requisiciones;
 
-    public Integer getIdSolicitud() {
-        return idSolicitud;
-    }
+	public Solicitud() {
+		
+	}
+    
+	public Solicitud(Date fechaCreacion, Integer anioCalendarizacion, Integer mesCalendarizacion, String actividadOUso,
+			Estatus estatus, Prioridad prioridad, UnidadResponsable unidadResponsable) {
+		this.fechaCreacion = fechaCreacion;
+		this.anioCalendarizacion = anioCalendarizacion;
+		this.mesCalendarizacion = mesCalendarizacion;
+		this.actividadOUso = actividadOUso;
+		this.estatus = estatus;
+		this.prioridad = prioridad;
+		this.unidadResponsable = unidadResponsable;
+	}
 
-    public void setIdSolicitud(Integer idSolicitud) {
-        this.idSolicitud = idSolicitud;
-    }
+	public Integer getIdSolicitud() {
+		return idSolicitud;
+	}
 
-    public Date getFechaCreacion() {
-        return fechaCreacion;
-    }
+	public void setIdSolicitud(Integer idSolicitud) {
+		this.idSolicitud = idSolicitud;
+	}
 
-    public void setFechaCreacion(Date fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
-    }
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
 
-    public Integer getAnioCalendarizacion() {
-        return anioCalendarizacion;
-    }
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
 
-    public void setAnioCalendarizacion(Integer anioCalendarizacion) {
-        this.anioCalendarizacion = anioCalendarizacion;
-    }
+	public Integer getAnioCalendarizacion() {
+		return anioCalendarizacion;
+	}
 
-    public Integer getMesCalendarizacion() {
-        return mesCalendarizacion;
-    }
+	public void setAnioCalendarizacion(Integer anioCalendarizacion) {
+		this.anioCalendarizacion = anioCalendarizacion;
+	}
 
-    public void setMesCalendarizacion(Integer mesCalendarizacion) {
-        this.mesCalendarizacion = mesCalendarizacion;
-    }
+	public Integer getMesCalendarizacion() {
+		return mesCalendarizacion;
+	}
 
-    public String getActividadOUso() {
-        return actividadOUso;
-    }
+	public void setMesCalendarizacion(Integer mesCalendarizacion) {
+		this.mesCalendarizacion = mesCalendarizacion;
+	}
 
-    public void setActividadOUso(String actividadOUso) {
-        this.actividadOUso = actividadOUso;
-    }
+	public String getActividadOUso() {
+		return actividadOUso;
+	}
 
-    public Date getFechaEmision() {
-        return fechaEmision;
-    }
+	public void setActividadOUso(String actividadOUso) {
+		this.actividadOUso = actividadOUso;
+	}
 
-    public void setFechaEmision(Date fechaEmision) {
-        this.fechaEmision = fechaEmision;
-    }
+	public Date getFechaEmision() {
+		return fechaEmision;
+	}
 
-    public String getFirmaDirector() {
-        return firmaDirector;
-    }
+	public void setFechaEmision(Date fechaEmision) {
+		this.fechaEmision = fechaEmision;
+	}
 
-    public void setFirmaDirector(String firmaDirector) {
-        this.firmaDirector = firmaDirector;
-    }
+	public String getFirmaDirector() {
+		return firmaDirector;
+	}
 
-    public String getFolio() {
-        return folio;
-    }
+	public void setFirmaDirector(String firmaDirector) {
+		this.firmaDirector = firmaDirector;
+	}
 
-    public void setFolio(String folio) {
-        this.folio = folio;
-    }
+	public String getFolio() {
+		return folio;
+	}
 
-    public Date getFechaRecepcion() {
-        return fechaRecepcion;
-    }
+	public void setFolio(String folio) {
+		this.folio = folio;
+	}
 
-    public void setFechaRecepcion(Date fechaRecepcion) {
-        this.fechaRecepcion = fechaRecepcion;
-    }
+	public Date getFechaRecepcion() {
+		return fechaRecepcion;
+	}
 
-    public Date getFechaAutorizacion() {
-        return fechaAutorizacion;
-    }
+	public void setFechaRecepcion(Date fechaRecepcion) {
+		this.fechaRecepcion = fechaRecepcion;
+	}
 
-    public void setFechaAutorizacion(Date fechaAutorizacion) {
-        this.fechaAutorizacion = fechaAutorizacion;
-    }
+	public Date getFechaAutorizacion() {
+		return fechaAutorizacion;
+	}
 
-    public String getClaveUr() {
-        return claveUr;
-    }
+	public void setFechaAutorizacion(Date fechaAutorizacion) {
+		this.fechaAutorizacion = fechaAutorizacion;
+	}
 
-    public void setClaveUr(String claveUr) {
-        this.claveUr = claveUr;
-    }
+	public String getClaveUr() {
+		return claveUr;
+	}
 
-    public Estatus getEstatus() {
-        return estatus;
-    }
+	public void setClaveUr(String claveUr) {
+		this.claveUr = claveUr;
+	}
 
-    public void setEstatus(Estatus estatus) {
-        this.estatus = estatus;
-    }
+	public Estatus getEstatus() {
+		return estatus;
+	}
 
-    public Prioridad getPrioridad() {
-        return prioridad;
-    }
+	public void setEstatus(Estatus estatus) {
+		this.estatus = estatus;
+	}
 
-    public void setPrioridad(Prioridad prioridad) {
-        this.prioridad = prioridad;
-    }
+	public Prioridad getPrioridad() {
+		return prioridad;
+	}
 
-    public UnidadResponsable getUnidadResponsable() {
-        return unidadResponsable;
-    }
+	public void setPrioridad(Prioridad prioridad) {
+		this.prioridad = prioridad;
+	}
 
-    public void setUnidadResponsable(UnidadResponsable unidadResponsable) {
-        this.unidadResponsable = unidadResponsable;
-    }
+	public UnidadResponsable getUnidadResponsable() {
+		return unidadResponsable;
+	}
 
-    public List<Documento> getDocumentos() {
-        return documentos;
-    }
+	public void setUnidadResponsable(UnidadResponsable unidadResponsable) {
+		this.unidadResponsable = unidadResponsable;
+	}
 
-    public void setDocumentos(List<Documento> documentos) {
-        this.documentos = documentos;
-    }
+	public List<Documento> getDocumentos() {
+		return documentos;
+	}
 
-    public Integer getIdEstatus() {
-        return idEstatus;
-    }
+	public void setDocumentos(List<Documento> documentos) {
+		this.documentos = documentos;
+	}
 
-    public void setIdEstatus(Integer idEstatus) {
-        this.idEstatus = idEstatus;
-    }
+	public List<Requisicion> getRequisiciones() {
+		return requisiciones;
+	}
+
+	public void setRequisiciones(List<Requisicion> requisiciones) {
+		this.requisiciones = requisiciones;
+	}
+
+	public Integer getIdEstatus() {
+		return idEstatus;
+	}
+
+	public void setIdEstatus(Integer idEstatus) {
+		this.idEstatus = idEstatus;
+	}
 }

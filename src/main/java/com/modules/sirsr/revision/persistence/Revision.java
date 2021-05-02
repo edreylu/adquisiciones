@@ -23,46 +23,46 @@ import javax.persistence.Table;
 @Table(name = "REVISION")
 public class Revision {
 
-    @EmbeddedId
-    protected RevisionPK revisionPK;
-    @Basic(optional = false)
-    @Column(name = "OBSERVACION")
-    private String observacion;
-    @Column(name = "ID_SOLICITUD", insertable = false, updatable = false)
-    private Integer idSolicitud;
-    @JoinColumn(name = "ID_SOLICITUD", referencedColumnName = "ID_SOLICITUD", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Solicitud solicitud;
+	@EmbeddedId
+	protected RevisionPK revisionPK;
+	@Basic(optional = false)
+	@Column(name = "OBSERVACION")
+	private String observacion;
+	@Column(name = "ID_SOLICITUD", insertable = false, updatable = false)
+	private Integer idSolicitud;
+	@JoinColumn(name = "ID_SOLICITUD", referencedColumnName = "ID_SOLICITUD", insertable = false, updatable = false)
+	@ManyToOne(optional = false)
+	private Solicitud solicitud;
 
-    public RevisionPK getRevisionPK() {
-        return revisionPK;
-    }
+	public RevisionPK getRevisionPK() {
+		return revisionPK;
+	}
 
-    public void setRevisionPK(RevisionPK revisionPK) {
-        this.revisionPK = revisionPK;
-    }
+	public void setRevisionPK(RevisionPK revisionPK) {
+		this.revisionPK = revisionPK;
+	}
 
-    public String getObservacion() {
-        return observacion;
-    }
+	public String getObservacion() {
+		return observacion;
+	}
 
-    public void setObservacion(String observacion) {
-        this.observacion = observacion;
-    }
+	public void setObservacion(String observacion) {
+		this.observacion = observacion;
+	}
 
-    public Solicitud getSolicitud() {
-        return solicitud;
-    }
+	public Solicitud getSolicitud() {
+		return solicitud;
+	}
 
-    public void setSolicitud(Solicitud solicitud) {
-        this.solicitud = solicitud;
-    }
+	public void setSolicitud(Solicitud solicitud) {
+		this.solicitud = solicitud;
+	}
 
-    public Integer getIdSolicitud() {
-        return idSolicitud;
-    }
+	public Integer getIdSolicitud() {
+		return idSolicitud;
+	}
 
-    public void setIdSolicitud(Integer idSolicitud) {
-        this.idSolicitud = idSolicitud;
-    }
+	public void setIdSolicitud(Integer idSolicitud) {
+		this.idSolicitud = idSolicitud;
+	}
 }

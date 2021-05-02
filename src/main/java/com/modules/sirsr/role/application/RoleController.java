@@ -25,55 +25,54 @@ import java.util.Objects;
 @Controller
 public class RoleController {
 
-    private final RoleService roleService;
-    private List<RoleDTO> roles;
-    private final Mensaje msg = new Mensaje();
+	private final RoleService roleService;
+	private List<RoleDTO> roles;
+	private final Mensaje msg = new Mensaje();
 
-    public RoleController(RoleService roleService) {
-        this.roleService = roleService;
-    }
+	public RoleController(RoleService roleService) {
+		this.roleService = roleService;
+	}
 
-    @GetMapping("admin/roles")
-    public String listar(Model model) {
-        roles = roleService.findAll();
-        model.addAttribute("lista", roles);
-        return "admin/roles/principal";
-    }
+	@GetMapping("admin/roles")
+	public String listar(Model model) {
+		roles = roleService.findAll();
+		model.addAttribute("lista", roles);
+		return "admin/roles/principal";
+	}
 
-    @GetMapping("admin/roles/agregar")
-    public String agregar(Model model) {
-        model.addAttribute("role", new RoleDTO());
-        return "admin/roles/agregar";
-    }
+	@GetMapping("admin/roles/agregar")
+	public String agregar(Model model) {
+		model.addAttribute("role", new RoleDTO());
+		return "admin/roles/agregar";
+	}
 
-    @PostMapping("admin/roles/add")
-    public String agregar(RoleDTO roleDTO, RedirectAttributes redirectAttrs) {
-        msg.crearMensaje(roleService.save(roleDTO), redirectAttrs);
-        return "redirect:/admin/roles";
-    }
+	@PostMapping("admin/roles/add")
+	public String agregar(RoleDTO roleDTO, RedirectAttributes redirectAttrs) {
+		msg.crearMensaje(roleService.save(roleDTO), redirectAttrs);
+		return "redirect:/admin/roles";
+	}
 
-    @GetMapping("admin/roles/editar/{id}")
-    public String editar(@PathVariable("id") int id, Model model) {
-        RoleDTO roleDTO = roleService.findById(id);
-        String validUrl = "redirect:/admin/roles";
-        if(Objects.nonNull(roleDTO)){
-            model.addAttribute("role", roleDTO);
-            validUrl = "admin/roles/editar";
-        }
-        return validUrl;
-    }
+	@GetMapping("admin/roles/editar/{id}")
+	public String editar(@PathVariable("id") int id, Model model) {
+		RoleDTO roleDTO = roleService.findById(id);
+		String validUrl = "redirect:/admin/roles";
+		if (Objects.nonNull(roleDTO)) {
+			model.addAttribute("role", roleDTO);
+			validUrl = "admin/roles/editar";
+		}
+		return validUrl;
+	}
 
-    @PostMapping("admin/roles/update/{id}")
-    public String editar(@PathVariable("id") int id, RoleDTO roleDTO, RedirectAttributes redirectAttrs) {
-        msg.crearMensaje(roleService.update(roleDTO, id), redirectAttrs);
-        return "redirect:/admin/roles";
-    }
+	@PostMapping("admin/roles/update/{id}")
+	public String editar(@PathVariable("id") int id, RoleDTO roleDTO, RedirectAttributes redirectAttrs) {
+		msg.crearMensaje(roleService.update(roleDTO, id), redirectAttrs);
+		return "redirect:/admin/roles";
+	}
 
-    @GetMapping("admin/roles/eliminar/{id}")
-    public String eliminar(@PathVariable("id") int id,
-                           RedirectAttributes redirectAttrs) {
-        msg.crearMensaje(roleService.deleteById(id), redirectAttrs);
-        return "redirect:/admin/roles";
-    }
-    
+	@GetMapping("admin/roles/eliminar/{id}")
+	public String eliminar(@PathVariable("id") int id, RedirectAttributes redirectAttrs) {
+		msg.crearMensaje(roleService.deleteById(id), redirectAttrs);
+		return "redirect:/admin/roles";
+	}
+
 }

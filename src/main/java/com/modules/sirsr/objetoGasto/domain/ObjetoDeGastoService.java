@@ -21,36 +21,37 @@ import java.util.*;
 @Service
 public class ObjetoDeGastoService {
 
-    private final ObjetoDeGastoRepository objetoDeGastoRepository;
-    private final ObjetoDeGastoMapper objetoDeGastoMapper;
-    private Mensaje msg;
-    
-    @Autowired
-    public ObjetoDeGastoService(ObjetoDeGastoRepository objetoDeGastoRepository, ObjetoDeGastoMapper objetoDeGastoMapper) {
-        this.objetoDeGastoRepository = objetoDeGastoRepository;
-        this.objetoDeGastoMapper = objetoDeGastoMapper;
-    }
+	private final ObjetoDeGastoRepository objetoDeGastoRepository;
+	private final ObjetoDeGastoMapper objetoDeGastoMapper;
+	private Mensaje msg;
 
-    public List<ObjetoDeGastoDTO> findAll() {
-        return objetoDeGastoMapper.toObjetoDeGastoDTOs(objetoDeGastoRepository.findAll());
-    }
+	@Autowired
+	public ObjetoDeGastoService(ObjetoDeGastoRepository objetoDeGastoRepository,
+			ObjetoDeGastoMapper objetoDeGastoMapper) {
+		this.objetoDeGastoRepository = objetoDeGastoRepository;
+		this.objetoDeGastoMapper = objetoDeGastoMapper;
+	}
 
-    public ObjetoDeGastoDTO findById(String id) {
-        Optional<ObjetoDeGasto> objetoDeGastoOptional = objetoDeGastoRepository.findById(id);
-        ObjetoDeGastoDTO objetoDeGastoDTO = objetoDeGastoMapper.toObjetoDeGastoDTO(objetoDeGastoOptional.get());
-        return objetoDeGastoDTO;
-    }
+	public List<ObjetoDeGastoDTO> findAll() {
+		return objetoDeGastoMapper.toObjetoDeGastoDTOs(objetoDeGastoRepository.findAll());
+	}
 
-    public Mensaje save(ObjetoDeGastoDTO objetoDeGastoDTO) {
-        return msg;
-    }
+	public ObjetoDeGastoDTO findById(String id) {
+		Optional<ObjetoDeGasto> objetoDeGastoOptional = objetoDeGastoRepository.findById(id);
+		ObjetoDeGastoDTO objetoDeGastoDTO = objetoDeGastoMapper.toObjetoDeGastoDTO(objetoDeGastoOptional.get());
+		return objetoDeGastoDTO;
+	}
 
-    public Mensaje update(ObjetoDeGastoDTO objetoDeGastoDTO, int id) {
-        return msg;
-    }
+	public Mensaje save(ObjetoDeGastoDTO objetoDeGastoDTO) {
+		return msg;
+	}
 
-    public Mensaje deleteById(int id) {
-        return msg;
-    }
+	public Mensaje update(ObjetoDeGastoDTO objetoDeGastoDTO, int id) {
+		return msg;
+	}
+
+	public Mensaje deleteById(int id) {
+		return msg;
+	}
 
 }

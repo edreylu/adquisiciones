@@ -10,85 +10,101 @@ import com.modules.sirsr.estatus.domain.EstatusDTO;
 import com.modules.sirsr.montoAdjudicacion.domain.MontoAdjudicacionDTO;
 import com.modules.sirsr.solicitud.domain.SolicitudDTO;
 
+import java.util.List;
+
 /**
  *
  * @author Edward Reyes
  */
 public class RequisicionDTO {
-    private int idRequisicion;
-    private int idSolicitud;
-    private Double montoSuficiencia;
-    private ClavePresupuestariaDTO clavePresupuestaria;
-    private EstatusDTO estatus;
-    private MontoAdjudicacionDTO montoAdjudicacion;
-    private SolicitudDTO solicitud;
+	private int idRequisicion;
+	private int idSolicitud;
+	private Double montoSuficiencia;
+	private ClavePresupuestariaDTO clavePresupuestaria;
+	private EstatusDTO estatus;
+	private MontoAdjudicacionDTO montoAdjudicacion;
+	private SolicitudDTO solicitud;
+	private List<DetalleRequisicionDTO> detallesRequisiciones;
+	
+	public RequisicionDTO() {
+		// TODO Auto-generated constructor stub
+	}
 
-    public int getIdRequisicion() {
-        return idRequisicion;
-    }
+	public RequisicionDTO(int idRequisicion, Double montoSuficiencia, ClavePresupuestariaDTO clavePresupuestaria,
+			EstatusDTO estatus, MontoAdjudicacionDTO montoAdjudicacion, SolicitudDTO solicitud,
+			List<DetalleRequisicionDTO> detallesRequisiciones) {
+		this.idRequisicion = idRequisicion;
+		this.montoSuficiencia = montoSuficiencia;
+		this.clavePresupuestaria = clavePresupuestaria;
+		this.estatus = estatus;
+		this.montoAdjudicacion = montoAdjudicacion;
+		this.solicitud = solicitud;
+		this.detallesRequisiciones = detallesRequisiciones;
+	}
 
-    public void setIdRequisicion(int idRequisicion) {
-        this.idRequisicion = idRequisicion;
-    }
 
-    public Double getMontoSuficiencia() {
-        return montoSuficiencia;
-    }
 
-    public void setMontoSuficiencia(Double montoSuficiencia) {
-        this.montoSuficiencia = montoSuficiencia;
-    }
+	public int getIdRequisicion() {
+		return idRequisicion;
+	}
 
-    public ClavePresupuestariaDTO getClavePresupuestaria() {
-        return clavePresupuestaria;
-    }
+	public void setIdRequisicion(int idRequisicion) {
+		this.idRequisicion = idRequisicion;
+	}
 
-    public void setClavePresupuestaria(ClavePresupuestariaDTO clavePresupuestaria) {
-        this.clavePresupuestaria = clavePresupuestaria;
-    }
+	public Double getMontoSuficiencia() {
+		return montoSuficiencia;
+	}
 
-    public EstatusDTO getEstatus() {
-        return estatus;
-    }
+	public void setMontoSuficiencia(Double montoSuficiencia) {
+		this.montoSuficiencia = montoSuficiencia;
+	}
 
-    public void setEstatus(EstatusDTO estatus) {
-        this.estatus = estatus;
-    }
+	public ClavePresupuestariaDTO getClavePresupuestaria() {
+		return clavePresupuestaria;
+	}
 
-    public MontoAdjudicacionDTO getMontoAdjudicacion() {
-        return montoAdjudicacion;
-    }
+	public void setClavePresupuestaria(ClavePresupuestariaDTO clavePresupuestaria) {
+		this.clavePresupuestaria = clavePresupuestaria;
+	}
 
-    public void setMontoAdjudicacion(MontoAdjudicacionDTO montoAdjudicacion) {
-        this.montoAdjudicacion = montoAdjudicacion;
-    }
+	public EstatusDTO getEstatus() {
+		return estatus;
+	}
 
-    public SolicitudDTO getSolicitud() {
-        return solicitud;
-    }
+	public void setEstatus(EstatusDTO estatus) {
+		this.estatus = estatus;
+	}
 
-    public void setSolicitud(SolicitudDTO solicitud) {
-        this.solicitud = solicitud;
-    }
+	public MontoAdjudicacionDTO getMontoAdjudicacion() {
+		return montoAdjudicacion;
+	}
 
-    public int getIdSolicitud() {
-        return idSolicitud;
-    }
+	public void setMontoAdjudicacion(MontoAdjudicacionDTO montoAdjudicacion) {
+		this.montoAdjudicacion = montoAdjudicacion;
+	}
 
-    public void setIdSolicitud(int idSolicitud) {
-        this.idSolicitud = idSolicitud;
-    }
+	public SolicitudDTO getSolicitud() {
+		return solicitud;
+	}
 
-    @Override
-    public String toString() {
-        return "RequisicionDTO{" +
-                "idRequisicion=" + idRequisicion +
-                ", idSolicitud=" + idSolicitud +
-                ", montoSuficiencia=" + montoSuficiencia +
-                ", clavePresupuestaria=" + clavePresupuestaria +
-                ", estatus=" + estatus +
-                ", montoAdjudicacion=" + montoAdjudicacion +
-                ", solicitud=" + solicitud +
-                '}';
-    }
+	public void setSolicitud(SolicitudDTO solicitud) {
+		this.solicitud = solicitud;
+	}
+
+	public int getIdSolicitud() {
+		return idSolicitud;
+	}
+
+	public void setIdSolicitud(int idSolicitud) {
+		this.idSolicitud = idSolicitud;
+	}
+
+	public List<DetalleRequisicionDTO> getDetallesRequisiciones() {
+		return detallesRequisiciones;
+	}
+
+	public void setDetallesRequisiciones(List<DetalleRequisicionDTO> detallesRequisiciones) {
+		this.detallesRequisiciones = detallesRequisiciones;
+	}
 }

@@ -49,7 +49,7 @@ and open the template in the editor.
                                         <div align="center">
                                         <a id="subirDetalle" th:href="@{/usuario/solicitudes/requisiciones/detalles/agregar/{id}(id=${requisicion.idRequisicion})}" class="btn btn-primary" role="button" aria-pressed="true"> <i class="fa fa-file" aria-hidden="true"></i> Agregar Producto</a>
                                             <a th:href="@{/usuario/solicitudes/requisiciones/detalles/sugerir/{id}(id=${requisicion.idRequisicion})}" class="btn btn-warning" role="button" aria-pressed="true">Sugerir Producto</a>
-                                            <a th:href="@{/usuario/solicitudes/requisiciones/{id}(id=${requisicion.solicitud.idSolicitud})}" class="btn btn-light active" role="button" aria-pressed="true">Regresar</a>
+                                            <a th:href="@{/usuario/solicitudes/requisiciones/{id}(id=${requisicion.idSolicitud})}" class="btn btn-light active" role="button" aria-pressed="true">Regresar</a>
                                         </div>
                                     </div>
                             </div>
