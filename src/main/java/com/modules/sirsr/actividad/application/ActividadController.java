@@ -1,6 +1,5 @@
 package com.modules.sirsr.actividad.application;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -16,14 +15,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.modules.sirsr.actividad.domain.ActividadDTO;
 import com.modules.sirsr.actividad.domain.ActividadService;
 import com.modules.sirsr.config.Mensaje;
-import com.modules.sirsr.proveedor.domain.ProveedorDTO;
 
 @Controller
-@RequestMapping(value="/admonadq")
+@RequestMapping("/admonadq")
 public class ActividadController {
 	
 	private final ActividadService actividadService;
-	private List<ActividadDTO> actividades = new ArrayList();
+	private List<ActividadDTO> actividades;
 	private final Mensaje msg = new Mensaje();
 	
 	@Autowired
@@ -32,22 +30,22 @@ public class ActividadController {
 		
 	}
 	
-	@GetMapping(value="/actividades")
+	@GetMapping("/actividades")
 	public String listar(Model model) {
 		actividades = actividadService.findAll();
 		model.addAttribute("lista", actividades);
 		return "admonadq/actividades/principal";
 	}
 	
-	@GetMapping(value="actividades/agregar")
+	@GetMapping("actividades/agregar")
 	public String agregar(Model model) {
 		model.addAttribute("actividad", new ActividadDTO());
 	    return "admonadq/actividades/agregar";
 	}
 	
-	@PostMapping(value="actividades/add")
+	@PostMapping("actividades/add")
 	public String add(ActividadDTO actividadDTO, RedirectAttributes redirectAttributes) {
-		msg.crearMensaje(actividadService.save(actividadDTO), redirectAttributes);
+		Mensaje.addMensaje(actividadService.save(actividadDTO), redirectAttributes);
 		return "redirect:/admonadq/actividades";
 		
 	}
@@ -55,7 +53,7 @@ public class ActividadController {
 	 @GetMapping("/actividades/eliminar/{id}/{idestatus}")
 	    public String eliminar(@PathVariable("id") int id, @PathVariable("idestatus") int idestatus,
 	            RedirectAttributes redirectAttrs) {
-	        msg.crearMensaje(actividadService.borraPorId(id, idestatus), redirectAttrs);
+		 Mensaje.addMensaje(actividadService.borraPorId(id, idestatus), redirectAttrs);
 	        return "redirect:/admonadq/actividades";
 	    }
 	 
@@ -73,7 +71,7 @@ public class ActividadController {
 	 
 	 @PostMapping("/actividades/update")
 		public String editar(ActividadDTO actividadDTO, RedirectAttributes redirectAttrs) {
-			msg.crearMensaje(actividadService.update(actividadDTO, actividadDTO.getIdActividad()), redirectAttrs);
+		 Mensaje.addMensaje(actividadService.update(actividadDTO, actividadDTO.getIdActividad()), redirectAttrs);
 			return "redirect:/admonadq/actividades";
 		}
 	

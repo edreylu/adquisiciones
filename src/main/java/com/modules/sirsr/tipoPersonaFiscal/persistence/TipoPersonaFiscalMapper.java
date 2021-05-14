@@ -8,17 +8,17 @@ import com.modules.sirsr.tipoPersonaFiscal.domain.TipoPersonaFiscalDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
-@Component
 public class TipoPersonaFiscalMapper {
 
-	ModelMapper modelMapper = new ModelMapper();
-
-	public TipoPersonaFiscalDTO toTipoPersonaFiscalDTO(TipoPersonaFiscal tipoPersonaFiscal) {
-		TipoPersonaFiscalDTO tipoPersonaFiscalDTO = modelMapper.map(tipoPersonaFiscal, TipoPersonaFiscalDTO.class);
+	public static TipoPersonaFiscalDTO toTipoPersonaFiscalDTO(TipoPersonaFiscal tipoPersonaFiscal) {
+		TipoPersonaFiscalDTO tipoPersonaFiscalDTO = new TipoPersonaFiscalDTO();
+		tipoPersonaFiscalDTO.setIdTipoPersonaFiscal(tipoPersonaFiscal.getIdTipoPersonaFiscal());
+		tipoPersonaFiscalDTO.setDescripcion(tipoPersonaFiscal.getDescripcion());
+		tipoPersonaFiscalDTO.setIdEstatus(tipoPersonaFiscal.getIdEstatus());
 		return tipoPersonaFiscalDTO;
 	}
 
-	public List<TipoPersonaFiscalDTO> toTipoPersonaFiscalDTOs(List<TipoPersonaFiscal> tiposPersonaFiscal) {
+	public static List<TipoPersonaFiscalDTO> toTipoPersonaFiscalDTOs(List<TipoPersonaFiscal> tiposPersonaFiscal) {
 		if (Objects.isNull(tiposPersonaFiscal)) {
 			return null;
 		}
@@ -29,12 +29,15 @@ public class TipoPersonaFiscalMapper {
 		return list;
 	}
 
-	public TipoPersonaFiscal toTipoPersonaFiscal(TipoPersonaFiscalDTO tipoPersonaFiscalDTO) {
-		TipoPersonaFiscal tipoPersonaFiscal = modelMapper.map(tipoPersonaFiscalDTO, TipoPersonaFiscal.class);
+	public static TipoPersonaFiscal toTipoPersonaFiscal(TipoPersonaFiscalDTO tipoPersonaFiscalDTO) {
+		TipoPersonaFiscal tipoPersonaFiscal = new TipoPersonaFiscal();
+		tipoPersonaFiscal.setIdTipoPersonaFiscal(tipoPersonaFiscalDTO.getIdTipoPersonaFiscal());
+		tipoPersonaFiscal.setDescripcion(tipoPersonaFiscalDTO.getDescripcion());
+		tipoPersonaFiscal.setIdEstatus(tipoPersonaFiscalDTO.getIdEstatus());
 		return tipoPersonaFiscal;
 	}
 
-	public TipoPersonaFiscal toUpdatePersonaFiscal(TipoPersonaFiscal tipoPersonaFiscal,
+	public static TipoPersonaFiscal toUpdatePersonaFiscal(TipoPersonaFiscal tipoPersonaFiscal,
 			TipoPersonaFiscalDTO tipoPersonaFiscalDTO) {
 		tipoPersonaFiscal.setDescripcion(tipoPersonaFiscalDTO.getDescripcion());
 		return tipoPersonaFiscal;

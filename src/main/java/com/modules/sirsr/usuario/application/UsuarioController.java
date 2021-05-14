@@ -41,7 +41,6 @@ public class UsuarioController {
 	private List<UsuarioDTO> usuarios;
 	private List<DatosPersonalesDTO> personal;
 	private UsuarioRoleDTO usuarioRole;
-	private final Mensaje msg = new Mensaje();
 
 	@Autowired
 	public UsuarioController(UsuarioService usuarioService, UsuarioRoleService usuarioRoleService,
@@ -69,7 +68,7 @@ public class UsuarioController {
 
 	@PostMapping("admin/usuarios/add")
 	public String agregar(UsuarioDTO us, RedirectAttributes redirectAttrs) {
-		msg.crearMensaje(usuarioService.save(us), redirectAttrs);
+		Mensaje.addMensaje(usuarioService.save(us), redirectAttrs);
 		return "redirect:/admin/usuarios";
 	}
 
@@ -88,14 +87,14 @@ public class UsuarioController {
 
 	@PostMapping("admin/usuarios/update/{id}")
 	public String editar(@PathVariable("id") int id, UsuarioDTO us, RedirectAttributes redirectAttrs) {
-		msg.crearMensaje(usuarioService.update(us, id), redirectAttrs);
+		Mensaje.addMensaje(usuarioService.update(us, id), redirectAttrs);
 		return "redirect:/admin/usuarios";
 	}
 
 	@GetMapping("admin/usuarios/eliminar/{id}/{idestatus}")
 	public String eliminar(@PathVariable("id") int id, @PathVariable("idestatus") int idestatus,
 			RedirectAttributes redirectAttrs) {
-		msg.crearMensaje(usuarioService.deleteById(id, idestatus), redirectAttrs);
+		Mensaje.addMensaje(usuarioService.deleteById(id, idestatus), redirectAttrs);
 		return "redirect:/admin/usuarios";
 	}
 
@@ -110,7 +109,7 @@ public class UsuarioController {
 	@PostMapping("admin/usuarios/asignarRoles/{id}")
 	public String asignarRoles(@PathVariable("id") int id, @ModelAttribute("userRoles") UsuarioRoleDTO userRole,
 			RedirectAttributes redirectAttrs) {
-		msg.crearMensaje(usuarioRoleService.assignRoleToUser(userRole, id), redirectAttrs);
+		Mensaje.addMensaje(usuarioRoleService.assignRoleToUser(userRole, id), redirectAttrs);
 		return "redirect:/admin/usuarios";
 	}
 
@@ -125,7 +124,7 @@ public class UsuarioController {
 	@PostMapping("admin/usuarios/asignarPersonal")
 	public String asignarPersonal(@RequestParam(name = "noPersonal") int noPersonal,
 			@RequestParam(name = "noUsuario") int noUsuario, RedirectAttributes redirectAttrs) {
-		msg.crearMensaje(usuarioService.updateNoPersonal(noPersonal, noUsuario), redirectAttrs);
+		Mensaje.addMensaje(usuarioService.updateNoPersonal(noPersonal, noUsuario), redirectAttrs);
 		return "redirect:/admin/usuarios";
 	}
 
@@ -154,7 +153,7 @@ public class UsuarioController {
 	@PostMapping("usuario/updatePerfil/{userName}")
 	public String editarPerfil(@PathVariable("userName") String userName, UsuarioDTO us,
 			RedirectAttributes redirectAttrs) {
-		msg.crearMensaje(usuarioService.updatePerfil(us, userName), redirectAttrs);
+		Mensaje.addMensaje(usuarioService.updatePerfil(us, userName), redirectAttrs);
 		return "redirect:/menu";
 	}
 }

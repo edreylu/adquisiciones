@@ -7,10 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Component
 public class MontoAdjudicacionMapper {
 
-	public MontoAdjudicacionDTO toMontoAdjudicacionDTO(MontoAdjudicacion montoAdjudicacion) {
+	public static MontoAdjudicacionDTO toMontoAdjudicacionDTO(MontoAdjudicacion montoAdjudicacion) {
 		if (Objects.isNull(montoAdjudicacion)) {
 			return null;
 		}
@@ -20,7 +19,7 @@ public class MontoAdjudicacionMapper {
 		return montoAdjudicacionDTO;
 	}
 
-	public List<MontoAdjudicacionDTO> toMontoAdjudicacionsDTOs(List<MontoAdjudicacion> montoAdjudicacions) {
+	public static List<MontoAdjudicacionDTO> toMontoAdjudicacionsDTOs(List<MontoAdjudicacion> montoAdjudicacions) {
 		if (Objects.isNull(montoAdjudicacions)) {
 			return null;
 		}
@@ -33,7 +32,7 @@ public class MontoAdjudicacionMapper {
 		return list;
 	}
 
-	public MontoAdjudicacion toMontoAdjudicacion(MontoAdjudicacionDTO montoAdjudicacionDTO) {
+	public static MontoAdjudicacion toMontoAdjudicacion(MontoAdjudicacionDTO montoAdjudicacionDTO) {
 		if (Objects.isNull(montoAdjudicacionDTO)) {
 			return null;
 		}

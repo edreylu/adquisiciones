@@ -23,28 +23,26 @@ import java.util.Optional;
 public class TipoProductoService {
 
 	private final TipoProductoRepository tipoProductoRepository;
-	private final TipoProductoMapper tipoProductoMapper;
 	private Mensaje msg;
 
 	@Autowired
-	public TipoProductoService(TipoProductoRepository tipoProductoRepository, TipoProductoMapper tipoProductoMapper) {
+	public TipoProductoService(TipoProductoRepository tipoProductoRepository) {
 		this.tipoProductoRepository = tipoProductoRepository;
-		this.tipoProductoMapper = tipoProductoMapper;
 	}
 
 	public List<TipoProductoDTO> findAll() {
-		return tipoProductoMapper.toTipoProductoDTOs(tipoProductoRepository.findAll());
+		return TipoProductoMapper.toTipoProductoDTOs(tipoProductoRepository.findAll());
 	}
 
 	public List<TipoProductoDTO> findByObjetoGastoStr(String objetoGasto) {
 		List<TipoProducto> tiposProducto = tipoProductoRepository.findByObjetoGastoStr(objetoGasto);
-		List<TipoProductoDTO> tiposProductoDTO = tipoProductoMapper.toTipoProductoDTOs(tiposProducto);
+		List<TipoProductoDTO> tiposProductoDTO = TipoProductoMapper.toTipoProductoDTOs(tiposProducto);
 		return tiposProductoDTO;
 	}
 
 	public TipoProductoDTO findById(int id) {
 		Optional<TipoProducto> tipoProductoOptional = tipoProductoRepository.findById(id);
-		TipoProductoDTO tipoProductoDTO = tipoProductoMapper.toTipoProductoDTO(tipoProductoOptional.get());
+		TipoProductoDTO tipoProductoDTO = TipoProductoMapper.toTipoProductoDTO(tipoProductoOptional.get());
 		return tipoProductoDTO;
 	}
 

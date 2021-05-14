@@ -11,7 +11,6 @@ import com.modules.sirsr.actividad.persistence.ActividadMapper;
 import com.modules.sirsr.estatus.persistence.EstatusMapper;
 import com.modules.sirsr.proveedor.domain.ProveedorDTO;
 
-@Component
 public class ProveedorMapper {
 	
 	public static ProveedorDTO toProveedorDTO(Proveedor proveedor) {
@@ -55,7 +54,7 @@ public class ProveedorMapper {
         return list;
     }
 
-    public Proveedor toProveedor(ProveedorDTO proveedorDTO) {
+    public static Proveedor toProveedor(ProveedorDTO proveedorDTO) {
         if (Objects.isNull(proveedorDTO)) {
             return null;
         }

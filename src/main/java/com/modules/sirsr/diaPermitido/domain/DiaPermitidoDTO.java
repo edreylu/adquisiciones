@@ -1,19 +1,14 @@
 package com.modules.sirsr.diaPermitido.domain;
 
-import com.modules.sirsr.estatus.persistence.Estatus;
-
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.ZoneId;
-import java.time.format.TextStyle;
+import java.io.Serializable;
 import java.util.Date;
-import java.util.Locale;
 
-public class DiaPermitidoDTO {
+import com.modules.sirsr.estatus.domain.EstatusDTO;
+
+public class DiaPermitidoDTO implements Serializable {
 
 	private Date diaPermitido;
-	private Estatus estatus;
+	private EstatusDTO estatus;
 	private Integer anio;
 	private String mes;
 	private Integer idDia;
@@ -29,11 +24,11 @@ public class DiaPermitidoDTO {
 		this.diaPermitido = diaPermitido;
 	}
 
-	public Estatus getEstatus() {
+	public EstatusDTO getEstatus() {
 		return estatus;
 	}
 
-	public void setEstatus(Estatus estatus) {
+	public void setEstatus(EstatusDTO estatus) {
 		this.estatus = estatus;
 	}
 

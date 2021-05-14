@@ -22,11 +22,10 @@ import com.modules.sirsr.diaPermitido.domain.DiaPermitidoDTO;
 import com.modules.sirsr.diaPermitido.domain.DiaPermitidoService;
 
 @Controller
-@RequestMapping(value = "/admonadq")
+@RequestMapping("/admonadq")
 public class DiaPermitidoController {
 
 	private final DiaPermitidoService diaPermitidoService;
-	private final Mensaje msg = new Mensaje();
 
 	@Autowired
 	public DiaPermitidoController(DiaPermitidoService diaPermitidoService) {
@@ -49,13 +48,13 @@ public class DiaPermitidoController {
 
 	@PostMapping("/diaspermitidos/add_day")
 	public String agregarDia(DiaPermitidoDTO diaPermitido, RedirectAttributes redirectAttrs) {
-		msg.crearMensaje(diaPermitidoService.saveDay(diaPermitido), redirectAttrs);
+		Mensaje.addMensaje(diaPermitidoService.saveDay(diaPermitido), redirectAttrs);
 		return "redirect:/admonadq/diaspermitidos";
 	}
 
 	@PostMapping("/diaspermitidos/add_days")
 	public String agregarDias(DiaPermitidoDTO diaPermitido, RedirectAttributes redirectAttrs) {
-		msg.crearMensaje(diaPermitidoService.saveDays(diaPermitido), redirectAttrs);
+		Mensaje.addMensaje(diaPermitidoService.saveDays(diaPermitido), redirectAttrs);
 		return "redirect:/admonadq/diaspermitidos";
 	}
 
@@ -65,7 +64,7 @@ public class DiaPermitidoController {
 		try {
 			System.out.println("La fecha final es: " + fechaString);
 			Date fecha = new SimpleDateFormat("dd-MM-yyyy").parse(fechaString);
-			msg.crearMensaje(diaPermitidoService.inactivarPorId(fecha, idEstatus), redirectAttrs);
+			Mensaje.addMensaje(diaPermitidoService.inactivarPorId(fecha, idEstatus), redirectAttrs);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -1,12 +1,15 @@
 package com.modules.sirsr.folioRequisicion.domain;
 
+import java.io.Serializable;
+
+import com.modules.sirsr.estatus.domain.EstatusDTO;
 import com.modules.sirsr.estatus.persistence.Estatus;
 
-public class FolioRequisicionDTO {
+public class FolioRequisicionDTO implements Serializable {
 
 	private Integer anio;
 	private Integer consecutivo;
-	private Estatus estatus;
+	private EstatusDTO estatus;
 
 	public Integer getAnio() {
 		return anio;
@@ -24,11 +27,11 @@ public class FolioRequisicionDTO {
 		this.consecutivo = consecutivo;
 	}
 
-	public Estatus getEstatus() {
+	public EstatusDTO getEstatus() {
 		return estatus;
 	}
 
-	public void setEstatus(Estatus estatus) {
+	public void setEstatus(EstatusDTO estatus) {
 		this.estatus = estatus;
 	}
 

@@ -225,16 +225,43 @@ width: 100px;
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 }
 
-.sombraChica{
-    -webkit-box-shadow: 4px 8px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow:    4px 8px 5px 0px rgba(0,0,0,0.75);
-    box-shadow:        4px 8x 5x 0px rgba(0,0,0,0.75);
+.sombraChica {
+	-webkit-box-shadow: 4px 8px 5px 0px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 4px 8px 5px 0px rgba(0, 0, 0, 0.75);
+	box-shadow: 4px 8x 5x 0px rgba(0, 0, 0, 0.75);
 }
 
-.bordeCard{
+.bordeCard {
 	border: 1px solid #b2babb;
 }
 
-.iconos{
+.iconos {
 	width: 20px !important;
+}
+
+.nav-item {
+	padding: 10px;
+}
+
+
+.navbar-brand{
+	padding-top: 13px;
+}
+
+
+.nav-link{
+	color: black !important;
+}
+
+.nav-item a:hover {
+	color: white !important;
+	background: #4d5656;
+	border-radius: 5px;
+}
+
+.texto-borde {
+	-webkit-text-stroke: 1px black;
+	color: white !important;
+	font-size: 20px;
+	font-weight: bold;
 }

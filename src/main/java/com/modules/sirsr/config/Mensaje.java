@@ -43,10 +43,14 @@ public class Mensaje implements Serializable {
 	
 	
 	public static RedirectAttributes addMensaje(Mensaje msg, RedirectAttributes redirectAttrs) {
-		String[] tipoMensajes = { "info", "success", "danger", "warning", "primary", "secundary", "light", "dark" };
-		String clase = tipoMensajes[msg.getResult()];
+		String[] tipoMensajes = {"info", "success", "danger", "warning", "primary", "secundary", "light", "dark" };
+		String clase = msg.getResult() == -1 ? "danger" : tipoMensajes[msg.getResult()];
 		return redirectAttrs.addFlashAttribute("mensaje", msg.getMensaje())
 				.addFlashAttribute("clase", clase);
+	}
+	
+	public static Mensaje notFound(String mensaje) {
+		return new Mensaje(mensaje, -1);
 	}
 	
 	public static Mensaje info(String mensaje) {

@@ -41,10 +41,9 @@ import org.eclipse.persistence.jpa.rs.exceptions.JPARSException;
 public class UsuarioService {
 
 	private final UsuarioRepository usuarioRepository;
+	private final DatosPersonalesRepository datosPersonalesRepository;
 	private final DatosPersonalesService datosPersonalesService;
 	private final UnidadResponsableService unidadResponsableService;
-	private final DatosPersonalesRepository datosPersonalesRepository;
-	private final UnidadResponsableRepository unidadResponsableRepository;
 	private final EstatusService estatusService;
 	private final EmailUtils emailUtils;
 	private UsuarioDTO usuarioDTO;
@@ -53,11 +52,9 @@ public class UsuarioService {
 
 	@Autowired
 	public UsuarioService(UsuarioRepository usuarioRepository, DatosPersonalesService datosPersonalesService,
-			UnidadResponsableService unidadResponsableService, DatosPersonalesRepository datosPersonalesRepository,
-			UnidadResponsableRepository unidadResponsableRepository, EstatusService estatusService, EmailUtils emailUtils) {
+			UnidadResponsableService unidadResponsableService, DatosPersonalesRepository datosPersonalesRepository,EstatusService estatusService, EmailUtils emailUtils) {
 		this.usuarioRepository = usuarioRepository;
 		this.datosPersonalesRepository = datosPersonalesRepository;
-		this.unidadResponsableRepository = unidadResponsableRepository;
 		this.estatusService = estatusService;
 		this.emailUtils = emailUtils;
 		this.datosPersonalesService = datosPersonalesService;

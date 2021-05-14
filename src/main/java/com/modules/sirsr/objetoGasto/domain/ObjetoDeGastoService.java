@@ -22,23 +22,20 @@ import java.util.*;
 public class ObjetoDeGastoService {
 
 	private final ObjetoDeGastoRepository objetoDeGastoRepository;
-	private final ObjetoDeGastoMapper objetoDeGastoMapper;
 	private Mensaje msg;
 
 	@Autowired
-	public ObjetoDeGastoService(ObjetoDeGastoRepository objetoDeGastoRepository,
-			ObjetoDeGastoMapper objetoDeGastoMapper) {
+	public ObjetoDeGastoService(ObjetoDeGastoRepository objetoDeGastoRepository) {
 		this.objetoDeGastoRepository = objetoDeGastoRepository;
-		this.objetoDeGastoMapper = objetoDeGastoMapper;
 	}
 
 	public List<ObjetoDeGastoDTO> findAll() {
-		return objetoDeGastoMapper.toObjetoDeGastoDTOs(objetoDeGastoRepository.findAll());
+		return ObjetoDeGastoMapper.toObjetoDeGastoDTOs(objetoDeGastoRepository.findAll());
 	}
 
 	public ObjetoDeGastoDTO findById(String id) {
 		Optional<ObjetoDeGasto> objetoDeGastoOptional = objetoDeGastoRepository.findById(id);
-		ObjetoDeGastoDTO objetoDeGastoDTO = objetoDeGastoMapper.toObjetoDeGastoDTO(objetoDeGastoOptional.get());
+		ObjetoDeGastoDTO objetoDeGastoDTO = ObjetoDeGastoMapper.toObjetoDeGastoDTO(objetoDeGastoOptional.get());
 		return objetoDeGastoDTO;
 	}
 

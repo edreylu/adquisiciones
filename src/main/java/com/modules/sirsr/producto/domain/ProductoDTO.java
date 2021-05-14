@@ -8,13 +8,15 @@ package com.modules.sirsr.producto.domain;
 import com.modules.sirsr.estatus.domain.EstatusDTO;
 import com.modules.sirsr.tipoProducto.domain.TipoProductoDTO;
 import com.modules.sirsr.unidadMedida.domain.UnidadMedidaDTO;
+
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author Edward Reyes
  */
-public class ProductoDTO {
+public class ProductoDTO implements Serializable {
 	private Integer idProducto;
 	private String caracteristicas;
 	private Double precioDeReferencia;

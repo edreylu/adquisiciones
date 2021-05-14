@@ -23,22 +23,20 @@ import java.util.Optional;
 public class MarcaService {
 
 	private final MarcaRepository marcaRepository;
-	private final MarcaMapper marcaMapper;
 	private Mensaje msg;
 
 	@Autowired
-	public MarcaService(MarcaRepository marcaRepository, MarcaMapper marcaMapper) {
+	public MarcaService(MarcaRepository marcaRepository) {
 		this.marcaRepository = marcaRepository;
-		this.marcaMapper = marcaMapper;
 	}
 
 	public List<MarcaDTO> findAll() {
-		return marcaMapper.toMarcaDTOs(marcaRepository.findAll());
+		return MarcaMapper.toMarcaDTOs(marcaRepository.findAll());
 	}
 
 	public MarcaDTO findById(int id) {
 		Optional<Marca> marcaOptional = marcaRepository.findById(id);
-		MarcaDTO marcaDTO = marcaMapper.toMarcaDTO(marcaOptional.get());
+		MarcaDTO marcaDTO = MarcaMapper.toMarcaDTO(marcaOptional.get());
 		return marcaDTO;
 	}
 

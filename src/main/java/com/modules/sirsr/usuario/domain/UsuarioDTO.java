@@ -9,6 +9,7 @@ import com.modules.sirsr.datosPersonales.domain.DatosPersonalesDTO;
 import com.modules.sirsr.estatus.domain.EstatusDTO;
 import com.modules.sirsr.unidadResponsable.domain.UnidadResponsableDTO;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
@@ -17,7 +18,7 @@ import java.util.Objects;
  * @author Edward Reyes
  */
 
-public class UsuarioDTO {
+public class UsuarioDTO implements Serializable{
 	private int noUsuario;
 	private String userName;
 	private String password;

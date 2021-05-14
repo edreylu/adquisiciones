@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Component
 public class ConceptoMapper {
 
 	public static Concepto toConcepto(ConceptoDTO conceptoDTO) {

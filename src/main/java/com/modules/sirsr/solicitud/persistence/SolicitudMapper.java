@@ -11,7 +11,6 @@ import java.time.Month;
 import java.time.format.TextStyle;
 import java.util.*;
 
-@Component
 public class SolicitudMapper {
 
 	public static SolicitudDTO toSolicitudDTO(Solicitud solicitud) {

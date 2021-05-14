@@ -16,26 +16,23 @@ import com.modules.sirsr.tipoPersonaFiscal.persistence.TipoPersonaFiscalReposito
 public class TipoPersonaFiscalService {
 
 	private final TipoPersonaFiscalRepository tipoPersonaFiscalRepository;
-	private final TipoPersonaFiscalMapper tipoPersonaFiscalMapper;
 	private final EstatusService estatusService;
 
 	@Autowired
-	public TipoPersonaFiscalService(TipoPersonaFiscalRepository tipoPersonaFiscalRepository,
-			TipoPersonaFiscalMapper tipoPersonaFiscalMapper, EstatusService estatusService) {
+	public TipoPersonaFiscalService(TipoPersonaFiscalRepository tipoPersonaFiscalRepository, EstatusService estatusService) {
 		this.tipoPersonaFiscalRepository = tipoPersonaFiscalRepository;
-		this.tipoPersonaFiscalMapper = tipoPersonaFiscalMapper;
 		this.estatusService = estatusService;
 	}
 
 	private Mensaje msg;
 
 	public List<TipoPersonaFiscalDTO> findAll() {
-		return tipoPersonaFiscalMapper.toTipoPersonaFiscalDTOs(tipoPersonaFiscalRepository.findAll());
+		return TipoPersonaFiscalMapper.toTipoPersonaFiscalDTOs(tipoPersonaFiscalRepository.findAll());
 	}
 
 	public TipoPersonaFiscalDTO buscaPorId(int id) {
 		Optional<TipoPersonaFiscal> tipoPersonaFiscalOp = tipoPersonaFiscalRepository.findById(id);
-		TipoPersonaFiscalDTO tipoPersonaFiscalDTO = tipoPersonaFiscalMapper
+		TipoPersonaFiscalDTO tipoPersonaFiscalDTO = TipoPersonaFiscalMapper
 				.toTipoPersonaFiscalDTO(tipoPersonaFiscalOp.get());
 		return tipoPersonaFiscalDTO;
 	}
@@ -46,12 +43,12 @@ public class TipoPersonaFiscalService {
 			if (tipoPersonaFiscal.isPresent()) {
 
 				tipoPersonaFiscalRepository.save(
-						tipoPersonaFiscalMapper.toUpdatePersonaFiscal(tipoPersonaFiscal.get(), tipoPersonaFiscalDTO));
-				msg = Mensaje.CREATE("Actualizado correctamente", 1);
+						TipoPersonaFiscalMapper.toUpdatePersonaFiscal(tipoPersonaFiscal.get(), tipoPersonaFiscalDTO));
+				msg = Mensaje.success("Actualizado correctamente");
 			}
 
 		} catch (Exception e) {
-			msg = Mensaje.CREATE("No se pudo Actualizar por: " + e.getMessage(), 2);
+			msg = Mensaje.danger("No se pudo Actualizar por: " + e.getMessage());
 		}
 		return msg;
 	}
@@ -59,10 +56,10 @@ public class TipoPersonaFiscalService {
 	public Mensaje save(TipoPersonaFiscalDTO tipoPersonaFiscalDTO) {
 		try {
 			tipoPersonaFiscalDTO.setIdEstatus(1);
-			tipoPersonaFiscalRepository.save(tipoPersonaFiscalMapper.toTipoPersonaFiscal(tipoPersonaFiscalDTO));
-			msg = Mensaje.CREATE("Agregado correctamente", 1);
+			tipoPersonaFiscalRepository.save(TipoPersonaFiscalMapper.toTipoPersonaFiscal(tipoPersonaFiscalDTO));
+			msg = Mensaje.success("Agregado correctamente");
 		} catch (Exception e) {
-			msg = Mensaje.CREATE("No se pudo agregar por: " + e.getMessage(), 2);
+			msg = Mensaje.danger("No se pudo agregar por: " + e.getMessage());
 		}
 		return msg;
 	}
@@ -77,9 +74,9 @@ public class TipoPersonaFiscalService {
 			}
 
 			tipoPersonaFiscalRepository.save(tipoPersonaFiscal.get());
-			msg = Mensaje.CREATE(action + " correctamente", 1);
+			msg = Mensaje.success(action + " correctamente");
 		} catch (Exception e) {
-			msg = Mensaje.CREATE("No se pudo " + action + " por: " + e.getMessage(), 2);
+			msg = Mensaje.danger("No se pudo " + action + " por: " + e.getMessage());
 		}
 		return msg;
 

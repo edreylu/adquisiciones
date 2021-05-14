@@ -17,15 +17,12 @@ import com.modules.sirsr.tipoPersonaFiscal.domain.TipoPersonaFiscalDTO;
 import com.modules.sirsr.tipoPersonaFiscal.domain.TipoPersonaFiscalService;
 
 @Controller
-@RequestMapping(value = "/admonadq")
+@RequestMapping("/admonadq")
 public class TipoPersonaFiscalController {
 
 	@Autowired
 	private TipoPersonaFiscalService tipoPersonaFiscalService;
-
 	private List<TipoPersonaFiscalDTO> listaTipoPersonaFiscal;
-
-	private final Mensaje msg = new Mensaje();
 
 	public List<TipoPersonaFiscalDTO> getListaTipoPersonaFiscal() {
 		return listaTipoPersonaFiscal;
@@ -56,7 +53,7 @@ public class TipoPersonaFiscalController {
 	@PostMapping("/tipospersonafiscal/update/{id}")
 	public String editar(@PathVariable("id") int id, TipoPersonaFiscalDTO tipopersonafiscal,
 			RedirectAttributes redirectAttrs) {
-		msg.crearMensaje(tipoPersonaFiscalService.actualizaTipoPersonaFiscal(tipopersonafiscal, id), redirectAttrs);
+		Mensaje.addMensaje(tipoPersonaFiscalService.actualizaTipoPersonaFiscal(tipopersonafiscal, id), redirectAttrs);
 		return "redirect:/admin/tipospersonafiscal";
 	}
 
@@ -68,14 +65,14 @@ public class TipoPersonaFiscalController {
 
 	@PostMapping("/tipospersonafiscal/add")
 	public String agregar(TipoPersonaFiscalDTO tp, RedirectAttributes redirectAttrs) {
-		msg.crearMensaje(tipoPersonaFiscalService.save(tp), redirectAttrs);
+		Mensaje.addMensaje(tipoPersonaFiscalService.save(tp), redirectAttrs);
 		return "redirect:/admin/tipospersonafiscal";
 	}
 
 	@GetMapping("/tipospersonafiscal/eliminar/{id}/{idestatus}")
 	public String eliminar(@PathVariable("id") int id, @PathVariable("idestatus") int idestatus,
 			RedirectAttributes redirectAttrs) {
-		msg.crearMensaje(tipoPersonaFiscalService.borraPorId(id, idestatus), redirectAttrs);
+		Mensaje.addMensaje(tipoPersonaFiscalService.borraPorId(id, idestatus), redirectAttrs);
 		return "redirect:/admin/tipospersonafiscal";
 	}
 

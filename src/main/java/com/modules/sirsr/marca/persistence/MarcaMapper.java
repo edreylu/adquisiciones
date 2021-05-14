@@ -1,5 +1,6 @@
 package com.modules.sirsr.marca.persistence;
 
+import com.modules.sirsr.estatus.persistence.EstatusMapper;
 import com.modules.sirsr.marca.domain.MarcaDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -8,21 +9,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Component
 public class MarcaMapper {
-	private final ModelMapper modelMapper = new ModelMapper();
 
-	public Marca toMarca(MarcaDTO marcaDTO) {
-		Marca marca = modelMapper.map(marcaDTO, Marca.class);
+	public static Marca toMarca(MarcaDTO marcaDTO) {
+		Marca marca = new Marca();
+		marca.setIdMarca(marcaDTO.getIdMarca());
+		marca.setDescripcion(marcaDTO.getDescripcion());
+		marca.setEstatus(EstatusMapper.toEstatus(marcaDTO.getEstatus()));
 		return marca;
 	}
 
-	public MarcaDTO toMarcaDTO(Marca marca) {
-		MarcaDTO marcaDTO = modelMapper.map(marca, MarcaDTO.class);
+	public static MarcaDTO toMarcaDTO(Marca marca) {
+		MarcaDTO marcaDTO = new MarcaDTO();
+		marcaDTO.setIdMarca(marca.getIdMarca());
+		marcaDTO.setDescripcion(marca.getDescripcion());
+		marcaDTO.setEstatus(EstatusMapper.toEstatusDTO(marca.getEstatus()));
 		return marcaDTO;
 	}
 
-	public List<MarcaDTO> toMarcaDTOs(List<Marca> marcas) {
+	public static List<MarcaDTO> toMarcaDTOs(List<Marca> marcas) {
 		if (Objects.isNull(marcas)) {
 			return null;
 		}

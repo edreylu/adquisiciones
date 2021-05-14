@@ -42,7 +42,6 @@ public class PrioridadService {
 
 	public Mensaje save(PrioridadDTO prioridadDTO) {
 		try {
-
 			prioridadRepository.save(PrioridadMapper.toPrioridad(prioridadDTO));
 			msg = Mensaje.success("Agregado correctamente");
 		} catch (Exception e) {

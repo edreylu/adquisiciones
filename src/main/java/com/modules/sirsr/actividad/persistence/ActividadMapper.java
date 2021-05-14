@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import com.modules.sirsr.actividad.domain.ActividadDTO;
 import com.modules.sirsr.estatus.persistence.EstatusMapper;
 
-@Component
 public class ActividadMapper {
 	
 	public static ActividadDTO toActividadDTO(Actividad actividad) {

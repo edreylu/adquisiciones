@@ -49,6 +49,22 @@ public class PartidaGastoGenerica {
 	@JoinColumn(name = "CLAVE_CONCEPTO", referencedColumnName = "CLAVE_CONCEPTO")
 	@ManyToOne(optional = false)
 	private Concepto concepto;
+	
+	public PartidaGastoGenerica() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public PartidaGastoGenerica(Integer claveGenerica, String descripcion, String definicion, Date fechaInicio,
+			Date fechaFinal, Estatus estatus, Concepto concepto) {
+		this.claveGenerica = claveGenerica;
+		this.descripcion = descripcion;
+		this.definicion = definicion;
+		this.fechaInicio = fechaInicio;
+		this.fechaFinal = fechaFinal;
+		this.estatus = estatus;
+		this.concepto = concepto;
+	}
+
 
 	public Integer getClaveGenerica() {
 		return claveGenerica;

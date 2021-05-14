@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Component
 public class ObjetoDeGastoMapper {
 
 	public static ObjetoDeGasto toObjetoDeGasto(ObjetoDeGastoDTO objetoDeGastoDTO) {

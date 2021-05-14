@@ -1,11 +1,11 @@
 package com.modules.sirsr.tipoPersonaFiscal.domain;
 
-public class TipoPersonaFiscalDTO {
+import java.io.Serializable;
+
+public class TipoPersonaFiscalDTO implements Serializable {
 
 	private Integer idTipoPersonaFiscal;
-
 	private String descripcion;
-
 	private Integer idEstatus;
 
 	public Integer getIdTipoPersonaFiscal() {

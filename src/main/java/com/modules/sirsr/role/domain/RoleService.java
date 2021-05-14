@@ -45,9 +45,9 @@ public class RoleService {
 		try {
 			roleDTO.setRoleName("ROLE_" + roleDTO.getRoleName());
 			roleRepository.save(RoleMapper.toRole(roleDTO));
-			msg = Mensaje.CREATE("Agregado correctamente", 1);
+			msg = Mensaje.success("Agregado correctamente");
 		} catch (Exception e) {
-			msg = Mensaje.CREATE("No se pudo agregar por: " + e.getMessage(), 2);
+			msg = Mensaje.danger("No se pudo agregar por: " + e.getMessage());
 		}
 		return msg;
 	}
@@ -57,9 +57,9 @@ public class RoleService {
 			Optional<Role> roleFound = roleRepository.findById(id);
 			Role role = RoleMapper.setToUpdate(roleFound.get(), roleDTO);
 			roleRepository.save(role);
-			msg = Mensaje.CREATE("Actualizado correctamente", 1);
+			msg = Mensaje.success("Actualizado correctamente");
 		} catch (Exception e) {
-			msg = Mensaje.CREATE("No se pudo Actualizar por: " + e.getMessage(), 2);
+			msg = Mensaje.danger("No se pudo Actualizar por: " + e.getMessage());
 		}
 		return msg;
 	}
@@ -67,9 +67,9 @@ public class RoleService {
 	public Mensaje deleteById(int id) {
 		try {
 			roleRepository.deleteById(id);
-			msg = Mensaje.CREATE("Eliminado correctamente", 1);
+			msg = Mensaje.success("Eliminado correctamente");
 		} catch (Exception e) {
-			msg = Mensaje.CREATE("No se pudo Eliminar por que hay usuarios asociados a rol.", 2);
+			msg = Mensaje.danger("No se pudo Eliminar por que hay usuarios asociados a rol.");
 		}
 		return msg;
 

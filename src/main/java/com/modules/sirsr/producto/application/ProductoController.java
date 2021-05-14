@@ -69,7 +69,7 @@ public class ProductoController {
 
 	@PostMapping("/productos/add")
 	public String agregar(ProductoDTO productoDTO, RedirectAttributes redirectAttrs) {
-		msg.crearMensaje(productoService.save(productoDTO), redirectAttrs);
+		Mensaje.addMensaje(productoService.save(productoDTO), redirectAttrs);
 		return "redirect:/admonadq/productos";
 	}
 
@@ -90,7 +90,7 @@ public class ProductoController {
 
 	@PostMapping("/productos/update")
 	public String editar(ProductoDTO productoDTO, RedirectAttributes redirectAttrs) {
-		msg.crearMensaje(productoService.update(productoDTO), redirectAttrs);
+		Mensaje.addMensaje(productoService.update(productoDTO), redirectAttrs);
 		return "redirect:/admonadq/productos";
 	}
 

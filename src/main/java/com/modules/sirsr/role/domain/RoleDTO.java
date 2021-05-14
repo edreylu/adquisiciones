@@ -5,6 +5,7 @@
  */
 package com.modules.sirsr.role.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Objects;
  * @author Edward Reyes
  */
 
-public class RoleDTO {
+public class RoleDTO implements Serializable {
 
 	private int noRole;
 	private String roleName;

@@ -1,6 +1,5 @@
 package com.modules.sirsr.folioRequisicion.application;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +19,7 @@ import com.modules.sirsr.folioRequisicion.domain.FolioRequisicionService;
 public class FolioRequisicionController {
 
 	private final FolioRequisicionService folioRequisicionService;
-
-	private List<FolioRequisicionDTO> listaFolioRequisicionDTO = new ArrayList();
-	private final Mensaje msg = new Mensaje();
+	private List<FolioRequisicionDTO> listaFolioRequisicionDTO;
 
 	@Autowired
 	public FolioRequisicionController(FolioRequisicionService folioRequisicionService) {
@@ -46,14 +43,13 @@ public class FolioRequisicionController {
 	@GetMapping("/foliosrequisiciones/eliminar/{id}/{idestatus}")
 	public String eliminar(@PathVariable("id") int id, @PathVariable("idestatus") int idEstatus,
 			RedirectAttributes redirectAttrs) {
-		Mensaje mensaje = folioRequisicionService.activarInactivar(id, idEstatus);
-		msg.crearMensaje(mensaje, redirectAttrs);
+		Mensaje.addMensaje(folioRequisicionService.activarInactivar(id, idEstatus), redirectAttrs);
 		return "redirect:/admonadq/foliosrequisiciones";
 	}
 
 	@GetMapping("/foliosrequisiciones/add/{id}")
 	public String agregarAnio(@PathVariable("id") String anio, RedirectAttributes redirectAttrs) {
-		msg.crearMensaje(folioRequisicionService.save(Integer.parseInt(anio)), redirectAttrs);
+		Mensaje.addMensaje(folioRequisicionService.save(Integer.parseInt(anio)), redirectAttrs);
 		return "redirect:/admonadq/foliosrequisiciones";
 	}
 }

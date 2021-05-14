@@ -46,6 +46,23 @@ public class Requisicion {
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "requisicion")
 	private List<DetalleRequisicion> detallesRequisicion;
 
+	public Requisicion() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Requisicion(Integer idRequisicion, Integer idSolicitud, Double montoSuficiencia,
+			ClavePresupuestaria clavePresupuestaria, Estatus estatus, MontoAdjudicacion montoAdjudicacion,
+			Solicitud solicitud) {
+		this.idRequisicion = idRequisicion;
+		this.idSolicitud = idSolicitud;
+		this.montoSuficiencia = montoSuficiencia;
+		this.clavePresupuestaria = clavePresupuestaria;
+		this.estatus = estatus;
+		this.montoAdjudicacion = montoAdjudicacion;
+		this.solicitud = solicitud;
+	}
+
+
 	public Integer getIdRequisicion() {
 		return idRequisicion;
 	}

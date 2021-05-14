@@ -72,16 +72,16 @@ public class DetalleRequisicionService {
 				detalleRequisicionDTO.setRequisicion(requisicionDTO);
 				detalleRequisicionDTO.setProducto(productoDTO);
 				detalleRequisicionRepository.save(DetalleRequisicionMapper.toDetalleRequisicion(detalleRequisicionDTO));
-				msg = Mensaje.CREATE("Agregado correctamente", 1);
+				msg = Mensaje.success("Agregado correctamente");
 			} else {
 				Double totalTransaccion = detalleRequisicionDTO.getProducto().getPrecioDeReferencia()
 						* detalleRequisicionDTO.getCantidadSolicitada();
-				msg = Mensaje.CREATE("Monto excede la suficiencia con la que cuentas, Intentaste agregar: $"
+				msg = Mensaje.warning("Monto excede la suficiencia con la que cuentas, Intentaste agregar: $"
 						+ totalTransaccion + " y tu Monto Restante es: $"
-						+ (requisicionDTO.getMontoSuficiencia() - (montoTotal - totalTransaccion)), 3);
+						+ (requisicionDTO.getMontoSuficiencia() - (montoTotal - totalTransaccion)));
 			}
 		} catch (Exception e) {
-			msg = Mensaje.CREATE("No se pudo agregar por: " + e.getMessage(), 2);
+			msg = Mensaje.danger("No se pudo agregar por: " + e.getMessage());
 		}
 		return msg;
 	}
@@ -107,13 +107,13 @@ public class DetalleRequisicionService {
 				detalleRequisicionDTO.setRequisicion(requisicionDTO);
 				detalleRequisicionDTO.setProducto(productoDTO);
 				detalleRequisicionRepository.save(DetalleRequisicionMapper.toDetalleRequisicion(detalleRequisicionDTO));
-				msg = Mensaje.CREATE("Actualizado correctamente", 1);
+				msg = Mensaje.success("Actualizado correctamente");
 			} else {
-				msg = Mensaje.CREATE("Monto excede la suficiencia con la que cuentas, El total asciende a: $"
-						+ montoTotal + " y tu suficiencia total es: $" + requisicionDTO.getMontoSuficiencia(), 3);
+				msg = Mensaje.warning("Monto excede la suficiencia con la que cuentas, El total asciende a: $"
+						+ montoTotal + " y tu suficiencia total es: $" + requisicionDTO.getMontoSuficiencia());
 			}
 		} catch (Exception e) {
-			msg = Mensaje.CREATE("No se pudo Actualizar por: " + e.getMessage(), 2);
+			msg = Mensaje.danger("No se pudo Actualizar por: " + e.getMessage());
 		}
 		return msg;
 	}
@@ -121,9 +121,9 @@ public class DetalleRequisicionService {
 	public Mensaje deleteById(int id) {
 		try {
 			detalleRequisicionRepository.deleteById(id);
-			msg = Mensaje.CREATE("Eliminado correctamente", 1);
+			msg = Mensaje.success("Eliminado correctamente");
 		} catch (Exception e) {
-			msg = Mensaje.CREATE("No se pudo Eliminar por que hay usuarios asociados a rol.", 2);
+			msg = Mensaje.danger("No se pudo Eliminar por que hay usuarios asociados a rol.");
 		}
 		return msg;
 

@@ -43,6 +43,19 @@ public class MontoAdjudicacion {
 	@JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
 	@ManyToOne(optional = false)
 	private Estatus estatus;
+	
+	public MontoAdjudicacion() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public MontoAdjudicacion(Integer montoAdjudicacion, String tipoContratacion, BigDecimal importeSuperiorA,
+			BigDecimal importeLimite, Estatus estatus) {
+		this.montoAdjudicacion = montoAdjudicacion;
+		this.tipoContratacion = tipoContratacion;
+		this.importeSuperiorA = importeSuperiorA;
+		this.importeLimite = importeLimite;
+		this.estatus = estatus;
+	}
 
 	public Integer getMontoAdjudicacion() {
 		return montoAdjudicacion;

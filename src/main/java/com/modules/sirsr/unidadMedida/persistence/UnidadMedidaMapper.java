@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Component
 public class UnidadMedidaMapper {
 
 	public static UnidadMedida toUnidadMedida(UnidadMedidaDTO unidadMedidaDTO) {

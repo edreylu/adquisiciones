@@ -22,22 +22,20 @@ import java.util.*;
 public class UnidadMedidaService {
 
 	private final UnidadMedidaRepository unidadMedidaRepository;
-	private final UnidadMedidaMapper unidadMedidaMapper;
 	private Mensaje msg;
 
 	@Autowired
-	public UnidadMedidaService(UnidadMedidaRepository unidadMedidaRepository, UnidadMedidaMapper unidadMedidaMapper) {
+	public UnidadMedidaService(UnidadMedidaRepository unidadMedidaRepository) {
 		this.unidadMedidaRepository = unidadMedidaRepository;
-		this.unidadMedidaMapper = unidadMedidaMapper;
 	}
 
 	public List<UnidadMedidaDTO> findAll() {
-		return unidadMedidaMapper.toUnidadMedidaDTOs(unidadMedidaRepository.findAll());
+		return UnidadMedidaMapper.toUnidadMedidaDTOs(unidadMedidaRepository.findAll());
 	}
 
 	public UnidadMedidaDTO findById(int id) {
 		Optional<UnidadMedida> unidadMedidaOptional = unidadMedidaRepository.findById(id);
-		UnidadMedidaDTO unidadMedidaDTO = unidadMedidaMapper.toUnidadMedidaDTO(unidadMedidaOptional.get());
+		UnidadMedidaDTO unidadMedidaDTO = UnidadMedidaMapper.toUnidadMedidaDTO(unidadMedidaOptional.get());
 		return unidadMedidaDTO;
 	}
 

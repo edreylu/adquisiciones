@@ -1,8 +1,9 @@
 package com.modules.sirsr.main.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class LoginDTO {
+public class LoginDTO implements Serializable {
 	private String userName;
 	private String email;
 	private String password;

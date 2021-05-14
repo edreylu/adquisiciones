@@ -2,6 +2,10 @@ package com.modules.sirsr.solicitud.domain;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
@@ -36,10 +40,11 @@ public class SolicitudExcelExporter {
 	}
 
 	private void generateHeaderLine() {
+		DateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
 		HSSFRow row = sheet.getRow(1);
 		if(row==null) row = sheet.createRow(1);
 		HSSFCellStyle style = workbook.createCellStyle();
-		createCell(row, 4, solicitud.getFechaCreacion().toString(), style);
+		createCell(row, 4, dateFormatter.format(solicitud.getFechaCreacion()), style);
 		
 		row = sheet.getRow(5);
 		if(row==null) row = sheet.createRow(5);
@@ -74,17 +79,24 @@ public class SolicitudExcelExporter {
 				createCell(row, 2, detalle.getProducto().getCaracteristicas(), style);
 				createCell(row, 4, requisicionDTO.getClavePresupuestaria().getClaveCompleta(), style);
 				createCell(row, 13, requisicionDTO.getClavePresupuestaria().getObjetoDeGasto().getObjetoGasto(), style);
-				createCell(row, 14, requisicionDTO.getClavePresupuestaria().getAnio(), style);
+				//createCell(row, 14, requisicionDTO.getClavePresupuestaria().getAnio(), style);
 			}
 
 		}
 	}
 
 	public void export(HttpServletResponse response) throws IOException {
+		response.setContentType("application/vnd.ms-excel");
+		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+		String currentDateTime = dateFormatter.format(new Date());
+		String headerKey = "Content-Disposition";
+		String headerValue = "attachment; filename=" + currentDateTime + ".xls";
+		response.setHeader(headerKey, headerValue);
+		ServletOutputStream outputStream = response.getOutputStream();
+		
 		Init();
 		generateHeaderLine();
 		generateDataLines();
-		ServletOutputStream outputStream = response.getOutputStream();
 		workbook.write(outputStream);
 		workbook.close();
 		outputStream.close();

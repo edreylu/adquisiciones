@@ -27,7 +27,6 @@ public class RoleController {
 
 	private final RoleService roleService;
 	private List<RoleDTO> roles;
-	private final Mensaje msg = new Mensaje();
 
 	public RoleController(RoleService roleService) {
 		this.roleService = roleService;
@@ -48,7 +47,7 @@ public class RoleController {
 
 	@PostMapping("admin/roles/add")
 	public String agregar(RoleDTO roleDTO, RedirectAttributes redirectAttrs) {
-		msg.crearMensaje(roleService.save(roleDTO), redirectAttrs);
+		Mensaje.addMensaje(roleService.save(roleDTO), redirectAttrs);
 		return "redirect:/admin/roles";
 	}
 
@@ -65,13 +64,13 @@ public class RoleController {
 
 	@PostMapping("admin/roles/update/{id}")
 	public String editar(@PathVariable("id") int id, RoleDTO roleDTO, RedirectAttributes redirectAttrs) {
-		msg.crearMensaje(roleService.update(roleDTO, id), redirectAttrs);
+		Mensaje.addMensaje(roleService.update(roleDTO, id), redirectAttrs);
 		return "redirect:/admin/roles";
 	}
 
 	@GetMapping("admin/roles/eliminar/{id}")
 	public String eliminar(@PathVariable("id") int id, RedirectAttributes redirectAttrs) {
-		msg.crearMensaje(roleService.deleteById(id), redirectAttrs);
+		Mensaje.addMensaje(roleService.deleteById(id), redirectAttrs);
 		return "redirect:/admin/roles";
 	}
 

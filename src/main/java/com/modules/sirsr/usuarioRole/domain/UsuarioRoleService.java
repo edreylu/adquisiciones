@@ -8,7 +8,9 @@ import com.modules.sirsr.usuarioRole.persistence.UsuarioRoleRepository;
 import com.modules.sirsr.usuario.persistence.UsuarioRepository;
 import com.modules.sirsr.config.Mensaje;
 import com.modules.sirsr.role.domain.RoleDTO;
+import com.modules.sirsr.role.domain.RoleService;
 import com.modules.sirsr.usuario.domain.UsuarioDTO;
+import com.modules.sirsr.usuario.domain.UsuarioService;
 import com.modules.sirsr.usuario.persistence.UsuarioMapper;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -20,21 +22,21 @@ import java.util.List;
 public class UsuarioRoleService {
 
 	private final UsuarioRoleRepository usuarioRoleRepository;
-	private final RoleRepository roleRepository;
-	private final UsuarioRepository usuarioRepository;
+	private final RoleService roleService;
+	private final UsuarioService usuarioService;
 	private Mensaje msg;
 
-	public UsuarioRoleService(UsuarioRoleRepository usuarioRoleRepository, RoleRepository roleRepository,
-			UsuarioRepository usuarioRepository) {
+	public UsuarioRoleService(UsuarioRoleRepository usuarioRoleRepository, RoleService roleService,
+			UsuarioService usuarioService) {
 		this.usuarioRoleRepository = usuarioRoleRepository;
-		this.roleRepository = roleRepository;
-		this.usuarioRepository = usuarioRepository;
+		this.roleService = roleService;
+		this.usuarioService = usuarioService;
 	}
 
 	public UsuarioRoleDTO findByNoUsuario(int id) {
-		Usuario usuario = usuarioRepository.findByNoUsuario(id);
+		Usuario usuario = UsuarioMapper.toUsuario(usuarioService.findById(id));
 		UsuarioDTO usuarioDTO = UsuarioMapper.toUsuarioDTO(usuario);
-		List<RoleDTO> rolesDtos = RoleMapper.toRoleDTOs(roleRepository.findAll());
+		List<RoleDTO> rolesDtos = roleService.findAll();
 
 		rolesDtos.forEach(role -> {
 			boolean selected = usuario.getUsuariosRoles().stream()
@@ -50,7 +52,7 @@ public class UsuarioRoleService {
 	public Mensaje assignRoleToUser(UsuarioRoleDTO usuarioRoleDTO, int id) {
 
 		try {
-			Usuario usuario = usuarioRepository.findByNoUsuario(id);
+			Usuario usuario = UsuarioMapper.toUsuario(usuarioService.findById(id));
 			usuarioRoleDTO.getRoles().forEach(roleDTO -> {
 				System.out.println(roleDTO.getNoRole());
 				UsuarioRole usuarioRole = new UsuarioRole();
@@ -72,10 +74,10 @@ public class UsuarioRoleService {
 					}
 				}
 			});
-			msg = Mensaje.CREATE("Pantallas asignadas correctamente", 1);
+			msg = Mensaje.success("Pantallas asignadas correctamente");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			msg = Mensaje.CREATE("Pantallas no se pudieron asignar", 2);
+			msg = Mensaje.danger("Pantallas no se pudieron asignar");
 		}
 		return msg;
 	}

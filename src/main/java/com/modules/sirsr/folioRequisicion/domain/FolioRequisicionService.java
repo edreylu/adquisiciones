@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.modules.sirsr.config.Mensaje;
+import com.modules.sirsr.estatus.domain.EstatusService;
+import com.modules.sirsr.estatus.persistence.EstatusMapper;
 import com.modules.sirsr.estatus.persistence.EstatusRepository;
 import com.modules.sirsr.folioRequisicion.persistence.FolioRequisicion;
 import com.modules.sirsr.folioRequisicion.persistence.FolioRequisicionRepository;
@@ -19,16 +21,13 @@ import com.modules.sirsr.folioRequisicion.persistence.FolioRequisicionRepository
 @Service
 public class FolioRequisicionService {
 
-	private final FolioRequisicionMapper folioRequisicionMapper;
 	private final FolioRequisicionRepository folioRequisicionRepository;
-	private final EstatusRepository estatusRepository;
+	private final EstatusService estatusService;
 
 	@Autowired
-	public FolioRequisicionService(FolioRequisicionMapper folioRequisicionMapper,
-			FolioRequisicionRepository folioRequisicionRepository, EstatusRepository estatusRepository) {
-		this.folioRequisicionMapper = folioRequisicionMapper;
+	public FolioRequisicionService(FolioRequisicionRepository folioRequisicionRepository, EstatusService estatusService) {
 		this.folioRequisicionRepository = folioRequisicionRepository;
-		this.estatusRepository = estatusRepository;
+		this.estatusService = estatusService;
 	}
 
 	private Mensaje msg;
@@ -38,7 +37,7 @@ public class FolioRequisicionService {
 		for (FolioRequisicion folioRequisicion : listaFolioRequisicion) {
 			System.out.println("Desde el service: " + folioRequisicion.getAnio());
 		}
-		return folioRequisicionMapper.toListaFolioRequisicioneDTO(listaFolioRequisicion);
+		return FolioRequisicionMapper.toListaFolioRequisicioneDTO(listaFolioRequisicion);
 	}
 
 	public Mensaje activarInactivar(int id, int idEstatus) {
@@ -47,13 +46,13 @@ public class FolioRequisicionService {
 			Optional<FolioRequisicion> folioRequisicion = folioRequisicionRepository.findById(id);
 			if (folioRequisicion.isPresent()) {
 
-				folioRequisicion.get().setEstatus(estatusRepository.findById(idEstatus).get());
+				folioRequisicion.get().setEstatus(EstatusMapper.toEstatus(estatusService.findById(idEstatus)));
 			}
 
 			folioRequisicionRepository.save(folioRequisicion.get());
-			msg = Mensaje.CREATE(action + " correctamente", 1);
+			msg = Mensaje.success(action + " correctamente");
 		} catch (Exception e) {
-			msg = Mensaje.CREATE("No se pudo " + action + " por: " + e.getMessage(), 2);
+			msg = Mensaje.danger("No se pudo " + action + " por: " + e.getMessage());
 		}
 		return msg;
 
@@ -81,14 +80,14 @@ public class FolioRequisicionService {
 			FolioRequisicionDTO folioRequisicionDTO = new FolioRequisicionDTO();
 			folioRequisicionDTO.setAnio(anio);
 			folioRequisicionDTO.setConsecutivo(1);
-			folioRequisicionDTO.setEstatus(estatusRepository.findById(1).get());
+			folioRequisicionDTO.setEstatus(estatusService.findById(1));
 			if (updateEstatusInactivo() == 1) {
-				folioRequisicionRepository.save(folioRequisicionMapper.toFolioRequisicion(folioRequisicionDTO));
-				msg = Mensaje.CREATE("Agregado correctamente", 1);
+				folioRequisicionRepository.save(FolioRequisicionMapper.toFolioRequisicion(folioRequisicionDTO));
+				msg = Mensaje.success("Agregado correctamente");
 			}
 
 		} catch (Exception e) {
-			msg = Mensaje.CREATE("No se pudo agregar por: " + e.getMessage(), 2);
+			msg = Mensaje.danger("No se pudo agregar por: " + e.getMessage());
 		}
 		return msg;
 	}

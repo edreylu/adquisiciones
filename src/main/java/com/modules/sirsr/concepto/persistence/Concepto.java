@@ -49,6 +49,22 @@ public class Concepto {
 	@JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
 	@ManyToOne(optional = false)
 	private Estatus estatus;
+	
+	public Concepto() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Concepto(Integer claveConcepto, String descripcion, String definicion, Date fechaInicio, Date fechaFinal,
+			Capitulo capitulo, Estatus estatus) {
+		this.claveConcepto = claveConcepto;
+		this.descripcion = descripcion;
+		this.definicion = definicion;
+		this.fechaInicio = fechaInicio;
+		this.fechaFinal = fechaFinal;
+		this.capitulo = capitulo;
+		this.estatus = estatus;
+	}
+
 
 	public Integer getClaveConcepto() {
 		return claveConcepto;

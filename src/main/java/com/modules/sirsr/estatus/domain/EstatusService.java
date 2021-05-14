@@ -47,18 +47,18 @@ public class EstatusService {
 
 	public Mensaje save(EstatusDTO estatusDTO, int id) {
 		try {
-			msg = Mensaje.CREATE("Estatuss agregados correctamente", 1);
+			msg = Mensaje.success("Estatuss agregados correctamente");
 		} catch (Exception e) {
-			msg = Mensaje.CREATE("No se pudo agregar estatuss por: " + e.getMessage(), 2);
+			msg = Mensaje.danger("No se pudo agregar estatuss por: " + e.getMessage());
 		}
 		return msg;
 	}
 
 	public Mensaje deleteById(int id) {
 		try {
-			msg = Mensaje.CREATE("Eliminado correctamente", 1);
+			msg = Mensaje.success("Eliminado correctamente");
 		} catch (Exception e) {
-			msg = Mensaje.CREATE("No se pudo Eliminar.", 2);
+			msg = Mensaje.danger("No se pudo Eliminar.");
 		}
 		return msg;
 

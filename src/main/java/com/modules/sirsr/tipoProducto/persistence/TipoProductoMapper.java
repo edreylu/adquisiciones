@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Component
 public class TipoProductoMapper {
 
 	public static TipoProductoDTO toTipoProductoDTO(TipoProducto tipoProducto) {
@@ -51,8 +50,4 @@ public class TipoProductoMapper {
 		return tipoProductoFound;
 	}
 
-	private static String replaceCaracter(String caracter, int opcion) {
-		Objects.nonNull(caracter);
-		return opcion == 1 ? caracter.replaceAll(",", "\\|") : caracter.replaceAll("\\|", ",");
-	}
 }

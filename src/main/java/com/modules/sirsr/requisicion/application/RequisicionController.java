@@ -32,7 +32,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * @author Edward Reyes
  */
 @Controller
-@RequestMapping(value = "/usuario")
+@RequestMapping("/usuario")
 public class RequisicionController {
 
 	private final RequisicionService requisicionService;
@@ -43,7 +43,6 @@ public class RequisicionController {
 	private List<ClavePresupuestariaDTO> clavesPresupuestarias;
 	private RequisicionDTO requisicionDTO;
 	private UsuarioDTO usuarioDTO;
-	private final Mensaje msg = new Mensaje();
 
 	@Autowired
 	public RequisicionController(RequisicionService requisicionService, SolicitudService solicitudService,
@@ -77,7 +76,7 @@ public class RequisicionController {
 
 	@PostMapping("/solicitudes/requisiciones/add/{id}")
 	public String agregar(RequisicionDTO requisicionDTO, @PathVariable("id") int id, RedirectAttributes redirectAttrs) {
-		msg.crearMensaje(requisicionService.save(requisicionDTO, id), redirectAttrs);
+		Mensaje.addMensaje(requisicionService.save(requisicionDTO, id), redirectAttrs);
 		return "redirect:/usuario/solicitudes/requisiciones/" + id;
 	}
 
@@ -98,14 +97,14 @@ public class RequisicionController {
 
 	@PostMapping("/solicitudes/requisiciones/update")
 	public String editar(RequisicionDTO requisicionDTO, RedirectAttributes redirectAttrs) {
-		msg.crearMensaje(requisicionService.update(requisicionDTO), redirectAttrs);
+		Mensaje.addMensaje(requisicionService.update(requisicionDTO), redirectAttrs);
 		return "redirect:/usuario/solicitudes/requisiciones/" + requisicionDTO.getIdSolicitud();
 	}
 
 	@GetMapping("/solicitudes/requisiciones/eliminar/{id}/{idSolicitud}")
 	public String eliminar(@PathVariable("id") int id, @PathVariable("idSolicitud") int idSolicitud,
 			RedirectAttributes redirectAttrs) {
-		msg.crearMensaje(requisicionService.deleteById(id), redirectAttrs);
+		Mensaje.addMensaje(requisicionService.deleteById(id), redirectAttrs);
 		return "redirect:/usuario/solicitudes/requisiciones/" + idSolicitud;
 	}
 

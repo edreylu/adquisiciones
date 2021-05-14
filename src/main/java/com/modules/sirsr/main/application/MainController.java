@@ -34,7 +34,6 @@ import static com.modules.sirsr.config.WebUtils.getSiteURL;
 public class MainController {
 
 	private final UsuarioService usuarioService;
-	private final Mensaje msg = new Mensaje();
 	@Value("${google.recaptcha.sitio}")
 	private String key;
 
@@ -77,7 +76,7 @@ public class MainController {
 		String email = request.getParameter("email");
 		String token = RandomString.make(30);
 		String resetPasswordLink = getSiteURL.apply(request) + "/cambiar_password?token=" + token;
-		msg.crearMensaje(usuarioService.updateResetPasswordToken(token, email, resetPasswordLink), redirectAttrs);
+		Mensaje.addMensaje(usuarioService.updateResetPasswordToken(token, email, resetPasswordLink), redirectAttrs);
 		return "redirect:/login";
 	}
 
@@ -98,7 +97,7 @@ public class MainController {
 		Mensaje mensaje = usuarioService.getByResetPasswordToken(token);
 		model.addAttribute("title", "Reinicie su password");
 		if (mensaje.getResult() == 1) {
-			msg.crearMensaje(usuarioService.updatePassword(token, password), redirectAttrs);
+			Mensaje.addMensaje(usuarioService.updatePassword(token, password), redirectAttrs);
 		} else {
 			model.addAttribute("errorToken", 1);
 			return "cambiar_password";

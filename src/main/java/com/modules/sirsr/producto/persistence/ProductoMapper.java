@@ -12,7 +12,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-@Component
 public class ProductoMapper {
 
 	public static Producto toProducto(ProductoDTO productoDTO) {

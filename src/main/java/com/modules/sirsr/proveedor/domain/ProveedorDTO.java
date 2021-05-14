@@ -5,6 +5,7 @@
  */
 package com.modules.sirsr.proveedor.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +20,7 @@ import com.modules.sirsr.tipoPersonaFiscal.domain.TipoPersonaFiscalDTO;
  * @author Edward Reyes
  */
 
-public class ProveedorDTO {
+public class ProveedorDTO implements Serializable {
     
 	
 	

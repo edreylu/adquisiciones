@@ -46,6 +46,21 @@ public class Capitulo {
 	@JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
 	@ManyToOne(optional = false)
 	private Estatus estatus;
+	
+	public Capitulo() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Capitulo(Integer claveCapitulo, String descripcion, String definicion, Date fechaInicio, Date fechaFinal,
+			Estatus estatus) {
+		this.claveCapitulo = claveCapitulo;
+		this.descripcion = descripcion;
+		this.definicion = definicion;
+		this.fechaInicio = fechaInicio;
+		this.fechaFinal = fechaFinal;
+		this.estatus = estatus;
+	}
+
 
 	public Integer getClaveCapitulo() {
 		return claveCapitulo;

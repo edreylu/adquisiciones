@@ -1,9 +1,11 @@
 package com.modules.sirsr.actividad.domain;
 
+import java.io.Serializable;
+
 import com.modules.sirsr.estatus.domain.EstatusDTO;
 
 
-public class ActividadDTO {
+public class ActividadDTO implements Serializable{
 	
 	private Integer idActividad;
 	private String descripcion;

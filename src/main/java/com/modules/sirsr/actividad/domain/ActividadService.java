@@ -11,21 +11,20 @@ import com.modules.sirsr.actividad.persistence.Actividad;
 import com.modules.sirsr.actividad.persistence.ActividadMapper;
 import com.modules.sirsr.actividad.persistence.ActividadRepository;
 import com.modules.sirsr.config.Mensaje;
+import com.modules.sirsr.estatus.domain.EstatusService;
 import com.modules.sirsr.estatus.persistence.EstatusRepository;
 
 @Service
 public class ActividadService {
 
 	private final ActividadRepository actividadRepository;
-	private final ActividadMapper actividadMapper;
-	private final EstatusRepository estatusRepository;
+	private final EstatusService estatusService;
 	private Mensaje msg;
 
 	@Autowired
-	public ActividadService(ActividadRepository actividadRepository, ActividadMapper actividadMapper, EstatusRepository estatusRepository) {
+	public ActividadService(ActividadRepository actividadRepository, EstatusService estatusService) {
 		this.actividadRepository = actividadRepository;
-		this.actividadMapper = actividadMapper;
-		this.estatusRepository = estatusRepository;
+		this.estatusService = estatusService;
 	}
 
 	public List<ActividadDTO> findAll() {
@@ -45,12 +44,11 @@ public class ActividadService {
 	public Mensaje save(ActividadDTO actividadDTO) {
 		try {
 			
-			Actividad actividad = ActividadMapper.toActividad(actividadDTO);
-			actividad.setEstatus(estatusRepository.findById(1).get());
-			actividadRepository.save(actividad);
-			msg = Mensaje.CREATE("Agregado correctamente", 1);
+			actividadDTO.setEstatus(estatusService.findById(1));
+			actividadRepository.save(ActividadMapper.toActividad(actividadDTO));
+			msg = Mensaje.success("Agregado correctamente");
 		} catch (Exception e) {
-			msg = Mensaje.CREATE("No se pudo agregar por: " + e.getMessage(), 2);
+			msg = Mensaje.danger("No se pudo agregar por: " + e.getMessage());
 		}
 		return msg;
 	}
@@ -59,15 +57,15 @@ public class ActividadService {
 
         String action = idEstatus == 1 ? "Activado" : "Inactivado";
         try {
-            Optional<Actividad> actividad = actividadRepository.findById(id);
-            if(actividad.isPresent()) {
-            	actividad.get().setEstatus(estatusRepository.findById(idEstatus).get());
+        	ActividadDTO actividadDTO = findById(id);
+            if(Objects.nonNull(actividadDTO)) {
+            	actividadDTO.setEstatus(estatusService.findById(idEstatus));
             }
             
-            actividadRepository.save(actividad.get());
-            msg = Mensaje.CREATE(action + " correctamente", 1);
+            actividadRepository.save(ActividadMapper.toActividad(actividadDTO));
+            msg = Mensaje.success(action + " correctamente");
         } catch (Exception e) {
-            msg = Mensaje.CREATE("No se pudo " + action + " por: " + e.getMessage(), 2);
+            msg = Mensaje.danger("No se pudo " + action + " por: " + e.getMessage());
         }
         return msg;
 
@@ -82,13 +80,13 @@ public class ActividadService {
 				actividadRepository.save(actividad);
 				
 			} else {
-				msg = Mensaje.CREATE("No se encontro el proveedor", -1);
+				msg = Mensaje.notFound("No se encontro el proveedor");
 			}
 		
-			msg = Mensaje.CREATE("Actualizado correctamente", 1);
+			msg = Mensaje.notFound("Actualizado correctamente");
 
 		} catch (Exception e) {
-			msg = Mensaje.CREATE("No se pudo Actualizar por: " + e.getMessage(), 2);
+			msg = Mensaje.danger("No se pudo Actualizar por: " + e.getMessage());
 		}
 		return msg;
 	}

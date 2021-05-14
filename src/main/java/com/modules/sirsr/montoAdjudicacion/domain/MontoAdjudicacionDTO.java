@@ -14,8 +14,6 @@ public class MontoAdjudicacionDTO implements Serializable{
 	public MontoAdjudicacionDTO() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 
 	public MontoAdjudicacionDTO(int montoAdjudicacion, String tipoContratacion, Double importeSuperiorA,
 			Double importeLimite, EstatusDTO estatus) {

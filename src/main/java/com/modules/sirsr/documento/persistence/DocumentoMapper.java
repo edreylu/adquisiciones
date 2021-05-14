@@ -14,7 +14,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-@Component
 public class DocumentoMapper {
 
 	public static DocumentoDTO toDocumentoDTO(Documento documento) {

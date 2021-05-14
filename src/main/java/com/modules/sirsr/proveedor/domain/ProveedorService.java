@@ -33,18 +33,16 @@ import org.springframework.stereotype.Service;
 public class ProveedorService {
 
 	private final ProveedorRepository proveedorRepository;
-	private final ProveedorMapper proveedorMapper;
 	private final TipoPersonaFiscalRepository tipoPersonaFiscalRepository;
 	private final EstatusRepository estatusRepository;
 	private final ActividadRepository actividadRepository;
 	private Mensaje msg;
 
 	@Autowired
-	public ProveedorService(ProveedorRepository proveedorRepository, ProveedorMapper proveedorMapper,
+	public ProveedorService(ProveedorRepository proveedorRepository,
 			TipoPersonaFiscalRepository tipoPersonaFiscalRepository, EstatusRepository estatusRepository,
 			ActividadRepository actividadRepository) {
 		this.proveedorRepository = proveedorRepository;
-		this.proveedorMapper = proveedorMapper;
 		this.tipoPersonaFiscalRepository = tipoPersonaFiscalRepository;
 		this.estatusRepository = estatusRepository;
 		this.actividadRepository = actividadRepository;
@@ -64,12 +62,12 @@ public class ProveedorService {
 	public Mensaje save(ProveedorDTO proveedorDTO) {
 		try {
 
-			Proveedor prov = proveedorMapper.toProveedor(proveedorDTO);
+			Proveedor prov = ProveedorMapper.toProveedor(proveedorDTO);
 			prov.setEstatus(estatusRepository.findById(1).get());
 			proveedorRepository.save(prov);
-			msg = Mensaje.CREATE("Agregado correctamente", 1);
+			msg = Mensaje.success("Agregado correctamente");
 		} catch (Exception e) {
-			msg = Mensaje.CREATE("No se pudo agregar por: " + e.getMessage(), 2);
+			msg = Mensaje.danger("No se pudo agregar por: " + e.getMessage());
 		}
 		return msg;
 	}
@@ -83,7 +81,7 @@ public class ProveedorService {
 				proveedor = ProveedorMapper.setToUpdate(proveedorFound.get(), proveedorDTO);
 			
 			} else {
-				msg = Mensaje.CREATE("No se encontro el proveedor", -1);
+				msg = Mensaje.notFound("No se encontro el proveedor");
 			}
 
 			if (!Objects.isNull(proveedorDTO.getTipoPersonaFiscal().getIdTipoPersonaFiscal())) {
@@ -94,10 +92,10 @@ public class ProveedorService {
 			
 			proveedorRepository.save(proveedor);
 			
-			msg = Mensaje.CREATE("Actualizado correctamente", 1);
+			msg = Mensaje.success("Actualizado correctamente");
 
 		} catch (Exception e) {
-			msg = Mensaje.CREATE("No se pudo Actualizar por: " + e.getMessage(), 2);
+			msg = Mensaje.danger("No se pudo Actualizar por: " + e.getMessage());
 		}
 		return msg;
 	}
@@ -113,9 +111,9 @@ public class ProveedorService {
 			}
 
 			proveedorRepository.save(provedorfound.get());
-			msg = Mensaje.CREATE(action + " correctamente", 1);
+			msg = Mensaje.success(action + " correctamente");
 		} catch (Exception e) {
-			msg = Mensaje.CREATE("No se pudo " + action + " por: " + e.getMessage(), 2);
+			msg = Mensaje.danger("No se pudo " + action + " por: " + e.getMessage());
 		}
 		return msg;
 
@@ -130,15 +128,15 @@ public class ProveedorService {
 				if (!proveedorFound.get().getActividades().contains(actividadSeleccionada.get())) {
 					proveedorFound.get().getActividades().add(actividadSeleccionada.get());
 					proveedorRepository.save(proveedorFound.get());
-					msg = Mensaje.CREATE("Agregado correctamente", 1);
+					msg = Mensaje.success("Agregado correctamente");
 				} else {
-					msg = Mensaje.CREATE("La actividad ya estaba asignada", 3);
+					msg = Mensaje.warning("La actividad ya estaba asignada");
 				}
 
 			}
 
 		} catch (Exception e) {
-			msg = Mensaje.CREATE("No se pudo agregar por: " + e.getMessage(), 2);
+			msg = Mensaje.danger("No se pudo agregar por: " + e.getMessage());
 		}
 		return msg;
 	}
@@ -152,9 +150,9 @@ public class ProveedorService {
 				provedorfound.get().getActividades().remove(actividadFound.get());
 			}
 			proveedorRepository.save(provedorfound.get());
-			msg = Mensaje.CREATE("Eliminado correctamente", 1);
+			msg = Mensaje.success("Eliminado correctamente");
 		} catch (Exception e) {
-			msg = Mensaje.CREATE("No se pudo elimnar por: " + e.getMessage(), 2);
+			msg = Mensaje.danger("No se pudo elimnar por: " + e.getMessage());
 		}
 		return msg;
 

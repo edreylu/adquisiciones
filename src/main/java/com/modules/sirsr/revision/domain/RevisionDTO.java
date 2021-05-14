@@ -5,15 +5,16 @@
  */
 package com.modules.sirsr.revision.domain;
 
-import com.modules.sirsr.revision.persistence.RevisionPK;
-import com.modules.sirsr.solicitud.domain.SolicitudDTO;
+import java.io.Serializable;
 import java.util.Date;
+
+import com.modules.sirsr.solicitud.domain.SolicitudDTO;
 
 /**
  *
  * @author Edward Reyes
  */
-public class RevisionDTO {
+public class RevisionDTO implements Serializable {
 	
 	private Date fechaRevision;
 	private String observacion;

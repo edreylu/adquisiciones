@@ -3,9 +3,10 @@ package com.modules.sirsr.usuarioRole.domain;
 import com.modules.sirsr.role.domain.RoleDTO;
 import com.modules.sirsr.usuario.domain.UsuarioDTO;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class UsuarioRoleDTO {
+public class UsuarioRoleDTO implements Serializable {
 
 	private int id;
 	private UsuarioDTO usuario;

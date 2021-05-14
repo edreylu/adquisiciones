@@ -32,7 +32,7 @@ import java.util.Objects;
  * @author Edward Reyes
  */
 @Controller
-@RequestMapping(value = "/usuario")
+@RequestMapping("/usuario")
 public class DetalleRequisicionController {
 
 	private final RequisicionService requisicionService;
@@ -42,7 +42,6 @@ public class DetalleRequisicionController {
 	private List<DetalleRequisicionDTO> detallesRequisiciones;
 	private List<ProductoDTO> productos;
 	private UsuarioDTO usuarioDTO;
-	private final Mensaje msg = new Mensaje();
 
 	@Autowired
 	public DetalleRequisicionController(RequisicionService requisicionService,
@@ -82,7 +81,7 @@ public class DetalleRequisicionController {
 	@PostMapping("/solicitudes/requisiciones/detalles/add/{id}")
 	public String agregar(@PathVariable("id") int id, DetalleRequisicionDTO detalleRequisicionDTO,
 			RedirectAttributes redirectAttrs) {
-		msg.crearMensaje(detalleRequisicionService.save(detalleRequisicionDTO, id), redirectAttrs);
+		Mensaje.addMensaje(detalleRequisicionService.save(detalleRequisicionDTO, id), redirectAttrs);
 		return "redirect:/usuario/solicitudes/requisiciones/detalles/" + id;
 	}
 
@@ -105,14 +104,14 @@ public class DetalleRequisicionController {
 	@PostMapping("/solicitudes/requisiciones/detalles/update/{id}/{idRequisicion}")
 	public String editar(DetalleRequisicionDTO detalleRequisicionDTO, @PathVariable("id") int id,
 			@PathVariable("idRequisicion") int idRequisicion, RedirectAttributes redirectAttrs) {
-		msg.crearMensaje(detalleRequisicionService.update(detalleRequisicionDTO, id, idRequisicion), redirectAttrs);
+		Mensaje.addMensaje(detalleRequisicionService.update(detalleRequisicionDTO, id, idRequisicion), redirectAttrs);
 		return "redirect:/usuario/solicitudes/requisiciones/detalles/" + idRequisicion;
 	}
 
 	@GetMapping("/solicitudes/requisiciones/detalles/eliminar/{id}/{idRequisicion}")
 	public String eliminar(@PathVariable("id") int id, @PathVariable("idRequisicion") int idRequisicion,
 			RedirectAttributes redirectAttrs) {
-		msg.crearMensaje(detalleRequisicionService.deleteById(id), redirectAttrs);
+		Mensaje.addMensaje(detalleRequisicionService.deleteById(id), redirectAttrs);
 		return "redirect:/usuario/solicitudes/requisiciones/detalles/" + idRequisicion;
 	}
 

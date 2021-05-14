@@ -31,7 +31,6 @@ import org.eclipse.persistence.jpa.rs.exceptions.JPARSException;
 public class ProductoService {
 
 	private final ProductoRepository productoRepository;
-	private final ProductoMapper productoMapper;
 	private final TipoProductoService tipoProductoService;
 	private final UnidadMedidaService unidadMedidaService;
 	private final EstatusService estatusService;
@@ -42,20 +41,19 @@ public class ProductoService {
 
 	@Autowired
 	public ProductoService(ProductoRepository productoRepository, TipoProductoService tipoProductoService,
-			ProductoMapper productoMapper, UnidadMedidaService unidadMedidaService, EstatusService estatusService) {
+			UnidadMedidaService unidadMedidaService, EstatusService estatusService) {
 		this.productoRepository = productoRepository;
 		this.tipoProductoService = tipoProductoService;
-		this.productoMapper = productoMapper;
 		this.unidadMedidaService = unidadMedidaService;
 		this.estatusService = estatusService;
 	}
 
 	public List<ProductoDTO> findAll() {
-		return productoMapper.toProductoDTOs(productoRepository.findAllByIdEstatus(1));
+		return ProductoMapper.toProductoDTOs(productoRepository.findAllByIdEstatus(1));
 	}
 
 	public List<ProductoDTO> findAllSuggestions() {
-		return productoMapper.toProductoDTOs(productoRepository.findAllByIdEstatus(2));
+		return ProductoMapper.toProductoDTOs(productoRepository.findAllByIdEstatus(2));
 	}
 
 	public boolean areThereProductsSuggestions() {
@@ -67,12 +65,12 @@ public class ProductoService {
 		List<TipoProductoDTO> tiposProductoDTOs = tipoProductoService.findByObjetoGastoStr(objetoGasto);
 		List<Integer> tiposProductoFound = tiposProductoDTOs.stream()
 				.map(tipoProducto -> tipoProducto.getIdTipoProducto()).collect(Collectors.toList());
-		return productoMapper.toProductoDTOs(productoRepository.findByIdTipoProductoIn(tiposProductoFound));
+		return ProductoMapper.toProductoDTOs(productoRepository.findByIdTipoProductoIn(tiposProductoFound));
 	}
 
 	public ProductoDTO findById(int id) {
 		Optional<Producto> productoOptional = productoRepository.findById(id);
-		ProductoDTO productoDTO = productoMapper.toProductoDTO(productoOptional.get());
+		ProductoDTO productoDTO = ProductoMapper.toProductoDTO(productoOptional.get());
 		return productoDTO;
 	}
 
@@ -86,10 +84,10 @@ public class ProductoService {
 			productoDTO.setEstatus(estatusDTO);
 			System.out.println(productoDTO.getUnidadMedida().getIdUnidadMedida());
 			System.out.println(productoDTO.getTipoProducto().getIdTipoProducto());
-			productoRepository.save(productoMapper.toProducto(productoDTO));
-			msg = Mensaje.CREATE("Agregado correctamente", 1);
+			productoRepository.save(ProductoMapper.toProducto(productoDTO));
+			msg = Mensaje.success("Agregado correctamente");
 		} catch (Exception e) {
-			msg = Mensaje.CREATE("No se pudo agregar por: " + e.getMessage(), 2);
+			msg = Mensaje.danger("No se pudo agregar por: " + e.getMessage());
 		}
 		return msg;
 	}
@@ -104,10 +102,10 @@ public class ProductoService {
 			productoDTO.setEstatus(estatusDTO);
 			System.out.println(productoDTO.getUnidadMedida().getIdUnidadMedida());
 			System.out.println(productoDTO.getTipoProducto().getIdTipoProducto());
-			productoRepository.save(productoMapper.toProducto(productoDTO));
-			msg = Mensaje.CREATE("Agregado correctamente", 1);
+			productoRepository.save(ProductoMapper.toProducto(productoDTO));
+			msg = Mensaje.success("Agregado correctamente");
 		} catch (Exception e) {
-			msg = Mensaje.CREATE("No se pudo agregar por: " + e.getMessage(), 2);
+			msg = Mensaje.danger("No se pudo agregar por: " + e.getMessage());
 		}
 		return msg;
 	}
@@ -120,10 +118,10 @@ public class ProductoService {
 			productoDTO.setUnidadMedida(unidadMedidaDTO);
 			productoDTO.setTipoProducto(tipoProductoDTO);
 			productoDTO.setEstatus(estatusDTO);
-			productoRepository.save(productoMapper.toProducto(productoDTO));
-			msg = Mensaje.CREATE("Actualizado correctamente", 1);
+			productoRepository.save(ProductoMapper.toProducto(productoDTO));
+			msg = Mensaje.success("Actualizado correctamente");
 		} catch (Exception e) {
-			msg = Mensaje.CREATE("No se pudo Actualizar por: " + e.getMessage(), 2);
+			msg = Mensaje.danger("No se pudo Actualizar por: " + e.getMessage());
 		}
 		return msg;
 	}
@@ -137,10 +135,10 @@ public class ProductoService {
 			productoDTO.setUnidadMedida(unidadMedidaDTO);
 			productoDTO.setTipoProducto(tipoProductoDTO);
 			productoDTO.setEstatus(estatusDTO);
-			productoRepository.save(productoMapper.toProducto(productoDTO));
-			msg = Mensaje.CREATE("Actualizado correctamente", 1);
+			productoRepository.save(ProductoMapper.toProducto(productoDTO));
+			msg = Mensaje.success("Actualizado correctamente");
 		} catch (Exception e) {
-			msg = Mensaje.CREATE("No se pudo Actualizar por: " + e.getMessage(), 2);
+			msg = Mensaje.danger("No se pudo Actualizar por: " + e.getMessage());
 		}
 		return msg;
 	}
@@ -148,9 +146,9 @@ public class ProductoService {
 	public Mensaje deleteById(int id) {
 		try {
 			productoRepository.deleteById(id);
-			msg = Mensaje.CREATE("Eliminado correctamente", 1);
+			msg = Mensaje.success("Eliminado correctamente");
 		} catch (Exception e) {
-			msg = Mensaje.CREATE("No se pudo Eliminar.", 2);
+			msg = Mensaje.danger("No se pudo Eliminar.");
 		}
 		return msg;
 
@@ -161,15 +159,15 @@ public class ProductoService {
 			ProductoDTO productoDTO = this.findById(id);
 			estatusDTO = estatusService.findById(idEstatus);
 			productoDTO.setEstatus(estatusDTO);
-			productoRepository.save(productoMapper.toProducto(productoDTO));
+			productoRepository.save(ProductoMapper.toProducto(productoDTO));
 			if (idEstatus == 1) {
-				msg = Mensaje.CREATE("Registro se acepto correctamente", 1);
+				msg = Mensaje.success("Registro se acepto correctamente");
 			} else {
-				msg = Mensaje.CREATE("Registro se rechazo correctamente", 3);
+				msg = Mensaje.warning("Registro se rechazo correctamente");
 			}
 
 		} catch (JPARSException e) {
-			msg = Mensaje.CREATE("No se pudo completar.", 2);
+			msg = Mensaje.danger("No se pudo completar.");
 		}
 		return msg;
 

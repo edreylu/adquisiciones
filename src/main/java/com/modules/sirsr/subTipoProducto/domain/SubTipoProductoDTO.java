@@ -5,6 +5,8 @@
  */
 package com.modules.sirsr.subTipoProducto.domain;
 
+import java.io.Serializable;
+
 import com.modules.sirsr.estatus.domain.EstatusDTO;
 import com.modules.sirsr.objetoGasto.domain.ObjetoDeGastoDTO;
 import com.modules.sirsr.tipoProducto.domain.TipoProductoDTO;
@@ -13,7 +15,7 @@ import com.modules.sirsr.tipoProducto.domain.TipoProductoDTO;
  *
  * @author Edward Reyes
  */
-public class SubTipoProductoDTO {
+public class SubTipoProductoDTO implements Serializable {
 	private int idSubtipoProducto;
 	private String descripcion;
 	private EstatusDTO estatus;

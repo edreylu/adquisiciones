@@ -1,21 +1,14 @@
 package com.modules.sirsr.requisicion.persistence;
 
-import com.modules.sirsr.clavePresupuestaria.domain.ClavePresupuestariaDTO;
-import com.modules.sirsr.clavePresupuestaria.persistence.ClavePresupuestariaMapper;
-import com.modules.sirsr.estatus.domain.EstatusDTO;
-import com.modules.sirsr.estatus.persistence.EstatusMapper;
-import com.modules.sirsr.montoAdjudicacion.persistence.MontoAdjudicacionMapper;
-import com.modules.sirsr.requisicion.domain.RequisicionDTO;
-
-import com.modules.sirsr.solicitud.persistence.SolicitudMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Component
+import com.modules.sirsr.clavePresupuestaria.persistence.ClavePresupuestariaMapper;
+import com.modules.sirsr.estatus.persistence.EstatusMapper;
+import com.modules.sirsr.requisicion.domain.RequisicionDTO;
+import com.modules.sirsr.solicitud.persistence.SolicitudMapper;
+
 public class RequisicionMapper {
 
 	public static RequisicionDTO toRequisicionDTO(Requisicion requisicion) {
@@ -69,8 +62,4 @@ public class RequisicionMapper {
 		return requisicionFound;
 	}
 
-	private String replaceCaracter(String caracter, int opcion) {
-		Objects.nonNull(caracter);
-		return opcion == 1 ? caracter.replaceAll(",", "\\|") : caracter.replaceAll("\\|", ",");
-	}
 }

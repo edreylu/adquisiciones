@@ -5,13 +5,15 @@
  */
 package com.modules.sirsr.marca.domain;
 
+import java.io.Serializable;
+
 import com.modules.sirsr.estatus.domain.EstatusDTO;
 
 /**
  *
  * @author Edward Reyes
  */
-public class MarcaDTO {
+public class MarcaDTO implements Serializable {
 	private int idMarca;
 	private String descripcion;
 	private EstatusDTO estatus;

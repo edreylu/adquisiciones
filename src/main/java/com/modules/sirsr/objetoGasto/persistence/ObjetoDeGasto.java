@@ -49,6 +49,22 @@ public class ObjetoDeGasto {
 	@JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
 	@ManyToOne(optional = false)
 	private Estatus estatus;
+	
+	public ObjetoDeGasto() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public ObjetoDeGasto(String objetoGasto, String descripcion, String definicion, Date fechaInicio, Date fechaFinal,
+			PartidaGastoGenerica partidaGastoGenerica, Estatus estatus) {
+		this.objetoGasto = objetoGasto;
+		this.descripcion = descripcion;
+		this.definicion = definicion;
+		this.fechaInicio = fechaInicio;
+		this.fechaFinal = fechaFinal;
+		this.partidaGastoGenerica = partidaGastoGenerica;
+		this.estatus = estatus;
+	}
+
 
 	public String getObjetoGasto() {
 		return objetoGasto;

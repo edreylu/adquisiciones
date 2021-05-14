@@ -10,13 +10,14 @@ import com.modules.sirsr.estatus.domain.EstatusDTO;
 import com.modules.sirsr.montoAdjudicacion.domain.MontoAdjudicacionDTO;
 import com.modules.sirsr.solicitud.domain.SolicitudDTO;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  *
  * @author Edward Reyes
  */
-public class RequisicionDTO {
+public class RequisicionDTO implements Serializable{
 	private int idRequisicion;
 	private int idSolicitud;
 	private Double montoSuficiencia;

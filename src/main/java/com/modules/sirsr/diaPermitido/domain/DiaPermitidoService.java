@@ -11,7 +11,10 @@ import java.util.Objects;
 import java.util.Optional;
 
 import com.modules.sirsr.diaPermitido.persistence.DiaPermitidoMapper;
+import com.modules.sirsr.estatus.domain.EstatusDTO;
+import com.modules.sirsr.estatus.domain.EstatusService;
 import com.modules.sirsr.estatus.persistence.Estatus;
+import com.modules.sirsr.estatus.persistence.EstatusMapper;
 import com.modules.sirsr.estatus.persistence.EstatusRepository;
 import com.modules.sirsr.config.util.Fecha;
 
@@ -25,39 +28,36 @@ import com.modules.sirsr.diaPermitido.persistence.DiaPermitidoRepository;
 @Service
 public class DiaPermitidoService {
 
-	private final DiaPermitidoMapper diaPermitidoMapper;
 	private final DiaPermitidoRepository diaPermitidoRepository;
-	private final EstatusRepository estatusRepository;
+	private final EstatusService estatusService;
 	private Mensaje msg;
 
 	@Autowired
-	public DiaPermitidoService(DiaPermitidoRepository diaPermitidoRepository, DiaPermitidoMapper diaPermitidoMapper,
-			EstatusRepository estatusRepository) {
+	public DiaPermitidoService(DiaPermitidoRepository diaPermitidoRepository, EstatusService estatusService) {
 		this.diaPermitidoRepository = diaPermitidoRepository;
-		this.diaPermitidoMapper = diaPermitidoMapper;
-		this.estatusRepository = estatusRepository;
+		this.estatusService = estatusService;
 	}
 
 	public List<DiaPermitidoDTO> findAll() {
 		List<DiaPermitido> diasPermitidos = diaPermitidoRepository.findAllByOrderByDiaPermitidoDesc();
 
-		return diaPermitidoMapper.toDiasPermitodosDTO(diasPermitidos);
+		return DiaPermitidoMapper.toDiasPermitodosDTO(diasPermitidos);
 	}
 
 	public Mensaje saveDay(DiaPermitidoDTO diaPermitidoDTO) {
 		try {
 			String msgValidacion = validaFechaActual(diaPermitidoDTO.getDiaPermitido());
 			if (Objects.isNull(msgValidacion)) {
-				diaPermitidoDTO.setEstatus(estatusRepository.findById(1).get());
-				DiaPermitido diaPermitido = diaPermitidoMapper.toDiaPermitido(diaPermitidoDTO);
+				diaPermitidoDTO.setEstatus(estatusService.findById(1));
+				DiaPermitido diaPermitido = DiaPermitidoMapper.toDiaPermitido(diaPermitidoDTO);
 				diaPermitidoRepository.save(diaPermitido);
-				msg = Mensaje.CREATE("Agregado correctamente", 1);
+				msg = Mensaje.success("Agregado correctamente");
 			} else {
-				msg = Mensaje.CREATE(msgValidacion, 3);
+				msg = Mensaje.warning(msgValidacion);
 			}
 
 		} catch (Exception e) {
-			msg = Mensaje.CREATE("No se pudo agregar por: " + e.getMessage(), 2);
+			msg = Mensaje.danger("No se pudo agregar por: " + e.getMessage());
 		}
 		return msg;
 	}
@@ -69,27 +69,27 @@ public class DiaPermitidoService {
 			if (Objects.isNull(msgValidacion)) {
 				List<Date> fechas = getDatesBetween(diaPermitidoDTO);
 				if (Objects.isNull(fechas)) {
-					return msg = Mensaje.CREATE("La fecha inicial no debe ser mayor a la fecha final", 2);
+					return msg = Mensaje.danger("La fecha inicial no debe ser mayor a la fecha final");
 				} else {
-					Estatus estatus = estatusRepository.findById(1).get();
+					EstatusDTO estatus = estatusService.findById(1);
 					DiaPermitido diaPermitido;
 					for (Date date : fechas) {
 
 						diaPermitidoDTO.setDiaPermitido(date);
 						diaPermitidoDTO.setEstatus(estatus);
-						diaPermitido = diaPermitidoMapper.toDiaPermitido(diaPermitidoDTO);
+						diaPermitido = DiaPermitidoMapper.toDiaPermitido(diaPermitidoDTO);
 
 						diaPermitidoRepository.save(diaPermitido);
 
-						msg = Mensaje.CREATE("Días agregados correctamente", 1);
+						msg = Mensaje.success("Días agregados correctamente");
 					}
 				}
 			} else {
-				msg = Mensaje.CREATE(msgValidacion, 3);
+				msg = Mensaje.warning(msgValidacion);
 			}
 
 		} catch (Exception e) {
-			msg = Mensaje.CREATE("No se pudieron agregar los días por: " + e.getMessage(), 2);
+			msg = Mensaje.danger("No se pudieron agregar los días por: " + e.getMessage());
 		}
 		return msg;
 	}
@@ -99,15 +99,15 @@ public class DiaPermitidoService {
 		String action = idEstatus == 1 ? "Activado" : "Inactivado";
 		try {
 			Optional<DiaPermitido> diaPermitidofound = diaPermitidoRepository.findById(date);
-			Optional<Estatus> estatusFound = estatusRepository.findById(idEstatus);
-			if (diaPermitidofound.isPresent() && estatusFound.isPresent()) {
-				diaPermitidofound.get().setEstatus(estatusFound.get());
+			EstatusDTO estatusFound = estatusService.findById(idEstatus);
+			if (Objects.nonNull(estatusFound)) {
+				diaPermitidofound.get().setEstatus(EstatusMapper.toEstatus(estatusFound));
 			}
 
 			diaPermitidoRepository.save(diaPermitidofound.get());
-			msg = Mensaje.CREATE(action + " correctamente", 1);
+			msg = Mensaje.success(action + " correctamente");
 		} catch (Exception e) {
-			msg = Mensaje.CREATE("No se pudo " + action + " por: " + e.getMessage(), 2);
+			msg = Mensaje.danger("No se pudo " + action + " por: " + e.getMessage());
 		}
 		return msg;
 

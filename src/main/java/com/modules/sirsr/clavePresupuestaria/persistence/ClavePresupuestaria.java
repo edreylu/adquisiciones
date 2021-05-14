@@ -80,6 +80,43 @@ public class ClavePresupuestaria {
 	@JoinColumn(name = "ID_ESTATUS", referencedColumnName = "ID_ESTATUS")
 	@ManyToOne(optional = false)
 	private Estatus estatus;
+	
+	public ClavePresupuestaria() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public ClavePresupuestaria(Integer idClavePresup, String anio, String ramo, String institucion, String unidadResp,
+			String finalidad, String funcion, String subfuncion, String programaPresupuestario,
+			String subprogramaPresupuestario, String actividadInstitucional, String identificadorGasto,
+			String fuenteFinanciamiento, String origen, String procedencia, String actividadEspecifica,
+			String tipoGasto, String region, String municipio, String ppi, String claveUr, 
+			ObjetoDeGasto objetoDeGasto, UnidadResponsable unidadResponsable, Estatus estatus) {
+		this.idClavePresup = idClavePresup;
+		this.anio = anio;
+		this.ramo = ramo;
+		this.institucion = institucion;
+		this.unidadResp = unidadResp;
+		this.finalidad = finalidad;
+		this.funcion = funcion;
+		this.subfuncion = subfuncion;
+		this.programaPresupuestario = programaPresupuestario;
+		this.subprogramaPresupuestario = subprogramaPresupuestario;
+		this.actividadInstitucional = actividadInstitucional;
+		this.identificadorGasto = identificadorGasto;
+		this.fuenteFinanciamiento = fuenteFinanciamiento;
+		this.origen = origen;
+		this.procedencia = procedencia;
+		this.actividadEspecifica = actividadEspecifica;
+		this.tipoGasto = tipoGasto;
+		this.region = region;
+		this.municipio = municipio;
+		this.ppi = ppi;
+		this.claveUr = claveUr;
+		this.objetoDeGasto = objetoDeGasto;
+		this.unidadResponsable = unidadResponsable;
+		this.estatus = estatus;
+	}
+
 
 	public Integer getIdClavePresup() {
 		return idClavePresup;

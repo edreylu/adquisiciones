@@ -1,9 +1,11 @@
 package com.modules.sirsr.tipoProducto.domain;
 
+import java.io.Serializable;
+
 import com.modules.sirsr.estatus.domain.EstatusDTO;
 import com.modules.sirsr.objetoGasto.domain.ObjetoDeGastoDTO;
 
-public class TipoProductoDTO {
+public class TipoProductoDTO implements Serializable{
 	private Integer idTipoProducto;
 	private String descripcion;
 	private ObjetoDeGastoDTO objetoDeGasto;

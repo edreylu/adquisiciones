@@ -8,13 +8,14 @@ package com.modules.sirsr.requisicion.domain;
 import com.modules.sirsr.marca.domain.MarcaDTO;
 import com.modules.sirsr.producto.domain.ProductoDTO;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
  *
  * @author Edward Reyes
  */
-public class DetalleRequisicionDTO {
+public class DetalleRequisicionDTO implements Serializable {
 	private int idDetalleRequisicion;
 	private int idRequisicion;
 	private int cantidadSolicitada;

@@ -21,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -30,6 +31,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * @author Edward Reyes
  */
 @Controller
+@RequestMapping("/usuario")
 public class DocumentoController {
 
 	private final SolicitudService solicitudService;
@@ -47,7 +49,7 @@ public class DocumentoController {
 		this.tipoDocumentoService = tipoDocumentoService;
 	}
 
-	@GetMapping("usuario/solicitudes/documentos/{id}")
+	@GetMapping("/solicitudes/documentos/{id}")
 	public String editarDocumentos(@PathVariable("id") int id, Model model) {
 		solicitudDTO = solicitudService.findById(id);
 		documentos = documentoService.findByIdSolicitud(id);
@@ -60,7 +62,7 @@ public class DocumentoController {
 		return validUrl;
 	}
 
-	@PostMapping("usuario/solicitudes/documentos/update/{id}")
+	@PostMapping("/solicitudes/documentos/update/{id}")
 	public String editarDocumentos(@PathVariable("id") int id, DocumentoDTO documentoDTO,
 			@RequestParam("file") MultipartFile file,
 			RedirectAttributes redirectAttrs) {
@@ -72,14 +74,14 @@ public class DocumentoController {
 		return "redirect:/usuario/solicitudes/documentos/" + id;
 	}
 
-	@GetMapping("usuario/solicitudes/documentos/eliminar/{id}/{idReq}")
+	@GetMapping("/solicitudes/documentos/eliminar/{id}/{idReq}")
 	public String eliminarDocumento(@PathVariable("id") int id, @PathVariable("idReq") int idReq,
 			RedirectAttributes redirectAttrs) {
 		Mensaje.addMensaje(documentoService.deleteById(id), redirectAttrs);
 		return "redirect:/usuario/solicitudes/documentos/" + idReq;
 	}
 
-	@GetMapping("usuario/solicitudes/documentos/addDocumento/{id}")
+	@GetMapping("/solicitudes/documentos/addDocumento/{id}")
 	public String documento(@PathVariable("id") int id, Model model) {
 		solicitudDTO = solicitudService.findById(id);
 		List<Integer> tiposDocumentoNot = documentoService.getTiposDocumentoNot(id);
