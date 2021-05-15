@@ -36,7 +36,6 @@ public class ProductoUsuarioController {
 	private final UnidadMedidaService unidadMedidaService;
 	private List<TipoProductoDTO> tiposProductoDTOs;
 	private List<UnidadMedidaDTO> unidadesMedidaDTOs;
-	private final Mensaje msg = new Mensaje();
 
 	@Autowired
 	public ProductoUsuarioController(ProductoService productoService, TipoProductoService tipoProductoService,
@@ -59,7 +58,7 @@ public class ProductoUsuarioController {
 
 	@PostMapping("/solicitudes/requisiciones/detalles/addSugerencia/{id}")
 	public String sugerir(ProductoDTO productoDTO, @PathVariable("id") int id, RedirectAttributes redirectAttrs) {
-		msg.crearMensaje(productoService.saveToUsuario(productoDTO), redirectAttrs);
+		Mensaje.addMensaje(productoService.saveToUsuario(productoDTO), redirectAttrs);
 		return "redirect:/usuario/solicitudes/requisiciones/detalles/" + id;
 	}
 

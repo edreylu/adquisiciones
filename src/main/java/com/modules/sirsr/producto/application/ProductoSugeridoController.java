@@ -39,7 +39,6 @@ public class ProductoSugeridoController {
 	private List<TipoProductoDTO> tiposProductoDTOs;
 	private List<UnidadMedidaDTO> unidadesMedidaDTOs;
 	private ProductoDTO productoDTO;
-	private final Mensaje msg = new Mensaje();
 
 	@Autowired
 	public ProductoSugeridoController(ProductoService productoService, TipoProductoService tipoProductoService,
@@ -73,14 +72,14 @@ public class ProductoSugeridoController {
 
 	@PostMapping("/productosSugeridos/update")
 	public String editar(ProductoDTO productoDTO, RedirectAttributes redirectAttrs) {
-		msg.crearMensaje(productoService.updateToSuggestions(productoDTO), redirectAttrs);
+		Mensaje.addMensaje(productoService.updateToSuggestions(productoDTO), redirectAttrs);
 		return "redirect:/admonadq/productosSugeridos";
 	}
 
 	@GetMapping("/productosSugeridos/actionToSuggestion/{id}/{idEstatus}")
 	public String actionToSuggestion(@PathVariable("id") int id, @PathVariable("idEstatus") int idEstatus,
 			RedirectAttributes redirectAttrs) {
-		msg.crearMensaje(productoService.actionToSuggestion(id, idEstatus), redirectAttrs);
+		Mensaje.addMensaje(productoService.actionToSuggestion(id, idEstatus), redirectAttrs);
 		return "redirect:/admonadq/productosSugeridos";
 	}
 
