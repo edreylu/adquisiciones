@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout :: head">
+        
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script src="../../static/js/alerta.js"></script>
+    </head>
+    <body>
+        <header th:replace="layout :: header"></header>
+        
+        <div class="container mt-4" th:switch="${lista}">
+       <div class="text-center"><lable class="tituloPrincipal">TIPOS DE PERSONA FISCAL</lable></div>
+       <h2 th:case="null">No hay tipos de persona fiscal</h2>
+        <div th:case="*">
+        <div class="card sombra bordeCard">
+            
+            <div class="card-header text-white">
+                <a class="sombraChica" title="Agregar Tipo de persona fiscal" data-toggle="tooltip" data-placement="top" th:href="@{/admonadq/tipospersonafiscal/agregar}"><img th:src="@{/img/icons/agregar.png}" class="iconos"></a>
+            </div>
+            <div class="card-body table-responsive-md">
+                <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" 
+                     th:if="${mensaje != null}"
+                     class="alert alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <center><strong><div th:text="${mensaje}"></div></strong></center>
+                </div>
+                
+                <table class="table table-sm table-hover table-bordered table-wrapper-scroll-y my-custom-scrollbar" id="tablaDatos">
+                    <thead>
+                        <tr>
+                            <th style="width:10%">ID</th>
+                            <th style="width:60%">DESCRIPCIÓN</th>
+                            <th style="width:20%"> </th>
+                            <th style="width:20%"> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="dato: ${lista}">
+                            <td style="width:10%" th:text="${dato.idTipoPersonaFiscal}"></td>
+                            <td style="width:60%" th:text="${dato.descripcion}"></td>
+                            <td style="width:15%; text-align: center">
+                                <a id="boton_editar" style="font-size:15px;color: #333333;" th:href="@{/admonadq/tipospersonafiscal/editar/{id}(id=${dato.idTipoPersonaFiscal})}">
+                                    <i title="" class="fas fa-edit"></i>
+                                </a>
+                                
+                            </td>
+                            <td style="width:15%; text-align: center">
+                                <a id="boton_activar" href="#" style="font-size:15px;color: #333333;" th:onclick="'mensajeActivarInactivar(\''+ ${dato.idTipoPersonaFiscal} +'\',\''+ ${dato.idEstatus} +'\')'">
+                                    <i class="fas fa-toggle-off" th:if="${dato.idEstatus == 0}" title="Activar"></i><i class="fas fa-toggle-on" th:if="${dato.idEstatus == 1}" title="Inactivar"></i>
+                                </a>
+                                <input type="hidden" value="tipospersonafiscal" id="nombreModulo">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+        </div>
+        </div>
+        
+    </body>
+</html>

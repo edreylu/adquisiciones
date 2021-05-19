@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+	<header th:replace="layout :: header"></header>
+	<div class="container">
+		<br />
+		<div class="sombra">
+			<div class="card">
+				<div class="card-header">
+					<div class="tituloPrincipal">INFORMACIÓN DE USUARIO</div>
+				</div>
+				<div class="card-body">
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-4">
+								<b class="tituloTexto">NOMBRE: </b> <label class="descTexto"
+									th:text="${usuario.personal.nombreCompleto}"></label>
+							</div>
+							<div class="col-md-4">
+								<b class="tituloTexto">USUARIO: </b> <label class="descTexto"
+									th:text="${usuario.userName}"></label>
+							</div>
+							<div class="col-md-4">
+								<b class="tituloTexto">CORREO: </b> <label class="descTexto"
+									th:text="${usuario.personal.correo}"></label>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-md-4">
+								<b class="tituloTexto">TELEFONO: </b> <label class="descTexto"
+									th:text="${usuario.personal.telefonoFijo}"></label>
+							</div>
+                                                        <div class="col-md-4">
+								<b class="tituloTexto">TELEFONO MOVIL: </b> <label class="descTexto"
+									th:text="${usuario.personal.telefonoMovil}"></label>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<div class="tituloPrincipal">INFORMACIÓN DE UNIDAD RESPONSABLE</div>
+				</div>
+				<div class="card-body">
+                                    <div class="panel-body">
+                                        <div class="row">
+							<div class="col-md-4">
+								<b class="tituloTexto">CLAVE UR: </b> <label class="descTexto"
+									th:text="${usuario.unidadResponsable.claveUr}"></label>
+							</div>
+							<div class="col-md-8">
+								<b class="tituloTexto">NOMBRE UR: </b> <label class="descTexto"
+									th:text="${usuario.unidadResponsable.descripcion}"></label>
+							</div>
+				      </div>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                    </div>
+
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+</body>
+</html>

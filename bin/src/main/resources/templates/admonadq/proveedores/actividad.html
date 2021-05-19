@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script src="../../static/js/alerta.js"></script>
+</head>
+<body>
+	<header th:replace="layout :: header"></header>
+
+	<div class="container mt-4 col-lg-7"
+		th:switch="${proveedor.actividades.size()}">
+		<div class="text-center">
+			<lable class="tituloPrincipal">PROVEEDOR ACTIVIDAD</lable>
+		</div>
+		<br> <br>
+		<div class="card sombra bordeCard">
+
+			<div class="card-header text-white">
+
+				<a class="sombraChica" data-placement="top"
+					title="Agregar actividad" rel="tooltip" data-toggle="modal"
+					data-target="#modalActividad"><img
+					th:src="@{/img/icons/agregar.png}" class="iconos"></a>
+			</div>
+
+			<div class="card-body table-responsive-md">
+
+				<div class="row">
+					<div class="col-2">
+						<label>Razón social:</label>
+					</div>
+					<div class="col-10">
+						<label style="font-weight: bold"
+							th:text="${proveedor.razonSocial}"></label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-2">
+						<label>RFC:</label>
+
+					</div>
+					<div class="col-10">
+						<label style="font-weight: bold" th:text="${proveedor.rfc}"></label>
+					</div>
+				</div>
+				<div class="row d-flex justify-content-center">
+					<div class="col-2">
+						<a th:href="@{/admonadq/proveedores}" class="btn btn-light active"
+							role="button" aria-pressed="true">Regresar</a>
+					</div>
+
+				</div>
+
+
+				<h5 th:case="0" class="mt-4">Aún no hay actividades asignadas
+					para este proveedor</h5>
+
+				<div th:case="*" class="mt-4">
+
+
+					<div
+						th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+						th:if="${mensaje != null}" class="alert alert-dismissable">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<center>
+							<strong><div th:text="${mensaje}"></div></strong>
+						</center>
+					</div>
+
+					<table
+						class="table table-sm table-hover table-bordered table-wrapper-scroll-y my-custom-scrollbar"
+						id="tablaDatos">
+						<thead>
+							<tr>
+								<th style="width: 10%">ID</th>
+								<th style="width: 70%">DESCRIPCIÓN</th>
+								<th style="width: 20%"></th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="dato: ${proveedor.actividades}">
+								<td style="width: 10%" th:text="${dato.idActividad}"></td>
+								<td style="width: 70%" th:text="${dato.descripcion}"></td>
+								<td style="width: 20%; text-align: center"><a
+									id="boton_activar" href="#"
+									th:onclick="'mensajeEliminarActividad(\''+ ${proveedor.idProveedor} +'\',\''+ ${dato.idActividad} +'\')'">
+										<img th:src="@{/img/icons/eliminar.png}" class="iconos"
+										data-toggle="tooltip" data-placement="top" title="Eliminar">
+
+								</a> <input type="hidden" value="actividad" id="nombreModulo">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="modalActividad" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Agregar
+							actividad</h5>
+
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form class="needs-validation" novalidate method="post" action="#"
+							th:action="@{/admonadq/proveedores/actividad/add}"
+							th:object="${proveedor}">
+							<input type="hidden" th:field="*{idProveedor}" /> <select
+								name="idActividadSeleccionada" required class="form-control">
+								<option value="">--SELECCIONE--</option>
+								<option th:each="actividad : ${actividades}"
+									th:value="${actividad.idActividad}"
+									th:utext="${actividad.descripcion}" />
+							</select>
+
+							<div class="d-flex justify-content-end mt-5">
+								<button class="btn btn-secondary mr-1" data-dismiss="modal">Cancelar</button>
+								<button type="submit" class="btn btn-primary">Aceptar</button>
+							</div>
+
+
+						</form>
+
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

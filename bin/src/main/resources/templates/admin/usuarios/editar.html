@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout :: head">
+
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <header th:replace="layout :: header"></header>
+        <div class="container mt-2 col-lg-7">
+            <div class="card sombra bordeCard">
+                <div class="card-header">
+                    <center><lable class="tituloPrincipal">Editar usuario</lable></center>   
+                </div>
+                <div class="card-body">
+                    <form class="needs-validation" novalidate method="post" action="#" th:action="@{/admin/usuarios/update/{id}(id=${usuario.noUsuario})}" th:object="${usuario}">
+                        <div class="row">
+                            <div class="col-md-6"><lable class="tituloTexto">Usuario: </lable>
+                                <input type="text" name="clave" class="form-control" th:field="${usuario.userName}" required/>
+                                <div class="invalid-feedback">Username es requerido</div>
+                            </div>
+                            <div class="col-md-6">
+                                
+                            </div>
+                        </div>
+                        <hr/>
+                            <div class="row">
+                                <div class="col-md-6">
+                                <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text tituloTexto">No Personal:</span>
+                                </div>
+                                <input id="noPersonal" type="number" size="4" th:field="${usuario.personal.noPersonal}" name="personal.noPersonal" class="form-control" required/>
+                                    <div class="invalid-feedback">Personal es requerido</div>
+                              </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <button class="btn btn-primary" type="button" th:onclick="showAsignarPersonal()">
+                                        <i class="fa fa-building-o" aria-hidden="true"></i> Buscar Personal</button>
+                                </div>
+                            </div>
+                           <hr/>
+                        <div class="row">
+                            <div class="col-md-12"><lable class="tituloTexto">Unidad Responsable: </lable>
+                                    <select id="unidadResponsable" name="unidadResponsable.claveUr" th:field="${usuario.unidadResponsable.claveUr}" required class="form-control">
+                                        <option value="" selected disabled>Selecciona...</option>
+                                        <option th:each="unidad : ${unidadesResponsables}"
+                                           th:value="${unidad.claveUr}"
+                                           th:utext="${unidad.descripcion}">
+                                        </option>
+                                    </select>
+                                    <div class="invalid-feedback">Unidad responsable es requerido</div>
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        <input type="submit" class="btn btn-success" value="Actualizar">
+                        <a th:href="@{/admin/usuarios}">Regresar</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="asignarPersonalModal" tabindex="-1" role="dialog" aria-hidden="true" th:fragment="modalAsignarPersonal">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h4 class="modal-title">Busqueda de Personal.</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="opcionesAsignarPersonal" class="card-body table-responsive-md">
+                            <div class="input-group">
+                                <input id="nombrePersonal" type="text" class="form-control" placeholder="ESCRIBE NOMBRE DE PERSONAL" name="nombrePersonal" required>
+                                <div class="input-group-append">
+                                    <button id="personalList" class="btn btn-primary" type="button" th:onclick="searchPersonal(2)"> <span class="fa fa-search"></span> </button>
+                                </div>
+                            </div>
+                            <br/>
+                            <table class="table table-sm table-hover table-bordered table-wrapper-scroll-y my-custom-scrollbar" id="tablaDatosPersonal">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 2%;">NO PERSONAL</th>
+                                        <th style="width: 15%;">CORREO</th>
+                                        <th style="width: 65%;">NOMBRE COMPLETO</th>
+                                        <th style="width: 16%;">TELEFONO FIJO</th>
+                                        <th style="width: 3%;">ASIGNAR</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="datosPersonal">
+                                    <tr id="listPersonal" th:each="dato: ${personal}">
+                                        <td style="width: 2%;" th:text="${dato.noPersonal}"></td>
+                                        <td style="width: 15%;" th:text="${dato.correo}"></td>
+                                        <td style="width: 65%;" th:text="${dato.nombreCompleto}"></td>
+                                        <td style="width: 16%;" th:text="${dato.telefonoFijo}"></td>
+                                        <td style="width: 3%;">
+                                            <a href="#" th:onclick="'updateNoPersonal(\''+ ${dato.noPersonal} +'\')'">
+                                                    <i class="fa fa-check" title="Asignar"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="usuarioPersonalModalHolder"></div>
+    </body>
+</html>

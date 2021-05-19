@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout :: head">
+        
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <header th:replace="layout :: header"></header>
+        <div class="container mt-2 col-lg-4">
+            <div class="card sombra bordeCard">
+                <div class="card-header text-center">
+                 <lable class="tituloPrincipal">Agregar rol</lable>
+                </div>
+                <div class="card-body">
+                    
+                    <form class="needs-validation" novalidate method="post" action="#" th:action="@{/admin/roles/add}" th:object="${role}">
+                        
+                        <label class="tituloTexto">ROL</label>
+                        <input type="text" name="roleName" class="form-control" required/>
+                        <div class="invalid-feedback">Role name es requerido</div>
+                        <br/>
+                        
+                        <div class="valid-feedback">
+                         Todo bien.
+                         </div>
+                        <div class="invalid-feedback">
+                         </div>
+                        <br/>
+                        <br/>
+					<div>
+					    <a th:href="@{/admin/roles}" style="float: left;"><img th:src="@{/img/icons/regresar.png}" style="width: 30px"
+										data-toggle="tooltip" data-placement="right"
+										title="Regresar"></a>
+						<input type="submit" class="btn btn-dark" value="Aceptar" style="float: right;">
+						
+					</div>
+
+
+				</form>
+                    </div>
+                </div>
+            </div>
+        
+    </body>
+</html>

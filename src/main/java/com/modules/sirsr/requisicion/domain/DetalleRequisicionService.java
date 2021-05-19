@@ -8,9 +8,12 @@ package com.modules.sirsr.requisicion.domain;
 import com.modules.sirsr.producto.domain.ProductoDTO;
 import com.modules.sirsr.producto.domain.ProductoService;
 import com.modules.sirsr.requisicion.persistence.DetalleRequisicionRepository;
+import com.modules.sirsr.requisicion.persistence.RequisicionMapper;
 import com.modules.sirsr.requisicion.persistence.DetalleRequisicion;
 import com.modules.sirsr.config.Mensaje;
 import com.modules.sirsr.requisicion.persistence.DetalleRequisicionMapper;
+
+import org.eclipse.persistence.exceptions.JAXBException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -56,6 +59,7 @@ public class DetalleRequisicionService {
 	public DetalleRequisicionDTO findById(int id) {
 		Optional<DetalleRequisicion> detalleRequisicionOptional = detalleRequisicionRepository.findById(id);
 		detalleRequisicionDTO = DetalleRequisicionMapper.toDetalleRequisicionDTO(detalleRequisicionOptional.get());
+		detalleRequisicionDTO.setRequisicion(RequisicionMapper.toRequisicionDTO(detalleRequisicionOptional.get().getRequisicion()));
 		return detalleRequisicionDTO;
 	}
 

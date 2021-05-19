@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script src="../../static/js/alerta.js"></script>
+</head>
+<body>
+	<header th:replace="layout :: header"></header>
+
+	<div class="container mt-4" th:switch="${lista}">
+		<div class="text-center">
+			<lable class="tituloPrincipal">PRODUCTOS SUGERIDOS</lable>
+		</div>
+		<h2 th:case="null">No hay Productos</h2>
+		<div th:case="*">
+			<div class="card sombra bordeCard">
+
+				<div class="card-header text-white">
+					
+				</div>
+				<div class="card-body table-responsive-md">
+					<div
+						th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+						th:if="${mensaje != null}" class="alert alert-dismissable">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<center>
+							<strong><div th:text="${mensaje}"></div></strong>
+						</center>
+					</div>
+
+					<table
+						class="table table-sm table-hover table-bordered table-wrapper-scroll-y my-custom-scrollbar"
+						id="tablaDatos">
+						<thead>
+							<tr>
+								<th style="width: 5%">ID</th>
+								<th style="width: 10%">UNIDAD MEDIDA</th>
+								<th style="width: 15%">TIPO PRODUCTO</th>
+								<th style="width: 40%">CARACTERÍSTICAS</th>
+								<th style="width: 10%">PRECIO REFERENCIA</th>
+								<th style="width: 10%">ESTATUS</th>
+								<th style="width: 5%"></th>
+								<th style="width: 5%"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="dato: ${lista}">
+								<td style="width: 5%" th:text="${dato.idProducto}"></td>
+								<td style="width: 10%" th:text="${dato.unidadMedida.nombre}"></td>
+								<td style="width: 15%"
+									th:text="${dato.tipoProducto.descripcion}"></td>
+								<td style="width: 40%" th:text="${dato.caracteristicas}"></td>
+								<td style="width: 10%" th:text="${dato.precioDeReferencia}"></td>
+								<td style="width: 10%" th:text="${dato.estatus.descripcion}"></td>
+								<td style="width: 5%; text-align: center"><a
+									th:href="@{/admonadq/productosSugeridos/editar/{id}(id=${dato.idProducto})}">
+										<img th:src="@{/img/icons/editar.png}" class="iconos"
+										title="Editar producto" data-toggle="tooltip"
+										data-placement="top">
+								</a></td>
+								<td style="width: 5%; text-align: center"><a
+									id="boton_activar" href="#"
+									style="font-size: 15px; color: #333333;"
+									th:onclick="'mensajeAceptarRechazar(\''+ ${dato.idProducto} +'\')'">
+										<img th:src="@{/img/icons/toggleoff.png}" class="iconos"
+										data-toggle="tooltip" data-placement="top" title="Decidir estatus producto">
+								</a> <input type="hidden" value="productosSugeridos" id="nombreModulo">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

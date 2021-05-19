@@ -22,6 +22,7 @@ import com.modules.sirsr.requisicion.persistence.RequisicionMapper;
 import com.modules.sirsr.requisicion.persistence.RequisicionRepository;
 import com.modules.sirsr.solicitud.domain.SolicitudDTO;
 import com.modules.sirsr.solicitud.domain.SolicitudService;
+import com.modules.sirsr.solicitud.persistence.SolicitudMapper;
 
 /**
  *
@@ -55,6 +56,7 @@ public class RequisicionService {
 	public RequisicionDTO findById(int id) {
 		Optional<Requisicion> requisicionOptional = requisicionRepository.findById(id);
 		RequisicionDTO requisicionDTO = RequisicionMapper.toRequisicionDTO(requisicionOptional.get());
+		requisicionDTO.setSolicitud(SolicitudMapper.toSolicitudDTO(requisicionOptional.get().getSolicitud()));
 		return requisicionDTO;
 	}
 

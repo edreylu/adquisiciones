@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout :: head">
+        
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script src="../../static/js/alerta.js"></script>
+    </head>
+    <body>
+        <header th:replace="layout :: header"></header>
+        
+        <div class="container mt-4" th:switch="${lista}">
+       <div class="text-center"><lable class="tituloPrincipal">SOLICITUDES</lable></div>
+       <h2 th:case="null">No hay solicitudes</h2>
+        <div th:case="*">
+        <div class="card sombra bordeCard">
+            
+            <div class="card-header text-white">
+                <a class="sombraChica" title="Agregar solicitud" data-toggle="tooltip" data-placement="top" th:href="@{/usuario/solicitudes/agregar}"><img th:src="@{/img/icons/agregar.png}" class="iconos"></a>
+            </div>
+            <div class="card-body table-responsive-md">
+                <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" 
+                     th:if="${mensaje != null}"
+                     class="alert alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <center><strong><div th:text="${mensaje}"></div></strong></center>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="form-label tituloTexto">UNIDAD RESPONSABLE: </label>
+                        <label style="font-size: small; text-align: center;">[[${unidadResponsable}]]</label>
+                    </div>
+                </div>
+                <hr/>
+                <br/>
+                <div class="row">
+                    <div class="col-md-12">
+                <table class="table table-sm table-hover table-bordered table-wrapper-scroll-y my-custom-scrollbar" id="tablaSolicitudes">
+                    <thead>
+                        <tr>
+                            <th style="width:5%">NO.</th>
+                            <th style="width:5%">FECHA CREACIÓN</th>
+                            <th style="width:10%">MES CALENDAR.</th>
+                            <th style="width:25%">PRIORIDAD</th>
+                            <th style="width:20%">ESTATUS</th>
+                            <th style="width:10%"> REQUISICIONES </th>
+                            <th style="width:10%"> DOCUMENTOS </th>
+                            <th style="width:5%"> DETALLES </th>
+                            <th style="width:5%"> EDITAR </th>
+                            <th style="width:5%"> CANCELAR </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="dato: ${lista}">
+                            <td style="width:5%" th:text="${dato.idSolicitud}"></td>
+                            <td style="width:5%" th:text="${#dates.format(dato.fechaCreacion,'dd/MM/yyyy')}"></td>
+                            <td style="width:10%" th:text="${dato.mesCalendarizacionStr}"></td>
+                            <td style="width:25%" th:text="${dato.prioridad.descripcion}"></td>
+                            <td style="width:20%" th:attr="style='background:'+${dato.estatus.colorhex}"
+                                th:text="${dato.estatus.descripcion}"></td>
+                            <td style="width:10%; text-align: center">
+                                <a id="boton_requisiciones" th:if="${dato.estatus.idEstatus==10 || dato.estatus.idEstatus==13}" style="font-size:15px;color: #333333;" th:href="@{/usuario/solicitudes/requisiciones/{id}(id=${dato.idSolicitud})}">
+                                    <img th:src="@{/img/icons/requisiciones.png}" class="iconos" title="Agregar requisiciones" data-toggle="tooltip" data-placement="top">
+                                </a>
+                            </td>
+                            <td style="width:10%; text-align: center" >
+                                <a id="boton_documentos" th:if="${dato.estatus.idEstatus==10 || dato.estatus.idEstatus==13}" style="font-size:15px;color: #333333;" th:href="@{/usuario/solicitudes/documentos/{id}(id=${dato.idSolicitud})}">
+                                    <img th:src="@{/img/icons/documentos.png}" class="iconos" title="Agregar documentos" data-toggle="tooltip" data-placement="top">
+                                </a>
+                            </td>
+                            <td style="width:5%; text-align: center">
+                                <a id="boton_detalle" style="font-size:15px;color: #333333;" th:href="@{/usuario/solicitudes/detallesSolicitud/{id}(id=${dato.idSolicitud})}">
+                                    <img th:src="@{/img/icons/detalle.png}" class="iconos" title="Detalles" data-toggle="tooltip" data-placement="top">
+                                </a>
+                            </td>
+                            <td style="width:5%; text-align: center">
+                                <a id="boton_editar" th:if="${dato.estatus.idEstatus==10 || dato.estatus.idEstatus==13}" style="font-size:15px;color: #333333;" th:href="@{/usuario/solicitudes/editar/{id}(id=${dato.idSolicitud})}">
+                                    <img th:src="@{/img/icons/editar.png}" class="iconos" title="Editar solicitud" data-toggle="tooltip" data-placement="top">
+                                </a>
+                            </td>
+                            <td style="width:5%; text-align: center">
+                                <a id="boton_eliminar" href="#" th:if="${dato.estatus.idEstatus==10}" style="font-size:15px;color: #333333;" th:onclick="'mensajeCancelar(\''+ ${dato.idSolicitud} +'\')'">
+                                    <img th:src="@{/img/icons/cancelar.png}" class="iconos" title="Cancelar solicitud" data-toggle="tooltip" data-placement="top">
+                                </a>
+                                <input type="hidden" value="solicitudes" id="nombreModulo">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                    </div></div>
+            </div>
+        </div>
+        </div>
+        </div>
+        
+    </body>
+</html>

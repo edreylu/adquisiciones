@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+	<header th:replace="layout :: header"></header>
+	<div class="container mt-2 col-lg-4">
+		<div class="card sombra bordeCard">
+			<div class="card-header text-center">
+				<lable class="tituloPrincipal">Agregar producto</lable>
+			</div>
+			<div class="card-body">
+
+				<form class="needs-validation" novalidate method="post" action="#"
+					th:action="@{/admonadq/productos/add}" th:object="${producto}">
+					<div class="row">
+						<div class="col-md-12">
+					<label class="tituloTexto">UNIDAD DE MEDIDA</label>
+					<select name="unidadMedida.idUnidadMedida" required class="form-control">
+							<option value="">Selecciona...</option>
+							<option th:each="unidad : ${unidadesMedida}"
+									th:value="${unidad.idUnidadMedida}"
+									th:utext="${unidad.nombre}"/>
+						</select>
+					<div class="invalid-feedback">Unidad de medida es requerido</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+					<label class="tituloTexto">TIPO PRODUCTO</label>
+					<select name="tipoProducto.idTipoProducto" required class="form-control">
+						<option value="">Selecciona...</option>
+						<option th:each="tipo : ${tiposProducto}"
+								th:value="${tipo.idTipoProducto}"
+								th:utext="${tipo.descripcion}"/>
+					</select>
+					<div class="invalid-feedback">TIPO PRODUCTO ES REQUERIDO</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-12">
+					<label class="tituloTexto">CARACTERISTICAS</label>
+					<textarea class="form-control" name="caracteristicas" rows="3" required></textarea>
+					<div class="invalid-feedback">CARACTERISTICAS es requerido</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-12">
+					<label class="tituloTexto">PRECIO REFERENCIA</label>
+					<input type="number" step="0.01" name="precioDeReferencia" class="form-control" required />
+					<div class="invalid-feedback">Precio Referencia es requerido</div>
+						</div>
+					</div>
+					<br /> <br /> 
+					<div>
+					    <a th:href="@{/admonadq/productos}" style="float: left;"><img th:src="@{/img/icons/regresar.png}" style="width: 30px"
+										data-toggle="tooltip" data-placement="right"
+										title="Regresar"></a>
+						<input type="submit" class="btn btn-dark" value="Aceptar" style="float: right;">
+						
+					</div>
+				
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

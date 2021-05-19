@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout :: head">
+        
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script src="../../static/js/alerta.js"></script>
+    </head>
+    <body>
+        <header th:replace="layout :: header"></header>
+        
+        <div class="container mt-4" th:switch="${lista}">
+       <div class="text-center"><lable class="tituloPrincipal">ROLES</lable></div>
+       <h2 th:case="null">No hay roles</h2>
+        <div th:case="*">
+        <div class="card sombra bordeCard">
+            
+            <div class="card-header text-white">
+                <a class="sombraChica" data-toggle="tooltip" data-placement="top"  title="Agregar Rol" th:href="@{/admin/roles/agregar}"><img th:src="@{/img/icons/agregar.png}" class="iconos"></a>
+            </div>
+            <div class="card-body table-responsive-md">
+                <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" 
+                     th:if="${mensaje != null}"
+                     class="alert alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <center><strong><div th:text="${mensaje}"></div></strong></center>
+                </div>
+                
+                <table class="table table-sm table-hover table-bordered table-wrapper-scroll-y my-custom-scrollbar" id="tablaDatos">
+                    <thead>
+                        <tr>
+                            <th style="width:10%">NO</th>
+                            <th style="width:60%">ROL</th>
+                            <th style="width:15%"> </th>
+                            <th style="width:15%"> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="dato: ${lista}">
+                            <td style="width:10%" th:text="${dato.noRole}"></td>
+                            <td style="width:60%" th:text="${#strings.replace(dato.roleName, 'ROLE_', '')}"></td>
+                            <td style="width:15%; text-align: center">
+                                <a th:href="@{/admin/roles/editar/{id}(id=${dato.noRole})}">
+                                    <img th:src="@{/img/icons/editar.png}" class="iconos" title="Editar rol" data-toggle="tooltip" data-placement="top">
+                                </a>
+                            </td>
+                            <td style="width:15%; text-align: center;">
+                                <a th:onclick="'mensajeEliminar(\''+ ${dato.noRole} +'\')'">
+                                    <img th:src="@{/img/icons/eliminar.png}" class="iconos" title="Eliminar usuario" data-toggle="tooltip" data-placement="top">
+                                </a>
+                                <input type="hidden" value="roles" id="nombreModulo">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+        </div>
+        </div>
+        
+    </body>
+</html>

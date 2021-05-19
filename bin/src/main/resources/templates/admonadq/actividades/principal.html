@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script src="../../static/js/alerta.js"></script>
+</head>
+<body>
+	<header th:replace="layout :: header"></header>
+
+	<div class="container mt-4" th:switch="${lista}">
+		<div class="text-center">
+			<lable class="tituloPrincipal">ACTIVIDADES</lable>
+		</div>
+		<h2 th:case="null">No hay actividades</h2>
+		<div th:case="*">
+			<div class="card sombra bordeCard">
+
+				<div class="card-header text-white">
+					<a class="sombraChica" data-toggle="tooltip" data-placement="top"
+						title="Agregar actividad"
+						th:href="@{/admonadq/actividades/agregar}"><img
+						th:src="@{/img/icons/agregar.png}" class="iconos"></a>
+				</div>
+				<div class="card-body table-responsive-md">
+					<div
+						th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+						th:if="${mensaje != null}" class="alert alert-dismissable">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<center>
+							<strong><div th:text="${mensaje}"></div></strong>
+						</center>
+					</div>
+
+					<table
+						class="table table-sm table-hover table-bordered table-wrapper-scroll-y my-custom-scrollbar"
+						id="tablaDatos">
+						<thead>
+							<tr>
+								<th style="width: 20%">ID</th>
+								<th style="width: 35%">DESCRIPCIÓN</th>
+								<th style="width: 15%">ESTATUS</th>
+								<th style="width: 15%"></th>
+								<th style="width: 15%"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="dato: ${lista}">
+								<td style="width: 20%" th:text="${dato.idActividad}"></td>
+								<td style="width: 35%" th:text="${dato.descripcion}"></td>
+								<td style="width: 15%" th:text="${dato.estatus.descripcion}"></td>
+								<td style="width: 15%; text-align: center"><a
+									th:href="@{/admonadq/actividades/editar/{id}(id=${dato.idActividad})}">
+										<img th:src="@{/img/icons/editar.png}" class="iconos"
+										title="Editar actividad" data-toggle="tooltip"
+										data-placement="top">
+								</a></td>
+								<td style="width: 5%; text-align: center"><a
+									id="boton_activar" href="#"
+									th:onclick="'mensajeActivarInactivar(\''+ ${dato.idActividad} +'\',\''+ ${dato.estatus.idEstatus} +'\')'">
+										<img th:src="@{/img/icons/toggleoff.png}" class="iconos"
+										data-toggle="tooltip" data-placement="top"
+										th:if="${dato.estatus.idEstatus == 0}" title="Activar">
+										<img th:src="@{/img/icons/toggleon.png}" class="iconos"
+										data-toggle="tooltip" data-placement="top"
+										th:if="${dato.estatus.idEstatus == 1}" title="Inactivar">
+								</a> <input type="hidden" value="actividades" id="nombreModulo">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

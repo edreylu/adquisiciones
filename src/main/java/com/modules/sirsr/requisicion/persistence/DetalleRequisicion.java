@@ -16,6 +16,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -49,7 +50,7 @@ public class DetalleRequisicion {
 	private Integer cantidadAutorizada;
 
 	@JoinColumn(name = "ID_REQUISICION", referencedColumnName = "ID_REQUISICION")
-	@ManyToOne(cascade = CascadeType.ALL, optional = false)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Requisicion requisicion;
 	@JoinColumn(name = "ID_MARCA", referencedColumnName = "ID_MARCA")

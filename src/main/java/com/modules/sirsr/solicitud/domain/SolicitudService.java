@@ -29,6 +29,7 @@ import com.modules.sirsr.solicitud.persistence.SolicitudMapper;
 import com.modules.sirsr.solicitud.persistence.SolicitudRepository;
 
 import org.eclipse.persistence.exceptions.JAXBException;
+import org.eclipse.persistence.jpa.rs.exceptions.JPARSException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -149,7 +150,7 @@ public class SolicitudService {
 				Utils.firmaDirector(usuarioService.findByUserName(WebUtils.getUserName()), solicitudRepository, solicitud);
 
 				msg = Mensaje.success("Emitido correctamente");
-			} catch (JAXBException e) {
+			} catch (Exception e) {
 				msg = Mensaje.danger("No se pudo Emitir.");
 			}
 		} else
@@ -164,11 +165,15 @@ public class SolicitudService {
 			EstatusDTO estatusDTO = estatusService.findById(13);
 			revisionDTO.setFechaRevision(Date.from(Instant.now()));
 			revisionDTO.setSolicitud(solicitudDTO);
-			revisionService.save(revisionDTO);
+			Mensaje msgRev = revisionService.save(revisionDTO);
+			if(msgRev.getResult()==1) {
 			solicitudDTO.setEstatus(estatusDTO);
 			solicitudRepository.save(SolicitudMapper.toSolicitud(solicitudDTO));
 			msg = Mensaje.success("Se enviaron correciones correctamente");
-		} catch (Exception e) {
+			}else {
+				msg = Mensaje.warning("No se pudo enviar correcciones.");
+			}
+		} catch (JPARSException e) {
 			msg = Mensaje.danger("No se pudo enviar correcciones.");
 		}
 		return msg;

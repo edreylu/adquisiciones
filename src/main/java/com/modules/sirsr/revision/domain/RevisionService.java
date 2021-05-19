@@ -8,6 +8,7 @@ package com.modules.sirsr.revision.domain;
 import java.util.List;
 import java.util.Optional;
 
+import org.eclipse.persistence.exceptions.JAXBException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,7 +54,7 @@ public class RevisionService {
 		try {
 			revisionRepository.save(RevisionMapper.toRevision(revisionDTO));
 			msg = Mensaje.success("Agregado correctamente");
-		} catch (Exception e) {
+		} catch (JAXBException e) {
 			msg = Mensaje.danger("No se pudo agregar por: " + e.getMessage());
 		}
 		return msg;

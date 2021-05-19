@@ -43,7 +43,7 @@ public class RevisionMapper {
 			return null;
 		}
 		Revision revision = new Revision();
-		revision.setRevisionPK(new RevisionPK(revisionDTO.getFechaRevision(), revision.getIdSolicitud()));
+		revision.setRevisionPK(new RevisionPK(revisionDTO.getFechaRevision(), revisionDTO.getSolicitud().getIdSolicitud()));
 		revision.setObservacion(revisionDTO.getObservacion());
 		revision.setSolicitud(SolicitudMapper.toSolicitud(revisionDTO.getSolicitud()));
 		return revision;

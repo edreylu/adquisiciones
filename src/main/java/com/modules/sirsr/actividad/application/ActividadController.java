@@ -22,12 +22,10 @@ public class ActividadController {
 	
 	private final ActividadService actividadService;
 	private List<ActividadDTO> actividades;
-	private final Mensaje msg = new Mensaje();
 	
 	@Autowired
 	public ActividadController(ActividadService actividadService) {
 		this.actividadService = actividadService;
-		
 	}
 	
 	@GetMapping("/actividades")

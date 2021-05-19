@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout :: head">
+
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <header th:replace="layout :: header"></header>
+       <div class="container mt-2 col-lg-8">
+           <div class="card sombra bordeCard">
+                <div class="card-header text-center">
+                <lable class="tituloPrincipal">Asignar documentos a solicitud</lable>
+                </div>
+                <div class="card-body">
+                    <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+                         th:if="${mensaje != null}"
+                         class="alert alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong><div align="center" th:text="${mensaje}"></div></strong>
+                    </div>
+
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="form-label tituloTexto">SE REQUIEREN LOS SIGUIENTES DOCUMENTOS:</label>
+                                    <br/>
+                                    <br/>
+                                    <label class="form-label" style="font-size: large;">-Volante de Sucifiencia *</label>
+                                    <br/>
+                                    <label class="form-label" style="font-size: large;">-Oficio de Solicitud de requisición *</label>
+                                    <br/>
+                                    <label class="form-label" style="font-size: large;">-Oficio de Justificación *</label>
+                                    <br/>
+                                    <label class="form-label" style="font-size: large;">-Otros Documentos adicionales</label>
+                                </div>
+                            </div>
+                            <hr/>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-12">
+                                        <div align="center">
+                                        <button id="subirDocumentos" th:onclick="'documento(\''+ ${solicitud.idSolicitud} +'\')'" class="btn btn-primary" type="button"> <i class="fa fa-file" aria-hidden="true"></i> Agregar Documento</button>
+                                            <a th:href="@{/usuario/solicitudes}" class="btn btn-light active" role="button" aria-pressed="true">Regresar</a>
+                                        </div>
+                                    </div>
+                            </div>
+                            <br/>
+                            <hr/>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-sm table-hover table-bordered table-wrapper-scroll-y my-custom-scrollbar" id="tablaDatos">
+                                        <thead>
+                                        <tr>
+                                            <th style="width:20%">NO</th>
+                                            <th style="width:20%">FECHA</th>
+                                            <th style="width:40%">TIPO DOCUMENTO</th>
+                                            <th style="width:20%"> </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="dato: ${documentos}">
+                                            <td style="width:20%" th:text="${dato.idDocumento}"></td>
+                                            <td style="width:20%" th:text="${dato.fechaActualizacion}"></td>
+                                            <td style="width:40%" th:text="${dato.tipoDocumento.descripcion}"></td>
+                                            <td style="width:20%">
+                                                <a id="boton_eliminar" href="#" style="font-size:15px;color: #333333;" th:onclick="'mensajeEliminarDocumento(\''+ ${dato.idDocumento} +'\',\''+ ${dato.solicitud.idSolicitud} +'\')'">
+                                                    <i title="Eliminar Documento" class="fas fa-trash-alt"></i>
+                                                </a>
+                                                <input type="hidden" value="documentos" id="nombreModulo">
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                </div>
+            </div>
+        </div>
+           <br/>
+           <br/>
+
+           <div id="documentoModalHolder"></div>
+
+        <div class="modal fade" id="subirDocumentoModal" tabindex="-1" role="dialog" aria-hidden="true" th:fragment="modalSubirDocumento">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h4 class="modal-title">Subir Documento.</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="opcionesAsignarPersonal" class="card-body table-responsive-md">
+                            <form method="post" action="#" enctype="multipart/form-data"
+                                  th:action="@{/usuario/solicitudes/documentos/update/{id}(id=${solicitud.idSolicitud})}" th:object="${documento}">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="form-label tituloTexto" for="documento">Documento:</label>
+                                            <input type="file" class="form-control-file" name="file" id="documento" required/>
+                                            <div class="invalid-feedback">Documento es requerido</div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="tituloTexto">Tipo de Documento</label>
+                                            <select id="tipoDocumento" name="tipoDocumento.idTipoDocumento" class="form-control" required>
+                                                <option value="">Selecciona...</option>
+                                                <option th:each="tipo : ${tiposDocumento}"
+                                                        th:value="${tipo.idTipoDocumento}"
+                                                        th:utext="${tipo.descripcion}"/>
+                                            </select>
+                                            <div class="invalid-feedback">Tipo de Documento es requerido</div>
+                                        </div>
+                                    </div>
+                            <br/>
+                                    <input type="submit" class="btn btn-success" value="Guardar">
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+       </div>
+    </body>
+</html>

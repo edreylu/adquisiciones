@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout :: head">
+        
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <header th:replace="layout :: header"></header>
+        <div class="container mt-2 col-lg-8">
+            <div class="card sombra bordeCard">
+                <div class="card-header text-center">
+                 <lable class="tituloPrincipal">Nueva solicitud</lable>
+                </div>
+                <div class="card-body">
+                    
+                    <form class="needs-validation" novalidate method="post" action="#" th:action="@{/usuario/solicitudes/add}" th:object="${solicitud}">
+                        <div class="panel-body">
+                        <div class="row">
+                        <div class="col-md-6">
+                        <label class="tituloTexto">Mes</label>
+                        <select name="mesCalendarizacion" class="form-control">
+                            <option value="1" selected>ENERO</option>
+                                          <option value="2">FEBRERO</option>
+                                          <option value="3">MARZO</option>
+                                          <option value="4">ABRIL</option>
+                                          <option value="5">MAYO</option>
+                                          <option value="6">JUNIO</option>
+                                          <option value="7">JULIO</option>
+                                          <option value="8">AGOSTO</option>
+                                          <option value="9">SEPTIEMBRE</option>
+                                          <option value="10">OCTUBRE</option>
+                                          <option value="11">NOVIEMBRE</option>
+                                          <option value="12">DICIEMBRE</option>
+                          </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label tituloTexto" for="idPrioridad">Pioridad</label>
+                            <select name="prioridad.idPrioridad" id="idPrioridad" class="form-control">
+                                <option value="1" selected>ORDINARIA</option>
+                                <option value="2">EXTRAORDINARIA</option>
+                            </select>
+                            <div class="invalid-feedback">Prioridad es requerido</div>
+                        </div>
+                        </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="tituloTexto">Actividad o uso</label>
+                                    <textarea class="form-control" name="actividadOUso" aria-label="Actividad o uso" required></textarea>
+                                    <div class="invalid-feedback">Actividad o uso es requerido</div>
+                                </div>
+                            </div>
+                            <hr/>
+                            <br/>
+                        <br/>
+                        
+                        <div class="valid-feedback">
+                         Todo bien.
+                         </div>
+                        <div class="invalid-feedback">
+                         </div>
+                        <br/>
+                        <br/>
+                        <div>
+							<a th:href="@{/usuario/solicitudes}" style="float: left;"><img
+								th:src="@{/img/icons/regresar.png}" style="width: 30px"
+								data-toggle="tooltip" data-placement="right" title="Regresar"></a>
+							<input type="submit" class="btn btn-dark" value="Aceptar"
+								style="float: right;">
+
+						</div>
+                        
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        
+    </body>
+</html>

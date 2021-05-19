@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+	<header th:replace="layout :: header"></header>
+	<div class="container mt-2 col-lg-5">
+		<div class="card sombra bordeCard">
+			<div class="card-header text-center">
+				<label class="tituloPrincipal">Agregar día permitido</label>
+			</div>
+			<div class="card-body">
+				<div class="row">
+					<label class="tituloTexto ml-3">Por:</label><br>
+					<div class="col-12 text-center">
+
+						<div class="btn-group btn-group-toggle" data-toggle="buttons">
+							<label class="btn btn-light active"> <input
+								id="inputDia" type="radio" name="options" autocomplete="off"
+								   value="1"> Día
+							</label> <label class="btn btn-light"> <input id="inputRango"
+								type="radio" name="options" autocomplete="off" value="2"> Rango de
+								días
+							</label>
+
+						</div>
+
+					</div>
+				</div>
+				<div id="divdia">
+					<form class="needs-validation" novalidate method="post" action="#"
+						th:action="@{/admonadq/diaspermitidos/add_day}"
+						th:object="${diaPermitido}">
+
+						<div class="form-row">
+							<div class="form-group col-8">
+								<label class="tituloTexto">Único día:</label>
+								<div class="input-group date" data-provide="datepicker">
+									<input type="text" placeholder="seleccione"
+										class="form-control" name="diaPermitido" required>
+
+									<div class="input-group-prepend">
+										<span class="input-group-text fa fa-calendar"></span>
+									</div>
+									<div class="invalid-feedback">Seleccione por favor un día</div>
+								</div>
+
+							</div>
+							<div class="form-group col-4">
+
+								<input type="submit" class="btn btn-dark mt-4 float-right"
+									value="Aceptar">
+							</div>
+						</div>
+					</form>
+
+				</div>
+				<div id="divrango">
+					<form class="needs-validation mt-5" novalidate method="post"
+						action="#" th:action="@{/admonadq/diaspermitidos/add_days}"
+						th:object="${diaPermitido}">
+
+						<label class="tituloTexto">Rango de días:</label>
+						<div class="form-row">
+							<div class="form-group col-4">
+
+								<div class="input-group date" data-provide="datepicker">
+									<input type="text" placeholder="inicio"
+										name="diaPermitidoInicio" class="form-control" required>
+									<div class="input-group-prepend">
+										<span class="input-group-text fa fa-calendar"></span>
+									</div>
+									<div class="invalid-feedback">Ingrese día inicial</div>
+								</div>
+							</div>
+
+							<div class="form-group col-4">
+								<div class="input-group date" data-provide="datepicker">
+									<input type="text" placeholder="fin" name="diaPermitidoFin"
+										class="form-control" required>
+									<div class="input-group-prepend">
+										<span class="input-group-text fa fa-calendar"></span>
+									</div>
+									<div class="invalid-feedback">Ingrese día final</div>
+
+								</div>
+
+							</div>
+
+							<div class="form-group col-4">
+
+								<input type="submit" class="btn btn-dark float-right"
+									value="Aceptar" style="float: right;">
+
+							</div>
+						</div>
+
+
+					</form>
+				</div>
+
+				<div class="mt-5">
+					<a th:href="@{/admonadq/diaspermitidos}" style="float: left;"><img
+						th:src="@{/img/icons/regresar.png}" style="width: 30px"
+						data-toggle="tooltip" data-placement="right" title="Regresar"></a>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

@@ -12,7 +12,6 @@ import com.modules.sirsr.actividad.persistence.ActividadMapper;
 import com.modules.sirsr.actividad.persistence.ActividadRepository;
 import com.modules.sirsr.config.Mensaje;
 import com.modules.sirsr.estatus.domain.EstatusService;
-import com.modules.sirsr.estatus.persistence.EstatusRepository;
 
 @Service
 public class ActividadService {

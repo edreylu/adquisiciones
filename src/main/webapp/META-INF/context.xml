@@ -1,2 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/SIRSR" />
+<Context path="/SIRSR" >
+    <Resource name="jdbc/sirsr" 
+              auth="Container" 
+              driverClassName="oracle.jdbc.OracleDriver" 
+              factory="oracle.jdbc.pool.OracleDataSourceFactory" 
+              password="admin" 
+              type="oracle.jdbc.pool.OracleDataSource" 
+              url="jdbc:oracle:thin:@localhost:1521:xe" 
+              user="SIRSR"/>
+</Context>

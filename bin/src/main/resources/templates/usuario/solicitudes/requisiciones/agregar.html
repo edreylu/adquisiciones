@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+	<header th:replace="layout :: header"></header>
+	<div class="container mt-2 col-lg-8">
+		<div class="card sombra bordeCard">
+			<div class="card-header text-center">
+				<lable class="tituloPrincipal">Nueva requisición</lable>
+			</div>
+			<div class="card-body">
+
+				<form class="needs-validation" novalidate method="post" action="#"
+					th:action="@{/usuario/solicitudes/requisiciones/add/{id}(id=${requisicion.solicitud.idSolicitud})}"
+					th:object="${requisicion}">
+					<div class="panel-body">
+						<div class="row" id="idObjetoGasto">
+							<div class="col-md-12">
+								<label class="tituloTexto">Objeto de Gasto: </label>
+								<h6 th:text="${objetoGasto}"></h6>
+							</div>
+							</br>
+						</div>
+						</br>
+						<div class="row">
+							<div class="col-md-12">
+								<label class="tituloTexto">Clave Presupuestaria</label> <select
+									id="clavePresupuestaria" th:onchange="updateObjetoGasto()"
+									name="clavePresupuestaria.idClavePresup" class="form-control"
+									required>
+									<option value="">Selecciona...</option>
+									<option th:each="clave : ${clavesPresupuestarias}"
+										th:value="${clave.idClavePresup}"
+										th:utext="${clave.claveCompleta}" />
+								</select>
+								<div class="invalid-feedback">Clave presupuestaria es
+									requerida</div>
+							</div>
+						</div>
+						<br />
+						<div class="row">
+							<div class="col-md-12">
+								<label class="tituloTexto">Monto suficiencia</label> <input
+									type="number" step="0.01" class="form-control"
+									name="montoSuficiencia" required></input>
+								<div class="invalid-feedback">Monto suficiencia es
+									requerido</div>
+							</div>
+						</div>
+						<hr />
+						<br /> <br />
+						<div class="valid-feedback">Todo bien.</div>
+						<div class="invalid-feedback"></div>
+						<br /> <br />
+						<div>
+							<a
+								th:href="@{/usuario/solicitudes/requisiciones/{id}(id=${requisicion.solicitud.idSolicitud})}"
+								style="float: left;"><img
+								th:src="@{/img/icons/regresar.png}" style="width: 30px"
+								data-toggle="tooltip" data-placement="right" title="Regresar"></a>
+							<input type="submit" class="btn btn-dark" value="Aceptar"
+								style="float: right;">
+
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

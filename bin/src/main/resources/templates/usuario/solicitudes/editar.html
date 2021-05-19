@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout :: head">
+        
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <header th:replace="layout :: header"></header>
+       <div class="container mt-2 col-lg-8">
+           <div class="card sombra bordeCard">
+                <div class="card-header text-center">
+                <lable class="tituloPrincipal">Editar solicitud</lable>
+                </div>
+                <div class="card-body">
+                    
+                    <form class="needs-validation" novalidate method="post" action="#"
+                          th:action="@{/usuario/solicitudes/update/{id}(id=${solicitud.idSolicitud})}" th:object="${solicitud}">
+                        <div class="panel-body">
+                        <div class="row">
+                        <div class="col-md-6">
+                        <label class="tituloTexto">Mes</label>
+                        <select name="mesCalendarizacion" th:field="${solicitud.mesCalendarizacion}" class="form-control">
+                            <option value="1" >ENERO</option>
+                                          <option value="2">FEBRERO</option>
+                                          <option value="3">MARZO</option>
+                                          <option value="4">ABRIL</option>
+                                          <option value="5">MAYO</option>
+                                          <option value="6">JUNIO</option>
+                                          <option value="7">JULIO</option>
+                                          <option value="8">AGOSTO</option>
+                                          <option value="9">SEPTIEMBRE</option>
+                                          <option value="10">OCTUBRE</option>
+                                          <option value="11">NOVIEMBRE</option>
+                                          <option value="12">DICIEMBRE</option>
+                          </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label tituloTexto" for="prioridad">Pioridad</label>
+                            <select name="prioridad.idPrioridad" th:field="${solicitud.prioridad.idPrioridad}" id="prioridad" class="form-control">
+                                <option value="1" >ORDINARIA</option>
+                                <option value="2">EXTRAORDINARIA</option>
+                            </select>
+                            <div class="invalid-feedback">Prioridad es requerido</div>
+                        </div>
+                        </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="tituloTexto">Justificación Del Uso</label>
+                                    <textarea name="actividadOUso" class="form-control" th:field="${solicitud.actividadOUso}" required>
+                                    </textarea>
+                                    <div class="invalid-feedback">Actividad o uso es requerido</div>
+                                </div>
+                            </div>
+                            
+                        <br/>
+                        
+                        <div class="valid-feedback">
+                         Todo bien.
+                         </div>
+                        <div class="invalid-feedback">
+                         </div>
+                        <br/>
+                        <br/>
+                        <input type="submit" class="btn btn-success" value="Actualizar">
+                        <a th:href="@{/usuario/solicitudes}">Regresar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+</html>
